@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="shopHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/shop/admin/shopInfo.do=shopInfoCtrl				
+			</value>
+		</property>
+	</bean>
+    
+	<bean name="shopInfoCtrl" class="com.eh.shop.admin.web.ShopInfoCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="shopLogic" ref="shopLogic"/>
+   </bean>
+    
+</beans>

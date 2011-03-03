@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="userLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.base.admin.logic.impl.UserLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="deptLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.base.admin.logic.impl.DeptLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="roleLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.base.admin.logic.impl.RoleLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="menuLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.base.admin.logic.impl.MenuLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="paramLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.base.admin.logic.impl.ParamLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+</beans>

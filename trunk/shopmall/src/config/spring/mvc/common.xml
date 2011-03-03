@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="publicHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/login.do=loginCtrl
+			   /common.do=commonCtrl
+			</value>
+		</property>
+	</bean>
+    
+	<bean name="loginCtrl" class="com.eh.base.common.web.LoginCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="loginLogic" ref="loginLogic"/>
+    </bean>
+    
+    <bean name="commonCtrl" class="com.eh.base.common.web.CommonCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="deptLogic" ref="deptLogic"/>
+        <property name="roleLogic" ref="roleLogic"/>
+    </bean>
+</beans>
