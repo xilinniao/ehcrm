@@ -1,0 +1,121 @@
+package com.eh.base.util;
+
+import java.io.IOException;
+
+import com.eh.base.vo.UserInfo;
+/**
+ * 
+ * @author jcrm
+ *
+ */
+public class BaseQuery {
+	/**
+	 * pageSize是否设置
+	 */
+	private boolean bPageSize = false;
+	/**
+	 * dataStart是否设置
+	 */
+	private boolean bDataStart = false;
+	/**
+	 * SESSION 对象
+	 */
+	private UserInfo userInfo;
+	/**
+	 * 页码
+	 */
+	private int pageNo = 1;
+	/**
+	 * 页大小
+	 */
+	private int pageSize = 2;
+	/**
+	 * 记录
+	 */
+	private int dataStart = 0;
+
+	public int getPageNo() {
+		return pageNo;
+	}
+
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+		this.bPageSize = true;
+		if(this.bDataStart){
+			this.pageNo = this.dataStart/this.pageSize+1;
+		}
+	}	
+
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+	
+	public int getDataStart() {
+		return dataStart;
+	}
+
+	public void setDataStart(int dataStart) {
+		this.dataStart = dataStart;
+		this.bDataStart = true;
+		if(this.bPageSize){
+			this.pageNo = this.dataStart/this.pageSize+1;
+		}
+	}
+
+	/**
+	 * 获取查询对象16进制值
+	 * 
+	 * @return
+	 */
+	public String getQryHex() {
+		try {
+			this.setUserInfo(null);
+			// 只序列化String long Date 类型
+			byte b[] = XMLObjectUtil.saveToXML(this);
+			StringBuffer sb = new StringBuffer();
+			sb = new StringBuffer();
+			for (int i = 0; i < b.length; i++) {
+				String s = Integer.toHexString(b[i]);
+				if (s.length() < 2)
+					sb.append("0");
+				else if (s.length() > 2)
+					s = s.substring(s.length() - 2);
+				sb.append(s);
+			}
+
+			return sb.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	/**
+	 * 获取查询对象
+	 * @param <T>
+	 * @param qryClass
+	 * @param qryHex
+	 * @return
+	 * @throws IOException
+	 */
+	public <T> T getQryFromHex(Class<T> qryClass,String qryHex) throws IOException{
+		int pageNoSwap = this.pageNo;
+		int pageSizeSwap = this.pageSize;
+		BaseQuery qry = (BaseQuery)XMLObjectUtil.getObjectFromPara(qryHex);
+		qry.setPageNo(pageNoSwap);
+		qry.setPageSize(pageSizeSwap);
+		return (T)qry;
+	}
+}
