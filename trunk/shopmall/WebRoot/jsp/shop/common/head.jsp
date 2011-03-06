@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/js/plugin/colorbox.css" media="screen"/>
 <!-- scripts (jquery) -->
 <script src="<%=path %>/resources/js/jquery/jquery-1.4.3.js" type="text/javascript"></script>
 <script type="text/javascript" src="<%=path %>/resources/common/js/jquery.cookie.js"></script>
@@ -21,5 +22,7 @@
 <script type="text/javascript" src="<%=path %>/resources/common/js/jquery.ajaxfileupload.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/common/js/jquery.zoomimage.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/common/tiny_mce/jquery.tinymce.js"></script>
-<script type="text/javascript" src="<%=path %>/resources/common/tiny_mce/jquery.tinymce.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/js/plugin/jquery.loadmask.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/common/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/js/plugin/jquery.colorbox.js"></script>
 

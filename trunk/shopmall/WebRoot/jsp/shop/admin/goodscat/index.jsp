@@ -30,7 +30,7 @@
 			"plugins" : [ "themes","ui","html_data"]
 		}).bind("select_node.jstree", function(e, data) {
 			var data_id = data.rslt.obj.attr("id");
-			if(data_id=='id_{rootId}'){
+			if(data_id=='id_${rootId}'){
 				$('#parent_goodscat_select').hide();
 				$('#btnSave').hide();
 				$('#btnDelete').hide();
@@ -124,6 +124,8 @@
 	</div>
 	<div class="operateBar">
 		<input type="button" class="addButton" onclick="location.href='goodscat.do?method=addGoodscat'" value="新增分类">
+		
+		<input type="button" class="addButton" onclick="location.href='goodscat.do?method=getJingDongCat'" value="京东分类">
 	</div>
 	
 	<div class="box column-left">
