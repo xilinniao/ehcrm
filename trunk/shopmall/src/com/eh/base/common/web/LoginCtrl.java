@@ -13,6 +13,8 @@ import com.eh.base.entity.TbMenuInfo;
 import com.eh.base.util.Constants;
 import com.eh.base.vo.UserInfo;
 import com.eh.exception.BusinessException;
+import com.eh.shop.admin.logic.ShopLogic;
+import com.eh.shop.entity.TbShopInfo;
 /**
  * 登录操作类
  * @author jcrm
@@ -20,6 +22,11 @@ import com.eh.exception.BusinessException;
  */
 public class LoginCtrl extends BaseCtrl {
 	LoginLogic loginLogic;
+	/**
+	 * 商店LOGIC
+	 */
+	ShopLogic shopLogic;
+	
 	/**
 	 * 登录
 	 * @param request
@@ -32,23 +39,26 @@ public class LoginCtrl extends BaseCtrl {
 		String userCode = getString(request, "userCode", false);
 		String password = getString(request, "password", false);
 		
-		UserInfo sessionInfo = loginLogic.checkUser(userCode.toUpperCase(), password);
-		if("OK".equals(sessionInfo.getCheckResult())){
+		UserInfo userInfo = loginLogic.checkUser(userCode.toUpperCase(), password);
+		if("OK".equals(userInfo.getCheckResult())){
 			mav.setViewName("/jsp/admin/index.jsp");
-			sessionInfo.setCheckResult(null);
+			userInfo.setCheckResult(null);
 			//获取菜单操作
-			List menuList = this.loginLogic.findUserMenuList(sessionInfo.getUser().getUserId());
+			List menuList = this.loginLogic.findUserMenuList(userInfo.getUser().getUserId());
 			this.setIsLeaf(menuList);
 			StringBuffer treeXml = new StringBuffer("");
 			TbMenuInfo rootMenu = (TbMenuInfo)menuList.get(0);
 			treeXml.append("<ul class=\"sf-menu\">");
 			makeMenu(menuList,rootMenu.getMenuId(), rootMenu.getMenuId(), treeXml, 1);
 			treeXml.append("</ul>");
-			sessionInfo.setMenuStr(treeXml.toString());
-			getSession(request).setAttribute(Constants.SESSION_NAME,sessionInfo);
+			userInfo.setMenuStr(treeXml.toString());
+			//获取店铺对象
+			TbShopInfo shopInfo = this.shopLogic.getUserShop(userInfo.getUser().getUserId());
+			userInfo.setShopInfo(shopInfo);
+			getSession(request).setAttribute(Constants.SESSION_NAME,userInfo);
 		}else{
 			mav.setViewName("/index.jsp");
-			mav.addObject("error", sessionInfo.getCheckResult());
+			mav.addObject("error", userInfo.getCheckResult());
 		}
 		return mav;
 	}
@@ -130,7 +140,7 @@ public class LoginCtrl extends BaseCtrl {
 	 */
 	public ModelAndView top(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("/jsp/top.jsp");
-		UserInfo sessionInfo = super.getUserInfo(request);
+		UserInfo userInfo = super.getUserInfo(request);
 		return mav;
 	}
 	
@@ -151,6 +161,20 @@ public class LoginCtrl extends BaseCtrl {
 
 	public void setLoginLogic(LoginLogic loginLogic) {
 		this.loginLogic = loginLogic;
+	}
+
+	/**
+	 * @return the shopLogic
+	 */
+	public ShopLogic getShopLogic() {
+		return shopLogic;
+	}
+
+	/**
+	 * @param shopLogic the shopLogic to set
+	 */
+	public void setShopLogic(ShopLogic shopLogic) {
+		this.shopLogic = shopLogic;
 	}
 	
 	

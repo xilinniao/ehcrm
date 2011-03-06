@@ -8,8 +8,16 @@ import com.eh.base.logic.BaseLogic;
 import com.eh.base.util.Constants;
 import com.eh.shop.admin.logic.GoodsCatLogic;
 import com.eh.shop.entity.TbGoodsCategory;
+import com.eh.shop.entity.TbShopInfo;
 
 public class GoodsCatLogicImpl extends BaseLogic implements GoodsCatLogic {
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.GoodsCatLogic#getRootCategory(java.lang.Long)
+	 */
+	public TbGoodsCategory getRootCategory(Long shopId) {
+		List cats = super.baseDao.find("from TbGoodsCategory t where t.treeNo = '001' ");
+		return (TbGoodsCategory)cats.get(0);
+	}
 
 	public List<TreeVo> findGoodscatTree(String treeNo,Long shopId) {
 		List tmpList = super.baseDao.find("from TbGoodsCategory t where t.treeNo like ? and t.shopInfo.shopId = ? order by t.treeNo ",new Object[]{treeNo+"%",shopId});

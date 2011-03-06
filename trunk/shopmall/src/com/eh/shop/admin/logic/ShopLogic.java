@@ -17,5 +17,5 @@ public interface ShopLogic extends IBaseLogic {
 	 * @param userId
 	 * @return
 	 */
-	public TbShopInfo getUserShop(Long userId);
+	public TbShopInfo getUserShop(Long userId);	
 }

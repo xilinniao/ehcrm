@@ -6,6 +6,7 @@
 			<value>
 				/shop/admin/shopInfo.do=shopInfoCtrl
 				/shop/admin/goodscat.do=goodsCatCtrl
+				/shop/admin/goodsInfo.do=goodsInfoCtrl
 			</value>
 		</property>
 	</bean>
@@ -20,5 +21,9 @@
         <property name="goodsCatLogic" ref="goodsCatLogic"/>
         <property name="shopLogic" ref="shopLogic"/>
    </bean>
-    
+   
+    <bean name="goodsInfoCtrl" class="com.eh.shop.admin.web.GoodsInfoCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="goodsLogic" ref="goodsLogic"/>
+   </bean>
 </beans>

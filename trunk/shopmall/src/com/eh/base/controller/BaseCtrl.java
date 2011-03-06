@@ -371,6 +371,10 @@ abstract public class BaseCtrl extends MultiActionController {
     protected void renderXml(HttpServletResponse response,final String xml, final String... headers) {
             render(response,ServletUtils.XML_TYPE, xml, headers);
     }
+    
+    protected void renderJson(HttpServletResponse response,final String jsonString) {
+    	render(response,ServletUtils.JSON_TYPE, jsonString, null);
+    }
 
     /**
      * 直接输出JSON.

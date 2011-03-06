@@ -28,7 +28,7 @@ public class BaseQuery {
 	/**
 	 * 页大小
 	 */
-	private int pageSize = 2;
+	private int pageSize = 5;
 	/**
 	 * 记录
 	 */

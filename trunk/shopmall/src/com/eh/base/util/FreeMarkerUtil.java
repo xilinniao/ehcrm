@@ -5,6 +5,9 @@ package com.eh.base.util;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Map;
+
+import org.apache.commons.collections.FastHashMap;
 
 import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
@@ -18,6 +21,8 @@ public class FreeMarkerUtil {
 	private static String TEMPLATE_PATH = "/config/freemaker/json";
 
     private static Configuration cfg = new Configuration();
+    
+    private static FastHashMap configs = null;
 
     static{
             // Specify the data source where the template files come from.
@@ -33,6 +38,11 @@ public class FreeMarkerUtil {
             //cfg.setCacheStorage(new freemarker.cache.MruCacheStorage(20, 250));
             //cfg.setCacheStorage(new SoftCacheStorage());
             cfg.setDefaultEncoding("UTF-8");
+    }
+    
+    public static Map initFmConfig(){
+    	
+    	return null;
     }
 	/**
 	 * 处理

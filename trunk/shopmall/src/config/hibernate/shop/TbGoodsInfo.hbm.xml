@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.eh.shop.entity.TbGoodsInfo"
+		table="TB_GOODS_INFO">
+		<id name="goodsId" type="java.lang.Long">
+			<column name="GOODS_ID" precision="11" scale="0" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="shopInfo"
+			class="com.eh.shop.entity.TbShopInfo">
+			<column name="SHOP_ID" precision="10" scale="0" />
+		</many-to-one>
+		<many-to-one name="category"
+			class="com.eh.shop.entity.TbGoodsCategory">
+			<column name="CAT_ID" precision="10" scale="0" />
+		</many-to-one>
+		<property name="goodsName" type="java.lang.String">
+			<column name="GOODS_NAME" length="500" />
+		</property>
+		<property name="keyWord" type="java.lang.String">
+			<column name="KEY_WORD" length="500" />
+		</property>
+		<property name="goodNo" type="java.lang.String">
+			<column name="GOOD_NO" length="100" />
+		</property>
+		<property name="originalPrice" type="java.lang.Double">
+			<column name="ORIGINAL_PRICE" precision="12" />
+		</property>
+		<property name="discountPrice" type="java.lang.Double">
+			<column name="DISCOUNT_PRICE" precision="12" />
+		</property>
+		<property name="goodsDesc" type="java.lang.String">
+			<column name="GOODS_DESC" length="65535" />
+		</property>
+		<property name="leavesCount" type="java.lang.Long">
+			<column name="LEAVES_COUNT" precision="10" scale="0" />
+		</property>
+	</class>
+</hibernate-mapping>
