@@ -1,5 +1,6 @@
 package com.eh.shop.admin.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,11 +18,10 @@ import com.eh.base.vo.UserInfo;
 import com.eh.shop.admin.logic.GoodsCatLogic;
 import com.eh.shop.admin.logic.ShopLogic;
 import com.eh.shop.entity.TbGoodsCategory;
+import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbShopInfo;
 
 public class GoodsCatCtrl extends BaseTreeCtrl{
-	private static final Long ROOT_ID = Long.valueOf(1);
-	
 	GoodsCatLogic goodsCatLogic;	
 	/**
 	 * 商店LOGIC
@@ -63,14 +63,20 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 					Element em = (Element)ems.get(k);
 					TbGoodsCategory level3 = new TbGoodsCategory();
 					level3.setCategoryName(em.text());
+					String url = em.select("a").first().attr("href");
+					level3.setCategoryUrl(url);
 					level3.setDataStatus(Long.valueOf(0));
 					level3.setOrderNum(Long.valueOf(k));
 					level3.setTreeNo(level2.getTreeNo()+String.valueOf(100+k));
 					level3.setShopInfo(this.shopLogic.load(TbShopInfo.class, Long.valueOf(1)));
 					level3.setParent(level2);
 					this.goodsCatLogic.save(level3);
+					if(k==0){
+						getProduct(url,level3);
+					}
 				}
 			}
+			
 			/*System.out.print(bc.select("div.mc > dl  > dt").first().text());
 			Elements ddems = bc.select("div.mc > dl  > dd > em");
 			for (Element ddem : ddems) {
@@ -81,24 +87,42 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 		super.renderText(response, "ok", null);
 		return null;
 	}
+	private void getProduct(String url,TbGoodsCategory cat){
+		String fix =url.substring(0, 4);
+		if(!("http".equals(fix))){
+			String realurl = "http://www.360buy.com"+url;
+			try {
+				Document doc = Jsoup.connect(realurl).get();
+				Elements elms = doc.select("ul.list-h > li");
+				for (int i = 0,len = elms.size();i<len;i++) {
+					Element elm = (Element)elms.get(i);
+					TbGoodsInfo goods = new TbGoodsInfo();
+					goods.setCategory(cat);
+					goods.setGoodsName(elm.select("div.p-name > a").text());
+					goods.setShopInfo(this.shopLogic.load(TbShopInfo.class, Long.valueOf(1)));
+					this.goodsCatLogic.save(goods);
+				}
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
 		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goodscat/index.jsp");
-		mav.addObject("rootId", ROOT_ID);
+		TbGoodsCategory rootCategory = this.goodsCatLogic.getRootCategory(userInfo.getShopInfo().getShopId());
+		mav.addObject("rootId", rootCategory.getCategoryId());
 		return mav;
-	}
-	
-	private TbGoodsCategory getRootGoodscat(){
-		return goodsCatLogic.get(TbGoodsCategory.class,ROOT_ID);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected List prepareTree(HttpServletRequest request,HttpServletResponse response)throws Exception {
-		UserInfo userInfo = super.getUserInfo(request);
+		UserInfo userInfo = super.getUserInfo(request);		
 		//设置ROOT根节点信息
-		TbGoodsCategory rootGoodscat = getRootGoodscat();
+		TbGoodsCategory rootGoodscat = this.goodsCatLogic.getRootCategory(userInfo.getShopInfo().getShopId());
 		super.rootId = rootGoodscat.getCategoryId();
 		super.rootTreeName = rootGoodscat.getCategoryName();
 		TbShopInfo shop = this.shopLogic.getUserShop(userInfo.getUser().getUserId());

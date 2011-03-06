@@ -15,6 +15,7 @@ public class TbGoodsCategory  implements java.io.Serializable {
      private TbGoodsCategory parent;
      private String categoryName;
      private TbShopInfo shopInfo;
+     private String categoryUrl;
      private String keyWords;
      private String categoryDesc;
      private Long dataStatus;
@@ -30,10 +31,11 @@ public class TbGoodsCategory  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsCategory(TbGoodsCategory parent, String categoryName, TbShopInfo shopInfo, String keyWords, String categoryDesc, Long dataStatus, Long orderNum, String treeNo) {
+    public TbGoodsCategory(TbGoodsCategory parent, String categoryName, TbShopInfo shopInfo, String categoryUrl, String keyWords, String categoryDesc, Long dataStatus, Long orderNum, String treeNo) {
         this.parent = parent;
         this.categoryName = categoryName;
         this.shopInfo = shopInfo;
+        this.categoryUrl = categoryUrl;
         this.keyWords = keyWords;
         this.categoryDesc = categoryDesc;
         this.dataStatus = dataStatus;
@@ -74,6 +76,14 @@ public class TbGoodsCategory  implements java.io.Serializable {
     
     public void setShopInfo(TbShopInfo shopInfo) {
         this.shopInfo = shopInfo;
+    }
+
+    public String getCategoryUrl() {
+        return this.categoryUrl;
+    }
+    
+    public void setCategoryUrl(String categoryUrl) {
+        this.categoryUrl = categoryUrl;
     }
 
     public String getKeyWords() {

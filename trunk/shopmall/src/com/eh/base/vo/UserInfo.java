@@ -2,6 +2,7 @@ package com.eh.base.vo;
 
 import com.eh.base.entity.DeptInfo;
 import com.eh.base.entity.TbUserInfo;
+import com.eh.shop.entity.TbShopInfo;
 
 /**
  * session对象
@@ -33,6 +34,10 @@ public class UserInfo {
 	 * 菜单字符串
 	 */
 	private String menuStr;
+	/**
+	 * 所属商店，如果不是店铺管理员，则返回的是NULL
+	 */
+	private TbShopInfo shopInfo;
 	
 	public boolean findResource(long id){		
 		if (userRes == null) {
@@ -91,6 +96,22 @@ public class UserInfo {
 
 	public void setOrg(DeptInfo org) {
 		this.org = org;
+	}
+
+
+	/**
+	 * @return the shopInfo
+	 */
+	public TbShopInfo getShopInfo() {
+		return shopInfo;
+	}
+
+
+	/**
+	 * @param shopInfo the shopInfo to set
+	 */
+	public void setShopInfo(TbShopInfo shopInfo) {
+		this.shopInfo = shopInfo;
 	}
 	
 }

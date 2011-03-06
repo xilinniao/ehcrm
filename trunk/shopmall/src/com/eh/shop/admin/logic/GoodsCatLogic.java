@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.entity.TbGoodsCategory;
+import com.eh.shop.entity.TbShopInfo;
 
 public interface GoodsCatLogic extends IBaseLogic {
 	/**
@@ -24,4 +25,9 @@ public interface GoodsCatLogic extends IBaseLogic {
 	 * @return
 	 */
 	public String deleteGoodscatInfo(Long goodscatId);
+	/**
+	 * 根据商店ID获取根分类
+	 * @return
+	 */
+	public TbGoodsCategory getRootCategory(Long shopId);
 }
