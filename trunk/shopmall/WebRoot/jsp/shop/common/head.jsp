@@ -17,7 +17,6 @@
 <script type="text/javascript" src="<%=path %>/resources/common/js/jquery.superfish.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/common/js/jquery.hoverIntent.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/common/js/jquery.datepicker.js"></script>
-<script type="text/javascript" src="<%=path %>/resources/common/js/jquery.bCheckbox.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/common/js/jquery.lSelect.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/common/js/jquery.ajaxfileupload.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/common/js/jquery.zoomimage.js"></script>
