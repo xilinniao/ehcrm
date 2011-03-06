@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<velocity name="test">
+		<![CDATA[
+		
+		<#setting number_format="0.##">
+{
+	"deptId":"${deptId}",
+	"deptCode":"${deptCode!''}",
+	"deptName":"${deptName!''}",
+	"deptKind":"${deptKind!''}",
+	"deptStatus":"${deptStatus!''}",
+	"sortNum":"${sortNum!''}",
+	"adminId":"${adminId!''}",
+	"linkMan":"${linkMan!''}",
+	"linkTel":"${linkTel!''}",
+	"createUser":"${createUser!''}",
+	"createDate":"${createDate!''}",
+	"updateDate":"${updateDate!''}",
+	"updateUser":"${updateUser!''}",
+	"parentDeptId":"${(parent.deptId)!''}",
+	"parentDeptName":"${(parent.deptName)!''}",
+	"treeNo":"${treeNo!''}",
+	"fullName":"${fullName!''}"
+}
+		
+		]]>
+	</velocity>
+</root>
