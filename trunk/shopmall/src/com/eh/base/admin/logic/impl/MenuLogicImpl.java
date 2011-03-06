@@ -51,4 +51,18 @@ public class MenuLogicImpl extends BaseLogic implements MenuLogic {
 			loopMenu(menu.getMenuId(),menu.getTreeNo());
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.base.admin.logic.MenuLogic#deleteMenuInfo(java.lang.Long)
+	 */
+	public String deleteMenuInfo(Long menuId) {
+		TbMenuInfo info = super.load(TbMenuInfo.class, menuId);
+		int cnt = super.baseDao.count("select count(*) from TbMenuInfo t where t.parent = ? ", info) ;
+		if(cnt==0){
+			super.remove(info);
+			return "OK";
+		}else{
+			return "EER01";
+		}
+	}
 }

@@ -51,7 +51,7 @@ public class MenuCtrl extends BaseTreeCtrl{
 	}
 	
 	public ModelAndView onEditMenu(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {		
+			HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
 		Long menuId = super.getLong(request, "menuId", false);
 		TbMenuInfo entity = null;
@@ -66,6 +66,45 @@ public class MenuCtrl extends BaseTreeCtrl{
 		entity.setParent(parentMenu);
 		menuLogic.saveMenuInfo(entity);
 		super.renderText(response, "OK", null);
+		return null;
+	}
+	
+	/**
+	 * 选择菜单
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView selectMenu(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		return new ModelAndView("/jsp/admin/menu/tree.jsp");
+	}
+	
+	/**
+	 * 新增菜单
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView addMenu(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		return new ModelAndView("/jsp/admin/menu/add.jsp");
+	}
+	
+	/**
+	 * 删除菜单资源
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView deleteMenu(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		Long menuId = super.getLong(request, "menuId", false);		
+		String result = this.menuLogic.deleteMenuInfo(menuId);
+		super.renderText(response, result, null);
 		return null;
 	}
 	

@@ -18,4 +18,10 @@ public interface MenuLogic extends IBaseLogic {
 	 * @return
 	 */
 	public Long saveMenuInfo(TbMenuInfo menu);
+	/**
+	 * 删除菜单资源
+	 * @param menuId
+	 * @return
+	 */
+	public String deleteMenuInfo(Long menuId);
 }

@@ -4,13 +4,20 @@
 	<bean id="shopHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<value>
-				/shop/admin/shopInfo.do=shopInfoCtrl				
+				/shop/admin/shopInfo.do=shopInfoCtrl
+				/shop/admin/goodscat.do=goodsCatCtrl
 			</value>
 		</property>
 	</bean>
     
 	<bean name="shopInfoCtrl" class="com.eh.shop.admin.web.ShopInfoCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="shopLogic" ref="shopLogic"/>
+   	</bean>
+   
+   <bean name="goodsCatCtrl" class="com.eh.shop.admin.web.GoodsCatCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="goodsCatLogic" ref="goodsCatLogic"/>
         <property name="shopLogic" ref="shopLogic"/>
    </bean>
     
