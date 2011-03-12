@@ -6,6 +6,7 @@
 			<value>
 				/login.do=loginCtrl
 			   /common.do=commonCtrl
+			   /upload.do=uploadCtrl
 			</value>
 		</property>
 	</bean>
@@ -20,5 +21,9 @@
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="deptLogic" ref="deptLogic"/>
         <property name="roleLogic" ref="roleLogic"/>
+    </bean>
+    
+    <bean name="uploadCtrl" class="com.eh.base.common.web.UploadCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
     </bean>
 </beans>

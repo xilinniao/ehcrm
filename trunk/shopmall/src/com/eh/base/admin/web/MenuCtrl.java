@@ -21,7 +21,7 @@ public class MenuCtrl extends BaseTreeCtrl{
 	public ModelAndView index(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/admin/menu/index.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/admin/menu/index");
 		mav.addObject("rootId", MENU_ROOT_ID);
 		return mav;
 	}
@@ -46,7 +46,7 @@ public class MenuCtrl extends BaseTreeCtrl{
 			HttpServletResponse response) throws Exception {	
 		Long menuId = super.getLong(request, "menuId", false);
 		TbMenuInfo entity = menuLogic.get(TbMenuInfo.class, menuId);
-		super.renderJson(response, FreeMarkerUtil.process("admin.menu.entity.ftl", entity),null);
+		super.renderJson(response, FreeMarkerUtil.process("admin.menu.entity.ftl", entity));
 		return null;
 	}
 	
@@ -65,7 +65,7 @@ public class MenuCtrl extends BaseTreeCtrl{
 		TbMenuInfo parentMenu = menuLogic.load(TbMenuInfo.class, parentMenuId);
 		entity.setParent(parentMenu);
 		menuLogic.saveMenuInfo(entity);
-		super.renderText(response, "OK", null);
+		super.renderText(response, "OK");
 		return null;
 	}
 	
@@ -78,7 +78,7 @@ public class MenuCtrl extends BaseTreeCtrl{
 	 */
 	public ModelAndView selectMenu(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		return new ModelAndView("/jsp/admin/menu/tree.jsp");
+		return new ModelAndView("/jsp/admin/menu/tree");
 	}
 	
 	/**
@@ -90,7 +90,7 @@ public class MenuCtrl extends BaseTreeCtrl{
 	 */
 	public ModelAndView addMenu(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		return new ModelAndView("/jsp/admin/menu/add.jsp");
+		return new ModelAndView("/jsp/admin/menu/add");
 	}
 	
 	/**
@@ -104,7 +104,7 @@ public class MenuCtrl extends BaseTreeCtrl{
 		UserInfo userInfo = super.getUserInfo(request);
 		Long menuId = super.getLong(request, "menuId", false);		
 		String result = this.menuLogic.deleteMenuInfo(menuId);
-		super.renderText(response, result, null);
+		super.renderText(response, result);
 		return null;
 	}
 	

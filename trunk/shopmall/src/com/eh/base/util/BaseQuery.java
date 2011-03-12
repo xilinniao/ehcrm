@@ -10,10 +10,6 @@ import com.eh.base.vo.UserInfo;
  */
 public class BaseQuery {
 	/**
-	 * pageSize是否设置
-	 */
-	private boolean bPageSize = false;
-	/**
 	 * dataStart是否设置
 	 */
 	private boolean bDataStart = false;
@@ -34,8 +30,16 @@ public class BaseQuery {
 	 */
 	private int dataStart = 0;
 
-	public int getPageNo() {
+	public int getPageNo() {		
 		return pageNo;
+	}
+	
+	/**
+	 * 获取datatables的PageNo
+	 * @return
+	 */
+	public int getDataTablesPageNo(){
+		return this.dataStart/this.pageSize+1;
 	}
 
 	public void setPageNo(int pageNo) {
@@ -47,11 +51,7 @@ public class BaseQuery {
 	}
 
 	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-		this.bPageSize = true;
-		if(this.bDataStart){
-			this.pageNo = this.dataStart/this.pageSize+1;
-		}
+		this.pageSize = pageSize;		
 	}	
 
 	public UserInfo getUserInfo() {
@@ -68,11 +68,7 @@ public class BaseQuery {
 
 	public void setDataStart(int dataStart) {
 		this.dataStart = dataStart;
-		this.bDataStart = true;
-		if(this.bPageSize){
-			this.pageNo = this.dataStart/this.pageSize+1;
-		}
-	}
+	}	
 
 	/**
 	 * 获取查询对象16进制值

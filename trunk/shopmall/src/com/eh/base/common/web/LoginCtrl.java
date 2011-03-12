@@ -41,7 +41,7 @@ public class LoginCtrl extends BaseCtrl {
 		
 		UserInfo userInfo = loginLogic.checkUser(userCode.toUpperCase(), password);
 		if("OK".equals(userInfo.getCheckResult())){
-			mav.setViewName("/jsp/admin/index.jsp");
+			mav.setViewName("/jsp/admin/index");
 			userInfo.setCheckResult(null);
 			//获取菜单操作
 			List menuList = this.loginLogic.findUserMenuList(userInfo.getUser().getUserId());
@@ -57,14 +57,14 @@ public class LoginCtrl extends BaseCtrl {
 			userInfo.setShopInfo(shopInfo);
 			getSession(request).setAttribute(Constants.SESSION_NAME,userInfo);
 		}else{
-			mav.setViewName("/index.jsp");
+			mav.setViewName("/index");
 			mav.addObject("error", userInfo.getCheckResult());
 		}
 		return mav;
 	}
 	
 	public ModelAndView logout(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/index.jsp");
+		ModelAndView mav = new ModelAndView("/index");
 		request.getSession().invalidate();
 		return mav;
 	}
@@ -139,7 +139,7 @@ public class LoginCtrl extends BaseCtrl {
 	 * @throws Exception
 	 */
 	public ModelAndView top(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/top.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/top");
 		UserInfo userInfo = super.getUserInfo(request);
 		return mav;
 	}

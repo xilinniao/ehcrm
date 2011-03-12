@@ -1,5 +1,7 @@
 package com.eh.base.controller;
 
+import net.sf.json.JSONObject;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.propertyeditors.CustomNumberEditor;
@@ -40,8 +42,20 @@ import java.util.Map;
  *
  */
 abstract public class BaseCtrl extends MultiActionController {
-	public static final String SHOW_MSG_JSP = "/common/showMessage.jsp";
-	public static final String SHOW_MSG_ATTR = "/common/showMessage.jsp";
+	public static final String SHOW_MSG_JSP = "/common/showMessage";
+	public static final String SHOW_MSG_ATTR = "/common/showMessage";
+	
+	/**
+	 * 成功转向页面
+	 */
+	public static final String SUCCESS_URL = "/jsp/shop/common/success";
+	public static final String REDIRECT_URL = "redirectUrl";
+	
+	public static final String WARN = "warn";
+	public static final String SUCCESS = "success";
+	public static final String ERROR = "error";
+	public static final String MESSAGE = "message";
+	public static final String STATUS = "status";
 	
 	/**
      * 不设置任何action参数时的默认 Action.
@@ -143,6 +157,24 @@ abstract public class BaseCtrl extends MultiActionController {
         }
     }
 
+    /**
+     * 添加错误信息
+     * @param request
+     * @param error
+     */
+    protected void addErrors(HttpServletRequest request, String error) {
+    	if (StringUtils.isNotBlank(error)) {
+    		List errors = (List)request.getAttribute("errorMessages");
+    		if(errors==null){
+    			errors = new ArrayList();
+    			errors.add(error);
+    			request.setAttribute("errorMessages", errors);
+    		}else{
+    			errors.add(error);
+    		}
+    	}
+    }
+    
     /**
      * 直接向客户端返回Content字符串，不用通过View页面渲染.
      */
@@ -351,17 +383,16 @@ abstract public class BaseCtrl extends MultiActionController {
      * 直接输出文本.
      * @see #render(String, String, String...)
      */
-    protected void renderText(HttpServletResponse response,final String text, final String... headers) {
+    protected void renderText(HttpServletResponse response,final String text) {
     		System.out.println(text);
-            render(response,ServletUtils.TEXT_TYPE, text, headers);
+            render(response,ServletUtils.HTML_TYPE, text);
     }
-    
     /**
      * 直接输出文本.
      * @see #render(String, String, String...)
      */
-    protected void renderText(HttpServletResponse response,final boolean isTrue, final String... headers) {
-            render(response,ServletUtils.TEXT_TYPE, isTrue?"true":"false", headers);
+    protected void renderText(HttpServletResponse response,final boolean isTrue) {
+            render(response,ServletUtils.TEXT_TYPE, isTrue?"true":"false");
     }
     
     /**
@@ -370,22 +401,30 @@ abstract public class BaseCtrl extends MultiActionController {
      */
     protected void renderXml(HttpServletResponse response,final String xml, final String... headers) {
             render(response,ServletUtils.XML_TYPE, xml, headers);
+    }    
+
+    protected void renderJson(HttpServletResponse response,final String jsonString) {
+    	System.out.println(jsonString);
+    	render(response,ServletUtils.HTML_TYPE, jsonString, null);
     }
     
-    protected void renderJson(HttpServletResponse response,final String jsonString) {
-    	render(response,ServletUtils.JSON_TYPE, jsonString, null);
-    }
-
-    /**
-     * 直接输出JSON.
-     *
-     * @param jsonString json字符串.
-     * @see #render(String, String, String...)
-     */
-    protected void renderJson(HttpServletResponse response,final String jsonString, final String... headers) {
-    		System.out.println(jsonString);
-            render(response,ServletUtils.JSON_TYPE, jsonString, headers);
-    }
+    protected void renderJsonError(HttpServletResponse response,
+			final String message) {
+		Map<String, String> jsonMap = new HashMap<String, String>();
+		jsonMap.put(STATUS, ERROR);
+		jsonMap.put(MESSAGE, message);
+		JSONObject jsonObject = JSONObject.fromObject(jsonMap);
+		renderJson(response, jsonObject.toString());
+	}
+    
+    protected void renderJsonSuccess(HttpServletResponse response,
+			final String message) {
+		Map<String, String> jsonMap = new HashMap<String, String>();
+		jsonMap.put(STATUS, SUCCESS);
+		jsonMap.put(MESSAGE, message);
+		JSONObject jsonObject = JSONObject.fromObject(jsonMap);
+		renderJson(response, jsonObject.toString());
+	}    
     
     public Map<String, String> getParameterMap(HttpServletRequest request){
         Map m = new HashMap();

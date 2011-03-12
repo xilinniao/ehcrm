@@ -21,7 +21,7 @@ public class ParamCtrl extends BaseTreeCtrl{
 	public ModelAndView index(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/admin/param/index.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/admin/param/index");
 		mav.addObject("rootId", PARAM_ROOT_ID);
 		return mav;
 	}
@@ -45,7 +45,7 @@ public class ParamCtrl extends BaseTreeCtrl{
 			HttpServletResponse response) throws Exception {	
 		Long keyId = super.getLong(request, "keyId", false);
 		TbBaseParams  entity = paramLogic.get(TbBaseParams.class, keyId);
-		super.renderJson(response, FreeMarkerUtil.process("admin.param.entity.ftl", entity),null);
+		super.renderJson(response, FreeMarkerUtil.process("admin.param.entity.ftl", entity));
 		return null;
 	}
 	/**
@@ -66,7 +66,7 @@ public class ParamCtrl extends BaseTreeCtrl{
 		TbBaseParams  parentParam = paramLogic.load(TbBaseParams .class, parentKeyId);
 		entity.setParent(parentParam);
 		paramLogic.saveParamInfo(entity);
-		super.renderText(response, "OK", null);
+		super.renderText(response, "OK");
 		return null;
 	}
 	

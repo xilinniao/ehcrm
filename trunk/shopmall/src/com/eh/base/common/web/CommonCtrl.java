@@ -73,7 +73,7 @@ public class CommonCtrl extends BaseCtrl {
 	 */
 	public ModelAndView findChildDept(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/common/deptTree.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/common/deptTree");
 		/*List deptList = deptLogic.findDeptTree();
 		mav.addObject("deptList", deptList);*/
 		return mav;
@@ -88,7 +88,7 @@ public class CommonCtrl extends BaseCtrl {
 	 */
 	public ModelAndView findDeptNameByCode(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/common/deptNameByCodeIfm.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/common/deptNameByCodeIfm");
 		String deptCode = this.getString(request,"deptCode",true);
 		TbDeptInfo deptInfo = deptLogic.findDepByCode(deptCode);
 		mav.addObject("deptInfo", deptInfo);
@@ -106,7 +106,7 @@ public class CommonCtrl extends BaseCtrl {
 	 */
 	public ModelAndView findAllRole(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/common/roleTree.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/common/roleTree");
 		/*List treeList = roleLogic.findTreeList();
 		mav.addObject("treeList", treeList);*/
 		return mav;
@@ -115,7 +115,7 @@ public class CommonCtrl extends BaseCtrl {
 	
 	public ModelAndView meetTree(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/common/meetingTree.jsp");		
+		ModelAndView mav = new ModelAndView("/jsp/common/meetingTree");		
 		
 		return mav;
 	}

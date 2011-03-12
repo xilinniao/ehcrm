@@ -39,6 +39,10 @@ public class InitConfigServlet extends HttpServlet {
 			}
 		}
 		Constants.FILE_UPLOAD_PATH = fileUploadPath;
+		
+		Constants.UPLOAD_IMAGE_DIR = fileUploadPath+"/images/";
+		Constants.UPLOAD_MEDIA_DIR = fileUploadPath+"/media/";
+		Constants.UPLOAD_FILE_DIR = fileUploadPath+"/files/";
 
 		// 导入velocity配置信息
 		try {

@@ -8,11 +8,18 @@
 		    "iTotalDisplayRecords": "$page.totalCount",
 		    "aaData": [
 		    	#foreach( $x in $page.result )
-		    		["$x.goodsId",
+		    		[
+		    		"<input type='checkbox' />",
 		    		"$x.goodsName",
-		    		"$x.leavesCount"
-		    		]#if( $foreach.hasNext ),#end
-		    		
+		    		"$x.goodNo",
+		    		"$x.category.categoryName",
+		    		"$!x.originalPrice",
+		    		"$!x.discountPrice",
+		    		"1",
+		    		"1",
+		    		"$!x.leavesCount",
+		    		"<a href='goodsInfo.do?method=editGoods&goodsId=$x.goodsId' title='编辑'>[编辑]</a>&nbsp;<a href='goodsInfo.do?method=editGoods&goodsId=$x.goodsId' title='浏览'>[浏览]</a>"
+		    		]#if( $foreach.hasNext ),#end		    		
 		    	#end
 		    ]
 		}

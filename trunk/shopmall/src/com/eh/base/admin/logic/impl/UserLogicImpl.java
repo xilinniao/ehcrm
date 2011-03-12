@@ -36,7 +36,7 @@ public class UserLogicImpl extends BaseLogic implements UserLogic {
 		CriteriaUtil.addRightLike(criteria, "d.treeNo", qry.getTreeNo());
 		CriteriaUtil.addFullLike(criteria, "userName", qry.getUserName());
 		CriteriaUtil.addFullLike(criteria, "userCode", qry.getUserCode());
-		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
+		return baseDao.pagedQuery(criteria, qry.getDataTablesPageNo(), qry.getPageSize());
 	}
 	
 	/**

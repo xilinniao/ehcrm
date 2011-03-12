@@ -33,7 +33,7 @@ public class ShopInfoCtrl extends BaseCtrl {
 	 */
 	public ModelAndView editShop(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/shop/editShop.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/shop/editShop");
 		TbShopInfo shop = this.shopLogic.getUserShop(userInfo.getUser().getUserId());
 		if(shop==null){
 			mav = new ModelAndView(super.SHOW_MSG_JSP);
@@ -54,7 +54,7 @@ public class ShopInfoCtrl extends BaseCtrl {
 	 */
 	public ModelAndView onEditShop(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/editShop.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/editShop");
 		TbShopInfo shop = this.shopLogic.getUserShop(userInfo.getUser().getUserId());
 		if(shop==null){
 			mav = new ModelAndView(super.SHOW_MSG_JSP);

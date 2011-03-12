@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.eh.shop.entity.TbGoodsAttach" table="TB_GOODS_ATTACH">
+		<id name="recId" type="java.lang.Long">
+			<column name="REC_ID" precision="10" scale="0" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="goodsInfo"
+			class="com.eh.shop.entity.TbGoodsInfo">
+			<column name="GOODS_ID" precision="10" scale="0" />
+		</many-to-one>
+		<many-to-one name="attachment"
+			class="com.eh.base.entity.TbAttachment">
+			<column name="ATTACH_ID" precision="10" scale="0" />
+		</many-to-one>
+		<property name="relType" type="java.lang.Long">
+			<column name="REL_TYPE" precision="10" scale="0" />
+		</property>
+		<property name="orderNum" type="java.lang.Long">
+			<column name="order_num" precision="10" scale="0" />
+		</property>
+	</class>
+</hibernate-mapping>
