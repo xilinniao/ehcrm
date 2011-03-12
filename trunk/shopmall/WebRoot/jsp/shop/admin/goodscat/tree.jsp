@@ -28,8 +28,8 @@
 			},
 			"plugins" : [ "themes","ui","html_data"]
 		}).bind("select_node.jstree", function(e, data) {
-			parent.$('#parentGoodscatId').val(data.rslt.obj.attr("id").substr(3));
-			parent.$('#parentCategoryName').val(data.args[0].innerText.trim());
+			parent.$('#id_category_id').val(data.rslt.obj.attr("id").substr(3));
+			parent.$('#id_category_name').val(data.args[0].innerText.trim());
 			parent.$.colorbox.close();
 		});
 	});
