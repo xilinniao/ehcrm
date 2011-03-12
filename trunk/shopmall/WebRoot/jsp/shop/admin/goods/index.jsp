@@ -119,10 +119,10 @@
   </head>
   <body class="input">
   	<div class="inputBar">
-		<h1><span class="icon">&nbsp;</span>系统管理->商品管理</h1>
+		<h1><span class="icon">&nbsp;</span>商品管理</h1>
 	</div>
 	<div class="operateBar">
-		<input type="button" class="addButton" onclick="location.href='goodscat.do?method=addGoodscat'" value="新增商品">
+		<input type="button" class="addButton" onclick="location.href='goodsInfo.do?method=add'" value="新增商品">
 	</div>
 	
 	<div class="box column-left-20">
@@ -135,9 +135,16 @@
 			<table class="display stylized" id="id_mainTable">
 				<thead class="table-header">
 					<tr>
-						    <th>商品ID</th>
+							<th><input type="checkbox"></th>
 						    <th>商品名称</th>
+						    <th>商品编号</th>
+						    <th>所属分类</th>
+						    <th>市场价</th>
+						    <th>商城价</th>
+						    <th>热卖</th>
+						    <th>新品</th>
 						    <th>库存</th>
+						    <th>操作</th>
 					</tr>
 				</thead>							
 			</table>

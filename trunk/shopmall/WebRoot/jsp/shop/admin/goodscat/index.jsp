@@ -48,8 +48,8 @@
 				  success: function(data) {
 				  	saveform_validator.resetForm();
 				  	$('#categoryId').val(data.categoryId);
-					$('#parentGoodscatId').val(data.parentCategoryId);
-					$('#parentCategoryName').val(data.parentCategoryName);
+					$('#id_category_id').val(data.parentCategoryId);
+					$('#id_category_name').val(data.parentCategoryName);
 					$('#categoryName').val(data.categoryName);
 					$('#keyWords').val(data.keyWords);
 					$('#categoryDesc').val(data.categoryDesc);

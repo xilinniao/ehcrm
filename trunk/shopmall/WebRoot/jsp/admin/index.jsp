@@ -8,7 +8,7 @@
     <link href="<%=path %>/resources/common/css/base.css" rel="stylesheet" type="text/css" />
 	<link href="<%=path %>/resources/admin/css/header.css" rel="stylesheet" type="text/css" />
 	<LINK rel="stylesheet" href="<%=path %>/resources/js/plugin/superfish/superfish.css" type="text/css" />
-    <SCRIPT type="text/javascript" src="<%=path %>/resources/js/jdmenu/jquery.js"></SCRIPT>
+    <SCRIPT type="text/javascript" src="<%=path %>/resources/js/jquery/jquery-1.4.3.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="<%=path %>/resources/js/jdmenu/jquery.dimensions.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="<%=path %>/resources/js/jdmenu/jquery.positionBy.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="<%=path %>/resources/js/jdmenu/jquery.bgiframe.js"></SCRIPT>
@@ -16,11 +16,6 @@
 	<SCRIPT type="text/javascript" src="<%=path %>/resources/js/plugin/superfish/superfish.js"></SCRIPT>	
 	<script type="text/javascript">
 		function frameSize () {
-			//if ($("#flipper").css("position") != "absolute") $("iframe").css({ height: parseInt($("html").height()) - parseInt($("#flipper").height()) - 1 + "px" });
-			//else $("iframe").css({ height: parseInt($("html").height()) + "px" })
-			//alert('height:'+$(document).height( )-$('#top').height( ) -8+'px,width:'+width:$(document).width()+'px');
-			//alert('resize')
-			//alert($(document).height( ));
 			$("#mainFrame").css({ height: $(document).height()-$('#header-container').height() + "px" ,width:'100%'});
 		}
 		$(document).ready(function() {
@@ -75,7 +70,7 @@
 		</div>
 	</div>
 	
-	<iframe id="mainFrame" name="mainFrame" src="" frameborder="0" marginwidth="0" marginheight="0"></iframe>
+	<iframe id="mainFrame" name="mainFrame" src="<%=path %>/jsp/admin/dashboard.jsp" frameborder="0" marginwidth="0" marginheight="0"></iframe>
 	
   </body>
 </html>

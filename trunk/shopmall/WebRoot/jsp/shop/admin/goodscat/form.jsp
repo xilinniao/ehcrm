@@ -1,12 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 			<form action="<%=path%>/shop/admin/goodscat.do?method=onEditGoodscat" class="validate" id="saveform" name="saveform" method="post">
 						<input type="hidden" name="categoryId" id="categoryId"/>
-						<input type="hidden" name="parentGoodscatId" id="parentGoodscatId" />
+						<input type="hidden" name="parentGoodscatId" id="id_category_id" />
 							<table border="0" cellspacing="0" cellpadding="0" class="inputTable tabContent" style="display: table;">
 							  <tbody>
 							  <tr>
 							    <th>上级分类</th>
-								<td class="left"><input type="text" name="parentCategoryName" class="formText ro {required: true}" readonly id="parentCategoryName">
+								<td class="left"><input type="text" name="parentCategoryName" class="formText ro {required: true}" readonly id="id_category_name">
 								<input type="button" class="formButton" id="parent_category_select" value="选择" hidefocus="true"/>
 								</td>
 							  </tr>
