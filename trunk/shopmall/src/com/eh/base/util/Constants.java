@@ -7,9 +7,14 @@ public class Constants {
 	
 	public static String FILE_UPLOAD_PATH = "";
 	
+	public static String UPLOAD_IMAGE_DIR = "";// 图片文件上传目录
+	public static String UPLOAD_MEDIA_DIR = "";// 媒体文件上传目录
+	public static String UPLOAD_FILE_DIR = "";// 其它文件上传目录
+	
 	public static Long YES = Long.valueOf(0);
 	public static Long NO = Long.valueOf(1);
 	
+	public final static Long ADD_PK_ID = Long.valueOf(-99);
 	/**
 	 * 机构顶层节点ID
 	 */

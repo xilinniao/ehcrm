@@ -84,7 +84,7 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 			}*/
 		}
 		
-		super.renderText(response, "ok", null);
+		super.renderText(response, "ok");
 		return null;
 	}
 	private void getProduct(String url,TbGoodsCategory cat){
@@ -111,7 +111,7 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 	
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goodscat/index.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goodscat/index");
 		TbGoodsCategory rootCategory = this.goodsCatLogic.getRootCategory(userInfo.getShopInfo().getShopId());
 		mav.addObject("rootId", rootCategory.getCategoryId());
 		return mav;
@@ -134,7 +134,7 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 			HttpServletResponse response) throws Exception {	
 		Long goodscatId = super.getLong(request, "categoryId", false);
 		TbGoodsCategory entity = goodsCatLogic.get(TbGoodsCategory.class, goodscatId);
-		super.renderJson(response, FreeMarkerUtil.process("shop.admin.goodscat.entity.ftl", entity),null);
+		super.renderJson(response, FreeMarkerUtil.process("shop.admin.goodscat.entity.ftl", entity));
 		return null;
 	}
 	
@@ -154,7 +154,7 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 		entity.setParent(parentGoodscat);
 		entity.setShopInfo(shop);
 		goodsCatLogic.saveGoodscatInfo(entity);
-		super.renderText(response, "OK", null);
+		super.renderText(response, "OK");
 		return null;
 	}
 	
@@ -167,7 +167,7 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 	 */
 	public ModelAndView selectGoodscat(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		return new ModelAndView("/jsp/shop/admin/goodscat/tree.jsp");
+		return new ModelAndView("/jsp/shop/admin/goodscat/tree");
 	}
 	
 	/**
@@ -179,7 +179,7 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 	 */
 	public ModelAndView addGoodscat(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		return new ModelAndView("/jsp/shop/admin/goodscat/add.jsp");
+		return new ModelAndView("/jsp/shop/admin/goodscat/add");
 	}
 	
 	/**
@@ -193,7 +193,7 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 		UserInfo userInfo = super.getUserInfo(request);
 		Long goodscatId = super.getLong(request, "categoryId", false);		
 		String result = this.goodsCatLogic.deleteGoodscatInfo(goodscatId);
-		super.renderText(response, result, null);
+		super.renderText(response, result);
 		return null;
 	}
 

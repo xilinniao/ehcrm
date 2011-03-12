@@ -26,7 +26,7 @@ public class RoleCtrl extends BaseTreeCtrl {
 	public ModelAndView index(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/admin/role/index.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/admin/role/index");
 		mav.addObject("rootId", TbRoleInfo.ROLE_ROOT_ID);
 		return mav;
 	}
@@ -60,7 +60,7 @@ public class RoleCtrl extends BaseTreeCtrl {
 			HttpServletResponse response) throws Exception {		
 		Long roleId = super.getLong(request, "roleId", false);
 		TbRoleInfo entity = roleLogic.get(TbRoleInfo.class, roleId);
-		super.renderJson(response, FreeMarkerUtil.process("admin.role.entity.ftl", entity),null);
+		super.renderJson(response, FreeMarkerUtil.process("admin.role.entity.ftl", entity));
 		return null;
 	}
 	
@@ -85,7 +85,7 @@ public class RoleCtrl extends BaseTreeCtrl {
 		TbRoleInfo parentRole = roleLogic.get(TbRoleInfo.class, parentRoleId);
 		entity.setParent(parentRole);
 		roleLogic.saveRoleInfo(entity);
-		super.renderText(response, "OK", null);
+		super.renderText(response, "OK");
 		return null;
 	}
 	
@@ -97,7 +97,7 @@ public class RoleCtrl extends BaseTreeCtrl {
 	 * @throws Exception
 	 */
 	public ModelAndView editRolePriv(HttpServletRequest request,HttpServletResponse response) throws Exception {		
-		ModelAndView mav = new ModelAndView("/jsp/admin/role/editRolePriv.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/admin/role/editRolePriv");
 		Long roleId = super.getLong(request, "roleId", false);
 		List checkMenuIds = this.roleLogic.findCheckedResId(roleId);
 		mav.addObject("checkMenuIds", checkMenuIds);

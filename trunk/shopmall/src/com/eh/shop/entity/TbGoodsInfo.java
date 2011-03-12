@@ -17,6 +17,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private String goodsName;
      private String keyWord;
      private String goodNo;
+     private Double weight;
      private Double originalPrice;
      private Double discountPrice;
      private String goodsDesc;
@@ -31,12 +32,13 @@ public class TbGoodsInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, String goodsName, String keyWord, String goodNo, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount) {
+    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, String goodsName, String keyWord, String goodNo, Double weight, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount) {
         this.shopInfo = shopInfo;
         this.category = category;
         this.goodsName = goodsName;
         this.keyWord = keyWord;
         this.goodNo = goodNo;
+        this.weight = weight;
         this.originalPrice = originalPrice;
         this.discountPrice = discountPrice;
         this.goodsDesc = goodsDesc;
@@ -92,6 +94,14 @@ public class TbGoodsInfo  implements java.io.Serializable {
     
     public void setGoodNo(String goodNo) {
         this.goodNo = goodNo;
+    }
+
+    public Double getWeight() {
+        return this.weight;
+    }
+    
+    public void setWeight(Double weight) {
+        this.weight = weight;
     }
 
     public Double getOriginalPrice() {

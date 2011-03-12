@@ -24,7 +24,7 @@ public class DeptCtrl extends BaseTreeCtrl {
 	public ModelAndView index(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/admin/dept/index.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/admin/dept/index");
 		DeptInfo rootDept = super.getRootDept(userInfo);
 		mav.addObject("rootId",rootDept.getDeptId());
 		return mav;
@@ -55,7 +55,7 @@ public class DeptCtrl extends BaseTreeCtrl {
 			HttpServletResponse response) throws Exception {
 		Long deptId = super.getLong(request, "deptId", false);
 		DeptInfo entity = deptLogic.get(DeptInfo.class, deptId);
-		super.renderJson(response, FreeMarkerUtil.process("admin.dept.entity.ftl", entity),null);
+		super.renderJson(response, FreeMarkerUtil.process("admin.dept.entity.ftl", entity));
 		return null;
 	}
 	
@@ -79,7 +79,7 @@ public class DeptCtrl extends BaseTreeCtrl {
 			super.bindObject(request, entity);
 		}
 		deptLogic.saveDeptInfo(entity,parentDeptId);
-		super.renderText(response, "OK", null);
+		super.renderText(response, "OK");
 		return null;
 	}
 

@@ -28,7 +28,7 @@ public class UserCtrl extends BaseCtrl {
 	
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/admin/user/index.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/admin/user/index");
 		DeptInfo rootDept = super.getRootDept(userInfo);
 		mav.addObject("rootId",rootDept.getDeptId());
 		return mav;
@@ -52,7 +52,7 @@ public class UserCtrl extends BaseCtrl {
 		Page page = userLogic.findUserList(qry);
 		Map data = super.getParameterMap(request);
 		data.put("page", page);
-		renderJson(response, FreeMarkerUtil.process("admin.user.userList.ftl", data),null);
+		renderJson(response, FreeMarkerUtil.process("admin.user.userList.ftl", data));
 		return null;
 	}
 	
@@ -65,13 +65,12 @@ public class UserCtrl extends BaseCtrl {
 	 * @throws Exception
 	 */
 	public ModelAndView editUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/admin/user/editUser.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/admin/user/editUser");
 		Long userId = super.getLong(request, "userId", false);
 		TbUserInfo entity = null;
 		if(userId.longValue()!=Long.valueOf(-99)){
 			entity = userLogic.get(TbUserInfo.class, userId);			
 		}else{
-			
 			Long deptId = super.getLong(request, "deptId", false);
 			DeptInfo dept = userLogic.get(DeptInfo.class, deptId);
 			entity = new TbUserInfo();
@@ -106,7 +105,7 @@ public class UserCtrl extends BaseCtrl {
 			//密码不重置
 		}
 		userLogic.saveUser(entity);
-		super.renderText(response, "OK", null);
+		super.renderText(response, "OK");
 		return null;
 	}
 	
@@ -120,7 +119,7 @@ public class UserCtrl extends BaseCtrl {
 	public ModelAndView checkUserExists(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String userCode = super.getString(request, "userCode", true);
 		boolean isExist = this.userLogic.isUserExist(userCode);
-		super.renderText(response, isExist, null);
+		super.renderText(response, isExist);
 		return null;
 	}
 	
@@ -146,7 +145,7 @@ public class UserCtrl extends BaseCtrl {
 	 * @throws Exception
 	 */
 	public ModelAndView userApplyRoles(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/admin/user/userApplyRoles.jsp");
+		ModelAndView mav = new ModelAndView("/jsp/admin/user/userApplyRoles");
 		Long userId = super.getLong(request, "userId", false);
 		TbUserInfo user = this.userLogic.get(TbUserInfo.class, userId);
 		List roleList = this.roleLogic.findUserRoles(userId);
@@ -213,7 +212,7 @@ public class UserCtrl extends BaseCtrl {
 	 * @throws Exception
 	 */
 	public ModelAndView viewUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/admin/user/viewUser.jsp");		
+		ModelAndView mav = new ModelAndView("/jsp/admin/user/viewUser");		
 		Long userId = super.getLong(request, "userId", false);
 		if(userId.longValue()!=Long.valueOf(-1)){
 			TbUserInfo entity = userLogic.get(TbUserInfo.class, userId);

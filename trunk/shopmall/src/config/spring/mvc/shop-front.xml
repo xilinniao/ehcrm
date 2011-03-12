@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="frontHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/index.do=indexCtrl
+			</value>
+		</property>
+	</bean>
+    
+	
+	<bean name="indexCtrl" class="com.eh.shop.front.IndexCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+   	</bean>
+</beans>
