@@ -14,6 +14,12 @@ public class Constants {
 	public static Long YES = Long.valueOf(0);
 	public static Long NO = Long.valueOf(1);
 	
+	
+	// 水印位置（无、左上、右上、居中、左下、右下）
+	public enum WatermarkPosition {
+		no, topLeft, topRight, center, bottomLeft, bottomRight
+	}
+	
 	public final static Long ADD_PK_ID = Long.valueOf(-99);
 	/**
 	 * 机构顶层节点ID

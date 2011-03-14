@@ -24,6 +24,6 @@ public class IndexCtrl extends BaseCtrl {
 		
 		/*FreeMarkerView view = new FreeMarkerView();
 		view.setUrl("index");*/
-		return new ModelAndView("index");
+		return new ModelAndView("/jsp/shop/front/index");
 	}	
 }

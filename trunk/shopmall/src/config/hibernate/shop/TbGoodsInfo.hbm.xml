@@ -16,6 +16,11 @@
 			class="com.eh.shop.entity.TbGoodsCategory">
 			<column name="CAT_ID" precision="10" scale="0" />
 		</many-to-one>
+		<many-to-one name="brandInfo"
+			class="com.eh.shop.entity.TbBrandInfo">
+			<column name="brand_id" precision="10" scale="0" />
+		</many-to-one>
+		
 		<property name="goodsName" type="java.lang.String">
 			<column name="GOODS_NAME" length="500" />
 		</property>
@@ -39,6 +44,9 @@
 		</property>
 		<property name="leavesCount" type="java.lang.Long">
 			<column name="LEAVES_COUNT" precision="10" scale="0" />
+		</property>
+		<property name="imageUrl" type="java.lang.String">
+			<column name="image_url" length="500" />
 		</property>
 	</class>
 </hibernate-mapping>

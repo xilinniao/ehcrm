@@ -73,6 +73,7 @@
                 <prop key="check*">PROPAGATION_REQUIRED</prop>
                 <prop key="add*">PROPAGATION_REQUIRED</prop>
                 <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="bulk*">PROPAGATION_REQUIRED</prop>
                 <prop key="delete*">PROPAGATION_REQUIRED</prop>
                 <prop key="create*">PROPAGATION_REQUIRED</prop>
                 <prop key="do*">PROPAGATION_REQUIRED</prop>

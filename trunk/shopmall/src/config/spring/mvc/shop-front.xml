@@ -10,7 +10,7 @@
 	</bean>
     
 	
-	<bean name="indexCtrl" class="com.eh.shop.front.IndexCtrl">
+	<bean name="indexCtrl" class="com.eh.shop.front.web.IndexCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
    	</bean>
 </beans>
