@@ -30,11 +30,11 @@
 <!-- 顶部信息 -->
 <div id="shortcut">
 	<div class="w">
-		<div class="collect" clstag="homepage|keycount|homepage|favorite"><b></b><a href="javascript:void(0)" onclick="addToFavorite()">收藏京东商城</a></div>
+		<div class="collect" clstag="homepage|keycount|homepage|favorite"><b></b><a href="javascript:void(0)" onclick="addToFavorite()">收藏抚州商城</a></div>
 		<ul>
-			<li class="fore1" id="loginfo">zhoucailun！欢迎来到京东商城！<span><a href="javascript:login();">[请登录]</a>，新用户？<a href="javascript:regist();" class="link-regist">[免费注册]</a></span></li>
+			<li class="fore1" id="loginfo">zhoucailun！欢迎来到抚州商城！<span><a href="javascript:login();">[请登录]</a>，新用户？<a href="javascript:regist();" class="link-regist">[免费注册]</a></span></li>
 			<li class="fore2"><a href="http://jd2008.360buy.com/JdHome/OrderList.aspx">我的订单</a></li>
-			<li><a href="http://jd2008.360buy.com/user_home.aspx">我的京东</a></li>
+			<li><a href="http://jd2008.360buy.com/user_home.aspx">我的抚州</a></li>
 			<li><a href="http://diy.360buy.com/" target="_blank">装机大师</a></li>
 			<li><a href="http://market.360buy.com/giftcard/" target="_blank">礼品卡</a></li>
 			<li><a href="http://market.360buy.com/giftcard/company/default.aspx" target="_blank">企业客户</a></li>
@@ -56,7 +56,7 @@
 <div class="w" id="header">
 	<div id="logo">
 		<a href="http://www.360buy.com/">
-			<img src="<%=path %>/resources/front/images/logo.gif" alt="京东商城" width="251" height="46">
+			<img src="<%=path %>/resources/front/images/logo.gif" alt="抚州商城" width="251" height="46">
 		</a>
 	</div>
 	<!-- 导航开始 -->
@@ -64,30 +64,9 @@
 		<div id="nav-index" clstag="homepage|keycount|homepage|home">
 			<a href="http://www.360buy.com/">首页</a>
 		</div>
-		<div id="nav-extra">
-			<ul>
-				<li id="nav-pop" class="fore" clstag="homepage|keycount|homepage|pop">
-					<a href="http://mall.360buy.com/">品牌直销</a>
-					<b></b>
-				</li>
-				<li id="nav-tuan" clstag="homepage|keycount|homepage|tuan">
-					<a href="http://tuan.360buy.com/">团购</a>
-				</li>
-				<li id="nav-auction" clstag="homepage|keycount|homepage|auction">
-					<a href="http://auction.360buy.com/">夺宝岛</a>
-				</li>
-				<li id="nav-read" clstag="homepage|keycount|homepage|read">
-					<a href="http://read.360buy.com/">在线读书</a>
-				</li>
-				<li id="nav-club" clstag="homepage|keycount|homepage|club">
-					<a href="http://club.360buy.com/">京东社区</a>
-				</li>
-				<li id="nav-category" clstag="homepage|keycount|homepage|allsort">
-					<a href="http://www.360buy.com/allSort.aspx">全部分类</a><b></b>
-				</li>
-			</ul>
-			<div class="corner"></div>
-		</div>
+		
+		<div id="nav_a"><a href="http://www.360buy.com/digital.html">手机数码</a></div>
+		
 	</div>
 	<span class="clr"></span>
 	<!-- end of 导航开始 -->
@@ -307,47 +286,47 @@
 		                <li>
 						<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000102803.html"><img src="http://img13.360buyimg.com/n3/9244/7994d47c-5826-4775-a170-9e29f72e3da4.jpg" width="130" height="130" alt="爱慕文胸" app="image:product"></a></div>
 						<div class="p-name"><a target="_blank" title="爱慕文胸" href="http://www.360buy.com/product/1000102803.html">爱慕文胸<font color="#ff6600">打造性感丰满曲线!</font></a></div>
-						<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000102803,2.png"></strong></div>
+						<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000102803,2.png"></strong></div>
 						
 						</li>
 						<li>
 						<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000115800.html"><img src="http://img10.360buyimg.com/n3/5983/66b4b2ad-9528-45b9-b379-e7794f598134.jpg" width="130" height="130" alt="裂帛 无袖背心连衣裙" app="image:product"></a></div>
 						<div class="p-name"><a target="_blank" title="裂帛 无袖背心连衣裙" href="http://www.360buy.com/product/1000115800.html">裂帛 无袖背心连衣裙</a></div>
-						<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000115800,2.png"></strong></div>
+						<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000115800,2.png"></strong></div>
 						
 						</li>
 						<li>
 						<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000125639.html"><img src="http://img14.360buyimg.com/n3/8886/2fd711e8-c7eb-482d-9384-319d5291d367.jpg" width="130" height="130" alt="ZIMMUR100%桑蚕丝连衣裙" app="image:product"></a></div>
 						<div class="p-name"><a target="_blank" title="ZIMMUR100%桑蚕丝连衣裙" href="http://www.360buy.com/product/1000125639.html">ZIMMUR100%桑蚕丝连衣裙</a></div>
-						<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125639,2.png"></strong></div>
+						<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125639,2.png"></strong></div>
 						
 						</li>
 						<li>
 						<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000125400.html"><img src="http://img10.360buyimg.com/n3/7993/deb701b0-6ad4-4130-bf2d-1d1f266446a3.jpg" width="130" height="130" alt="O.SA  短袖缎面雪纺衬衫" app="image:product"></a></div>
 						<div class="p-name"><a target="_blank" title="O.SA  短袖缎面雪纺衬衫" href="http://www.360buy.com/product/1000125400.html">O.SA  短袖缎面雪纺衬衫</a></div>
-						<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125400,2.png"></strong></div>
+						<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125400,2.png"></strong></div>
 						
 						</li>
 						<li>
 						<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000125808.html"><img src="http://img13.360buyimg.com/n3/9457/d3e27ef9-5aa3-42d1-809b-f8c27eb233ed.jpg" width="130" height="130" alt="韩都衣舍  蝙蝠袖针织衫" app="image:product"></a></div>
 						<div class="p-name"><a target="_blank" title="韩都衣舍  蝙蝠袖针织衫" href="http://www.360buy.com/product/1000125808.html">韩都衣舍  蝙蝠袖针织衫</a></div>
-						<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125808,2.png"></strong></div>
+						<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125808,2.png"></strong></div>
 						
 						</li>
 						<li>
 						<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000135035.html"><img src="http://img10.360buyimg.com/n3/7777/e867406d-5080-4210-a60f-5206b63f42de.jpg" width="130" height="130" alt="艾米  真丝大围巾" app="image:product"></a></div>
 						<div class="p-name"><a target="_blank" title="艾米  真丝大围巾" href="http://www.360buy.com/product/1000135035.html">艾米  真丝大围巾</a></div>
-						<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
+						<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
 						</li>
 						<li>
 						<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000135035.html"><img src="http://img10.360buyimg.com/n3/7777/e867406d-5080-4210-a60f-5206b63f42de.jpg" width="130" height="130" alt="艾米  真丝大围巾" app="image:product"></a></div>
 						<div class="p-name"><a target="_blank" title="艾米  真丝大围巾" href="http://www.360buy.com/product/1000135035.html">艾米  真丝大围巾</a></div>
-						<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
+						<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
 						</li>
 						<li>
 						<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000135035.html"><img src="http://img10.360buyimg.com/n3/7777/e867406d-5080-4210-a60f-5206b63f42de.jpg" width="130" height="130" alt="艾米  真丝大围巾" app="image:product"></a></div>
 						<div class="p-name"><a target="_blank" title="艾米  真丝大围巾" href="http://www.360buy.com/product/1000135035.html">艾米  真丝大围巾</a></div>
-						<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
+						<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
 						</li>
 					</ul>
 				</div>
@@ -363,47 +342,47 @@
 	                <li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000102803.html"><img src="http://img13.360buyimg.com/n3/9244/7994d47c-5826-4775-a170-9e29f72e3da4.jpg" width="130" height="130" alt="爱慕文胸" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="爱慕文胸" href="http://www.360buy.com/product/1000102803.html">爱慕文胸<font color="#ff6600">打造性感丰满曲线!</font></a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000102803,2.png"></strong></div>
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000102803,2.png"></strong></div>
 					
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000115800.html"><img src="http://img10.360buyimg.com/n3/5983/66b4b2ad-9528-45b9-b379-e7794f598134.jpg" width="130" height="130" alt="裂帛 无袖背心连衣裙" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="裂帛 无袖背心连衣裙" href="http://www.360buy.com/product/1000115800.html">裂帛 无袖背心连衣裙</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000115800,2.png"></strong></div>
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000115800,2.png"></strong></div>
 					
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000125639.html"><img src="http://img14.360buyimg.com/n3/8886/2fd711e8-c7eb-482d-9384-319d5291d367.jpg" width="130" height="130" alt="ZIMMUR100%桑蚕丝连衣裙" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="ZIMMUR100%桑蚕丝连衣裙" href="http://www.360buy.com/product/1000125639.html">ZIMMUR100%桑蚕丝连衣裙</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125639,2.png"></strong></div>
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125639,2.png"></strong></div>
 					
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000125400.html"><img src="http://img10.360buyimg.com/n3/7993/deb701b0-6ad4-4130-bf2d-1d1f266446a3.jpg" width="130" height="130" alt="O.SA  短袖缎面雪纺衬衫" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="O.SA  短袖缎面雪纺衬衫" href="http://www.360buy.com/product/1000125400.html">O.SA  短袖缎面雪纺衬衫</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125400,2.png"></strong></div>
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125400,2.png"></strong></div>
 					
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000125808.html"><img src="http://img13.360buyimg.com/n3/9457/d3e27ef9-5aa3-42d1-809b-f8c27eb233ed.jpg" width="130" height="130" alt="韩都衣舍  蝙蝠袖针织衫" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="韩都衣舍  蝙蝠袖针织衫" href="http://www.360buy.com/product/1000125808.html">韩都衣舍  蝙蝠袖针织衫</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125808,2.png"></strong></div>
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125808,2.png"></strong></div>
 					
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000135035.html"><img src="http://img10.360buyimg.com/n3/7777/e867406d-5080-4210-a60f-5206b63f42de.jpg" width="130" height="130" alt="艾米  真丝大围巾" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="艾米  真丝大围巾" href="http://www.360buy.com/product/1000135035.html">艾米  真丝大围巾</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000135035.html"><img src="http://img10.360buyimg.com/n3/7777/e867406d-5080-4210-a60f-5206b63f42de.jpg" width="130" height="130" alt="艾米  真丝大围巾" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="艾米  真丝大围巾" href="http://www.360buy.com/product/1000135035.html">艾米  真丝大围巾</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000135035.html"><img src="http://img10.360buyimg.com/n3/7777/e867406d-5080-4210-a60f-5206b63f42de.jpg" width="130" height="130" alt="艾米  真丝大围巾" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="艾米  真丝大围巾" href="http://www.360buy.com/product/1000135035.html">艾米  真丝大围巾</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
 					</li>
 				</ul>
 		</div><!-- end of hotprod -->
@@ -418,47 +397,47 @@
 	                <li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000102803.html"><img src="http://img13.360buyimg.com/n3/9244/7994d47c-5826-4775-a170-9e29f72e3da4.jpg" width="130" height="130" alt="爱慕文胸" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="爱慕文胸" href="http://www.360buy.com/product/1000102803.html">爱慕文胸<font color="#ff6600">打造性感丰满曲线!</font></a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000102803,2.png"></strong></div>
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000102803,2.png"></strong></div>
 					
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000115800.html"><img src="http://img10.360buyimg.com/n3/5983/66b4b2ad-9528-45b9-b379-e7794f598134.jpg" width="130" height="130" alt="裂帛 无袖背心连衣裙" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="裂帛 无袖背心连衣裙" href="http://www.360buy.com/product/1000115800.html">裂帛 无袖背心连衣裙</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000115800,2.png"></strong></div>
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000115800,2.png"></strong></div>
 					
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000125639.html"><img src="http://img14.360buyimg.com/n3/8886/2fd711e8-c7eb-482d-9384-319d5291d367.jpg" width="130" height="130" alt="ZIMMUR100%桑蚕丝连衣裙" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="ZIMMUR100%桑蚕丝连衣裙" href="http://www.360buy.com/product/1000125639.html">ZIMMUR100%桑蚕丝连衣裙</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125639,2.png"></strong></div>
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125639,2.png"></strong></div>
 					
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000125400.html"><img src="http://img10.360buyimg.com/n3/7993/deb701b0-6ad4-4130-bf2d-1d1f266446a3.jpg" width="130" height="130" alt="O.SA  短袖缎面雪纺衬衫" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="O.SA  短袖缎面雪纺衬衫" href="http://www.360buy.com/product/1000125400.html">O.SA  短袖缎面雪纺衬衫</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125400,2.png"></strong></div>
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125400,2.png"></strong></div>
 					
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000125808.html"><img src="http://img13.360buyimg.com/n3/9457/d3e27ef9-5aa3-42d1-809b-f8c27eb233ed.jpg" width="130" height="130" alt="韩都衣舍  蝙蝠袖针织衫" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="韩都衣舍  蝙蝠袖针织衫" href="http://www.360buy.com/product/1000125808.html">韩都衣舍  蝙蝠袖针织衫</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125808,2.png"></strong></div>
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000125808,2.png"></strong></div>
 					
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000135035.html"><img src="http://img10.360buyimg.com/n3/7777/e867406d-5080-4210-a60f-5206b63f42de.jpg" width="130" height="130" alt="艾米  真丝大围巾" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="艾米  真丝大围巾" href="http://www.360buy.com/product/1000135035.html">艾米  真丝大围巾</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000135035.html"><img src="http://img10.360buyimg.com/n3/7777/e867406d-5080-4210-a60f-5206b63f42de.jpg" width="130" height="130" alt="艾米  真丝大围巾" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="艾米  真丝大围巾" href="http://www.360buy.com/product/1000135035.html">艾米  真丝大围巾</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
 					</li>
 					<li>
 					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000135035.html"><img src="http://img10.360buyimg.com/n3/7777/e867406d-5080-4210-a60f-5206b63f42de.jpg" width="130" height="130" alt="艾米  真丝大围巾" app="image:product"></a></div>
 					<div class="p-name"><a target="_blank" title="艾米  真丝大围巾" href="http://www.360buy.com/product/1000135035.html">艾米  真丝大围巾</a></div>
-					<div class="p-price">京东价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
+					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000135035,2.png"></strong></div>				
 					</li>
 				</ul>
 		</div><!-- end of newpros -->
@@ -519,7 +498,7 @@
 				<div class="item">·<a href="http://www.360buy.com/help/diy.aspx" target="_blank">DIY装机</a></div>
 				<div class="item">·<a href="http://market.360buy.com/hd/yanbao090702/ind.html" target="_blank">延保服务</a></div>
 				<div class="item">·<a href="http://www.360buy.com/help/elec_godown.aspx" target="_blank">家电下乡</a></div>
-				<div class="item">·<a href="http://market.360buy.com/giftcard/index.html" target="_blank">京东礼品卡</a></div>
+				<div class="item">·<a href="http://market.360buy.com/giftcard/index.html" target="_blank">抚州礼品卡</a></div>
 				<div class="item">·<a href="http://www.360buy.com/help/oldnew.aspx" target="_blank">家电以旧换新</a></div>
 			</dd>
 
@@ -542,8 +521,6 @@
 		<a href="http://cps.360buy.com/" target="_blank">销售联盟</a>
 	</div>
 	<div class="copyright">
-		北京市公安局海淀分局备案编号：1101081681&nbsp;&nbsp;京ICP证070359号&nbsp;&nbsp;
-		<a href="http://misc.360buyimg.com/skin/df/i/com/f_music.jpg" target="_blank">音像制品经营许可证苏宿批005 号</a>
 		<br>Copyright©2010-2011&nbsp;&nbsp;0794buy抚州网上购物商城&nbsp;版权所有
 	</div>	
 </div>

@@ -36,7 +36,7 @@
 			 		"bServerSide": true,
 			 		"bSort":false,
 			 		"bFilter":false,
-			 		"bInfo": false,
+			 		"bInfo": true,
 					"oLanguage":oLanguage_cn,
 					"sPaginationType": "full_numbers",
 					"sAjaxSource": "<%=path%>/shop/admin/goodsInfo.do?method=goodsList",
@@ -60,7 +60,7 @@
 		//加载验证框架
 		saveform_validator = $("form.validate").validate({
 			errorClass: "validateError",
-			ignore: ".ignoreValidate",
+			ignore: ".ignoreValidate",			
 			errorPlacement:defaultErrorPlacement,
 			submitHandler:defaultSubmitHandler			
 		});
@@ -111,7 +111,14 @@
 				height:"90%"
 			});
     	});
+    	
+    	$('#getProductByCategory').click(function(){
+    		var select_node = $("#goodscat_tree").jstree("get_selected");
+    		var categoryId = select_node.attr("id").substr(3);
+    		document.location.href='goodscat.do?method=getProductByCategory&categoryId='+categoryId;
+    	});
 	});
+	
 	
 	//-->
 	</script>
@@ -123,6 +130,7 @@
 	</div>
 	<div class="operateBar">
 		<input type="button" class="addButton" onclick="location.href='goodsInfo.do?method=add'" value="新增商品">
+		<input type="button" class="addButton" id="getProductByCategory" value="京东商品">
 	</div>
 	
 	<div class="box column-left-20">
@@ -136,15 +144,15 @@
 				<thead class="table-header">
 					<tr>
 							<th><input type="checkbox"></th>
-						    <th>商品名称</th>
-						    <th>商品编号</th>
-						    <th>所属分类</th>
-						    <th>市场价</th>
-						    <th>商城价</th>
-						    <th>热卖</th>
-						    <th>新品</th>
-						    <th>库存</th>
-						    <th>操作</th>
+						    <th nowrap>商品名称</th>
+						    <th nowrap>商品编号</th>
+						    <th nowrap>所属分类</th>
+						    <th nowrap>市场价</th>
+						    <th nowrap>商城价</th>
+						    <th nowrap>热卖</th>
+						    <th nowrap>新品</th>
+						    <th nowrap>库存</th>
+						    <th nowrap>操作</th>
 					</tr>
 				</thead>							
 			</table>

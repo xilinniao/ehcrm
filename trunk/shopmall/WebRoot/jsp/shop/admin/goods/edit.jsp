@@ -18,8 +18,9 @@
 		saveform_validator = $("form.validate").validate({
 			errorClass: "validateError",
 			ignore: ".ignoreValidate",
+			focusInvalid: true,
 			errorPlacement:defaultErrorPlacement,
-			submitHandler:defaultSubmitHandler			
+			submitHandler:defaultSubmitHandler
 		});
     	
     	$('#btnSave').click(function(){
