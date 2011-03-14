@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.eh.base.controller.BaseCtrl;
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.util.Constants;
 import com.eh.base.util.VelocityUtils;
 import com.eh.base.vo.UserInfo;
 import com.eh.shop.admin.logic.GoodsLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
+import com.eh.shop.entity.TbBrandInfo;
 import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbGoodsInfo;
 
@@ -120,6 +120,11 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		UserInfo userInfo = super.getUserInfo(request);
 		Long goodsId = super.getLong(request, "goodsId", false);
 		Long categoryId = super.getLong(request, "categoryId", false);
+		Long brandId = super.getLong(request, "brandId", true);//品牌
+		TbBrandInfo brandInfo = null;
+		if(brandId!=null){
+			brandInfo = this.goodsLogic.get(TbBrandInfo.class, brandId);
+		}
 		TbGoodsCategory cat = this.goodsLogic.get(TbGoodsCategory.class,categoryId);
 		if (goodsId.longValue() == Constants.ADD_PK_ID.longValue()) {
 			// 新增操作
@@ -127,6 +132,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			super.bindObject(request, info);
 			info.setCategory(cat);
 			info.setShopInfo(userInfo.getShopInfo());
+			info.setBrandInfo(brandInfo);
 			this.goodsLogic.saveGoodsInfo(info);
 		}else{
 			//修改操作
@@ -134,6 +140,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			if(info!=null&&super.isYourShop(info.getShopInfo(), userInfo)){
 				super.bindObject(request, info);
 				info.setCategory(cat);
+				info.setBrandInfo(brandInfo);
 				this.goodsLogic.saveGoodsInfo(info);
 			}else{
 				super.addErrors(request, "非法操作，没有找到指定的商品信息");

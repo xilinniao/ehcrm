@@ -39,7 +39,7 @@ public class BaseLogic implements IBaseLogic{
 		this.baseDao.save(obj);
 	}
 	
-	protected void bulkUpdate(String sql,Object[] param){
+	public void bulkUpdate(String sql,Object[] param){
 		baseDao.bulkUpdate(sql, param);
 	}
 	

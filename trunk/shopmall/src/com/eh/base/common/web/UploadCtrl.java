@@ -3,11 +3,13 @@
  */
 package com.eh.base.common.web;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,11 +19,11 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.WebUtils;
 
 import com.eh.base.controller.BaseCtrl;
 import com.eh.base.util.CommonUtil;
 import com.eh.base.util.Constants;
+import com.eh.base.util.ImageUtil;
 import com.eh.base.vo.UserInfo;
 
 /**
@@ -80,9 +82,18 @@ public class UploadCtrl extends BaseCtrl {
 				File saveFile = new File(saveFilePath);
 				file.transferTo(saveFile);
 				
+				//是否需要生成缩略图
+				String zoom = multipartRequest.getParameter("zoom");
+				if("true".equals(zoom)){
+					String destFilePath = saveDir + uuid +"_s."+ imageExtension;
+					File destFile = new File(destFilePath);
+					BufferedImage srcBufferedImage = ImageIO.read(saveFile);
+					ImageUtil.zoom(srcBufferedImage,destFile,50,50);
+				}
+				
 				Map<String, String> jsonMap = new HashMap<String, String>();
 				jsonMap.put(STATUS, SUCCESS);
-				jsonMap.put("url", super.getContextPath(request)+"/uploads/images/1/"+ uuid +"."+ imageExtension);
+				jsonMap.put("url", super.getContextPath(request)+"/uploads/images/"+userInfo.getShopInfo().getShopId() + "/" + uuid +"."+ imageExtension);
 				super.renderJson(response, JSONObject.fromObject(jsonMap).toString());
 			}
 		}

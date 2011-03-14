@@ -14,6 +14,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private Long goodsId;
      private TbShopInfo shopInfo;
      private TbGoodsCategory category;
+     private TbBrandInfo brandInfo;
      private String goodsName;
      private String keyWord;
      private String goodNo;
@@ -22,6 +23,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private Double discountPrice;
      private String goodsDesc;
      private Long leavesCount;
+     private String imageUrl;
 
 
     // Constructors
@@ -32,9 +34,10 @@ public class TbGoodsInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, String goodsName, String keyWord, String goodNo, Double weight, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount) {
+    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbBrandInfo brandInfo, String goodsName, String keyWord, String goodNo, Double weight, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount, String imageUrl) {
         this.shopInfo = shopInfo;
         this.category = category;
+        this.brandInfo = brandInfo;
         this.goodsName = goodsName;
         this.keyWord = keyWord;
         this.goodNo = goodNo;
@@ -43,6 +46,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
         this.discountPrice = discountPrice;
         this.goodsDesc = goodsDesc;
         this.leavesCount = leavesCount;
+        this.imageUrl = imageUrl;
     }
 
    
@@ -70,6 +74,14 @@ public class TbGoodsInfo  implements java.io.Serializable {
     
     public void setCategory(TbGoodsCategory category) {
         this.category = category;
+    }
+
+    public TbBrandInfo getBrandInfo() {
+        return this.brandInfo;
+    }
+    
+    public void setBrandInfo(TbBrandInfo brandInfo) {
+        this.brandInfo = brandInfo;
     }
 
     public String getGoodsName() {
@@ -134,6 +146,14 @@ public class TbGoodsInfo  implements java.io.Serializable {
     
     public void setLeavesCount(Long leavesCount) {
         this.leavesCount = leavesCount;
+    }
+
+    public String getImageUrl() {
+        return this.imageUrl;
+    }
+    
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
    
 

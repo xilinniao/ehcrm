@@ -1,11 +1,12 @@
 package com.eh.shop.admin.web;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,10 +30,12 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 	ShopLogic shopLogic;
 	
 	public ModelAndView getJingDongCat(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		this.goodsCatLogic.bulkUpdate("delete from TbGoodsCategory t where t.categoryId <> 1 ",new Object[]{});
+		
 		Document doc = Jsoup.connect("http://www.360buy.com/allSort.aspx").get();
 		
 		Elements elms = doc.select("div.m");
-		for (int i = 0,len = elms.size();i<len;i++) {
+		for (int i = 1,len = elms.size();i<len;i++) {
 			Element bc = (Element)elms.get(i);
 			//插入主分类
 			TbGoodsCategory level1 = new TbGoodsCategory();
@@ -71,9 +74,10 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 					level3.setShopInfo(this.shopLogic.load(TbShopInfo.class, Long.valueOf(1)));
 					level3.setParent(level2);
 					this.goodsCatLogic.save(level3);
-					if(k==0){
+					/*if(k==0){
 						getProduct(url,level3);
-					}
+					}*/
+					getProduct(url,level3,true);
 				}
 			}
 			
@@ -87,26 +91,120 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 		super.renderText(response, "ok");
 		return null;
 	}
-	private void getProduct(String url,TbGoodsCategory cat){
-		String fix =url.substring(0, 4);
-		if(!("http".equals(fix))){
-			String realurl = "http://www.360buy.com"+url;
+	private void getProduct(String url, TbGoodsCategory cat, boolean isLoop) {
+		String fix = url.substring(0, 4);
+		if (StringUtils.isNotBlank(url)) {
+			String realurl = "";
+			if (!("http".equals(fix))) {
+				realurl = "http://www.360buy.com/" + url;
+			} else {
+				realurl = url;
+			}
+			//System.out.println(realurl);
+			
 			try {
 				Document doc = Jsoup.connect(realurl).get();
 				Elements elms = doc.select("ul.list-h > li");
-				for (int i = 0,len = elms.size();i<len;i++) {
-					Element elm = (Element)elms.get(i);
+
+				for (int i = 0, len = elms.size(); i < len; i++) {
+					Element elm = (Element) elms.get(i);
 					TbGoodsInfo goods = new TbGoodsInfo();
 					goods.setCategory(cat);
 					goods.setGoodsName(elm.select("div.p-name > a").text());
-					goods.setShopInfo(this.shopLogic.load(TbShopInfo.class, Long.valueOf(1)));
+					goods.setShopInfo(this.shopLogic.load(TbShopInfo.class,
+							Long.valueOf(1)));
+					String imageUrl = elm.select("div.p-img > a > img").attr(
+							"src");
+					if (StringUtils.isBlank(imageUrl)) {
+						imageUrl = elm.select("div.p-img > a > img").attr(
+								"src2");
+					}
+					goods.setImageUrl(imageUrl);
+					
+					//原价
+					String orgPrice = elm.select("div.p-price > del").text().substring(1);
+					goods.setOriginalPrice(Double.parseDouble(orgPrice));
+					
+					this.getProductDetail(elm.select("div.p-name > a").attr("href"), goods);
+					/*Double price = 
+					goods.setDiscountPrice(discountPrice)*/
 					this.goodsCatLogic.save(goods);
 				}
-				
-			} catch (IOException e) {
+
+				if (isLoop) {
+					int pageSize = 0;
+					// 获取页数
+					Elements page = doc.select("div.m > div.pagin > a ");
+					for (int i = 0, len = page.size(); i < len; i++) {
+						Element elm = (Element) page.get(i);
+						// System.out.println(elm.text());
+						if (NumberUtils.isDigits(elm.text())) {
+							pageSize = Integer.parseInt(elm.text());
+						}
+					}
+					//System.out.println(pageSize);
+					for (int i = 1; i < pageSize; i++) {
+						String newUrl = realurl.substring(0,
+								realurl.length() - 6);
+						newUrl += (i + 1);
+						newUrl += realurl.substring(realurl.length() - 5);
+						//System.out.println(newUrl);
+						getProduct(newUrl, cat, false);
+						//Thread.sleep(3000);
+					}
+				}
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	/**
+	 * 获取商品明细
+	 * @param detailUrl
+	 * @param goods
+	 */
+	private void getProductDetail(String url,TbGoodsInfo goods){
+		String fix = url.substring(0, 4);
+		if (StringUtils.isNotBlank(url)) {
+			String realurl = "";
+			if (!("http".equals(fix))) {
+				realurl = "http://www.360buy.com/" + url;
+			} else {
+				realurl = url;
+			}
+			//System.out.println(realurl);
+			try {
+				Document doc = Jsoup.connect(realurl).get();
+				Elements elms = doc.select("div.mc > div.content");
+				goods.setGoodsDesc(elms.get(0).html());
+				//Thread.sleep(3000);
+				
+				/*Elements uls = doc.select("div.mc > div.i-detail");
+				for(int i = 0 ,len = uls.size();i<len;i++){
+					
+				}*/
+				
+				//重量
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * 获取分类商品信息
+	 * @param request
+	 * @param response
+	 * @throws Exception
+	 */
+	public ModelAndView getProductByCategory(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		Long categoryId = super.getLong(request, "categoryId", false);
+		TbGoodsCategory category = this.goodsCatLogic.get(TbGoodsCategory.class, categoryId);
+		this.goodsCatLogic.bulkUpdate("delete from TbGoodsInfo t where t.category = ? ", new Object[]{category});
+		this.getProduct(category.getCategoryUrl(), category,true);
+		super.renderText(response, "ok");
+		return null;
 	}
 	
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {

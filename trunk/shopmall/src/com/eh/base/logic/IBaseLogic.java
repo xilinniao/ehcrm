@@ -21,6 +21,11 @@ public interface IBaseLogic {
 	/**
 	 * 根据ID删除对象.
 	 */
-	public <T> void removeById(Class<T> entityClass, Serializable id);
-
+	public <T> void removeById(Class<T> entityClass, Serializable id);	
+	/**
+	 * @deprecated
+	 * @param sql
+	 * @param atgs
+	 */
+	public void bulkUpdate(String sql,Object[] atgs) ;
 }
