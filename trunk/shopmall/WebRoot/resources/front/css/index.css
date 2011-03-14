@@ -144,27 +144,15 @@ z-index: 10;
 overflow: hidden;
 margin-bottom: -3px;
 }
-#nav-index {
-width: 57px;
-background-position: -216px -200px;
-background-color: #CC0C0C;
-}
-#nav .curr, #nav-index, #nav-extra, #nav-extra ul {
+
+#nav .curr, #nav-index,#nav_a, #nav-extra, #nav-extra ul {
 float: left;
 height: 27px;
 padding: 0 0 2px;
 background-image: url(../images/bg_nav_0816.jpg);
 background-repeat: no-repeat;
 }
-#index #nav-index {
-background-position: -216px -167px;
-}
-#index #nav-index a {
-color: white;
-}
-#nav-index a {
-width: 57px;
-}
+
 #nav a {
 float: left;
 height: 27px;
@@ -175,6 +163,32 @@ font-size: 14px;
 font-weight: bold;
 }
 
+#nav-index {
+background-position: -216px -200px;
+background-color: #CC0C0C;
+}
+#index #nav-index {
+background-position: -216px -200px;
+}
+#nav-index a {
+width: 57px;
+}
+#index #nav-index a {
+color: black;
+}
+
+#nav_a{
+	background-position: -216px -233px;
+}
+#index #nav_a{
+	background-position: -216px -233px;
+}
+#nav_a a {
+width: 87px;
+}
+#index #nav_a a {
+color: white;
+}
 
 #nav-extra {
 background-position: 0 -82px;
