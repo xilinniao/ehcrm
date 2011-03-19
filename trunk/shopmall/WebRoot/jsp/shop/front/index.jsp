@@ -4,13 +4,17 @@
 <title>抚州网上购物商城</title>
 <link href="<%=path %>/resources/front/css/index.css" rel="stylesheet" type="text/css" />
 <link href="<%=path %>/resources/front/css/skin.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+
+</style> 
 <%@include file="/jsp/shop/front/common/head.jsp"%>
 <script src="<%=path %>/resources/front/js/jquery.tools.js" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
 	jQuery(document).ready(function() {
 		/* ---------- SliderScrollable ---------- */
-    	var $sliderScrollable = $("#sliderScrollable");
+    	/*var $sliderScrollable = $("#sliderScrollable");
 	    if ($sliderScrollable.size() > 0) {
 	        $sliderScrollable.scrollable({
 	            circular: true,
@@ -19,14 +23,79 @@
 	            autoplay: true,
 	            interval: 4000
 	        }).navigator();
-	    }
+	    }*/
 	    
-	    
+	     //初始化购物车
+	    $('#i-mycart').hover(function(){
+	    		$('#o-mycart-list').show();
+	    	},function(){
+	    		$('#o-mycart-list').hide();
+	    	}
+	    );
+		
+	    //初始化头部菜单
+		function megaHoverOver(){
+		$(this).find(".sub").stop().fadeTo('fast', 1).show();
+			
+		//Calculate width of all ul's
+		(function($) { 
+			jQuery.fn.calcSubWidth = function() {
+				rowWidth = 0;
+				//Calculate row
+				$(this).find("ul").each(function() {					
+					rowWidth += $(this).width(); 
+				});	
+			};
+		})(jQuery); 
+		
+		if ( $(this).find(".row").length > 0 ) { //If row exists...
+			var biggestRow = 0;	
+			//Calculate each row
+			$(this).find(".row").each(function() {							   
+				$(this).calcSubWidth();
+				//Find biggest row
+				if(rowWidth > biggestRow) {
+					biggestRow = rowWidth;
+				}
+			});
+			//Set width
+			$(this).find(".sub").css({'width' :biggestRow});
+			$(this).find(".row:last").css({'margin':'0'});
+			
+		} else { //If row does not exist...
+			
+			$(this).calcSubWidth();
+			//Set Width
+			$(this).find(".sub").css({'width' : rowWidth});
+			
+		}
+	}
+	
+	function megaHoverOut(){ 
+	  $(this).find(".sub").stop().fadeTo('fast', 0, function() {
+		  $(this).hide(); 
+	  });
+	}
+ 
+ 
+	var config = {    
+		 sensitivity: 2, // number = sensitivity threshold (must be 1 or higher)    
+		 interval: 50, // number = milliseconds for onMouseOver polling interval    
+		 over: megaHoverOver, // function = onMouseOver callback (REQUIRED)    
+		 timeout: 50, // number = milliseconds delay before onMouseOut    
+		 out: megaHoverOut // function = onMouseOut callback (REQUIRED)    
+	};
+ 
+	$("ul#topnav li .sub").css({'opacity':'0'});
+	$("ul#topnav li").hoverIntent(config);
 	});
 //-->
 </script>
 </head>
 <body id="index">
+    
+    
+    
 <!-- 顶部信息 -->
 <div id="shortcut">
 	<div class="w">
@@ -34,7 +103,7 @@
 		<ul>
 			<li class="fore1" id="loginfo">zhoucailun！欢迎来到抚州商城！<span><a href="javascript:login();">[请登录]</a>，新用户？<a href="javascript:regist();" class="link-regist">[免费注册]</a></span></li>
 			<li class="fore2"><a href="http://jd2008.360buy.com/JdHome/OrderList.aspx">我的订单</a></li>
-			<li><a href="http://jd2008.360buy.com/user_home.aspx">我的抚州</a></li>
+			<li><a href="http://jd2008.360buy.com/user_home.aspx">购物指南</a></li>
 			<li><a href="http://diy.360buy.com/" target="_blank">装机大师</a></li>
 			<li><a href="http://market.360buy.com/giftcard/" target="_blank">礼品卡</a></li>
 			<li><a href="http://market.360buy.com/giftcard/company/default.aspx" target="_blank">企业客户</a></li>
@@ -53,6 +122,11 @@
 </div>
 <!-- 顶部信息结束 -->
 
+
+
+
+    
+    
 <div class="w" id="header">
 	<div id="logo">
 		<a href="http://www.360buy.com/">
@@ -61,12 +135,141 @@
 	</div>
 	<!-- 导航开始 -->
 	<div id="nav">
-		<div id="nav-index" clstag="homepage|keycount|homepage|home">
+		<ul id="topnav"> 
+    	<li> 
+        	<a href="#" class="home">首页</a> 
+        </li> 
+        <li> 
+        	<a href="#" class="products">手机数码</a> 
+            <div class="sub"> 
+            	<ul> 
+                	<li><h2><a href="#">Desktop</a></h2></li> 
+                	<li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li>
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                </ul> 
+                <ul>
+                	<li><h2><a href="#">Laptop</a></h2></li> 
+                	<li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                </ul> 
+                <ul> 
+                	<li><h2><a href="#">Accessories</a></h2></li> 
+                	<li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                </ul> 
+                <ul> 
+                	<li><h2><a href="#">Accessories</a></h2></li> 
+                	<li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                </ul>                
+            </div> 
+        </li>
+        <li> 
+        	<a href="#" class="home">家居</a> 
+        </li> 
+        <li> 
+        	<a href="#" class="home">服饰</a> 
+        </li> 
+        <li> 
+        	<a href="#" class="home">团购</a> 
+            <div class="sub"> 
+            	<ul> 
+                	<li><h2><a href="#">Desktop</a></h2></li> 
+                	<li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                </ul> 
+                <ul> 
+                	<li><h2><a href="#">Laptop</a></h2></li> 
+                	<li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                </ul> 
+                <ul> 
+                	<li><h2><a href="#">Accessories</a></h2></li> 
+                	<li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                </ul> 
+                <ul> 
+                	<li><h2><a href="#">Accessories</a></h2></li> 
+                	<li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                    <li><a href="#">Navigation Link</a></li> 
+                </ul> 
+                
+            </div> 
+        </li>
+    </ul>
+    
+		<!-- 
+		<div id="nav-index">
 			<a href="http://www.360buy.com/">首页</a>
 		</div>
 		
 		<div id="nav_a"><a href="http://www.360buy.com/digital.html">手机数码</a></div>
 		
+		<div id="nav-extra">
+			<ul>
+				<li id="nav-pop" class="fore" clstag="homepage|keycount|homepage|pop">
+					<a href="http://mall.360buy.com/">品牌直销</a>
+					<b></b>
+				</li>
+				<li id="nav-tuan" clstag="homepage|keycount|homepage|tuan">
+					<a href="http://tuan.360buy.com/">团购</a>
+				</li>
+				<li id="nav-auction" clstag="homepage|keycount|homepage|auction">
+					<a href="http://auction.360buy.com/">夺宝岛</a>
+				</li>
+				<li id="nav-read" clstag="homepage|keycount|homepage|read">
+					<a href="http://read.360buy.com/">在线读书</a>
+				</li>
+				<li id="nav-club" clstag="homepage|keycount|homepage|club">
+					<a href="http://club.360buy.com/">京东社区</a>
+				</li>
+				<li id="nav-category" clstag="homepage|keycount|homepage|allsort">
+					<a href="http://www.360buy.com/allSort.aspx">全部分类</a><b></b>
+				</li>
+			</ul>
+			<div class="corner"></div>
+		</div>
+		 -->
 	</div>
 	<span class="clr"></span>
 	<!-- end of 导航开始 -->
@@ -454,20 +657,16 @@
 			<dt><b></b><strong>购物指南</strong></dt>
 			<dd>
 				<div class="item">·<a href="http://www.360buy.com/help/flow.aspx" target="_blank">购物流程</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/member.aspx" target="_blank">会员介绍</a></div>
-			    <div class="item">·<a href="http://www.360buy.com/help/order.aspx" target="_blank">订单状态</a></div>
+			    <div class="item">·<a href="http://www.360buy.com/help/order.aspx" target="_blank">配送方式</a></div>
 				<div class="item">·<a href="http://www.360buy.com/help/faq.aspx" target="_blank">常见问题</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/helectronic.aspx" target="_blank">大家电</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/callcenter.aspx" target="_blank">联系客服</a></div>
 			</dd>
 		</dl>
 		<dl class="fore2">
-			<dt><b></b><strong>配送方式</strong></dt>
+			<dt><b></b><strong>开店指南</strong></dt>
 			<dd>
-				<div class="item">·<a href="http://www.360buy.com/help/ziti.aspx" target="_blank">上门自提</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/kdexpress.aspx" target="_blank">快递运输</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/ems.aspx" target="_blank">特快专递（EMS）</a></div>
-				<div class="item">·<a href="http://market.360buy.com/giftcard/index.html#one5" target="_blank">如何送礼</a></div>
+				<div class="item">·<a href="http://www.360buy.com/help/ziti.aspx" target="_blank">申请开店</a></div>
+				<div class="item">·<a href="http://www.360buy.com/help/kdexpress.aspx" target="_blank">服务条款</a></div>
+				<div class="item">·<a href="http://www.360buy.com/help/ems.aspx" target="_blank">申请团购</a></div>
 			</dd>
 		</dl>
 		<dl class="fore3">
@@ -476,8 +675,6 @@
 				<div class="item">·<a href="http://www.360buy.com/help/cod.aspx" target="_blank">货到付款</a></div>
 				<div class="item">·<a href="http://www.360buy.com/help/onlinepay.aspx" target="_blank">在线支付</a></div>
 				<div class="item">·<a href="http://www.360buy.com/help/dividedpay.aspx" target="_blank">分期付款</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/postage.aspx" target="_blank">邮局汇款</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/transfer.aspx" target="_blank">公司转账</a></div>
 			</dd>
 		</dl>
 		<dl class="fore4">
@@ -485,23 +682,16 @@
 			<dd>
 				<div class="item">·<a href="http://www.360buy.com/help/return_policy.aspx" target="_blank">退换货政策</a></div>
 				<div class="item">·<a href="http://www.360buy.com/help/return_flow.aspx" target="_blank">退换货流程</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/price.aspx" target="_blank">价格保护</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/refundment.aspx" target="_blank">退款说明</a></div>
-				<div class="item">·<a href="http://jd2008.360buy.com/Repairs.aspx" target="_blank">返修申请</a></div>
-				<div class="item">·<a href="http://jd2008.360buy.com/user_refundment.aspx" target="_blank">退款申请</a></div>
 			</dd>
 		</dl>
+		
 		<dl class="fore5">
-			<dt><b></b><strong>特色服务</strong></dt>
+			<dt><b></b><strong>网站服务</strong></dt>
 			<dd>
-				<div class="item">·<a href="http://www.360buy.com/help/bid.aspx" target="_blank">夺宝岛</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/diy.aspx" target="_blank">DIY装机</a></div>
-				<div class="item">·<a href="http://market.360buy.com/hd/yanbao090702/ind.html" target="_blank">延保服务</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/elec_godown.aspx" target="_blank">家电下乡</a></div>
-				<div class="item">·<a href="http://market.360buy.com/giftcard/index.html" target="_blank">抚州礼品卡</a></div>
-				<div class="item">·<a href="http://www.360buy.com/help/oldnew.aspx" target="_blank">家电以旧换新</a></div>
+				<div class="item">·<a href="http://www.360buy.com/help/return_policy.aspx" target="_blank">常见问题</a></div>
+				<div class="item">·<a href="http://www.360buy.com/help/return_flow.aspx" target="_blank">交易条款</a></div>
+				<div class="item">·<a href="http://www.360buy.com/help/price.aspx" target="_blank">客服服务</a></div>
 			</dd>
-
 		</dl>
 		<div class="clr"></div>
 		
@@ -517,8 +707,7 @@
 		<a href="http://www.360buy.com/contact/joinin.aspx" target="_blank">商家入驻</a>|
 		<a href="http://www.360buy.com/intro/service.aspx" target="_blank">广告服务</a>|
 		<a href="http://app.360buy.com/" target="_blank">移动终端</a>|
-		<a href="http://club.360buy.com/links.aspx" target="_blank">友情链接</a>|
-		<a href="http://cps.360buy.com/" target="_blank">销售联盟</a>
+		<a href="http://club.360buy.com/links.aspx" target="_blank">友情链接</a>
 	</div>
 	<div class="copyright">
 		<br>Copyright©2010-2011&nbsp;&nbsp;0794buy抚州网上购物商城&nbsp;版权所有

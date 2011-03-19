@@ -14,6 +14,8 @@
     <script type="text/javascript">
 	<!--
 	$(document).ready(function(){
+		$('#brandId').val('${entity.brandInfo.brandId}');
+		$('#pageCategoryId').val('${entity.pageCategory.categoryId}');
 		//加载验证框架
 		saveform_validator = $("form.validate").validate({
 			errorClass: "validateError",
