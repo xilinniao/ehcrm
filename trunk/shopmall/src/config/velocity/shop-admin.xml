@@ -25,4 +25,88 @@
 		}
 		]]>
 	</velocity>
+	
+	<velocity name="shop-admin-brand-info-list">
+		<![CDATA[
+		{
+			"sEcho":"$sEcho",
+			"iTotalRecords": "$page.totalCount",
+		    "iTotalDisplayRecords": "$page.totalCount",
+		    "aaData": [
+		    	#foreach( $x in $page.result )
+		    		[
+		    		"<input type='checkbox' />",
+		    		"$x.name",
+		    		"$!x.url",
+		    		"$!x.orderNum",
+		    		"<a href='brandInfo.do?method=edit&brandId=$x.brandId' title='编辑'>[编辑]</a>"
+		    		]#if( $foreach.hasNext ),#end 		
+		    	#end
+		    ]
+		}
+		]]>
+	</velocity>
+	
+	<velocity name="shop-admin-article-category-list">
+		<![CDATA[
+		{
+			"sEcho":"$sEcho",
+			"iTotalRecords": "$page.totalCount",
+		    "iTotalDisplayRecords": "$page.totalCount",
+		    "aaData": [
+		    	#foreach( $x in $page.result )
+		    		[
+		    		"<input type='checkbox' />",
+		    		"$x.categoryName",
+		    		"$!x.orderNum",
+		    		"<a href='articleCategory.do?method=edit&categoryId=$x.categoryId' title='编辑'>[编辑]</a>"
+		    		]#if( $foreach.hasNext ),#end 		
+		    	#end
+		    ]
+		}
+		]]>
+	</velocity>
+	
+	<velocity name="shop-admin-article-info-list">
+		<![CDATA[
+		{
+			"sEcho":"$sEcho",
+			"iTotalRecords": "$page.totalCount",
+		    "iTotalDisplayRecords": "$page.totalCount",
+		    "aaData": [
+		    	#foreach( $x in $page.result )
+		    		[
+		    		"<input type='checkbox' />",
+		    		"$x.category.categoryName",
+		    		"$x.title",
+		    		"$x.isPublic",
+		    		"$x.isTop",
+		    		"$x.isRecommend",
+		    		"$x.orderNum",
+		    		"<a href='article.do?method=edit&articleId=$x.articleId' title='编辑'>[编辑]</a>"
+		    		]#if( $foreach.hasNext ),#end 		
+		    	#end
+		    ]
+		}
+		]]>
+	</velocity>
+	
+	<velocity name="shop-admin-page-category-list">
+		<![CDATA[
+		{
+			"sEcho":"$sEcho",
+			"iTotalRecords": "$page.totalCount",
+		    "iTotalDisplayRecords": "$page.totalCount",
+		    "aaData": [
+		    	#foreach( $x in $page.result )
+		    		[
+		    		"<input type='checkbox'/>",
+		    		"$x.categoryName",
+		    		"<a href='pageCategory.do?method=edit&categoryId=$x.categoryId' title='编辑'>[编辑]</a>"
+		    		]#if( $foreach.hasNext ),#end 		
+		    	#end
+		    ]
+		}
+		]]>
+	</velocity>
 </root>

@@ -29,4 +29,45 @@
 			</bean>
 		</property>
 	</bean>
+	
+	<bean id="brandInfoLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.shop.admin.logic.impl.BrandInfoLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="articleCategoryLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.shop.admin.logic.impl.ArticleCategoryLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="articleLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.shop.admin.logic.impl.ArticleLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="pageCategoryLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.shop.admin.logic.impl.PageCategoryLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+		
 </beans>

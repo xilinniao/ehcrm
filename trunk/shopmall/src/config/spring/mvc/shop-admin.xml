@@ -7,6 +7,10 @@
 				/shop/admin/shopInfo.do=shopInfoCtrl
 				/shop/admin/goodscat.do=goodsCatCtrl
 				/shop/admin/goodsInfo.do=goodsInfoCtrl
+				/shop/admin/brandInfo.do=brandInfoCtrl
+				/shop/admin/articleCategory.do=articleCategoryCtrl
+				/shop/admin/article.do=articleCtrl
+				/shop/admin/pageCategory.do=pageCategoryCtrl
 			</value>
 		</property>
 	</bean>
@@ -25,5 +29,26 @@
     <bean name="goodsInfoCtrl" class="com.eh.shop.admin.web.GoodsInfoCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="goodsLogic" ref="goodsLogic"/>
+        <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
+   </bean>
+   
+   <bean name="brandInfoCtrl" class="com.eh.shop.admin.web.BrandInfoCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="brandInfoLogic" ref="brandInfoLogic"/>
+   </bean>
+   
+   <bean name="articleCategoryCtrl" class="com.eh.shop.admin.web.ArticleCategoryCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="articleCategoryLogic" ref="articleCategoryLogic"/>
+   </bean>
+   
+   <bean name="articleCtrl" class="com.eh.shop.admin.web.ArticleCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="articleLogic" ref="articleLogic"/>
+   </bean>
+   
+   <bean name="pageCategoryCtrl" class="com.eh.shop.admin.web.PageCategoryCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
    </bean>
 </beans>

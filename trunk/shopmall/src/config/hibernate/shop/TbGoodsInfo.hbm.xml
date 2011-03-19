@@ -20,7 +20,10 @@
 			class="com.eh.shop.entity.TbBrandInfo">
 			<column name="brand_id" precision="10" scale="0" />
 		</many-to-one>
-		
+		<many-to-one name="pageCategory"
+			class="com.eh.shop.entity.TbPageCategory">
+			<column name="page_category_id" precision="10" scale="0" />
+		</many-to-one>			
 		<property name="goodsName" type="java.lang.String">
 			<column name="GOODS_NAME" length="500" />
 		</property>

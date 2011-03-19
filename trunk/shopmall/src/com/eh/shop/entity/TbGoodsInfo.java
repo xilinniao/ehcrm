@@ -15,6 +15,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private TbShopInfo shopInfo;
      private TbGoodsCategory category;
      private TbBrandInfo brandInfo;
+     private TbPageCategory pageCategory;
      private String goodsName;
      private String keyWord;
      private String goodNo;
@@ -34,10 +35,11 @@ public class TbGoodsInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbBrandInfo brandInfo, String goodsName, String keyWord, String goodNo, Double weight, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount, String imageUrl) {
+    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbBrandInfo brandInfo, TbPageCategory pageCategory, String goodsName, String keyWord, String goodNo, Double weight, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount, String imageUrl) {
         this.shopInfo = shopInfo;
         this.category = category;
         this.brandInfo = brandInfo;
+        this.pageCategory = pageCategory;
         this.goodsName = goodsName;
         this.keyWord = keyWord;
         this.goodNo = goodNo;
@@ -82,6 +84,14 @@ public class TbGoodsInfo  implements java.io.Serializable {
     
     public void setBrandInfo(TbBrandInfo brandInfo) {
         this.brandInfo = brandInfo;
+    }
+
+    public TbPageCategory getPageCategory() {
+        return this.pageCategory;
+    }
+    
+    public void setPageCategory(TbPageCategory pageCategory) {
+        this.pageCategory = pageCategory;
     }
 
     public String getGoodsName() {

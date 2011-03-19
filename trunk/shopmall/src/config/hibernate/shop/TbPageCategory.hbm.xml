@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.eh.shop.entity.TbPageCategory" table="TB_PAGE_CATEGORY">    
+		 <id name="categoryId" type="java.lang.Long">
+            <column name="CATEGORY_ID" precision="10" scale="0"/>
+            <generator class="native" />
+      	 </id>
+		 <many-to-one name="shopInfo"
+			class="com.eh.shop.entity.TbShopInfo">
+			<column name="SHOP_ID" precision="10" scale="0" />
+		 </many-to-one>
+        <many-to-one name="pageType"
+			class="com.eh.shop.entity.TbPageType">
+			<column name="PAGE_TYPE" precision="10" scale="0"/>
+		 </many-to-one>
+		 <property name="categoryName" type="java.lang.String">
+            <column name="CATEGORY_NAME" length="200"/>
+        </property>
+		 <property name="goodsCnt" type="java.lang.Long">
+            <column name="GOODS_CNT" precision="10" scale="0"/>
+        </property>
+    </class>
+</hibernate-mapping>

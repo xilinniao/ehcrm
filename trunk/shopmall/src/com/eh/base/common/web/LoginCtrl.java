@@ -46,6 +46,18 @@ public class LoginCtrl extends BaseCtrl {
 			//获取菜单操作
 			List menuList = this.loginLogic.findUserMenuList(userInfo.getUser().getUserId());
 			this.setIsLeaf(menuList);
+			
+			//判断是否需要移除根节点
+			/*boolean removeRoot = false;
+			for(int i =0,size = menuList.size();i<size;i++){
+				TbMenuInfo tmp = (TbMenuInfo)menuList.get(i);
+				if(tmp.getTreeNo().length()==9){
+					removeRoot = true;
+				}
+			}*/
+			
+			menuList.remove(0);
+			
 			StringBuffer treeXml = new StringBuffer("");
 			TbMenuInfo rootMenu = (TbMenuInfo)menuList.get(0);
 			treeXml.append("<ul class=\"sf-menu\">");

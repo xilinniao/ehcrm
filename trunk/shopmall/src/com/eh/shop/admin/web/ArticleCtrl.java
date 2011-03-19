@@ -16,24 +16,24 @@ import com.eh.base.dao.hibernate.Page;
 import com.eh.base.util.Constants;
 import com.eh.base.util.VelocityUtils;
 import com.eh.base.vo.UserInfo;
-import com.eh.shop.admin.logic.BrandInfoLogic;
-import com.eh.shop.admin.web.qry.BrandInfoQry;
-import com.eh.shop.entity.TbBrandInfo;
-import com.eh.shop.entity.TbGoodsInfo;
-
+import com.eh.shop.admin.logic.ArticleLogic;
+import com.eh.shop.admin.web.qry.ArticleQry;
+import com.eh.shop.entity.TbArticleCategory;
+import com.eh.shop.entity.TbArticleInfo;
 /**
- * 品牌控制类
- * @author zhoucl
+ * 控制类
  *
  */
-public class BrandInfoCtrl extends BaseShopAdminCtrl {
-	BrandInfoLogic brandInfoLogic = null;
+public class ArticleCtrl extends BaseShopAdminCtrl {
+	ArticleLogic articleLogic = null;
 	/**
 	 * 首页
 	 */
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/brand/index");
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/article/index");
+		List categoryList = articleLogic.findCategoryList(userInfo.getShopInfo().getShopId());
+		mav.addObject("categoryList", categoryList);
 		return mav;
 	}
 	
@@ -46,14 +46,13 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 	 */
 	public ModelAndView list(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		BrandInfoQry qry = new BrandInfoQry();
+		ArticleQry qry = new ArticleQry();
 		bindObject(request, qry);
 		qry.setUserInfo(userInfo);
-		Page page = this.brandInfoLogic.findBrandList(qry);
+		Page page = this. articleLogic.findArticleList(qry);
 		Map data = super.getParameterMap(request);
 		data.put("page", page);
-		renderJson(response, VelocityUtils.render("shop-admin-brand-info-list",
-				data));
+		renderJson(response, VelocityUtils.render("shop-admin-article-info-list",data));		
 		return null;
 	}
 	
@@ -66,10 +65,12 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 	 */
 	public ModelAndView add(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/brand/edit");
-		TbBrandInfo entity = new TbBrandInfo();
-		entity.setBrandId(Constants.ADD_PK_ID);
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/article/edit");
+		TbArticleInfo entity = new TbArticleInfo();
+		entity.setArticleId(Constants.ADD_PK_ID);
 		mav.addObject("entity", entity);
+		List categoryList = articleLogic.findCategoryList(userInfo.getShopInfo().getShopId());
+		mav.addObject("categoryList", categoryList);
 		return mav;
 	}
 	
@@ -82,12 +83,14 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 	 */
 	public ModelAndView edit(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/brand/edit");
-		Long brandId = super.getLong(request, "brandId", false);
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/article/edit");
+		Long articleId = super.getLong(request, "articleId", false);
 		// 修改操作
-		TbBrandInfo entity = this.brandInfoLogic.get(TbBrandInfo.class, brandId);
+		TbArticleInfo entity = this. articleLogic.get(TbArticleInfo.class, articleId);
 		if(entity!=null&&isYourShop(entity.getShopInfo(), userInfo)){
 			mav.addObject("entity", entity);
+			List categoryList = articleLogic.findCategoryList(userInfo.getShopInfo().getShopId());
+			mav.addObject("categoryList", categoryList);
 			return mav;
 		}else{
 			//设置错误信息
@@ -98,27 +101,31 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 	
 	public  ModelAndView onEdit(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);		
-		Long brandId = super.getLong(request, "brandId", false);
+		Long articleId = super.getLong(request, "articleId", false);
+		Long categoryId = super.getLong(request, "categoryId", false);
+		TbArticleCategory category = this.articleLogic.get(TbArticleCategory.class, categoryId);
 		
-		if(brandId.longValue() == Constants.ADD_PK_ID.longValue()) {
+		if(articleId.longValue() == Constants.ADD_PK_ID.longValue()) {
 			//新增操作
-			TbBrandInfo entity = new TbBrandInfo();
+			TbArticleInfo entity = new TbArticleInfo();
 			super.bindObject(request,entity);
-			entity.setShopInfo(userInfo.getShopInfo());
-			this.brandInfoLogic.saveBrandInfo(entity);
+			entity.setShopInfo(userInfo.getShopInfo());			
+			entity.setCategory(category);
+			this. articleLogic.saveArticle(entity);
 		}else{
 			//修改操作
-			TbBrandInfo entity = this.brandInfoLogic.get(TbBrandInfo.class, brandId);
+			TbArticleInfo entity = this.articleLogic.get(TbArticleInfo.class, articleId);
 			if(entity!=null&&super.isYourShop(entity.getShopInfo(), userInfo)){
 				super.bindObject(request, entity);
-				this.brandInfoLogic.saveBrandInfo(entity);
+				entity.setCategory(category);
+				this. articleLogic.saveArticle(entity);
 			}else{
-				super.addErrors(request, "非法操作，没有找到指定的品牌");
+				super.addErrors(request, "非法操作，没有找到指定的文章");
 			}
 		}
 		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", "brandInfo.do?method=index");
+		mav.addObject("redirectUrl", " article.do?method=index");
 		return mav;
 	}
 	
@@ -131,10 +138,10 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 	 */
 	public ModelAndView onDelete(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		Long brandId = super.getLong(request, "brandId", false);
-		TbBrandInfo entity = this.brandInfoLogic.get(TbBrandInfo.class, brandId);
+		Long articleId = super.getLong(request, "articleId", false);
+		TbArticleInfo entity = this. articleLogic.get(TbArticleInfo.class, articleId);
 		if(entity!=null&&super.isYourShop(entity.getShopInfo(), userInfo)){
-			String result = this.brandInfoLogic.deleteBrandInfo(entity);
+			String result = this. articleLogic.deleteArticle(entity);
 			//返回错误信息
 			if(StringUtils.isNotBlank(result)){
 				super.addErrors(request, result);
@@ -143,21 +150,21 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 			super.addErrors(request, "非法操作，没有找到指定的品牌");
 		}		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", "brandInfo.do?method=index");
+		mav.addObject("redirectUrl", " article.do?method=index");
 		return mav;
 	}
 
 	/**
-	 * @return the brandInfoLogic
+	 * @return the articleLogic
 	 */
-	public BrandInfoLogic getBrandInfoLogic() {
-		return brandInfoLogic;
+	public ArticleLogic getArticleLogic() {
+		return articleLogic;
 	}
 
 	/**
-	 * @param brandInfoLogic the brandInfoLogic to set
+	 * @param articleLogic the articleLogic to set
 	 */
-	public void setBrandInfoLogic(BrandInfoLogic brandInfoLogic) {
-		this.brandInfoLogic = brandInfoLogic;
+	public void setArticleLogic(ArticleLogic articleLogic) {
+		this.articleLogic = articleLogic;
 	}
 }
