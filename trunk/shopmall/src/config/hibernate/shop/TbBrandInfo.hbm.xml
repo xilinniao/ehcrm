@@ -21,8 +21,8 @@
 		<property name="name" type="java.lang.String">
 			<column name="NAME" length="255" />
 		</property>
-		<property name="ordernum" type="java.lang.Long">
-			<column name="ORDERNUM" precision="10" scale="0" />
+		<property name="orderNum" type="java.lang.Long">
+			<column name="ORDER_NUM" precision="10" scale="0" />
 		</property>
 		<property name="url" type="java.lang.String">
 			<column name="URL" length="255" />

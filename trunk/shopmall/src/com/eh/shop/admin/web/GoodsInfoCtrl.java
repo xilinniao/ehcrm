@@ -16,11 +16,14 @@ import com.eh.base.dao.hibernate.Page;
 import com.eh.base.util.Constants;
 import com.eh.base.util.VelocityUtils;
 import com.eh.base.vo.UserInfo;
+import com.eh.shop.admin.logic.BrandInfoLogic;
 import com.eh.shop.admin.logic.GoodsLogic;
+import com.eh.shop.admin.logic.PageCategoryLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
 import com.eh.shop.entity.TbBrandInfo;
 import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbGoodsInfo;
+import com.eh.shop.entity.TbPageCategory;
 
 /**
  * 商品管理
@@ -30,6 +33,8 @@ import com.eh.shop.entity.TbGoodsInfo;
  */
 public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 	GoodsLogic goodsLogic;
+	PageCategoryLogic pageCategoryLogic = null;
+	BrandInfoLogic brandInfoLogic = null;
 
 	/**
 	 * 商品管理首页
@@ -84,6 +89,12 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		TbGoodsInfo info = new TbGoodsInfo();
 		info.setGoodsId(Constants.ADD_PK_ID);
 		mav.addObject("info", info);
+		List pageCategoryList = pageCategoryLogic.findAllPageCategoryList(userInfo.getShopInfo().getShopId());
+		mav.addObject("pageCategoryList", pageCategoryList);
+		
+		//品牌列表
+		List brandList = this.brandInfoLogic.findAllBrandListByShop(userInfo.getShopInfo().getShopId());
+		mav.addObject("brandList", brandList);
 		return mav;
 	}
 
@@ -107,6 +118,8 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			List imageList = this.goodsLogic.findImageList(goodsId);
 			mav.addObject("imageList", imageList);
 			mav.addObject("info", info);
+			List pageCategoryList = pageCategoryLogic.findAllPageCategoryList(userInfo.getShopInfo().getShopId());
+			mav.addObject("pageCategoryList", pageCategoryList);
 			return mav;
 		}else{
 			//设置错误信息
@@ -121,9 +134,14 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		Long goodsId = super.getLong(request, "goodsId", false);
 		Long categoryId = super.getLong(request, "categoryId", false);
 		Long brandId = super.getLong(request, "brandId", true);//品牌
+		Long pageCategoryId = super.getLong(request, "pageCategoryId", true);
 		TbBrandInfo brandInfo = null;
+		TbPageCategory pageCategory = null;
 		if(brandId!=null){
 			brandInfo = this.goodsLogic.get(TbBrandInfo.class, brandId);
+		}
+		if(pageCategoryId!=null){
+			pageCategory = this.goodsLogic.get(TbPageCategory.class, pageCategoryId);
 		}
 		TbGoodsCategory cat = this.goodsLogic.get(TbGoodsCategory.class,categoryId);
 		if (goodsId.longValue() == Constants.ADD_PK_ID.longValue()) {
@@ -133,6 +151,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			info.setCategory(cat);
 			info.setShopInfo(userInfo.getShopInfo());
 			info.setBrandInfo(brandInfo);
+			info.setPageCategory(pageCategory);
 			this.goodsLogic.saveGoodsInfo(info);
 		}else{
 			//修改操作
@@ -141,6 +160,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 				super.bindObject(request, info);
 				info.setCategory(cat);
 				info.setBrandInfo(brandInfo);
+				info.setPageCategory(pageCategory);
 				this.goodsLogic.saveGoodsInfo(info);
 			}else{
 				super.addErrors(request, "非法操作，没有找到指定的商品信息");
@@ -178,5 +198,35 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 	public void setGoodsLogic(GoodsLogic goodsLogic) {
 		this.goodsLogic = goodsLogic;
 	}
+
+	/**
+	 * @return the pageCategoryLogic
+	 */
+	public PageCategoryLogic getPageCategoryLogic() {
+		return pageCategoryLogic;
+	}
+
+	/**
+	 * @param pageCategoryLogic the pageCategoryLogic to set
+	 */
+	public void setPageCategoryLogic(PageCategoryLogic pageCategoryLogic) {
+		this.pageCategoryLogic = pageCategoryLogic;
+	}
+
+	/**
+	 * @return the brandInfoLogic
+	 */
+	public BrandInfoLogic getBrandInfoLogic() {
+		return brandInfoLogic;
+	}
+
+	/**
+	 * @param brandInfoLogic the brandInfoLogic to set
+	 */
+	public void setBrandInfoLogic(BrandInfoLogic brandInfoLogic) {
+		this.brandInfoLogic = brandInfoLogic;
+	}
+	
+	
 
 }

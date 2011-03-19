@@ -30,4 +30,6 @@ public interface GoodsCatLogic extends IBaseLogic {
 	 * @return
 	 */
 	public TbGoodsCategory getRootCategory(Long shopId);
+	
+	
 }

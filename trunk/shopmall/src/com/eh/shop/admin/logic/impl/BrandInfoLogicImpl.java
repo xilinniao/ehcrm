@@ -1,8 +1,15 @@
 package com.eh.shop.admin.logic.impl;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
+
+import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.BaseLogic;
 import com.eh.base.util.Constants;
+import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.BrandInfoLogic;
+import com.eh.shop.admin.web.qry.BrandInfoQry;
 import com.eh.shop.entity.TbBrandInfo;
 
 public class BrandInfoLogicImpl extends BaseLogic implements BrandInfoLogic {
@@ -31,6 +38,20 @@ public class BrandInfoLogicImpl extends BaseLogic implements BrandInfoLogic {
 			return null;
 		}
 	}
-	
-	
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.BrandInfoLogic#findBrandList(com.eh.shop.admin.web.qry.BrandInfoQry)
+	 */
+	public Page findBrandList(BrandInfoQry qry) {
+		Criteria criteria = baseDao.createCriteria(TbBrandInfo.class);
+		CriteriaUtil.addFullLike(criteria, "name", qry.getName());
+		return baseDao.pagedQuery(criteria, qry.getDataTablesPageNo(), qry.getPageSize());
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.BrandInfoLogic#findAllBrandList(java.lang.Long)
+	 */
+	public List findAllBrandListByShop(Long shopId) {
+		return super.baseDao.find("from TbBrandInfo t where t.shopInfo.shopId=?", shopId);
+	}
 }

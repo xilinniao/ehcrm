@@ -16,7 +16,7 @@ public class TbBrandInfo  implements java.io.Serializable {
      private String introduction;
      private String logo;
      private String name;
-     private Long ordernum;
+     private Long orderNum;
      private String url;
 
 
@@ -28,12 +28,12 @@ public class TbBrandInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbBrandInfo(TbShopInfo shopInfo, String introduction, String logo, String name, Long ordernum, String url) {
+    public TbBrandInfo(TbShopInfo shopInfo, String introduction, String logo, String name, Long orderNum, String url) {
         this.shopInfo = shopInfo;
         this.introduction = introduction;
         this.logo = logo;
         this.name = name;
-        this.ordernum = ordernum;
+        this.orderNum = orderNum;
         this.url = url;
     }
 
@@ -80,12 +80,12 @@ public class TbBrandInfo  implements java.io.Serializable {
         this.name = name;
     }
 
-    public Long getOrdernum() {
-        return this.ordernum;
+    public Long getOrderNum() {
+        return this.orderNum;
     }
     
-    public void setOrdernum(Long ordernum) {
-        this.ordernum = ordernum;
+    public void setOrderNum(Long orderNum) {
+        this.orderNum = orderNum;
     }
 
     public String getUrl() {

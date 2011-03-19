@@ -39,6 +39,7 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 	public String saveGoodsInfo(TbGoodsInfo info) {
 		if(info.getGoodsId().longValue()==Constants.ADD_PK_ID.longValue()){
 			info.setGoodsId(null);
+			//增加一条对应关系
 			super.save(info);
 		}else{
 			super.save(info);
