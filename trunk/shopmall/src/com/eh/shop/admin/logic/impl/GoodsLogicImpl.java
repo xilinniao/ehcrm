@@ -3,6 +3,7 @@
  */
 package com.eh.shop.admin.logic.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -14,6 +15,7 @@ import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.GoodsLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
 import com.eh.shop.entity.TbGoodsInfo;
+import com.eh.shop.entity.TbGoodsInfoShort;
 
 /**
  * @author zhoucl
@@ -52,6 +54,26 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 	 */
 	public List findImageList(Long goodsId) {
 		return super.baseDao.find("select r.attachment from TbGoodsAttach r where r.goodsInfo.goodsId = ?", goodsId);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.GoodsLogic#findGoodsForPrice(java.lang.Long[])
+	 */
+	public List findGoodsForPrice(String productId) {
+		List goodsList = new ArrayList();
+		String[] productIds = productId.split(",");
+		for(int i = 0,len = productIds.length;i<len;i++){
+			try{
+				Long product = Long.parseLong(productIds[i]);
+				TbGoodsInfoShort goods = super.get(TbGoodsInfoShort.class,product);
+				if(goods!=null){
+					goodsList.add(goods);
+				}
+			}catch(NumberFormatException ne){
+				//忽略
+			}
+		}
+		return goodsList;
 	}
 	
 	

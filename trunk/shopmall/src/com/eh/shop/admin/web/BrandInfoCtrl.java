@@ -118,7 +118,7 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 		}
 		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", "brandInfo.do?method=index");
+		mav.addObject("redirectUrl", "brandInfo.xhtml?method=index");
 		return mav;
 	}
 	
@@ -143,7 +143,7 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 			super.addErrors(request, "非法操作，没有找到指定的品牌");
 		}		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", "brandInfo.do?method=index");
+		mav.addObject("redirectUrl", "brandInfo.xhtml?method=index");
 		return mav;
 	}
 

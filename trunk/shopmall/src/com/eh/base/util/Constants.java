@@ -12,8 +12,11 @@ public class Constants {
 	public static String UPLOAD_FILE_DIR = "";// 其它文件上传目录
 	
 	public static Long YES = Long.valueOf(0);
-	public static Long NO = Long.valueOf(1);
-	
+	public static Long NO = Long.valueOf(1);	
+	/**
+	 * MD5码前缀，为防止在线密码破解
+	 */
+	public final static String CRYPT_MD_PREFIX = "@F$5)6D!e7";
 	
 	// 水印位置（无、左上、右上、居中、左下、右下）
 	public enum WatermarkPosition {
@@ -38,4 +41,9 @@ public class Constants {
 	 * 数据查看权限--只能查看本机构数据
 	 */
 	public final static Long DATA_PRIV_SELF = Long.valueOf(53);
+	
+	/**
+	 * 系统店铺
+	 */
+	public final static Long SYSTEM_SHOP = Long.valueOf(1);
 }

@@ -133,7 +133,7 @@ public class UserCtrl extends BaseCtrl {
 	public ModelAndView deleteUser(HttpServletRequest request,HttpServletResponse response) throws Exception {		
 		Long userId = super.getLong(request, "userId", true);		
 		this.userLogic.deleteUser(userId);		
-		response.sendRedirect("/admin/user.do?method=userList");
+		response.sendRedirect("/admin/user.xhtml?method=userList");
 		return null;
 	}
 	

@@ -167,7 +167,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			}
 		}
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", "goodsInfo.do?method=index");
+		mav.addObject("redirectUrl", "goodsInfo.xhtml?method=index");
 		return mav;
 	}
 

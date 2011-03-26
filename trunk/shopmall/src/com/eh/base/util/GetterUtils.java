@@ -25,7 +25,7 @@ public class GetterUtils {
 		Class c = TbRoleInfo.class;
 		Field[] fields = c.getDeclaredFields();
 		for(int i=0,len=fields.length-1;i<=len;i++){
-			if("java.lang.Double".equals(fields[i].getType().getName())){				
+			if("java.lang.xhtmluble".equals(fields[i].getType().getName())){				
 				System.out.println("public String get"+fields[i].getName().substring(0, 1).toUpperCase()+fields[i].getName().substring(1)+"Str(){");
 				System.out.println("return FormateUtil.getInstance().formateDouble(this."+fields[i].getName()+",null);");
 				System.out.println("}");

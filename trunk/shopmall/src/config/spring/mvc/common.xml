@@ -4,9 +4,9 @@
 	<bean id="publicHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<value>
-				/login.do=loginCtrl
-			   /common.do=commonCtrl
-			   /upload.do=uploadCtrl
+				/login.xhtml=loginCtrl
+			   /common.xhtml=commonCtrl
+			   /upload.xhtml=uploadCtrl
 			</value>
 		</property>
 	</bean>

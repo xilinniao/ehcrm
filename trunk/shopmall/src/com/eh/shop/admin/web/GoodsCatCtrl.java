@@ -23,7 +23,7 @@ import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbShopInfo;
 
 public class GoodsCatCtrl extends BaseTreeCtrl{
-	GoodsCatLogic goodsCatLogic;	
+	GoodsCatLogic goodsCatLogic;
 	/**
 	 * 商店LOGIC
 	 */
@@ -67,7 +67,7 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 					TbGoodsCategory level3 = new TbGoodsCategory();
 					level3.setCategoryName(em.text());
 					String url = em.select("a").first().attr("href");
-					level3.setCategoryUrl(url);
+					level3.setJdUrl(url);
 					level3.setDataStatus(Long.valueOf(0));
 					level3.setOrderNum(Long.valueOf(k));
 					level3.setTreeNo(level2.getTreeNo()+String.valueOf(100+k));
@@ -125,9 +125,10 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 					String orgPrice = elm.select("div.p-price > del").text().substring(1);
 					goods.setOriginalPrice(Double.parseDouble(orgPrice));
 					
-					this.getProductDetail(elm.select("div.p-name > a").attr("href"), goods);
-					/*Double price = 
-					goods.setDiscountPrice(discountPrice)*/
+					goods.setJdUrl(elm.select("div.p-name > a").attr("href"));
+					//明细就不获取了
+					//this.getProductDetail(elm.select("div.p-name > a").attr("href"), goods);
+					/*Double price =  goods.setDiscountPrice(discountPrice)*/
 					this.goodsCatLogic.save(goods);
 				}
 

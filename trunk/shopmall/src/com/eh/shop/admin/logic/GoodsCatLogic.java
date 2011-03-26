@@ -29,7 +29,17 @@ public interface GoodsCatLogic extends IBaseLogic {
 	 * 根据商店ID获取根分类
 	 * @return
 	 */
-	public TbGoodsCategory getRootCategory(Long shopId);
-	
-	
+	public TbGoodsCategory getRootCategory(Long shopId);	
+	/**
+	 * 系统店铺使用
+	 * 根据URL查询分类信息
+	 */
+	public List findCategoryListByUrl(String url);	
+	/**
+	 * 按树形编码查找类别信息
+	 * @param treeNo
+	 * @param shopId
+	 * @return
+	 */
+	public List findCategoryListByTreeNo(String treeNo,Long shopId);
 }

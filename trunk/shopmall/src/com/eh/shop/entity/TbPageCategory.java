@@ -16,6 +16,7 @@ public class TbPageCategory  implements java.io.Serializable {
      private TbPageType pageType;
      private String categoryName;
      private Long goodsCnt;
+     private Long orderNum;
 
 
     // Constructors
@@ -26,11 +27,12 @@ public class TbPageCategory  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbPageCategory(TbShopInfo shopInfo, TbPageType pageType, String categoryName, Long goodsCnt) {
+    public TbPageCategory(TbShopInfo shopInfo, TbPageType pageType, String categoryName, Long goodsCnt, Long orderNum) {
         this.shopInfo = shopInfo;
         this.pageType = pageType;
         this.categoryName = categoryName;
         this.goodsCnt = goodsCnt;
+        this.orderNum = orderNum;
     }
 
    
@@ -74,6 +76,14 @@ public class TbPageCategory  implements java.io.Serializable {
     
     public void setGoodsCnt(Long goodsCnt) {
         this.goodsCnt = goodsCnt;
+    }
+
+    public Long getOrderNum() {
+        return this.orderNum;
+    }
+    
+    public void setOrderNum(Long orderNum) {
+        this.orderNum = orderNum;
     }
    
 

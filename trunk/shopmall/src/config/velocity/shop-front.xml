@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<velocity name="shop-front-goods-list">
+		<![CDATA[
+		[
+			#foreach( $x in $productList )
+		    		{
+		    		"goodsId":"$x.goodsId",
+		    		"url":"http://www.360buy.com/images/none/none_50.gif",
+		    		"goodsName":"$!x.goodsName",
+		    		"discountPrice":"$!x.originalPrice"
+		    		}#if( $foreach.hasNext ),#end   		
+		    	#end
+		]
+		]]>
+	</velocity>
+</root>

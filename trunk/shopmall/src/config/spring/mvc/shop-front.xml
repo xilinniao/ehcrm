@@ -4,13 +4,36 @@
 	<bean id="frontHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<value>
-				/index.do=indexCtrl
+				/index.xhtml=indexCtrl
+				/front/ajax.xhtml=frontAjaxCtrl
+				/front/order.xhtml=orderCtrl
+				/front/login.xhtml=loginCtrl
+				/front/user.xhtml=userCtrl
 			</value>
 		</property>
 	</bean>
     
 	
 	<bean name="indexCtrl" class="com.eh.shop.front.web.IndexCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
+        <property name="goodsCatLogic" ref="goodsCatLogic"/>
+   	</bean>
+   	
+   	<bean name="frontAjaxCtrl" class="com.eh.shop.front.web.FrontAjaxCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="goodsLogic" ref="goodsLogic"/>
+   	</bean>
+   	
+   	<bean name="orderCtrl" class="com.eh.shop.front.web.OrderCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+   	</bean>
+   	
+   	<bean name="loginCtrl" class="com.eh.shop.front.web.LoginCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+   	</bean>
+   	
+   	<bean name="userCtrl" class="com.eh.shop.front.web.UserCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
    	</bean>
 </beans>
