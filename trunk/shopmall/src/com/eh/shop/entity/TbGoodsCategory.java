@@ -20,7 +20,11 @@ public class TbGoodsCategory  implements java.io.Serializable {
      private String categoryDesc;
      private Long dataStatus;
      private Long orderNum;
+     private Long showAtNav;
      private String treeNo;
+     private Long isLeaf;
+     private Long categoryLevel;
+     private String jdUrl;
 
 
     // Constructors
@@ -31,7 +35,7 @@ public class TbGoodsCategory  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsCategory(TbGoodsCategory parent, String categoryName, TbShopInfo shopInfo, String categoryUrl, String keyWords, String categoryDesc, Long dataStatus, Long orderNum, String treeNo) {
+    public TbGoodsCategory(TbGoodsCategory parent, String categoryName, TbShopInfo shopInfo, String categoryUrl, String keyWords, String categoryDesc, Long dataStatus, Long orderNum, Long showAtNav, String treeNo, Long isLeaf, Long categoryLevel, String jdUrl) {
         this.parent = parent;
         this.categoryName = categoryName;
         this.shopInfo = shopInfo;
@@ -40,7 +44,11 @@ public class TbGoodsCategory  implements java.io.Serializable {
         this.categoryDesc = categoryDesc;
         this.dataStatus = dataStatus;
         this.orderNum = orderNum;
+        this.showAtNav = showAtNav;
         this.treeNo = treeNo;
+        this.isLeaf = isLeaf;
+        this.categoryLevel = categoryLevel;
+        this.jdUrl = jdUrl;
     }
 
    
@@ -118,12 +126,44 @@ public class TbGoodsCategory  implements java.io.Serializable {
         this.orderNum = orderNum;
     }
 
+    public Long getShowAtNav() {
+        return this.showAtNav;
+    }
+    
+    public void setShowAtNav(Long showAtNav) {
+        this.showAtNav = showAtNav;
+    }
+
     public String getTreeNo() {
         return this.treeNo;
     }
     
     public void setTreeNo(String treeNo) {
         this.treeNo = treeNo;
+    }
+
+    public Long getIsLeaf() {
+        return this.isLeaf;
+    }
+    
+    public void setIsLeaf(Long isLeaf) {
+        this.isLeaf = isLeaf;
+    }
+
+    public Long getCategoryLevel() {
+        return this.categoryLevel;
+    }
+    
+    public void setCategoryLevel(Long categoryLevel) {
+        this.categoryLevel = categoryLevel;
+    }
+
+    public String getJdUrl() {
+        return this.jdUrl;
+    }
+    
+    public void setJdUrl(String jdUrl) {
+        this.jdUrl = jdUrl;
     }
    
 

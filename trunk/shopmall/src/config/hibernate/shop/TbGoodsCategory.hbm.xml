@@ -30,8 +30,20 @@
 		<property name="orderNum" type="java.lang.Long">
 			<column name="ORDER_NUM" precision="10" scale="0" />
 		</property>
+		<property name="showAtNav" type="java.lang.Long">
+			<column name="show_at_nav" length="2" />
+		</property>
 		<property name="treeNo" type="java.lang.String">
 			<column name="TREE_NO" length="200" />
+		</property>
+		<property name="isLeaf" type="java.lang.Long">
+			<column name="IS_LEAF" precision="10" scale="0" />
+		</property>
+		<property name="categoryLevel" type="java.lang.Long">
+			<column name="CATEGORY_LEVEL" precision="10" scale="0" />
+		</property>		
+		<property name="jdUrl" type="java.lang.String">
+			<column name="jd_url" length="500" />
 		</property>
 	</class>
 </hibernate-mapping>

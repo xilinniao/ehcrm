@@ -25,6 +25,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private String goodsDesc;
      private Long leavesCount;
      private String imageUrl;
+     private String jdUrl;
 
 
     // Constructors
@@ -35,7 +36,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbBrandInfo brandInfo, TbPageCategory pageCategory, String goodsName, String keyWord, String goodNo, Double weight, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount, String imageUrl) {
+    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbBrandInfo brandInfo, TbPageCategory pageCategory, String goodsName, String keyWord, String goodNo, Double weight, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount, String imageUrl, String jdUrl) {
         this.shopInfo = shopInfo;
         this.category = category;
         this.brandInfo = brandInfo;
@@ -49,6 +50,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
         this.goodsDesc = goodsDesc;
         this.leavesCount = leavesCount;
         this.imageUrl = imageUrl;
+        this.jdUrl = jdUrl;
     }
 
    
@@ -164,6 +166,14 @@ public class TbGoodsInfo  implements java.io.Serializable {
     
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getJdUrl() {
+        return this.jdUrl;
+    }
+    
+    public void setJdUrl(String jdUrl) {
+        this.jdUrl = jdUrl;
     }
    
 

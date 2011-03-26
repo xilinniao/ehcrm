@@ -129,7 +129,7 @@ public class PageCategoryCtrl extends BaseShopAdminCtrl {
 		}
 		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", " pageCategory.do?method=index");
+		mav.addObject("redirectUrl", " pageCategory.xhtml?method=index");
 		return mav;
 	}
 	
@@ -154,7 +154,7 @@ public class PageCategoryCtrl extends BaseShopAdminCtrl {
 			super.addErrors(request, "非法操作，没有找到指定的品牌");
 		}		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", " pageCategory.do?method=index");
+		mav.addObject("redirectUrl", " pageCategory.xhtml?method=index");
 		return mav;
 	}
 

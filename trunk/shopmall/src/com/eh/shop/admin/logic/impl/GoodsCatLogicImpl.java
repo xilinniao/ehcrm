@@ -73,4 +73,32 @@ public class GoodsCatLogicImpl extends BaseLogic implements GoodsCatLogic {
 			return "EER01";
 		}
 	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.GoodsCatLogic#findCategoryListByUrl(java.lang.String)
+	 */
+	public List findCategoryListByUrl(String url) {
+		List categoryList = super.baseDao.find("from TbGoodsCategory t where t.categoryUrl = ? and t.shopInfo.shopId = ? ", new Object[]{url,Constants.SYSTEM_SHOP});
+		if(categoryList.size()==1){
+			TbGoodsCategory category = (TbGoodsCategory)categoryList.get(0);
+			return super.baseDao.find("from TbGoodsCategory t where t.parent.categoryId = ? and t.shopInfo.shopId = ?", new Object[]{
+					category.getCategoryId(),
+					Constants.SYSTEM_SHOP
+			});
+		}else{
+			return null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.GoodsCatLogic#findCategoryListByTreeNo(java.lang.String, java.lang.Long)
+	 */
+	public List findCategoryListByTreeNo(String treeNo, Long shopId) {
+		return super.baseDao
+				.find(
+						"from TbGoodsCategory t where t.treeNo like ? and t.shopInfo.shopId = ? ",
+						new Object[] { treeNo+"%", Constants.SYSTEM_SHOP });
+	}
+	
+	
 }

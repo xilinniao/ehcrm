@@ -33,4 +33,10 @@ public interface GoodsLogic extends IBaseLogic {
 	 * @return
 	 */
 	public List findImageList(Long goodsId);
+	/**
+	 * 查找商品列表
+	 * @param productId
+	 * @return
+	 */
+	public List findGoodsForPrice(String productId);
 }

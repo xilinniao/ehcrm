@@ -125,7 +125,7 @@ public class ArticleCtrl extends BaseShopAdminCtrl {
 		}
 		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", " article.do?method=index");
+		mav.addObject("redirectUrl", " article.xhtml?method=index");
 		return mav;
 	}
 	
@@ -150,7 +150,7 @@ public class ArticleCtrl extends BaseShopAdminCtrl {
 			super.addErrors(request, "非法操作，没有找到指定的品牌");
 		}		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", " article.do?method=index");
+		mav.addObject("redirectUrl", " article.xhtml?method=index");
 		return mav;
 	}
 

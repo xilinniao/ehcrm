@@ -1,7 +1,9 @@
 package com.eh.shop.entity;
 
-import com.eh.base.entity.TbUserInfo;
 import java.util.Date;
+
+import com.eh.base.entity.TbUserInfo;
+import com.eh.base.util.Constants;
 
 /**
  * TbShopInfo entity.
@@ -174,16 +176,11 @@ public class TbShopInfo implements java.io.Serializable {
 	}
 	
 	/**
-	 * 系统店铺
-	 */
-	public final static Long SYSTEM_SHOP = Long.valueOf(1);
-	
-	/**
 	 * 判断是否是系统店铺
 	 * @return
 	 */
 	public boolean isSystemShop() {
-		return this.shopId.longValue()==SYSTEM_SHOP.longValue();
+		return this.shopId.longValue()==Constants.SYSTEM_SHOP.longValue();
 	}
 
 }

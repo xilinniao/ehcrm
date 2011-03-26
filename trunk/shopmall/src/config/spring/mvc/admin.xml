@@ -4,11 +4,11 @@
 	<bean id="adminHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<value>
-				/admin/user.do=userCtrl
-				/admin/dept.do=deptCtrl
-				/admin/role.do=roleCtrl
-				/admin/menu.do=menuCtrl
-				/admin/param.do=paramCtrl
+				/admin/user.xhtml=userCtrl
+				/admin/dept.xhtml=deptCtrl
+				/admin/role.xhtml=roleCtrl
+				/admin/menu.xhtml=menuCtrl
+				/admin/param.xhtml=paramCtrl
 			</value>
 		</property>
 	</bean>

@@ -10,6 +10,7 @@ import com.eh.base.util.Constants;
 import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.PageCategoryLogic;
 import com.eh.shop.admin.web.qry.PageCategoryQry;
+import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbPageCategory;
 
 public class PageCategoryLogicImpl extends BaseLogic implements PageCategoryLogic {
@@ -64,7 +65,24 @@ public class PageCategoryLogicImpl extends BaseLogic implements PageCategoryLogi
 	 * @see com.eh.shop.admin.logic.PageCategoryLogic#findAllPageCategoryList()
 	 */
 	public List findAllPageCategoryList(Long shopId) {
-		return super.baseDao.find("from TbPageCategory");
+		return super.baseDao.find("from TbPageCategory t where t.shopInfo.shopId = ?",shopId);
+	}
+	
+	/**
+	 * 根据ID查找页面分类
+	 */
+	public List<TbPageCategory> findPageCategoryByType(Long shopId,Long pageTypeId){
+		return super.baseDao
+				.find(
+						"from TbPageCategory t where t.shopInfo.shopId = ? and t.pageType.typeId = ?",
+						new Object[] { shopId, pageTypeId });
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.PageCategoryLogic#findGoodsByPageCategory(java.lang.Long)
+	 */
+	public List<TbGoodsInfo> findGoodsByPageCategory(Long categoryId) {
+		return super.baseDao.find("select t.goodsInfo from TbPageGoodsRel t where t.pageCategory.categoryId = ? ", categoryId);
 	}
 	
 	
