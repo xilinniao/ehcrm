@@ -1,0 +1,149 @@
+#usernav {
+width: 165px;
+margin-right: 10px;
+float: left;
+text-align: center;
+}
+#usernav h2 {
+background: url(../images/bg_user.jpg) #CE2020 no-repeat;
+padding-top: 3px;
+height: 24px;
+line-height: 24px;
+color: white;
+}
+#usernav .left_box1 {
+padding: 2px 0 0;
+border: solid #C40000;
+border-width: 0 1px 1px;
+}
+#usernav h3 {
+padding: 0 10px;
+height: 25px;
+line-height: 25px;
+background: #FBF7EE;
+border-top: 1px solid #F2DCB3;
+font-size: 12px;
+}
+#usernav ul {
+padding: 4px 0;
+text-align: left;
+}
+#usernav ul li {
+background: url(../images/my_icon.gif) no-repeat 50px 7px;
+height: 18px;
+padding-left: 60px;
+padding-top: 2px;
+}
+
+#uc_middle{
+	width: 600px;
+	float: left;
+	border: 1px solid #E7E7E7;
+	padding: 10px;
+}
+
+#uc_info{
+	width: 581px;
+	background-color: #F6FBF6;
+	padding: 16px 0 15px 19px;
+	clear:both;
+	border: 1px solid #E7E7E7;
+}
+
+#uc_info .myhead {
+width: 75px;
+float: left;
+}
+.clearfix {
+zoom: 1;
+}
+.clearfix::after {
+visibility: hidden;
+display: block;
+font-size: 0;
+content: "";
+clear: both;
+height: 0;
+}
+#uc_info .myhead .pic {
+border: 1px solid #C5C5C5;
+}
+#uc_info .myhead a {
+display: block;
+margin-top: 8px;
+}
+#uc_info .info {
+float: left;
+width: 501px;
+}
+#uc_info .info .name {
+font-size: 14px;
+font-weight: bold;
+margin: 5px 0 0 20px;
+}
+#uc_info .info .name span {
+font-size: 12px;
+font-weight: normal;
+margin-left: 10px;
+}
+#uc_info .info .name a {
+margin-left: 20px;
+}
+#uc_info .info .area1 {
+margin: 15px 0 0 20px;
+width: 445px;
+}
+#uc_info .info .area1 li {
+width: 193px;
+float: left;
+line-height: 23px;
+height: 23px;
+}
+#uc_info .info .area1 li.listr {
+width: 252px;
+}
+#uc_info info .area1 li {
+width: 193px;
+float: left;
+line-height: 23px;
+height: 23px;
+}
+#uc_info .area1 li span {
+color: #C30;
+}
+
+#order_info{
+	padding: 16px 0 15px 0px;
+}
+.Tip_Buy {
+margin: 0 auto 20px;
+}
+.Tip_Buy table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+.Tip_Buy th, .Tip_Buy td {
+padding: 2px;
+text-align: center;
+}
+.Tip_Buy th {
+background: #EBF4FB;
+}
+.Tip_Buy .float_Right {
+float: right;
+}
+.Tip_Buy a:link, .Tip_Buy a:visited {
+color: #005AA0;
+}
+
+#uc_middle h3 {
+height: 25px;
+line-height: 25px;
+margin-bottom: 8px;
+}
+#uc_middle h3 em {
+font-style: normal;
+font-weight: normal;
+color: #994030;
+font-size: 12px;
+}
