@@ -146,7 +146,7 @@ margin-right: 10px;
 
 #o-search {
 height: 50px;
-background: url(../images/bg_nav_0816.jpg) #CC0C0C repeat-x 0 -115px;
+background: url(../images/bg_nav_0816.jpg) #ed6f1a repeat-x 0 -115px;
 }
 
 .allsort {
@@ -1143,13 +1143,17 @@ ul#topnav a.home {
 ul#topnav a.products {
 	background-repeat: no-repeat;
 	background-image: url(../images/bg_nav_0816.jpg);
-	background-position: -216px -233px;
+	background-position: -216px -301px;
 	width: 87px;
-	color: white;
+	color: black;
 	text-align: center;
 	font-size: 14px;
 	font-weight: bold;
 	line-height: 29px;
+}
+ul#topnav a.curr{
+	background-position: -216px -233px;
+	color: white;
 }
  
 ul#topnav li .sub {
@@ -1551,226 +1555,4 @@ padding-bottom: 10px;
 	width:160px;
 	height:53px;
 	background:url(../images/submit.jpg);
-}
-
-
-
-/** 注册信息 */
-#entry .mt {
-height: 33px;
-background: url(../images/tit_regist.jpg) #D1D1D1 repeat-x 0 -34px;
-}
-#entry .mt h2 {
-float: left;
-height: 33px;
-padding-left: 15px;
-background: url(../images/tit_regist.jpg) no-repeat 0 0;
-line-height: 33px;
-}
-#entry .mt b {
-float: right;
-width: 10px;
-height: 33px;
-background: url(../images/tit_regist.jpg) no-repeat 0 -68px;
-}
-#entry .mc {
-padding: 40px 20px 20px;
-border: solid #D1D1D1;
-border-width: 0 1px 1px;
-}
-#entry .form {
-float: left;
-width: 600px;
-overflow: hidden;
-}
-.form .item {
-overflow: hidden;
-zoom: 1;
-}
-#entry .item {
-padding-top: 5px;
-height: 50px;
-line-height: 26px;
-}
-#entry .label {
-width: 150px;
-text-align: right;
-font-size: 14px;
-}
-body .fl {
-float: left;
-}
-#entry .text {
-width: 240px;
-height: 16px;
-padding: 4px 3px;
-border: 1px solid #BBB;
-font-size: 14px;
-font-family: arial,"宋体";
-}
-#entry .blank {
-width: 16px;
-height: 16px;
-margin: 2px 5px 0;
-}
-.form label, .form input, .form select, .form textarea, .form button, .form .label {
-float: left;
-font-size: 12px;
-}
-#entry #autoentry {
-height: 40px;
-}
-#entry .mar {
-margin-right: 10px;
-}
-#entry .checkbox {
-margin-top: 6px;
-}
-.btn-img {
-cursor: pointer;
-overflow: hidden;
-margin: 0;
-padding: 0;
-border: 0;
-text-align: center;
-}
-.ftx13, .flk13 a:link, .flk13 a:visited, a.flk13:link, a.flk13:visited {
-color: #005AA0;
-}
-#entry .btn-entry {
-width: 87px;
-height: 35px;
-background: url(../images/bg_regist.jpg) no-repeat -155px -150px;
-font-size: 14px;
-font-weight: bold;
-color: white;
-}
-#guide {
-float: right;
-width: 300px;
-height: 220px;
-padding: 60px 0 20px 20px;
-border-left: 1px solid #E7E7E7;
-}
-#guide .content {
-color: #666;
-padding: 10px 0 0;
-}
-.btn-link {
-display: block;
-overflow: hidden;
-text-align: center;
-}
-#guide .btn-personal {
-width: 137px;
-height: 35px;
-background: url(../images/bg_regist.jpg) no-repeat 0 -185px;
-line-height: 35px;
-margin: 20px auto;
-font-weight: bold;
-font-size: 14px;
-}
-#guide .btns {
-border-top: 1px dotted #CCC;
-padding-top: 10px;
-text-align: center;
-}
-#guide .btns a:link, #guide .btns a:visited {
-margin: 0 5px;
-color: #005AA0;
-}
-
-/** 用户注册 */
-#regist .mt {
-height: 33px;
-background: url(../images/tit_regist.jpg) repeat-x 0 -34px;
-}
-#regist .mt h2 {
-float: left;
-height: 33px;
-padding-left: 15px;
-background: url(../images/tit_regist.jpg) no-repeat 0 0;
-line-height: 33px;
-}
-#regist .mt b {
-float: right;
-width: 10px;
-height: 33px;
-background: url(../images/tit_regist.jpg) no-repeat 0 -68px;
-}
-#regist .mt span {
-float: right;
-height: 33px;
-line-height: 33px;
-text-align: right;
-}
-#regist .mc {
-padding: 15px 20px 20px;
-border: solid #D1D1D1;
-border-width: 0 1px 1px;
-}
-#regist .item {
-padding-top: 5px;
-height: 50px;
-line-height: 26px;
-}
-#regist .label {
-width: 300px;
-text-align: right;
-font-size: 14px;
-}
-#regist .text {
-width: 240px;
-height: 16px;
-padding: 4px 3px;
-border: 1px solid #BBB;
-font-size: 14px;
-font-family: arial,"宋体";
-}
-#regist .blank {
-width: 16px;
-height: 16px;
-margin: 2px 5px 0;
-}
-#regist .null, #regist .error {
-color: red;
-line-height: 22px;
-}
-#regist .pwdbg {
-background: #FFF8EB;
-}
-#regist .text {
-width: 240px;
-height: 16px;
-padding: 4px 3px;
-border: 1px solid #BBB;
-font-size: 14px;
-font-family: arial,"宋体";
-}
-#regist .text-1 {
-width: 100px;
-}
-#regist .img img {
-height: 26px;
-margin: 0 5px;
-}
-#regist .btn-regist {
-width: 166px;
-height: 32px;
-background: url(../images/bg_regist.jpg) no-repeat 0 0;
-font-size: 14px;
-font-weight: bold;
-color: white;
-}
-#protocol-con {
-width: 800px;
-height: 200px;
-margin: 0 auto;
-border: 1px solid #CCC;
-padding: 8px;
-overflow-y: scroll;
-color: #666;
-}
-.margin_b6 {
-margin-bottom: 6px;
 }
