@@ -24,7 +24,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/shop/admin/goodscat.do?method=getXmlTree"
+					"url" : "<%=path%>/shop/admin/goodscat.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]
@@ -41,7 +41,7 @@
 			}
 			//更新右边的输入框
 			$.ajax({
-				  url: '<%=path%>/shop/admin/goodscat.do',
+				  url: '<%=path%>/shop/admin/goodscat.xhtml',
 				  type: 'POST',
 				  dataType:'json',
 				  data: 'method=editGoodscat&categoryId='+data_id.substr(3),
@@ -85,7 +85,7 @@
     	$('#btnDelete').click(function(){
     		if(confirm('是否删除该商品分类?')){
 	    		$.ajax({
-					  url: '<%=path%>/shop/admin/goodscat.do',
+					  url: '<%=path%>/shop/admin/goodscat.xhtml',
 					  type: 'POST',
 					  dataType:'text',
 					  data: 'method=deleteGoodscat&categoryId='+$('#categoryId').val(),
@@ -106,7 +106,7 @@
     	
     	$('#parent_category_select').click(function(){
 			$.colorbox({
-				href:'<%=path%>/shop/admin/goodscat.do?method=selectGoodscat',
+				href:'<%=path%>/shop/admin/goodscat.xhtml?method=selectGoodscat',
 				iframe:true,
 				width:"500",
 				height:"90%"
@@ -123,9 +123,9 @@
 		<h1><span class="icon">&nbsp;</span>系统管理->商品分类管理</h1>
 	</div>
 	<div class="operateBar">
-		<input type="button" class="addButton" onclick="location.href='goodscat.do?method=addGoodscat'" value="新增分类">
+		<input type="button" class="addButton" onclick="location.href='goodscat.xhtml?method=addGoodscat'" value="新增分类">
 		
-		<input type="button" class="addButton" onclick="location.href='goodscat.do?method=getJingDongCat'" value="京东分类">
+		<input type="button" class="addButton" onclick="location.href='goodscat.xhtml?method=getJingDongCat'" value="京东分类">
 	</div>
 	
 	<div class="box column-left">

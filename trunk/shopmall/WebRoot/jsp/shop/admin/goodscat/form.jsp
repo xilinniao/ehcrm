@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-			<form action="<%=path%>/shop/admin/goodscat.do?method=onEditGoodscat" class="validate" id="saveform" name="saveform" method="post">
+			<form action="<%=path%>/shop/admin/goodscat.xhtml?method=onEditGoodscat" class="validate" id="saveform" name="saveform" method="post">
 						<input type="hidden" name="categoryId" id="categoryId"/>
 						<input type="hidden" name="parentGoodscatId" id="id_category_id" />
 							<table border="0" cellspacing="0" cellpadding="0" class="inputTable tabContent" style="display: table;">

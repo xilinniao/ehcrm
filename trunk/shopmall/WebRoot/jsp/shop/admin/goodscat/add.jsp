@@ -33,7 +33,7 @@
 					success:function(respText){
 						if(respText=='OK'){
 							alert('商品分类新增成功');
-							location.href='goodscat.do?method=index';
+							location.href='goodscat.xhtml?method=index';
 						}else{
 							alert('数据保存失败');
 						}					
@@ -47,7 +47,7 @@
     	
     	$('#parent_category_select').click(function(){
 			$.colorbox({
-				href:'<%=path%>/shop/admin/goodscat.do?method=selectGoodscat',
+				href:'<%=path%>/shop/admin/goodscat.xhtml?method=selectGoodscat',
 				iframe:true,
 				width:"500",
 				height:"90%"

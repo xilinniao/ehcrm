@@ -39,7 +39,7 @@
 	</div>
 	 <div class="box column-center">
 		<div class="box-content form-table" style="display: block; ">				
-				<form action="<%=path%>/shop/admin/pageCategory.do?method=onEdit" class="validate" id="saveform" name="saveform" method="post">
+				<form action="<%=path%>/shop/admin/pageCategory.xhtml?method=onEdit" class="validate" id="saveform" name="saveform" method="post">
 					<input type="hidden" name=categoryId id="categoryId" value="${entity.categoryId}"/>
 						<table border="0" cellspacing="0" cellpadding="0" class="inputTable tabContent" style="display: table;">
 						  <tbody>

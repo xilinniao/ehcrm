@@ -22,7 +22,7 @@
 	 		"bInfo": true,
 			"oLanguage":oLanguage_cn,
 			"sPaginationType": "full_numbers",
-			"sAjaxSource": "<%=path%>/shop/admin/articleCategory.do?method=list",
+			"sAjaxSource": "<%=path%>/shop/admin/articleCategory.xhtml?method=list",
 			"fnServerData": function ( sSource, aoData, fnCallback ) {
 				aoData.push( { 
 					"name":"categoryName",
@@ -55,7 +55,7 @@
 	</div>
 	
 	<div class="operateBar">
-		<input type="button" class="addButton" onclick="location.href='articleCategory.do?method=add'" value="新增分类">
+		<input type="button" class="addButton" onclick="location.href='articleCategory.xhtml?method=add'" value="新增分类">
 	</div>
 	
 	<div class="box column-center">
