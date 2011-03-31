@@ -23,7 +23,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/shop/admin/goodscat.do?method=getXmlTree"
+					"url" : "<%=path%>/shop/admin/goodscat.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]

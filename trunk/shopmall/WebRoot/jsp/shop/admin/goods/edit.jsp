@@ -34,7 +34,7 @@
     	
     	$('#parent_category_select').click(function(){
 			$.colorbox({
-				href:'<%=path%>/shop/admin/goodscat.do?method=selectGoodscat',
+				href:'<%=path%>/shop/admin/goodscat.xhtml?method=selectGoodscat',
 				iframe:true,
 				width:"500",
 				height:"90%"

@@ -22,7 +22,7 @@
 	 		"bInfo": true,
 			"oLanguage":oLanguage_cn,
 			"sPaginationType": "full_numbers",
-			"sAjaxSource": "<%=path%>/shop/admin/pageCategory.do?method=list",
+			"sAjaxSource": "<%=path%>/shop/admin/pageCategory.xhtml?method=list",
 			"fnServerData": function ( sSource, aoData, fnCallback ) {					
 				$.ajax( {
 					"dataType": 'json',
@@ -46,7 +46,7 @@
 	</div>
 	
 	<div class="operateBar">
-		<input type="button" class="addButton" onclick="location.href='pageCategory.do?method=add'" value="新增分类">
+		<input type="button" class="addButton" onclick="location.href='pageCategory.xhtml?method=add'" value="新增分类">
 	</div>
 	
 	<div class="box column-center">

@@ -24,7 +24,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/shop/admin/goodscat.do?method=getXmlTree"
+					"url" : "<%=path%>/shop/admin/goodscat.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]
@@ -39,7 +39,7 @@
 			 		"bInfo": true,
 					"oLanguage":oLanguage_cn,
 					"sPaginationType": "full_numbers",
-					"sAjaxSource": "<%=path%>/shop/admin/goodsInfo.do?method=goodsList",
+					"sAjaxSource": "<%=path%>/shop/admin/goodsInfo.xhtml?method=goodsList",
 					"fnServerData": function ( sSource, aoData, fnCallback ) {
 						var select_node = $("#goodscat_tree").jstree("get_selected");
 						aoData.push( { "name": "categoryId","value": select_node.attr("id").substr(3)} );						
@@ -84,7 +84,7 @@
     	$('#btnDelete').click(function(){
     		if(confirm('是否删除该商品分类?')){
 	    		$.ajax({
-					  url: '<%=path%>/shop/admin/goodscat.do',
+					  url: '<%=path%>/shop/admin/goodscat.xhtml',
 					  type: 'POST',
 					  dataType:'text',
 					  data: 'method=deleteGoodscat&categoryId='+$('#categoryId').val(),
@@ -105,7 +105,7 @@
     	
     	$('#parent_category_select').click(function(){
 			$.colorbox({
-				href:'<%=path%>/shop/admin/goodscat.do?method=selectGoodscat',
+				href:'<%=path%>/shop/admin/goodscat.xhtml?method=selectGoodscat',
 				iframe:true,
 				width:"500",
 				height:"90%"
@@ -115,7 +115,7 @@
     	$('#getProductByCategory').click(function(){
     		var select_node = $("#goodscat_tree").jstree("get_selected");
     		var categoryId = select_node.attr("id").substr(3);
-    		document.location.href='goodscat.do?method=getProductByCategory&categoryId='+categoryId;
+    		document.location.href='goodscat.xhtml?method=getProductByCategory&categoryId='+categoryId;
     	});
 	});
 	
@@ -129,7 +129,7 @@
 		<h1><span class="icon">&nbsp;</span>商品管理</h1>
 	</div>
 	<div class="operateBar">
-		<input type="button" class="addButton" onclick="location.href='goodsInfo.do?method=add'" value="新增商品">
+		<input type="button" class="addButton" onclick="location.href='goodsInfo.xhtml?method=add'" value="新增商品">
 		<input type="button" class="addButton" id="getProductByCategory" value="京东商品">
 	</div>
 	
