@@ -7,8 +7,8 @@
 				/index.xhtml=indexCtrl
 				/front/ajax.xhtml=frontAjaxCtrl
 				/front/order.xhtml=orderCtrl
-				/front/login.xhtml=loginCtrl
-				/front/user.xhtml=userCtrl
+				/front/login.xhtml=frontLoginCtrl
+				/front/user.xhtml=frontUserCtrl
 			</value>
 		</property>
 	</bean>
@@ -23,17 +23,22 @@
    	<bean name="frontAjaxCtrl" class="com.eh.shop.front.web.FrontAjaxCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="goodsLogic" ref="goodsLogic"/>
+        <property name="custAddrLogic" ref="custAddrLogic"/>
    	</bean>
    	
    	<bean name="orderCtrl" class="com.eh.shop.front.web.OrderCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="goodsLogic" ref="goodsLogic"/>
+        <property name="custAddrLogic" ref="custAddrLogic"/>
+        <property name="orderLogic" ref="orderLogic"/>
    	</bean>
    	
-   	<bean name="loginCtrl" class="com.eh.shop.front.web.LoginCtrl">
+   	<bean name="frontLoginCtrl" class="com.eh.shop.front.web.LoginCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="custInfoLogic" ref="custInfoLogic"/>        
    	</bean>
    	
-   	<bean name="userCtrl" class="com.eh.shop.front.web.UserCtrl">
+   	<bean name="frontUserCtrl" class="com.eh.shop.front.web.UserCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
    	</bean>
 </beans>

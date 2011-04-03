@@ -164,15 +164,25 @@ abstract public class BaseCtrl extends MultiActionController {
      */
     protected void addErrors(HttpServletRequest request, String error) {
     	if (StringUtils.isNotBlank(error)) {
-    		List errors = (List)request.getAttribute("errorMessages");
+    		List errors = (List)request.getAttribute("errors");
     		if(errors==null){
     			errors = new ArrayList();
     			errors.add(error);
-    			request.setAttribute("errorMessages", errors);
+    			request.setAttribute("errors", errors);
     		}else{
     			errors.add(error);
     		}
     	}
+    }
+    
+    /**
+     * true 存在错误  false 不存在错误
+     * @param request
+     * @return
+     */
+    protected boolean hasErrors(HttpServletRequest request){
+    	List errors = (List)request.getAttribute("errors");
+		return !(errors==null);
     }
     
     /**

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.eh.shop.entity.TbCustAddr" table="TB_CUST_ADDR">    
+		 <id name="addrId" type="java.lang.Long">
+            <column name="ADDR_ID" precision="10" scale="0"/>
+            <generator class="native" />
+      	 </id>		
+         <property name="custId" type="java.lang.Long">
+			 <column name="CUST_ID" precision="10" scale="0"/>
+		</property>
+		 <property name="revicedName" type="java.lang.String">
+            <column name="REVICED_NAME" length="50"/>
+        </property>
+		 <property name="revicedAddr" type="java.lang.String">
+            <column name="REVICED_ADDR" length="200"/>
+        </property>
+		 <property name="revicedMobile" type="java.lang.String">
+            <column name="REVICED_MOBILE" length="50"/>
+        </property>
+		 <property name="revicedTel" type="java.lang.String">
+            <column name="REVICED_TEL" length="50"/>
+        </property>
+		 <property name="revicedEmail" type="java.lang.String">
+            <column name="REVICED_EMAIL" length="100"/>
+        </property>
+		 <property name="updateTime" type="java.util.Date">
+		 	<column name="UPDATE_TIME" length="10"/>
+        </property>
+    </class>
+</hibernate-mapping>

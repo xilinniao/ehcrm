@@ -69,5 +69,34 @@
 			</bean>
 		</property>
 	</bean>
-		
+
+	<bean id="custInfoLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.shop.admin.logic.impl.CustInfoLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="custAddrLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.shop.admin.logic.impl.CustAddrLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="orderLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.shop.admin.logic.impl.OrderLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao"/>
+				</property>
+			</bean>
+		</property>
+	</bean>
 </beans>

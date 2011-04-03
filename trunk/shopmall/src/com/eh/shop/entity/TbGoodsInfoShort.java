@@ -20,6 +20,7 @@ public class TbGoodsInfoShort  implements java.io.Serializable {
      private Double discountPrice;
      private Long leavesCount;
      private String imageUrl;
+     private Long cnt;//数量
 
 
     // Constructors
@@ -115,13 +116,12 @@ public class TbGoodsInfoShort  implements java.io.Serializable {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-   
 
+	public Long getCnt() {
+		return cnt;
+	}
 
-
-
-
-
-
-
+	public void setCnt(Long cnt) {
+		this.cnt = cnt;
+	}
 }

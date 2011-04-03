@@ -122,7 +122,7 @@ public class LoginCtrl extends BaseCtrl {
 					xml.append(menu.getMenuName());
 					xml.append("</a>\r\n");
 				}else{
-					xml.append("<a href=\"");
+					xml.append("<a href=\"/shopmall");
 					xml.append(menu.getMenuUrl());
 					xml.append("\" target=\"mainFrame\">");
 					xml.append(menu.getMenuName());
