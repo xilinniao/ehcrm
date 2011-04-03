@@ -9,7 +9,7 @@
 
 </style> 
 <%@include file="/jsp/shop/front/common/head.jsp"%>
-<script src="<%=path %>/resources/front/js/jquery.tools.js" type="text/javascript"></script>
+<script src="<%=path %>/resources/front/js/jquery.easyslider.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
 
@@ -163,22 +163,24 @@
 	</div><!-- end of left -->
 	
 	<div class="right">
-		<div class="slider">
-			<div id="sliderScrollable" class="scrollable">
-				<div class="items">
-					<div>
-						<img src="http://www.shopxx.cn/upload/banner1.jpg" />
-					</div>
-					<div>
-						<img src="http://www.shopxx.cn/upload/banner2.jpg" />
-					</div>
-					<div>
-						<img src="http://www.shopxx.cn/upload/banner3.jpg" />
-					</div>
-				</div>
-				<div class="navi"></div>				
+		<div id="slidercontain">
+			<div id="slider">
+				<ul>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
+				</ul>
 			</div>
-		</div><!-- end of slider -->
+		</div>
+		<!-- end of slider -->
+		
+		
 		<span class="clr5"></span>
 		
 		<c:forEach items="${categoryGoodsList}" var="b">

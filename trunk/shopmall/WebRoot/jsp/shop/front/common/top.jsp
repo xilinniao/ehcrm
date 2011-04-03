@@ -79,7 +79,6 @@
 	</div>
 	<span class="clr"></span>
 	<!-- end of 导航开始 -->
-	<p id="test"></p>
 	<!-- 搜索开始 -->
 	<div id="o-search">
 		<div class="allsort">
