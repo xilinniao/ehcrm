@@ -18,8 +18,7 @@ public class UserCtrl extends BaseFrontCtrl {
 	 * @return
 	 * @throws Exception
 	 */
-	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {		
+	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		return new ModelAndView("/jsp/shop/front/user/user_index");
 	}
-	
 }

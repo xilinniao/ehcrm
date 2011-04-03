@@ -64,11 +64,18 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		String[] productIds = productId.split(",");
 		for(int i = 0,len = productIds.length;i<len;i++){
 			try{
-				Long product = Long.parseLong(productIds[i]);
-				TbGoodsInfoShort goods = super.get(TbGoodsInfoShort.class,product);
-				if(goods!=null){
-					goodsList.add(goods);
+				String[] tmp = productIds[i].split("=");//0为商品ID,1为商品订购数量
+				if(tmp.length==2){
+					Long product = Long.parseLong(tmp[0]);
+					Long cnt = Long.parseLong(tmp[1]);
+					TbGoodsInfoShort goods = super.get(TbGoodsInfoShort.class,product);
+					goods.setCnt(cnt);
+					if(goods!=null){
+						goodsList.add(goods);
+					}
 				}
+				
+				
 			}catch(NumberFormatException ne){
 				//忽略
 			}

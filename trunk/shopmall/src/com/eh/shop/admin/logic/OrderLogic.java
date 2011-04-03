@@ -1,6 +1,8 @@
 package com.eh.shop.admin.logic;
 
+import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.IBaseLogic;
+import com.eh.shop.admin.web.qry.OrderQry;
 import com.eh.shop.entity.TbOrderMain;
 
 /**
@@ -19,4 +21,10 @@ public interface OrderLogic extends IBaseLogic {
 	 * @return
 	 */
 	public String addOrder(TbOrderMain main,Long[] productIds,Long[] cnt);
+	/**
+	 * 查找订单列表
+	 * @param qry
+	 * @return
+	 */
+	public Page findOrderList(OrderQry qry);
 }

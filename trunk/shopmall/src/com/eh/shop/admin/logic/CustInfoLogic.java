@@ -16,4 +16,11 @@ public interface CustInfoLogic extends IBaseLogic {
 	 * @return
 	 */
 	public boolean custExists(String custCode);
+	/**
+	 * 登录验证，验证成功返回null字符串，验证失败，返回失败原因
+	 * @param custCode
+	 * @param pwd
+	 * @return
+	 */
+	public TbCustInfo loginCheck(String custCode,String pwd);
 }

@@ -93,14 +93,13 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		mav.addObject("pageCategoryList", pageCategoryList);
 		
 		//品牌列表
-		List brandList = this.brandInfoLogic.findAllBrandListByShop(userInfo.getShopInfo().getShopId());
-		mav.addObject("brandList", brandList);
+		/*List brandList = this.brandInfoLogic.findAllBrandListByShop(userInfo.getShopInfo().getShopId());
+		mav.addObject("brandList", brandList);*/
 		return mav;
 	}
 
 	/**
 	 * 添加商品
-	 * 
 	 * @param request
 	 * @param response
 	 * @return

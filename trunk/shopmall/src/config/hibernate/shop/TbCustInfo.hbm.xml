@@ -16,6 +16,9 @@
 		 <property name="custName" type="java.lang.String">
             <column name="CUST_NAME" length="100"/>
         </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" length="100"/>
+        </property>
 		 <property name="custLevel" type="java.lang.Long">
             <column name="CUST_LEVEL" precision="10" scale="0"/>
         </property>

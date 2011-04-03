@@ -1,7 +1,12 @@
 package com.eh.shop.admin.logic.impl;
 
+import org.hibernate.Criteria;
+
+import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.BaseLogic;
+import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.OrderLogic;
+import com.eh.shop.admin.web.qry.OrderQry;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbOrderDetail;
 import com.eh.shop.entity.TbOrderMain;
@@ -29,4 +34,17 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.OrderLogic#findOrderList(com.eh.shop.admin.web.qry.OrderQry)
+	 */
+	public Page findOrderList(OrderQry qry) {
+		Criteria criteria = baseDao.createCriteria(TbOrderMain.class);
+		criteria.createAlias("custInfo","c");
+		criteria.createAlias("shopInfo", "s");
+		CriteriaUtil.addEq(criteria, "s.shopId", qry.getShopId());
+		CriteriaUtil.addOrder(criteria, "orderTime", CriteriaUtil.DESC);//按时间先后顺序进行排序
+		return super.baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
+	}
+
+	
 }

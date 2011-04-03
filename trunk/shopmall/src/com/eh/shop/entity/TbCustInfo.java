@@ -16,6 +16,7 @@ public class TbCustInfo  implements java.io.Serializable {
      private String custCode;
      private String custPwd;
      private String custName;
+     private String email;
      private Long custLevel;
      private String custMobile;
      private String custTel;
@@ -23,6 +24,7 @@ public class TbCustInfo  implements java.io.Serializable {
      private Long custScore;
      private Date lastLoginTime;
      private Date createTime;
+
 
     // Constructors
 
@@ -32,10 +34,11 @@ public class TbCustInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbCustInfo(String custCode, String custPwd, String custName, Long custLevel, String custMobile, String custTel, String custAddr, Long custScore, Date lastLoginTime, Date createTime) {
+    public TbCustInfo(String custCode, String custPwd, String custName, String email, Long custLevel, String custMobile, String custTel, String custAddr, Long custScore, Date lastLoginTime, Date createTime) {
         this.custCode = custCode;
         this.custPwd = custPwd;
         this.custName = custName;
+        this.email = email;
         this.custLevel = custLevel;
         this.custMobile = custMobile;
         this.custTel = custTel;
@@ -78,6 +81,14 @@ public class TbCustInfo  implements java.io.Serializable {
     
     public void setCustName(String custName) {
         this.custName = custName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Long getCustLevel() {

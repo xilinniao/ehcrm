@@ -11,6 +11,7 @@
 				/shop/admin/articleCategory.xhtml=articleCategoryCtrl
 				/shop/admin/article.xhtml=articleCtrl
 				/shop/admin/pageCategory.xhtml=pageCategoryCtrl
+				/shop/admin/orders.xhtml=adminOrderCtrl
 			</value>
 		</property>
 	</bean>
@@ -50,5 +51,10 @@
    <bean name="pageCategoryCtrl" class="com.eh.shop.admin.web.PageCategoryCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
+   </bean>
+   
+   <bean name="adminOrderCtrl" class="com.eh.shop.admin.web.OrderCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="orderLogic" ref="orderLogic"/>
    </bean>
 </beans>
