@@ -14,7 +14,7 @@
 <script type="text/javascript" src="<%=path %>/resources/front/js/jquery.metadata.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/front/js/jquery.validate.js"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
-<<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		var  saveform_validator = $("#loginform").validate({
 			 errorClass: "validateError",
