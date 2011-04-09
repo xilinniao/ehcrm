@@ -9,6 +9,7 @@ import com.eh.shop.admin.logic.OrderLogic;
 import com.eh.shop.admin.web.qry.OrderQry;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbOrderDetail;
+import com.eh.shop.entity.TbOrderFlow;
 import com.eh.shop.entity.TbOrderMain;
 
 public class OrderLogicImpl extends BaseLogic implements OrderLogic {
@@ -46,5 +47,21 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 		return super.baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 
-	
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.OrderLogic#saveOrderAndFlow(com.eh.shop.entity.TbOrderMain, com.eh.shop.entity.TbOrderFlow)
+	 */
+	public String saveOrderAndFlow(TbOrderMain main, TbOrderFlow flow) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.OrderLogic#findUserOrderList(com.eh.shop.admin.web.qry.OrderQry)
+	 */
+	public Page findUserOrderList(OrderQry qry) {
+		Criteria criteria = baseDao.createCriteria(TbOrderMain.class);
+		criteria.createAlias("custInfo","c");
+		CriteriaUtil.addEq(criteria, "c.custId", qry.getCustId());
+		return super.baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
+	}
 }

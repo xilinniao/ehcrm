@@ -36,7 +36,7 @@ public class OrderCtrl extends BaseFrontCtrl {
 	
 	public ModelAndView shoppingcart(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		//获取COOKIE信息
-		Cookie cookie = CookieUtils.getCookie(request, "cart_product");
+		Cookie cookie = CookieUtils.getCookie(request, "cartitems");
 		String products = URLDecoder.decode(cookie.getValue(), "UTF-8");
 		List productList = goodsLogic.findGoodsForPrice(products);
 		ModelAndView mav = new ModelAndView("/jsp/shop/front/shopping_cart");
@@ -47,10 +47,9 @@ public class OrderCtrl extends BaseFrontCtrl {
 	public ModelAndView checkout(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		CustInfo cust = super.getCustInfo(request);
 		if(cust!=null){
-			Cookie cookie = CookieUtils.getCookie(request, "cart_product");
+			Cookie cookie = CookieUtils.getCookie(request, "cartitems");
 			String products = URLDecoder.decode(cookie.getValue(), "UTF-8");
-			List productList = goodsLogic.findGoodsForPrice(products);
-			
+			List productList = goodsLogic.findGoodsForPrice(products);		
 			
 			//取客户常用地址
 			List addrList = this.custAddrLogic.findAddrListByCustId(cust.getCustId());

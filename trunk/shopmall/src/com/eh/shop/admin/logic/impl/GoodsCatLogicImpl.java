@@ -99,6 +99,16 @@ public class GoodsCatLogicImpl extends BaseLogic implements GoodsCatLogic {
 						"from TbGoodsCategory t where t.treeNo like ? and t.shopInfo.shopId = ? ",
 						new Object[] { treeNo+"%", Constants.SYSTEM_SHOP });
 	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.GoodsCatLogic#findCategoryListByParentId(java.lang.Long, java.lang.Long)
+	 */
+	public List findCategoryListByParentId(Long parentId, Long shopId) {
+		return super.baseDao
+				.find(
+						"from TbGoodsCategory t where t.parent.categoryId = ? and t.shopInfo.shopId = ? order by treeNo asc ",
+						new Object[] { parentId, shopId });
+	}
 	
 	
 }

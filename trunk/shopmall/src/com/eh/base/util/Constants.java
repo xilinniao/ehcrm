@@ -5,12 +5,13 @@ public class Constants {
 	public static final String SPLIT_CHARS = "\\$\\$\\$";
 	public static final String SESSION_NAME = "userinfo";	
 	
-	/**
-	 * 前台用户登录名
-	 */
-	public static final String SESSION_NAME_FRONT = "frontcust";
+	public static final String SESSION_NAME_FRONT = "frontcust";//前台用户登录名
+	public static final String LOGIN_USERNAME_COOKIE_NAME_FRONT = "memberUsername";//前台登录用户cookie名称
+	public static final String AUTO_LOGIN_COOKIE_NAME_FRONT = "autoLoginUUID";//自动登录前台处理
 	
 	public static String FILE_UPLOAD_PATH = "";
+	
+	public static String APP_PATH = "";
 	
 	public static String UPLOAD_IMAGE_DIR = "";// 图片文件上传目录
 	public static String UPLOAD_MEDIA_DIR = "";// 媒体文件上传目录
@@ -52,7 +53,10 @@ public class Constants {
 	 */
 	public final static Long SYSTEM_SHOP = Long.valueOf(1);
 	
-	public final static Long ORDER_STATUS_CUST_INPUT = Long.valueOf(0);//客户下订单状态
-	public final static Long ORDER_STATUS_SYS_CHECK = Long.valueOf(1);//系统已接收订单
-	public final static Long ORDER_STATUS_SHOP_CHECK = Long.valueOf(2);//店铺已接受订单
+	public final static Long ORDER_STATUS_CANCEL_CUST = Long.valueOf(0);//客户主动取消订单
+	public final static Long ORDER_STATUS_CANCEL_SHOP = Long.valueOf(1);//店铺取消订单
+	public final static Long ORDER_STATUS_CUST_INPUT = Long.valueOf(2);//已下单
+	public final static Long ORDER_STATUS_SHOP_CHECK = Long.valueOf(3);//店铺已确认订单
+	public final static Long ORDER_STATUS_SHOP_SEND = Long.valueOf(4);//店铺已送货
+	public final static Long ORDER_STATUS_SHOP_FINISH = Long.valueOf(9);//订单已完成
 }

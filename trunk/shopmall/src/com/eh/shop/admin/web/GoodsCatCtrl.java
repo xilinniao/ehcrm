@@ -29,6 +29,35 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 	 */
 	ShopLogic shopLogic;
 	
+
+	/**
+	 * <li> <a href="<%=homeUrl %>" class="home">首页</a></li>
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView top(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		List<TbGoodsCategory> categoryList = goodsCatLogic.findCategoryListByParentId(Long.valueOf(1), Long.valueOf(1));
+		StringBuffer ul = new StringBuffer("<ul id=\"topnav\">");
+		for(TbGoodsCategory levela:categoryList){
+			ul.append("<li><a href=\"/category/"+levela.getCategoryId()+"\" class=\"products\">"+levela.getCategoryName()+"</a><div class=\"sub\">");
+			List<TbGoodsCategory> listb = goodsCatLogic.findCategoryListByParentId(levela.getCategoryId(), Long.valueOf(1));
+			for(TbGoodsCategory levelb:listb){
+				ul.append("<dl><dt><a href=\"/category/"+levelb.getCategoryId()+"\">"+levelb.getCategoryName()+"</a></dt><dd>");
+				List<TbGoodsCategory> listc = goodsCatLogic.findCategoryListByParentId(levelb.getCategoryId(), Long.valueOf(1));
+				for(TbGoodsCategory levelc:listc){
+					ul.append("<a href=\"/category/"+levelc.getCategoryId()+"\">"+levelc.getCategoryName()+"</a>");
+				}
+				ul.append("</dd></dl>");
+			}
+			ul.append("</div></li>");
+		}
+		ul.append("</ul>");
+		System.out.println(ul.toString());
+		return null;
+	}
+	
 	public ModelAndView getJingDongCat(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		this.goodsCatLogic.bulkUpdate("delete from TbGoodsCategory t where t.categoryId <> 1 ",new Object[]{});
 		
@@ -77,7 +106,7 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 					/*if(k==0){
 						getProduct(url,level3);
 					}*/
-					getProduct(url,level3,true);
+					//getProduct(url,level3,true);
 				}
 			}
 			

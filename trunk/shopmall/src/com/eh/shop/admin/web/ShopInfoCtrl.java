@@ -54,18 +54,20 @@ public class ShopInfoCtrl extends BaseCtrl {
 	 */
 	public ModelAndView onEditShop(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/editShop");
 		TbShopInfo shop = this.shopLogic.getUserShop(userInfo.getUser().getUserId());
 		if(shop==null){
-			mav = new ModelAndView(super.SHOW_MSG_JSP);
+			/*mav = new ModelAndView(super.SHOW_MSG_JSP);
 			mav.addObject(super.SHOW_MSG_ATTR, "你没有属于自己的店铺");
-			return mav;
+			return mav;*/
 		}else{
 			super.bindObject(request, shop);
 			this.shopLogic.save(shop);
-			mav.addObject(super.SHOW_MSG_ATTR, "保存成功");
+			
+			ModelAndView mav = new ModelAndView(SUCCESS_URL);
+			mav.addObject("redirectUrl", "shopInfo.xhtml?method=editShop");
+			return mav;
 		}
-		return mav;
+		return null;
 	}
 
 	/**

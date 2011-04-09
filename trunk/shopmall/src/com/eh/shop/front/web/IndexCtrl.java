@@ -9,10 +9,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.controller.BaseCtrl;
-import com.eh.base.entity.TreeVo;
 import com.eh.base.util.Constants;
 import com.eh.shop.admin.logic.GoodsCatLogic;
 import com.eh.shop.admin.logic.PageCategoryLogic;
@@ -45,8 +49,7 @@ public class IndexCtrl extends BaseCtrl {
 			vo.setCategoryName(categoryList.get(i).getCategoryName());
 			vo.setGoodsList(findGoodsByCategory(categoryList.get(i).getCategoryId(),Long.valueOf(8)));
 			categoryGoodsList.add(vo);
-		}
-		
+		}		
 		request.setAttribute("categoryGoodsList", categoryGoodsList);
 	}
 	
@@ -87,7 +90,7 @@ public class IndexCtrl extends BaseCtrl {
 	 */
 	private void findHeadNavSubByUrl(HttpServletRequest request,String url,String attr){
 		//查找首页下属分页
-		StringBuffer html = new StringBuffer();
+		/*StringBuffer html = new StringBuffer();
 		List subList = this.goodsCatLogic.findCategoryListByUrl(url);
 		for(int i = 0,len = subList.size();i<len;i++){
 			TbGoodsCategory category = (TbGoodsCategory)subList.get(i);
@@ -112,7 +115,7 @@ public class IndexCtrl extends BaseCtrl {
 			}
 			html.append("</dl>");
 		}
-		request.setAttribute(attr, html.toString());
+		request.setAttribute(attr, html.toString());*/
 	}
 	
 	/**
@@ -192,17 +195,62 @@ public class IndexCtrl extends BaseCtrl {
 	}
 
 	
+	/**
+	 * 获取商品明细
+	 * @param detailUrl
+	 * @param goods
+	 */
+	private void getProductDetail(HttpServletRequest request,TbGoodsInfo goods){
+		String url = goods.getJdUrl();
+		String fix = url.substring(0, 4);
+		if (StringUtils.isNotBlank(url)) {
+			String realurl = "";
+			if (!("http".equals(fix))) {
+				realurl = "http://www.360buy.com/" + url;
+			} else {
+				realurl = url;
+			}
+			try {
+				Document doc = Jsoup.connect(realurl).get();
+				Elements elms = doc.select("div.mc > div.content");
+				goods.setGoodsDesc(elms.get(0).html());
+				
+				Elements imgs = doc.select("div#spec-list > ul  > li > img");
+				//System.out.println(imgs);
+				List imageList = new ArrayList();
+				for (int j = 0,lenj = imgs.size();j<lenj;j++) {
+					Element img = (Element)imgs.get(j);
+					imageList.add(img.attr("src"));
+				}
+				request.setAttribute("imageList", imageList);
+				
+				Elements bigphoto = doc.select("div#spec-n1 > img");
+				request.setAttribute("bigphoto", bigphoto.get(0).attr("src"));
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	/**
 	 * 产品
 	 */
 	public ModelAndView product(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/product");
 		findGoodList(request, PAGE_INDEX);
 		findHeadNavSub(request);
 		Long productId = super.getLong(request, "productId", true);
-		TbGoodsCategory product = this.goodsCatLogic.get(TbGoodsCategory.class, productId);		
-		//查找产品图片信息		
-		return new ModelAndView("/jsp/shop/front/product");
+		TbGoodsInfo product = this.goodsCatLogic.get(TbGoodsInfo.class, productId);		
+		//查找产品图片信息
+		this.getProductDetail(request,product);
+		this.goodsCatLogic.save(product);
+		mav.addObject("product", product);
+		
+		//获取分类
+		
+		//http://img14.360buyimg.com/n5/
+		
+		return mav;
 	}
 	
 	/**
