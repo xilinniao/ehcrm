@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.eh.shop.entity.TbGoodsInfo"
-		table="TB_GOODS_INFO">
+		table="TB_GOODS_INFO" lazy="false">
 		<id name="goodsId" type="java.lang.Long">
 			<column name="GOODS_ID" precision="11" scale="0" />
 			<generator class="native" />

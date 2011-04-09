@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.shop.admin.logic.CustAddrLogic;
 import com.eh.shop.admin.logic.GoodsLogic;
+import com.eh.shop.entity.TbGoodsInfoShort;
 import com.eh.shop.front.vo.CustInfo;
 
 /**
@@ -44,6 +46,35 @@ public class FrontAjaxCtrl extends BaseFrontCtrl {
 			return null;
 		}
 	}*/
+	
+	/**
+	 * 判断是否已登录,true已登录，false未登录
+	 */
+	public ModelAndView ajaxCheckLogin(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		CustInfo custInfo = super.getCustInfo(request);
+		Map data = new HashMap();
+		data.put(STATUS, custInfo!=null);
+		renderJson(response,JSONObject.fromObject(data).toString());
+		return null;
+	}
+	
+	/**
+	 * 自动提示提醒
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView autoSuggestSearch(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		String q = super.getString(request, "q", true);
+		List<TbGoodsInfoShort> result = this.goodsLogic.findAutoSuggest(q);
+		for (TbGoodsInfoShort good : result) {
+			super.renderText(response, good.getGoodsName()+"|"+good.getGoodsId()+"\r\n");
+		}
+		super.renderText(response, "re|e");
+		return null;
+	}
+	
 	/**
 	 * @return the goodsLogic
 	 */

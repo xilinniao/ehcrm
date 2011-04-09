@@ -14,7 +14,10 @@
 			<column name="SHOP_NAME" length="300" not-null="true" />
 		</property>
 		<property name="shopDesc" type="java.lang.String">
-			<column name="SHOP_DESC" length="65535" />
+			<column name="SHOP_DESC" length="300" not-null="true" />
+		</property>
+		<property name="keyword" type="java.lang.String">
+			<column name="SHOP_KEYWORD" length="300" />
 		</property>
 		<property name="idNo" type="java.lang.String">
 			<column name="ID_NO" length="50" />
@@ -43,8 +46,7 @@
 			<column name="EMAIL" length="100">
 				<comment>电子邮件</comment>
 			</column>
-		</property>
-		
+		</property>		
 		<many-to-one name="admin" class="com.eh.base.entity.TbUserInfo">
 			<column name="ADMIN_ID"/>
 		</many-to-one>

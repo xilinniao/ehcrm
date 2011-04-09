@@ -4,17 +4,22 @@
 package com.eh.shop.front.web;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.json.JSONObject;
 import nl.captcha.Captcha;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.util.Constants;
+import com.eh.base.util.CookieUtils;
 import com.eh.shop.admin.logic.CustInfoLogic;
 import com.eh.shop.entity.TbCustInfo;
 import com.eh.shop.front.vo.CustInfo;
@@ -87,13 +92,14 @@ public class LoginCtrl extends BaseFrontCtrl {
 		if(custInfo!=null){
 			//返回用户中心
 			return new ModelAndView("redirect:/front/user.xhtml");
-		}else{			
+		}else{
+			//
 		}
 		return new ModelAndView("/jsp/shop/front/login");
 	}
 	public ModelAndView onLogin(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String custCode = super.getString(request, "loginname", false);
-		String pwd = super.getString(request, "loginpwd", false);		
+		String pwd = super.getString(request, "loginpwd", false);
 		TbCustInfo ci = this.custInfoLogic.loginCheck(custCode, pwd);
 		if(ci!=null){
 			CustInfo cust = new CustInfo();
@@ -105,12 +111,34 @@ public class LoginCtrl extends BaseFrontCtrl {
 			ci.setLastLoginTime(new Date());
 			this.custInfoLogic.save(ci);
 			HttpSession session = super.getSessionC(request);
-			session.setAttribute(Constants.SESSION_NAME_FRONT, cust);
-			return new ModelAndView("redirect:/front/user.xhtml");
+			session.setAttribute(Constants.SESSION_NAME_FRONT, cust);			
+			//写cookie资料
+			//CookieUtils.addCookie(response, 0, Constants.LOGIN_USERNAME_COOKIE_NAME_FRONT,cust.getCustCode());
+			Cookie loginMemberUsernameCookie = new Cookie(Constants.LOGIN_USERNAME_COOKIE_NAME_FRONT,cust.getCustCode());
+			loginMemberUsernameCookie.setPath("/");
+			response.addCookie(loginMemberUsernameCookie);
+			super.renderJsonSuccess(response, "登录成功");
 		}else{
-			super.addErrors(request, "用户名或密码错误");
-			return new ModelAndView("/jsp/shop/front/login");
+			super.renderJsonError(response, "用户名或密码错误");
+			/*super.addErrors(request, "用户名或密码错误");
+			return new ModelAndView("/jsp/shop/front/login");*/
 		}
+		return null;
+	}
+	
+	/**
+	 * 注销登录，同时移除COOKIE
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView onLogout(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		super.getSessionC(request).removeAttribute(Constants.SESSION_NAME_FRONT);
+		CookieUtils.addCookie(response, 0, Constants.LOGIN_USERNAME_COOKIE_NAME_FRONT, null);
+		CookieUtils.addCookie(response, 0, Constants.AUTO_LOGIN_COOKIE_NAME_FRONT, null);
+		super.renderJsonSuccess(response, "退出成功");
+		return null;
 	}
 
 	/**

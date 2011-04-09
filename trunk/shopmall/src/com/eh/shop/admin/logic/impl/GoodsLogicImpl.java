@@ -82,6 +82,14 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		}
 		return goodsList;
 	}
-	
-	
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.GoodsLogic#findAutoSuggest(java.lang.String)
+	 */
+	public List findAutoSuggest(String q) {
+		Criteria criteria = baseDao.createCriteria(TbGoodsInfoShort.class);
+		CriteriaUtil.addFullLike(criteria, "goodsName", q);
+		criteria.setMaxResults(10);
+		return criteria.list();
+	}
 }

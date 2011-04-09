@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.entity.TbGoodsCategory;
-import com.eh.shop.entity.TbShopInfo;
 
 public interface GoodsCatLogic extends IBaseLogic {
 	/**
@@ -42,4 +41,11 @@ public interface GoodsCatLogic extends IBaseLogic {
 	 * @return
 	 */
 	public List findCategoryListByTreeNo(String treeNo,Long shopId);
+	/**
+	 * 按上级分类ID查找分类列表
+	 * @param parentId
+	 * @param shopId
+	 * @return
+	 */
+	public List findCategoryListByParentId(Long parentId,Long shopId);
 }

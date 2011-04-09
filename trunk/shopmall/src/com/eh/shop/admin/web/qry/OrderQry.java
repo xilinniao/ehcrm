@@ -25,6 +25,10 @@ public class OrderQry extends BaseQuery {
 	 * 店铺ID
 	 */
 	Long shopId;
+	/**
+	 * 客户ID
+	 */
+	Long custId;
 	
 	
 	/**
@@ -86,6 +90,18 @@ public class OrderQry extends BaseQuery {
 	 */
 	public void setShopId(Long shopId) {
 		this.shopId = shopId;
+	}
+	/**
+	 * @return the custId
+	 */
+	public Long getCustId() {
+		return custId;
+	}
+	/**
+	 * @param custId the custId to set
+	 */
+	public void setCustId(Long custId) {
+		this.custId = custId;
 	}
 	
 	

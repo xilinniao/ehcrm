@@ -35,7 +35,8 @@ public class InitConfigServlet extends HttpServlet {
 		
 		Constants.UPLOAD_IMAGE_DIR = fileUploadPath+"/images/";
 		Constants.UPLOAD_MEDIA_DIR = fileUploadPath+"/media/";
-		Constants.UPLOAD_FILE_DIR = fileUploadPath+"/files/";
+		Constants.UPLOAD_FILE_DIR = fileUploadPath+"/files/";		
+		Constants.APP_PATH = p.getProperty("app_path");
 
 		// 导入velocity配置信息
 		try {
@@ -51,7 +52,7 @@ public class InitConfigServlet extends HttpServlet {
 		try {
 			Properties globalSetting = new Properties();
 			ClassLoader cl = Thread.currentThread().getContextClassLoader();
-			is = cl.getResourceAsStream("config/config.properties");
+			is = cl.getResourceAsStream("config/config_mysql.properties");
 			globalSetting.load(is);
 			return globalSetting;
 		} catch (IOException e) {

@@ -39,4 +39,11 @@ public interface GoodsLogic extends IBaseLogic {
 	 * @return
 	 */
 	public List findGoodsForPrice(String productId);
+	
+	/**
+	 * 查找自动建议部门
+	 * @param q
+	 * @return
+	 */
+	public List findAutoSuggest(String q);
 }

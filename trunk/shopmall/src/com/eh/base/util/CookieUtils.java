@@ -46,6 +46,7 @@ public class CookieUtils {
 	public static void addCookie(HttpServletResponse response,
 			int cookieExpiration, String cookieKey, String cookieValue) {
 		Cookie cookie = new Cookie(cookieKey, cookieValue);
+		cookie.setPath("/");
 		cookie.setMaxAge(cookieExpiration);
 		response.addCookie(cookie);
 	}
