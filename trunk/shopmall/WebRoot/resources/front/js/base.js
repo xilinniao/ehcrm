@@ -7,14 +7,19 @@ function addFavorite(url, title) {
 	}
 }
 
+/**
+ * cookie_days cookie保存天数
+ **/
 shop_constant = {
+	sysName: "抚州直销商城",
 	base: "",
 	currencySign: "￥",
 	currencyUnit: "元",
 	priceScale: "2",
 	priceRoundType: "roundHalfUp",
 	orderScale: "2",
-	orderRoundType: "roundHalfUp"
+	orderRoundType: "roundHalfUp",
+	cookie_days: 60
 };
 
 // 浮点数加法运算
@@ -152,44 +157,162 @@ function cnlength(str){
     return str.replace(/[^\x00-\xff]/gi,'oo').length;
 }
 jQuery(document).ready(function() {
-		/* ---------- SliderScrollable ---------- */
-    	/*var $sliderScrollable = $("#sliderScrollable");
-	    if ($sliderScrollable.size() > 0) {
-	        $sliderScrollable.scrollable({
-	            circular: true,
-	            speed: 500
-	        }).autoscroll({
-	            autoplay: true,
-	            interval: 4000
-	        }).navigator();
-	    }*/
-	    
-	     //初始化购物车
-	    $('#i-mycart').hover(function(){
-	    		$('#o-mycart-list').show();
-	    	},function(){
-	    		$('#o-mycart-list').hide();
-	    	}
-	    );
+	//检验是否登录
+	$.memberVerify = function () {
+		if($.cookie("memberUsername") != null) {
+			var booleanStatus = false;
+			$.ajax({
+				type: "POST",
+				url: shop_constant.base + "/front/ajax.xhtml?method=ajaxCheckLogin",
+				dataType: "json",
+				async: false,
+				success: function(data) {
+					if (data.status) {
+						booleanStatus = true;
+					}
+				}
+			});
+			return booleanStatus;
+		} else {
+			return false;
+		}
+	}
+	
+	//初始化top信息
+	var $header = $('#shortcut');
+	if ($header.size() > 0) {
+		var $shortcut_user_name = $('#shortcut_user_name');
+		var $shortcut_login = $('#shortcut_login');
+		var $shortcut_regist = $('#shortcut_regist');
+		var $shortcut_logout = $('#shortcut_logout');
 		
-	    
-	    //set demo cookie
-	    if($('#mycart-list').length>0){
-			$.cookie('cart_product','35=1,36=2,37=3,38=4,39=5');
-			var cart_product = $.cookie('cart_product');
-			var cartAmount=cart_product.split(",").length;
-			$('#mycart-amount').text(cartAmount);
+		$.flushHeaderInfo = function () {		
+			if($.cookie("memberUsername") != null) {
+				$shortcut_user_name.text($.cookie("memberUsername")+",欢迎来到"+shop_constant.sysName);
+				$shortcut_login.hide();
+				$shortcut_regist.hide();
+				$shortcut_logout.show();
+			}else{
+				$shortcut_user_name.text("欢迎来到"+shop_constant.sysName+",你还没有登录")
+				$shortcut_login.show();
+				$shortcut_regist.show();
+				$shortcut_logout.hide();
+			}
+		}
+		
+		$.flushHeaderInfo();
+		$shortcut_login.click( function() {
+			$.showLoginWindow();
+			return false;
+		})
+		
+		$shortcut_logout.click( function() {
+			$.ajax({
+				type: "POST",
+				url: shop_constant.base+"/front/login.xhtml?method=onLogout",
+				dataType: "json",
+				success: function(data) {
+					if (data.status == "success") {
+						$.message({type: data.status, content: data.message});
+						$.flushHeaderInfo();
+					}
+				}
+			});
+		});
+						
+		//登录窗口
+		$.showLoginWindow = function (redirectUrl) {
+			var loginWindowHtml = '<form id="loginWindowForm"><table><tr><th>用户名: </th><td><input type="text" id="loginname" name="loginname" class="formText" /></td></tr><tr><th>密&nbsp;&nbsp;&nbsp;码: </th><td><input type="password" id="loginpwd" name="loginpwd" class="formText" /></td></tr><tr><th>&nbsp;</th><td><span class="warnIcon">&nbsp;</span><a href="/shop/member!passwordRecover.action">忘记了密码? 点击找回!</a></td></tr></table></form>';
 			
-			if(cartAmount=='0'){
+			$.dialog({title: "会员登录", content: loginWindowHtml, ok: "登 录", cancel: "取 消", id: "loginWindow", className: "loginWindow", width: 420, okCallback: login, modal: true});
+			
+			var $loginWindowForm = $("#loginWindowForm");
+			var $loginname = $("#loginname");
+			var $loginpwd = $("#loginpwd");
+			
+			function login() {
+				if ($.trim($loginname.val()) == "") {
+					$loginname.focus();
+					$.message({type: "warn", content: "请输入用户名!"});
+					return false;
+				}
+				if ($.trim($loginpwd.val()) == "") {
+					$loginpwd.focus();
+					$.message({type: "warn", content: "请输入密码!"});
+					return false;
+				}
+				
+				$.ajax({
+					type: "POST",
+					url: shop_constant.base+"/front/login.xhtml?method=onLogin",
+					dataType: "json",
+					data: $loginWindowForm.serialize(),
+					beforeSend: function() {
+						$loginWindowForm.find("button").attr("disabled", true);
+					},
+					success: function(data) {
+						if (data.status == "success") {
+							$.flushHeaderInfo();
+							$.closeDialog("loginWindow");
+						}
+						$.message({type: data.status, content: data.message});
+						if(redirectUrl != null) {
+							location.href = redirectUrl;
+						}
+					},
+					complete: function() {
+						$loginWindowForm.find("button").attr("disabled", false);
+						$loginWindowCaptcha.val("");
+						loginWindowCaptchaImageRefresh();
+					}
+				});
+				return false;
+			}
+		}
+	}
+	
+	//搜索自动补全
+	var $goodsKeyword = $('#goodsKeyword');
+	if($goodsKeyword.size()>0){
+		$goodsKeyword.autocomplete({
+			url:shop_constant.base+"/front/ajax.xhtml?method=autoSuggestSearch",
+			showResult: function(value, data) {
+	            return '<span style="color:red">' + value + '</span>';
+	        }
+		});
+		//$goodsKeyword.autocomplete({data: [ ['apple', 1], ['apricot', 2], ['pear', 3], ['prume', 4]]});
+	}
+	
+	
+		
+	    //http://www.webdeveloperjuice.com/demos/jquery/simple-slide.html#
+	    //http://cssglobe.com/lab/easyslider1.7/01.html
+	    if($("#slider").size()>0){
+	    	$("#slider").easySlider({
+				auto: true,
+				pause:5000,
+				speed:0, 
+				controlsFade: true,
+				numeric: true,
+				continuous:true
+			});
+	    }  
+	    	  
+	   	$.flushcartitems=function(needclr){
+	   		if(needclr){$('#mycart-list').empty()};
+	   		var cart_items = $.cookie('cartitems');
+			if(cart_items==null){
 				//购物篮中没有商品
+				$('#mycart-amount').text('0');
 				$('#mycart-list').append("<div class=\"norecode ac\">您的购物车中暂无商品，赶快选择心爱的商品吧！</div>");
 			}else{
+				var cartAmount=cart_items.split(",").length;
 				$('#mycart-amount').text(cartAmount);
-				var mycart_tpl = "<div><dl><dt class=\"p-img\"><a href=\"#{url}\" target=\"_blank\"><img src=\"#{image_url}\" onerror=\"this.src='/shopmall/resources/front/images/none_50.gif'\"></a></dt><dd class=\"p-name\"><a href=\"index.xhtml?method=product&productId=#{goodsId}\">#{goodsName}</a></dd><dd class=\"extra\"><strong>￥#{discountPrice}×#{cnt}</strong></dd></dl></div>";
+				var mycart_tpl = "<div><dl><dt class=\"p-img\"><a href=\""+shop_constant.base+"/product/#{goodsId}.html\" target=\"_blank\"><img src=\"#{imageUrl}\" width=\"50\" height=\"50\"></a></dt><dd class=\"p-name\"><a href=\""+shop_constant.base+"/product/#{goodsId}.html\">#{goodsName}</a></dd><dd class=\"extra\"><strong>￥#{discountPrice}×#{cnt}</strong></dd></dl></div>";
 				$.ajax({
 					  dataType:'json',
 					  type: "get",
-					  url: "/shopmall/front/ajax.xhtml?method=ajaxProduct&productId="+cart_product,
+					  url: shop_constant.base+"/front/ajax.xhtml?method=ajaxProduct&productId="+cart_items,
 					  success: function(respText) {
 					  	  var sum_rmb = 0;
 						  $.each(respText, function(i, item){
@@ -201,6 +324,37 @@ jQuery(document).ready(function() {
 					  }
 				});
 			}
+		}
+	    //初始化购物车
+	    if($('#mycart-list').length>0){
+			//初始化购物车
+		    $('#i-mycart').hover(function(){
+		    		$('#o-mycart-list').show();
+		    	},function(){
+		    		$('#o-mycart-list').hide();
+		    	}
+		    );
+		    $.flushcartitems(false);
+		}
+		
+		/** 历史记录 */
+		var $goodsHistory = $("#goodsHistory");
+		if ($goodsHistory.size() > 0) {
+			var historyproduct = $.cookie('goodsHistoryList');
+			var history_tpl = "<li class=\"fore\"><div class=\"p-img\"><a href=\""+shop_constant.base+"/product/#{goodsId}.html\"><img src=\"#{imageUrl}\" width=\"50\" height=\"50\"></a></div><div class=\"p-name\"><a href=\""+shop_constant.base+"/product/#{goodsId}.html\">#{goodsName}</a></div></li>";
+			$.ajax({
+				  dataType:'json',
+				  type: "get",
+				  url: shop_constant.base+"/front/ajax.xhtml?method=ajaxProduct&productId="+historyproduct,
+				  success: function(respText) {
+				  	  var sum_rmb = 0;
+					  $.each(respText, function(i, item){
+					  	//alert(item.imageUrl);
+					  	$('#ul_goodsHistory').append($.tpl(history_tpl, item));
+					  	sum_rmb = floatAdd(sum_rmb,floatMul(item.discountPrice,item.cnt));
+					  });
+				  }
+			});
 		}
 		
 	//初始化头部菜单
@@ -271,7 +425,7 @@ jQuery(document).ready(function() {
 			//Set Width
 			$(this).find(".sub").css({'width' : rowWidth,'left':rowLeft});
 			var position = $(this).position();
-			$("p#test").text( "left: " + position.left + ", top: " + position.top );
+			//$("p#test").text( "left: " + position.left + ", top: " + position.top );
 		}
 	}
 	
