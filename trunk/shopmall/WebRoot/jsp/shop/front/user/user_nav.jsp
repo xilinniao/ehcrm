@@ -4,18 +4,18 @@
     <div class="left_box1">
 	<h3>交易管理</h3>
     <ul class="margin_b6">
-    	<li><a href="http://jd2008.360buy.com/JdHome/OrderList.aspx?jdhome=myjd">我的购物车</a></li>
-        <li><a href="http://jd2008.360buy.com/JdHome/OrderList.aspx?jdhome=myjd">订单中心</a></li>
-		<li><a href="http://tuan.360buy.com/order/index.php">我的团购</a></li>
-        <li><a href="user_jyjl.aspx">交易记录</a></li>
-        <li><div><a href="http://club.360buy.com/mycomments.aspx">评价/晒单</a></div></li>
+    	<li><a href="">我的购物车</a></li>
+        <li><a href="">订单中心</a></li>
+		<li><a href="">我的团购</a></li>
+        <li><a href="">交易记录</a></li>
+        <li><div><a href="">评价/晒单</a></div></li>
     </ul>
 	
 	<h3>个人信息管理</h3>
     <ul class="margin_b6">
     	<li><div><a href="http://i.360buy.com/user/userinfo/show.html">个人资料</a></div></li>
         <li><a href="http://club.360buy.com/MyMessages.aspx">短&nbsp;消&nbsp;息</a></li>
-        <li><a href="user_fov.aspx">收&nbsp;藏&nbsp;夹</a></li>        
+        <li><a href="">收&nbsp;藏&nbsp;夹</a></li>
         <li><a href="user_changepwd.aspx">修改密码</a></li>
         <li><a href="userclass.aspx">我的级别</a></li>
         <li><a href="user_jifennew.aspx">我的积分</a></li>

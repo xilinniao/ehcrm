@@ -55,7 +55,7 @@
 					   <td class="align_Left">
 					   		<div class="p-img">
 					   			<a target="_blank" href="<%=path %>/product/detail/${b.goodsId }.html" >
-					   				<img src="<%=path %>/">
+					   				<img src="${b.imageUrl }">
 					   			</a>
 					   		</div>
 					   		<span>
