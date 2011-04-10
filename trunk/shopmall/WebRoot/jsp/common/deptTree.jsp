@@ -38,19 +38,19 @@
 function onClick(id,code,name){ 
 	var parent = window.opener;
 	try{
-	parent.document.getElementById('bankNetId').value= id;//机构ID
+	parent.xhtmlcument.getElementById('bankNetId').value= id;//机构ID
 	}
 	catch(e)
 	{
 	}
 	try{
-	parent.document.getElementById('bankNet').value= code;//机构
+	parent.xhtmlcument.getElementById('bankNet').value= code;//机构
 	}
 	catch(e)
 	{
 	}
 	try{
-	parent.document.getElementById('bankNetName').value= name;//机构名称
+	parent.xhtmlcument.getElementById('bankNetName').value= name;//机构名称
 	}
 	catch(e)
 	{

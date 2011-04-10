@@ -27,7 +27,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/admin/param.do?method=getXmlTree"
+					"url" : "<%=path%>/admin/param.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]
@@ -43,7 +43,7 @@
 			$('#mainContent').mask("loading...");
 			//更新右边的输入框
 			$.ajax({
-				  url: '<%=path%>/admin/param.do',
+				  url: '<%=path%>/admin/param.xhtml',
 				  type: 'POST',
 				  dataType:'json',
 				  data: 'method=editParam&keyId='+data_id.substr(3),
@@ -188,7 +188,7 @@
 				<button id="btnSave" class="classy"><span>保存</span></button>
 			</div>
 			<div class="notification note-info" id="msg_info"></div>
-			<form action="<%=path%>/admin/param.do?method=onEditParam" id="saveform" name="saveform" method="post">
+			<form action="<%=path%>/admin/param.xhtml?method=onEditParam" id="saveform" name="saveform" method="post">
 						<input type="hidden" name="keyId" id="keyId" />
 						<input type="hidden" name="parentKeyId" id="parentKeyId" />
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ext">

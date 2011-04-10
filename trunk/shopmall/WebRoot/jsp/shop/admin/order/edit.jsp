@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+
 <%@include file="/common/head.jsp"%>
 <%@include file="/common/headA.jsp"%>
 <title><%=projName %></title>
@@ -15,7 +16,7 @@
 	<!--
 	var saveform_validator;
 	$(document).ready(function(){
-		$('#menuId').val('-99');
+		$('#categoryId').val('-99');
 		$('#btnDelete').hide();
 		//加载验证框架
 		saveform_validator = $("form.validate").validate({
@@ -32,8 +33,8 @@
 					beforeSubmit:defaultBeforeSubmit,
 					success:function(respText){
 						if(respText=='OK'){
-							alert('菜单新增成功');
-							location.href='menu.xhtml?method=index';
+							alert('商品分类新增成功');
+							location.href='goodscat.xhtml?method=index';
 						}else{
 							alert('数据保存失败');
 						}					
@@ -45,9 +46,9 @@
 			}
     	});
     	
-    	$('#parent_menu_select').click(function(){
+    	$('#parent_category_select').click(function(){
 			$.colorbox({
-				href:'<%=path%>/admin/menu.xhtml?method=selectMenu',
+				href:'<%=path%>/shop/admin/goodscat.xhtml?method=selectGoodscat',
 				iframe:true,
 				width:"500",
 				height:"90%"
@@ -61,11 +62,11 @@
   </head>
   <body class="input">
   	<div class="inputBar">
-		<h1><span class="icon">&nbsp;</span>系统管理->菜单管理->新增菜单</h1>
+		<h1><span class="icon">&nbsp;</span>商品分类管理->新增商品分类</h1>
 	</div>
 	 <div class="box column-center">
 		<div class="box-content form-table" style="display: block; ">
-			<%@include file="/jsp/admin/menu/form.jsp"%>
+			<%@include file="/jsp/shop/admin/order/form.jsp"%>
     	</div>
     </div>
   </body>

@@ -27,7 +27,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/admin/dept.do?method=getXmlTree"
+					"url" : "<%=path%>/admin/dept.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]
@@ -41,7 +41,7 @@
 			$('#mainContent').mask("loading...");
 			//更新右边的输入框
 			$.ajax({
-				  url: '<%=path%>/admin/dept.do',
+				  url: '<%=path%>/admin/dept.xhtml',
 				  type: 'POST',
 				  dataType:'json',
 				  data: 'method=editDept&deptId='+data_id.substr(3),
@@ -189,7 +189,7 @@
  						<div class="notification note-info" id="msg_info">							
 						</div>
 						<div id="table_form">
-							<form action="<%=path%>/admin/dept.do?method=onEditDept" id="saveform" name="saveform" method="post">
+							<form action="<%=path%>/admin/dept.xhtml?method=onEditDept" id="saveform" name="saveform" method="post">
 							<input type="hidden" name="deptId" id="deptId" />
 							<input type="hidden" name="parentDeptId" id="parentDeptId" />
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ext">

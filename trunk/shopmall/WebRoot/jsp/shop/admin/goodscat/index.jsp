@@ -126,6 +126,10 @@
 		<input type="button" class="addButton" onclick="location.href='goodscat.xhtml?method=addGoodscat'" value="新增分类">
 		
 		<input type="button" class="addButton" onclick="location.href='goodscat.xhtml?method=getJingDongCat'" value="京东分类">
+		
+		<input type="button" class="addButton" onclick="location.href='goodscat.xhtml?method=top'" value="分类HTML">
+		
+		<input type="button" class="addButton" onclick="location.href='goodscat.xhtml?method=initGoodsRel'" value="随机产品">
 	</div>
 	
 	<div class="box column-left">

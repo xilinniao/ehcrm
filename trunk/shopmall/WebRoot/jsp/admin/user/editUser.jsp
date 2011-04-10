@@ -26,7 +26,7 @@
 			rules: {
 				userCode:{
 					required:true,
-					remote: "<%=path%>/admin/user.do?method=checkUserExists"
+					remote: "<%=path%>/admin/user.xhtml?method=checkUserExists"
 				},
 				loginPwd:{
 					required:true
@@ -102,7 +102,7 @@
 		<div class="box-content form-table">
 		<div class="notification note-info" id="msg_info"></div>	
 		<div><button id="btnSaveUser" class="classy"><span>保存</span></button></div>
-		<form action="<%=path%>/admin/user.do?method=onEditUser" id="saveform" name="saveform" method="post">
+		<form action="<%=path%>/admin/user.xhtml?method=onEditUser" id="saveform" name="saveform" method="post">
 			<input type="hidden" name="userId" id="userId" value="${entity.userId }"/>
 			<input type="hidden" name="deptId" id="deptId" value="${entity.dept.deptId }"/>
 	  

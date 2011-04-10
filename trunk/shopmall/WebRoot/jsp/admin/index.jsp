@@ -63,7 +63,7 @@
 				<a href="admin_profile!edit.action" target="mainFrame">
 					<span class="profileIcon">&nbsp;</span>个人资料
 				</a>
-				<a href="<%=path %>/login.do?method=logout" target="_top">
+				<a href="<%=path %>/admin/login.xhtml?method=logout" target="_top">
 					<span class="logoutIcon">&nbsp;</span>退出&nbsp
 				</a>
 			</div>

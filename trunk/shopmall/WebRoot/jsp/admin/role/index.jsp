@@ -29,7 +29,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/admin/role.do?method=getXmlTree"
+					"url" : "<%=path%>/admin/role.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]
@@ -45,7 +45,7 @@
 			$('#mainContent').mask("loading...");
 			//更新右边的输入框
 			$.ajax({
-				  url: '<%=path%>/admin/role.do',
+				  url: '<%=path%>/admin/role.xhtml',
 				  type: 'POST',
 				  dataType:'json',
 				  data: 'method=editRole&roleId='+data_id.substr(3),
@@ -136,7 +136,7 @@
     	$('#btnRolePriv').click(function(){
     		var select_node = $("#menu_tree").jstree("get_selected");
 	    	$.colorbox({
-				href:'<%=path%>/admin/role.do?method=editRolePriv&roleId='+select_node.attr("id").substr(3),
+				href:'<%=path%>/admin/role.xhtml?method=editRolePriv&roleId='+select_node.attr("id").substr(3),
 				iframe:true,
 				width:"500", 
 				height:"80%"
@@ -163,7 +163,7 @@
 				<button id="btnRolePriv" class="classy"><span>权限设置</span></button>
 			</div>
 			<div class="notification note-info" id="msg_info"></div>
-					<form action="<%=path%>/admin/role.do?method=onEditRole" id="saveform" name="saveform" method="post">
+					<form action="<%=path%>/admin/role.xhtml?method=onEditRole" id="saveform" name="saveform" method="post">
 							<input type="hidden" name="roleId" id="roleId" value=""/>
 							<input type="hidden" name="parentRoleId" id="parentRoleId" value=""/>
 							<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ext">

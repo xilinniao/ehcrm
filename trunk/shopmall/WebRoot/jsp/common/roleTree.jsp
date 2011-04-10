@@ -38,13 +38,13 @@
 		function onClick(roleId,roleName){
 			var parent = window.opener;
 			try{
-			parent.document.getElementById('roleId').value= roleId;//角色ID
+			parent.xhtmlcument.getElementById('roleId').value= roleId;//角色ID
 			}
 			catch(e)
 			{
 			}
 			try{
-			parent.document.getElementById('roleName').value= roleName;//角色名称
+			parent.xhtmlcument.getElementById('roleName').value= roleName;//角色名称
 			}
 			catch(e)
 			{
