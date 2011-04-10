@@ -21,6 +21,12 @@ font-size: 12px;
 div {
 display: block;
 }
+.white {	color: white;}
+.black {	color: black;}
+.gray {	color: gray;}
+.blue {	color: blue;}
+.green {	color: green;}
+.red {	color: red;}
 .m, .mt, .mc, .mb {
 overflow: hidden;
 zoom: 1;
@@ -143,6 +149,13 @@ padding: 8px 10px 0;
 margin-right: 10px;
 }
 
+#topad {
+position: relative;
+float: right;
+padding: 8px 10px 0;
+margin-right: 50px;
+}
+
 
 #o-search {
 height: 50px;
@@ -184,7 +197,7 @@ zoom: 1;
 #i-search {
 width: 257px;
 }
-#key {
+#goodsKeyword {
 width: 228px;
 height: 15px;
 padding: 8px 5px 6px 24px;
@@ -335,32 +348,36 @@ margin-right: 6px;
 float: right;
 width: 760px;
 }
-#brand {
+.boxa {
+zoom: 1;
 position: relative;
 overflow: visible;
-z-index: 2;
+//z-index: 2;
 }
-#brand .mt {
+.boxa .mt {
 height: 24px;
 padding: 3px 8px;
 background: url(../images/bg_tit_home.gif) #E6E6E6 no-repeat 0 -30px;
 line-height: 24px;
 overflow: visible;
 }
-#brand h2 {
+.boxa h2 {
 float: left;
 }
-#brand .mc {
+.boxa h2 .colorred{
+color: #C00;
+}
+.boxa .mc {
 border: solid #E6E6E6;
 border-width: 0 1px 1px;
 }
-#brand ul {
+.boxa ul {
 overflow: hidden;
 width: 201px;
 padding: 0 0 8px 8px;
 zoom: 1;
 }
-#brand li {
+.boxa li {
 float: left;
 overflow: hidden;
 width: 88px;
@@ -369,9 +386,38 @@ padding: 1px;
 border: 1px solid #EFEFEF;
 margin: 8px 8px 0 0;
 }
-#brand .mc .extra {
+.boxa .mc .extra {
 padding: 5px 8px;
 text-align: right;
+}
+
+.boxa .mc p {
+	color:#7D7D7D;
+	line-height:20px;
+}
+
+span.cpyname{
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.boxa .mc p.clrline{
+	border-bottom: 1px dashed #CCC;
+	line-height:5px;
+	margin-bottom: 5px;
+}
+
+.boxa .mc p a:link,.boxa .mc p a:visited {
+color: #999;
+text-decoration: none;
+}
+.boxa .mc p a:hover {
+color: #C00;
+text-decoration: underline;
+}
+
+.padding8{
+	padding: 8px;
 }
 
 #sortlist .mt {
@@ -478,6 +524,13 @@ margin: 0 auto;
 .p-img, .p-name, .p-price, .p-market {
 overflow: hidden;
 }
+.p-price strong{
+	font-size: 14px;
+	color: red;
+	margin-right: 10px;
+	font-family: Verdana;
+	font-weight: normal;
+}
 
 #service {
 padding: 20px 20px 10px;
@@ -576,319 +629,6 @@ line-height: 18px;
 }
 .rank .fore .p-price strong {
 color: #F60;
-}
-
-/** 产品内页样式 */
-#name {
-padding: 10px;
-text-align: center;
-}
-#name h1 {
-display: inline;
-font-size: 16px;
-font-family: arial;
-}
-
-#preview {
-float: left;
-width: 352px;
-margin-bottom: 20px;
-}
-#spec-n1 {
-width: 350px;
-height: 350px;
-border: 1px solid #E4E4E4;
-}
-.jqzoom {
-position: relative;
-padding: 0;
-}
-#spec-n5 {
-position: relative;
-width: 300px;
-height: 56px;
-padding: 5px 26px;
-}
-#spec-n5 .control {
-position: absolute;
-top: 10px;
-width: 10px;
-height: 45px;
-background-image: url(../images/icon_clubs.gif);
-background-repeat: no-repeat;
-cursor: pointer;
-}
-#spec-n5 .control {
-position: absolute;
-top: 10px;
-width: 10px;
-height: 45px;
-background-image: url(../images/icon_clubs.gif);
-background-repeat: no-repeat;
-cursor: pointer;
-}
-#spec-list {
-width: 300px;
-height: 56px;
-overflow: hidden;
-}
-#spec-list ul {
-height: 56px;
-overflow: hidden;
-}
-.list-h {
-overflow: hidden;
-zoom: 1;
-}
-.list-h li, .list-h dl {
-float: left;
-}
-#spec-list li {
-width: 60px;
-text-align: center;
-}
-#spec-list img {
-padding: 2px;
-border: 1px solid #E8E8E8;
-}
-#summary {
-float: right;
-width: 380px;
-padding: 10px;
-background: url(../images/bg_tit_home.gif) repeat-x 0 -597px;
-margin-bottom: 20px;
-}
-#summary li {
-padding-top: 10px;
-padding-bottom: 10px;
-}
-.fl {
-float: left;
-}
-#summary .price {
-font-size: 18px;
-color: red;
-margin-right: 10px;
-font-family: Verdana;
-font-weight: normal;
-}
-
-.tab {
-overflow: hidden;
-zoom: 1;
-}
-
-.tab li, .tab a, .tab-item {
-float: left;
-cursor: pointer;
-text-align: center;
-}
-
-.right .tab .curr {
-background-position: right -178px;
-color: white;
-}
-
-.right .tab {
-border-bottom: 2px solid #BE0000;
-margin-bottom: 10px;
-}
-.right .tab li {
-position: relative;
-height: 24px;
-padding: 3px 12px 0;
-background: url(../images/icon_clubs.gif) #CCC no-repeat right -150px;
-overflow: hidden;
-margin-right: 3px;
-line-height: 24px;
-font-size: 14px;
-font-weight: bold;
-color: #C30;
-}
-.right .tab .curr span {
-background-position: 0 -178px;
-}
-.right .tab span {
-position: absolute;
-left: 0;
-top: 0;
-z-index: 1;
-width: 10px;
-height: 27px;
-background: url(../images/icon_clubs.gif) no-repeat 0 -150px;
-}
-
-.tab_content{
-	padding: 10px;
-	overflow: hidden;
-	zoom: 1;
-}
-#i-comment {
-padding: 10px 0;
-margin-bottom: 10px;
-border: 1px solid #E4E4E4;
-overflow: hidden;
-zoom: 1;
-}
-#i-comment .rate {
-float: left;
-width: 100px;
-height: 65px;
-padding: 15px 0 0;
-border-right: 1px solid #E4E4E4;
-text-align: center;
-color: #E26500;
-}
-#i-comment .rate strong {
-line-height: 36px;
-font-size: 30px;
-font-family: arial;
-}
-.percent {
-float: left;
-width: 220px;
-height: 70px;
-padding: 5px 3px 5px 15px;
-border-right: 1px solid #E4E4E4;
-}
-.percent dl {
-padding: 2px 0;
-overflow: hidden;
-zoom: 1;
-}
-.percent dt, .percent dd {
-float: left;
-margin-right: 5px;
-}
-.percent .d1 {
-width: 150px;
-border: 1px solid #CCC;
-height: 9px;
-margin-top: 4px;
-overflow: hidden;
-background: url(../images/icon_clubs.gif) #EFEFEF repeat-x 0 -129px;
-}
-.percent .d1 div {
-height: 9px;
-background: url(../images/icon_clubs.gif) #FF701B repeat-x 0 -119px;
-overflow: hidden;
-}
-#i-comment .btns {
-float: left;
-width: 150px;
-height: 75px;
-padding: 0 0 5px;
-text-align: center;
-}
-#i-comment .btns a {
-color: #005AA0;
-}
-#i-comment .btn-comment {
-display: block;
-width: 106px;
-height: 35px;
-background: url(../images/icon_clubs.gif) no-repeat -30px -230px;
-line-height: 100px;
-overflow: hidden;
-margin: 5px auto;
-}
-
-#comment .i-item {
-padding: 10px 15px 5px 3px;
-border: 1px solid #F3E6C6;
-background: #FFFCF5;
-}
-#comment .o-topic {
-padding: 0 0 2px;
-margin-bottom: 10px;
-border-bottom: 1px solid #F9F0DB;
-overflow: hidden;
-zoom: 1;
-}
-#comment .topic {
-float: left;
-}
-#comment .star {
-float: left;
-margin: 2px 0 0 5px;
-}
-.date-comment {
-float: right;
-color: #999;
-}
-.comment-content dl {
-padding: 2px 0;
-overflow: hidden;
-zoom: 1;
-}
-.comment-content dt {
-float: left;
-width: 62px;
-text-align: right;
-color: #FE8F02;
-}
-.comment-content dd {
-float: left;
-}
-#comment .btns {
-height: 25px;
-padding: 10px 0 5px 2px;
-line-height: 25px;
-overflow: hidden;
-zoom: 1;
-}
-
-#comment .btn-reply, #comment .btn-agree, #comment .btn-oppose {
-width: 62px;
-height: 25px;
-background: url(../images/icon_clubs.gif) no-repeat 0 -328px;
-border: 0;
-text-align: center;
-margin-right: 5px;
-}
-#comment .btn-reply {
-float: right;
-}
-
-#comment .corner {
-position: absolute;
-background-repeat: no-repeat;
-overflow: hidden;
-}
-#comment .tl {
-top: 0;
-left: 115px;
-width: 20px;
-height: 40px;
-background-position: 0 -206px;
-}
-#comment .tr {
-top: 0;
-right: 0;
-width: 10px;
-height: 40px;
-background-position: -20px -206px;
-}
-#comment .b {
-bottom: 0;
-
-height: 10px;
-background-position: 0 -139px;
-background-repeat: repeat-x;
-}
-#comment .bl {
-bottom: 0;
-left: 130px;
-width: 10px;
-height: 10px;
-background-position: -14px -246px;
-}
-#comment .br {
-bottom: 0;
-right: 0;
-width: 10px;
-height: 10px;
-background-position: -20px -246px;
 }
 
 /**
@@ -1012,11 +752,11 @@ padding: 0 0 0 4px;
 
 #nav {
 float: left;
-padding-left:100px;
+padding-left:18px;
 padding-top: 5px;
 position: relative;
 z-index: 1200;
-margin-bottom: -3px;
+margin-bottom: -2px;
 }
 
 ul#topnav {
@@ -1024,13 +764,13 @@ ul#topnav {
 	z-index: 15;
 	float:left;
 	list-style: none;
-	padding: 0 0 2px;	
+	padding: 0 0 1px;	
 }
 ul#topnav li {
 	float: left;
 	margin: 0; padding: 0;
 	position: relative;
-	padding-right:5px;
+	padding-right:3px;
 }
 ul#topnav li a {
 	float: left; 
