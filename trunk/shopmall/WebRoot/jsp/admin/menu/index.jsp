@@ -24,7 +24,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/admin/menu.do?method=getXmlTree"
+					"url" : "<%=path%>/admin/menu.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]
@@ -41,7 +41,7 @@
 			}
 			//更新右边的输入框
 			$.ajax({
-				  url: '<%=path%>/admin/menu.do',
+				  url: '<%=path%>/admin/menu.xhtml',
 				  type: 'POST',
 				  dataType:'json',
 				  data: 'method=editMenu&menuId='+data_id.substr(3),
@@ -88,7 +88,7 @@
     	$('#btnDelete').click(function(){
     		if(confirm('是否删除该菜单?')){
 	    		$.ajax({
-					  url: '<%=path%>/admin/menu.do',
+					  url: '<%=path%>/admin/menu.xhtml',
 					  type: 'POST',
 					  dataType:'text',
 					  data: 'method=deleteMenu&menuId='+$('#menuId').val(),
@@ -109,7 +109,7 @@
     	
     	$('#parent_menu_select').click(function(){
 			$.colorbox({
-				href:'<%=path%>/admin/menu.do?method=selectMenu',
+				href:'<%=path%>/admin/menu.xhtml?method=selectMenu',
 				iframe:true,
 				width:"500",
 				height:"90%"
@@ -126,7 +126,7 @@
 		<h1><span class="icon">&nbsp;</span>系统管理->菜单管理</h1>
 	</div>
 	<div class="operateBar">
-		<input type="button" class="addButton" onclick="location.href='menu.do?method=addMenu'" value="新增菜单">
+		<input type="button" class="addButton" onclick="location.href='menu.xhtml?method=addMenu'" value="新增菜单">
 	</div>
 	
 	<div class="box column-left">

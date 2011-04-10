@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-			<form action="<%=path%>/admin/menu.do?method=onEditMenu" class="validate" id="saveform" name="saveform" method="post">
+			<form action="<%=path%>/admin/menu.xhtml?method=onEditMenu" class="validate" id="saveform" name="saveform" method="post">
 						<input type="hidden" name="menuId" id="menuId"/>
 						<input type="hidden" name="parentMenuId" id="parentMenuId" />
 							<table border="0" cellspacing="0" cellpadding="0" class="inputTable tabContent" style="display: table;">

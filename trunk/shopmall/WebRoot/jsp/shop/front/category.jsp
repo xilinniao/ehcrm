@@ -3,13 +3,14 @@
 <%@include file="/common/headA.jsp"%>
 <title>抚州网上购物商城</title>
 <link href="<%=path %>/resources/front/css/index.css" rel="stylesheet" type="text/css" />
-<link href="<%=path %>/resources/front/css/skin.css" rel="stylesheet" type="text/css" />
+<link href="<%=path %>/resources/front/css/slide.css" rel="stylesheet" type="text/css" />
+<link href="<%=path %>/resources/front/css/product.css" rel="stylesheet" type="text/css" />
 
 <style type="text/css">
 
 </style> 
 <%@include file="/jsp/shop/front/common/head.jsp"%>
-<script src="<%=path %>/resources/front/js/jquery.tools.js" type="text/javascript"></script>
+<script src="<%=path %>/resources/front/js/jquery.easyslider.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/jquery.tmpl.min.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
@@ -23,12 +24,23 @@
 	<div class="left">
 		<!-- 品牌开始 -->
 		<div class="m" id="sortlist">
-				<div class="mt">
-					<h2>电脑、软件、办公</h2>
-				</div>
+				<!-- 
+				<div class="mt"><h2>电脑、软件、办公</h2></div>
 				<div class="mc">
-                    <div class="item current"><h3><b></b><a href="http://www.360buy.com/products/670-671-000.html">电脑整机</a></h3><ul><li><a href="http://www.360buy.com/products/670-671-672-0-0-0-0-0-0-0-1-1-1.html">笔记本</a></li><li><a href="http://www.360buy.com/products/670-671-1105-0-0-0-0-0-0-0-1-1-1.html">上网本</a></li><li><a href="http://www.360buy.com/products/670-671-2694-0-0-0-0-0-0-0-1-1-1.html">平板电脑</a></li><li><a href="http://www.360buy.com/products/670-671-673-0-0-0-0-0-0-0-1-1-1.html">台式机</a></li><li><a href="http://www.360buy.com/products/670-671-674-0-0-0-0-0-0-0-1-1-1.html">服务器</a></li><li><a href="http://www.360buy.com/products/670-671-675-0-0-0-0-0-0-0-1-1-1.html">笔记本配件</a></li></ul></div><div class="item current"><h3><b></b><a href="http://www.360buy.com/products/670-677-000.html">电脑配件</a></h3><ul><li><a href="http://www.360buy.com/products/670-677-678-0-0-0-0-0-0-0-1-1-1.html">CPU</a></li><li><a href="http://www.360buy.com/products/670-677-681-0-0-0-0-0-0-0-1-1-1.html">主板</a></li><li><a href="http://www.360buy.com/products/670-677-679-0-0-0-0-0-0-0-1-1-1.html">显卡</a></li><li><a href="http://www.360buy.com/products/670-677-683-0-0-0-0-0-0-0-1-1-1.html">硬盘</a></li><li><a href="http://www.360buy.com/products/670-677-680-0-0-0-0-0-0-0-1-1-1.html">内存</a></li><li><a href="http://www.360buy.com/products/670-677-687-0-0-0-0-0-0-0-1-1-1.html">机箱</a></li><li><a href="http://www.360buy.com/products/670-677-691-0-0-0-0-0-0-0-1-1-1.html">电源</a></li><li><a href="http://www.360buy.com/products/670-677-688-0-0-0-0-0-0-0-1-1-1.html">显示器</a></li><li><a href="http://www.360buy.com/products/670-677-684-0-0-0-0-0-0-0-1-1-1.html">刻录机/光驱</a></li><li><a href="http://www.360buy.com/products/670-677-685-0-0-0-0-0-0-0-1-1-1.html">声卡</a></li><li><a href="http://www.360buy.com/products/670-677-2683-0-0-0-0-0-0-0-1-1-1.html">扩展卡</a></li><li><a href="http://www.360buy.com/products/670-677-682-0-0-0-0-0-0-0-1-1-1.html">散热器</a></li></ul></div><div class="item current"><h3><b></b><a href="http://www.360buy.com/products/670-686-000.html">外设产品</a></h3><ul><li><a href="http://www.360buy.com/products/670-686-690-0-0-0-0-0-0-0-1-1-1.html">鼠标</a></li><li><a href="http://www.360buy.com/products/670-686-689-0-0-0-0-0-0-0-1-1-1.html">键盘</a></li><li><a href="http://www.360buy.com/products/670-686-693-0-0-0-0-0-0-0-1-1-1.html">移动硬盘</a></li><li><a href="http://www.360buy.com/products/670-686-694-0-0-0-0-0-0-0-1-1-1.html">U盘</a></li><li><a href="http://www.360buy.com/products/670-686-692-0-0-0-0-0-0-0-1-1-1.html">摄像头</a></li><li><a href="http://www.360buy.com/products/670-686-695-0-0-0-0-0-0-0-1-1-1.html">外置盒</a></li><li><a href="http://www.360buy.com/products/670-686-696-0-0-0-0-0-0-0-1-1-1.html">游戏设备</a></li><li><a href="http://www.360buy.com/products/670-686-697-0-0-0-0-0-0-0-1-1-1.html">电视盒</a></li><li><a href="http://www.360buy.com/products/670-686-698-0-0-0-0-0-0-0-1-1-1.html">手写板</a></li><li><a href="http://www.360buy.com/products/670-686-826-0-0-0-0-0-0-0-1-1-1.html">鼠标垫</a></li><li><a href="http://www.360buy.com/products/670-686-1047-0-0-0-0-0-0-0-1-1-1.html">插座</a></li><li><a href="http://www.360buy.com/products/670-686-1048-0-0-0-0-0-0-0-1-1-1.html">UPS电源</a></li><li><a href="http://www.360buy.com/products/670-686-1049-0-0-0-0-0-0-0-1-1-1.html">线缆</a></li><li><a href="http://www.360buy.com/products/670-686-1050-0-0-0-0-0-0-0-1-1-1.html">电脑工具</a></li><li><a href="http://www.360buy.com/products/670-686-1051-0-0-0-0-0-0-0-1-1-1.html">电脑清洁</a></li></ul></div><div class="item current"><h3><b></b><a href="http://www.360buy.com/products/670-699-000.html">网络产品</a></h3><ul><li><a href="http://www.360buy.com/products/670-699-700-0-0-0-0-0-0-0-1-1-1.html">路由器</a></li><li><a href="http://www.360buy.com/products/670-699-701-0-0-0-0-0-0-0-1-1-1.html">网卡</a></li><li><a href="http://www.360buy.com/products/670-699-702-0-0-0-0-0-0-0-1-1-1.html">交换机</a></li><li><a href="http://www.360buy.com/products/670-699-983-0-0-0-0-0-0-0-1-1-1.html">网络存储</a></li><li><a href="http://www.360buy.com/products/670-699-1098-0-0-0-0-0-0-0-1-1-1.html">3G上网</a></li></ul></div><div class="item current"><h3><b></b><a href="http://www.360buy.com/products/670-716-000.html">办公设备</a></h3><ul><li><a href="http://www.360buy.com/products/670-716-717-0-0-0-0-0-0-0-1-1-1.html">打印机</a></li><li><a href="http://www.360buy.com/products/670-716-720-0-0-0-0-0-0-0-1-1-1.html">一体机</a></li><li><a href="http://www.360buy.com/products/670-716-722-0-0-0-0-0-0-0-1-1-1.html">投影机</a></li><li><a href="http://www.360buy.com/products/670-716-719-0-0-0-0-0-0-0-1-1-1.html">复合机</a></li><li><a href="http://www.360buy.com/products/670-716-718-0-0-0-0-0-0-0-1-1-1.html">传真机</a></li><li><a href="http://www.360buy.com/products/670-716-721-0-0-0-0-0-0-0-1-1-1.html">扫描仪</a></li><li><a href="http://www.360buy.com/products/670-716-723-0-0-0-0-0-0-0-1-1-1.html">碎纸机</a></li><li><a href="http://www.360buy.com/products/670-716-724-0-0-0-0-0-0-0-1-1-1.html">考勤机</a></li><li><a href="http://www.360buy.com/products/670-716-725-0-0-0-0-0-0-0-1-1-1.html">点钞机</a></li><li><a href="http://www.360buy.com/products/670-716-726-0-0-0-0-0-0-0-1-1-1.html">塑封机</a></li><li><a href="http://www.360buy.com/products/670-716-727-0-0-0-0-0-0-0-1-1-1.html">电子白板</a></li><li><a href="http://www.360buy.com/products/670-716-728-0-0-0-0-0-0-0-1-1-1.html">计算器</a></li><li><a href="http://www.360buy.com/products/670-716-1229-0-0-0-0-0-0-0-1-1-1.html">激光笔</a></li></ul></div><div class="item current"><h3><b></b><a href="http://www.360buy.com/products/670-729-000.html">办公耗材</a></h3><ul><li><a href="http://www.360buy.com/products/670-729-731-0-0-0-0-0-0-0-1-1-1.html">墨盒</a></li><li><a href="http://www.360buy.com/products/670-729-730-0-0-0-0-0-0-0-1-1-1.html">硒鼓</a></li><li><a href="http://www.360buy.com/products/670-729-732-0-0-0-0-0-0-0-1-1-1.html">墨粉</a></li><li><a href="http://www.360buy.com/products/670-729-733-0-0-0-0-0-0-0-1-1-1.html">色带</a></li><li><a href="http://www.360buy.com/products/670-729-734-0-0-0-0-0-0-0-1-1-1.html">刻录碟片</a></li><li><a href="http://www.360buy.com/products/670-729-735-0-0-0-0-0-0-0-1-1-1.html">光盘包/笔</a></li><li><a href="http://www.360buy.com/products/670-729-736-0-0-0-0-0-0-0-1-1-1.html">纸类</a></li></ul></div><div class="item current"><h3><b></b><a href="http://www.360buy.com/products/670-703-000.html">电脑软件</a></h3><ul><li><a href="http://www.360buy.com/products/670-703-1009-0-0-0-0-0-0-0-1-1-1.html">京东服务</a></li><li><a href="http://www.360buy.com/products/670-703-704-0-0-0-0-0-0-0-1-1-1.html">系统软件</a></li><li><a href="http://www.360buy.com/products/670-703-705-0-0-0-0-0-0-0-1-1-1.html">杀毒软件</a></li><li><a href="http://www.360buy.com/products/670-703-706-0-0-0-0-0-0-0-1-1-1.html">游戏软件</a></li><li><a href="http://www.360buy.com/products/670-703-707-0-0-0-0-0-0-0-1-1-1.html">办公软件</a></li><li><a href="http://www.360buy.com/products/670-703-709-0-0-0-0-0-0-0-1-1-1.html">教育软件</a></li><li><a href="http://www.360buy.com/products/670-703-970-0-0-0-0-0-0-0-1-1-1.html">工具软件</a></li></ul></div>
+                    <div class="item current">
+                    <h3><b></b><a href="http://www.360buy.com/products/670-671-000.html">电脑整机</a></h3>
+                    <ul>
+                    <li><a href="http://www.360buy.com/products/670-671-672-0-0-0-0-0-0-0-1-1-1.html">笔记本</a></li>
+                    <li><a href="http://www.360buy.com/products/670-671-1105-0-0-0-0-0-0-0-1-1-1.html">上网本</a></li>
+                    <li><a href="http://www.360buy.com/products/670-671-2694-0-0-0-0-0-0-0-1-1-1.html">平板电脑</a></li>
+                    <li><a href="http://www.360buy.com/products/670-671-673-0-0-0-0-0-0-0-1-1-1.html">台式机</a></li>
+                    <li><a href="http://www.360buy.com/products/670-671-674-0-0-0-0-0-0-0-1-1-1.html">服务器</a></li>
+                    <li><a href="http://www.360buy.com/products/670-671-675-0-0-0-0-0-0-0-1-1-1.html">笔记本配件</a></li>
+                    </ul>
+                    </div>
 				</div>
+				 -->
+				 ${categoryList }
 			</div><!-- 品牌结束 -->
 		
 		<div id="advertiseleft">
@@ -159,22 +171,21 @@
 	</div><!-- end of left -->
 	
 	<div class="right">
-		<div class="slider">
-			<div id="sliderScrollable" class="scrollable">
-				<div class="items">
-					<div>
-						<img src="http://www.shopxx.cn/upload/banner1.jpg" />
-					</div>
-					<div>
-						<img src="http://www.shopxx.cn/upload/banner2.jpg" />
-					</div>
-					<div>
-						<img src="http://www.shopxx.cn/upload/banner3.jpg" />
-					</div>
-				</div>
-				<div class="navi"></div>				
+		<div id="slidercontain">
+			<div id="slider">
+				<ul>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
+				</ul>
 			</div>
-		</div><!-- end of slider -->
+		</div><!-- end of slidercontain -->
 		<span class="clr5"></span>
 		
 		<c:forEach items="${categoryGoodsList}" var="b">

@@ -178,9 +178,6 @@
 					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
 				</ul>
 			</div>
-			
-			
-			
 		</div>
 		
 		
@@ -200,8 +197,8 @@
 					<c:forEach items="${b.goodsList}" var="bb">
 	                <li>
 					<div class="p-img"><a target="_blank" href="<%=path %>/index.xhtml?method=product&productId=${bb.goodsId }"><img src="${bb.imageUrl }" width="130" height="130" alt="爱慕文胸" app="image:product"></a></div>
-					<div class="p-name"><a target="_blank" title="爱慕文胸" href="http://www.360buy.com/product/1000102803.html">${bb.goodsName }</a></div>
-					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000102803,2.png"></strong></div>					
+					<div class="p-name"><a target="_blank" href="http://www.360buy.com/product/1000102803.html">${bb.goodsName }</a></div>
+					<div class="p-price">商城价：<strong>${bb.discountPrice }</strong></div>					
 					</li>
 					</c:forEach>
 				</ul>

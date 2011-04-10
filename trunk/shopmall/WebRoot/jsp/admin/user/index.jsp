@@ -28,7 +28,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/admin/dept.do?method=getXmlTree"
+					"url" : "<%=path%>/admin/dept.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]
@@ -54,7 +54,7 @@
 					"bJQueryUI": true,
 					"oLanguage":oLanguage_cn,
 					"sPaginationType": "full_numbers",
-					"sAjaxSource": "<%=path%>/admin/user.do?method=userList",
+					"sAjaxSource": "<%=path%>/admin/user.xhtml?method=userList",
 					"fnServerData": function ( sSource, aoData, fnCallback ) {
 						var select_node = $("#dept_tree").jstree("get_selected");
 						aoData.push( { "name": "deptId","value": select_node.attr("id").substr(3)} );
@@ -85,7 +85,7 @@
 		$('#btnAddUser').click(function(){
     		var select_node = $("#dept_tree").jstree("get_selected");
 			$.colorbox({
-				href:'<%=path%>/admin/user.do?method=editUser&userId=-99&deptId='+select_node.attr("id").substr(3),
+				href:'<%=path%>/admin/user.xhtml?method=editUser&userId=-99&deptId='+select_node.attr("id").substr(3),
 				iframe:true,
 				width:"500",
 				height:"90%",
@@ -96,7 +96,7 @@
 	
 	function editUser(userId){
 		$.colorbox({
-			href:'<%=path%>/admin/user.do?method=editUser&userId='+userId,
+			href:'<%=path%>/admin/user.xhtml?method=editUser&userId='+userId,
 			iframe:true,
 			width:"500",
 			height:"90%",
@@ -106,7 +106,7 @@
 	
 	function editUserPriv(userId){
 		$.colorbox({
-			href:'<%=path%>/admin/user.do?method=userApplyRoles&userId='+userId,
+			href:'<%=path%>/admin/user.xhtml?method=userApplyRoles&userId='+userId,
 			iframe:true,
 			width:"500",
 			height:"90%"
@@ -168,7 +168,7 @@
 	<div>
 		<button id="btnSaveUser" class="classy"><span>保存</span></button>
 	</div>
-	<form action="<%=path%>/admin/user.do?method=onEditUser" id="saveform" name="saveform" method="post">
+	<form action="<%=path%>/admin/user.xhtml?method=onEditUser" id="saveform" name="saveform" method="post">
 		<input type="hidden" name="userId" id="userId"/>
 		<input type="hidden" name="deptId" id="deptId"/>
   

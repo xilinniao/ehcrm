@@ -26,7 +26,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/admin/menu.do?method=getXmlTree"
+					"url" : "<%=path%>/admin/menu.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data","checkbox"]
@@ -45,7 +45,7 @@
 			});
 			$('body').mask("正在保存数据,请稍候...");
 			$.ajax({
-				  url: '<%=path%>/admin/role.do',
+				  url: '<%=path%>/admin/role.xhtml',
 				  type: 'POST',
 				  data: postData,
 				  success: ajaxMaskSuccess,

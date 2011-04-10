@@ -24,7 +24,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/admin/menu.do?method=getXmlTree"
+					"url" : "<%=path%>/admin/menu.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]

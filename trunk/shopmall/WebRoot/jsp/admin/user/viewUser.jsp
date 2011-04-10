@@ -23,7 +23,7 @@
   
   <body>
   <div id="nav">后台管理-&gt;人员管理-&gt;查看人员</div>
-  <form action="<%=path%>/admin/user.do?method=saveUser" id="saveform" name="saveform" method="post">
+  <form action="<%=path%>/admin/user.xhtml?method=saveUser" id="saveform" name="saveform" method="post">
   <input type="hidden" name="userId" id="userId" value="${entity.userId}" />
   <table width="76%" border="0" cellspacing="0" cellpadding="0" class="ext">
   <tr>

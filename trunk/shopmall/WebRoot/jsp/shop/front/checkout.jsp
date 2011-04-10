@@ -93,7 +93,7 @@
 				            <td width="10%">商城价</td>
 				            <td width="8%">赠送积分</td>
 				            <td width="9%">库存状态</td>
-				            <td width="9%">商品数量</td>
+				            <td width="9%">购买数量</td>
 				         </tr>
 				        		        
 						<c:forEach items="${productList}" var="b">
@@ -110,7 +110,7 @@
 						   <td>现货</td>
 						   <td>${b.cnt }</td>
 						</tr>
-						</c:forEach>						
+						</c:forEach>
 				     </tbody></table>
 				   </div>
 				   <div class="footer"></div>

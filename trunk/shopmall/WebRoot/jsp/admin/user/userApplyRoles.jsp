@@ -38,7 +38,7 @@
 		<div class="box-content form-table">
 		<div class="notification note-info" id="msg_info"></div>	
 		<div><button id="btnSave" class="classy"><span>保存</span></button></div>
-		<form action="<%=path%>/admin/user.do?method=onUserApplyRoles" id="saveform" name="saveform" method="post">
+		<form action="<%=path%>/admin/user.xhtml?method=onUserApplyRoles" id="saveform" name="saveform" method="post">
 			<input type="hidden" name="userId" id="userId" value="${user.userId }"/>
 	  
 			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ext">
