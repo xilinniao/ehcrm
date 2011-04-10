@@ -3,13 +3,13 @@
 <%@include file="/common/headA.jsp"%>
 <title>抚州网上购物商城</title>
 <link href="<%=path %>/resources/front/css/index.css" rel="stylesheet" type="text/css" />
-<link href="<%=path %>/resources/front/css/skin.css" rel="stylesheet" type="text/css" />
+<link href="<%=path %>/resources/front/css/slide.css" rel="stylesheet" type="text/css" />
+<link href="<%=path %>/resources/front/css/product.css" rel="stylesheet" type="text/css" />
 
-<style type="text/css">
 
-</style> 
 <%@include file="/jsp/shop/front/common/head.jsp"%>
 <script src="<%=path %>/resources/front/js/jquery.easyslider.js" type="text/javascript"></script>
+<script src="<%=path %>/resources/front/js/dialog.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
 
@@ -21,7 +21,7 @@
 <div class="w main">
 	<div class="left">
 		<!-- 品牌开始 -->
-		<div class="m" id="brand" clstag="homepage|keycount|homepage|brand">
+		<div class="boxa">
 			<div class="mt">
 				<h2>热门店铺</h2>
 			</div>
@@ -163,6 +163,7 @@
 	</div><!-- end of left -->
 	
 	<div class="right">
+		 
 		<div id="slidercontain">
 			<div id="slider">
 				<ul>
@@ -177,7 +178,13 @@
 					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
 				</ul>
 			</div>
+			
+			
+			
 		</div>
+		
+		
+		
 		<!-- end of slider -->
 		
 		
