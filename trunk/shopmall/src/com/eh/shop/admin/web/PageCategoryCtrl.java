@@ -114,14 +114,14 @@ public class PageCategoryCtrl extends BaseShopAdminCtrl {
 			TbPageCategory entity = new TbPageCategory();
 			super.bindObject(request,entity);
 			entity.setShopInfo(userInfo.getShopInfo());
-			entity.setPageType(pageType);
+			//entity.setPageType(pageType);
 			this. pageCategoryLogic.savePageCategory(entity);
 		}else{
 			//修改操作
 			TbPageCategory entity = this. pageCategoryLogic.get(TbPageCategory.class, categoryId);
 			if(entity!=null&&super.isYourShop(entity.getShopInfo(), userInfo)){
 				super.bindObject(request, entity);
-				entity.setPageType(pageType);
+				//entity.setPageType(pageType);
 				this.pageCategoryLogic.savePageCategory(entity);
 			}else{
 				super.addErrors(request, "非法操作，没有找到指定的首页分类");

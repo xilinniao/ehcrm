@@ -12,7 +12,7 @@
 			<column name="SHOP_ID" precision="10" scale="0" />
 		 </many-to-one>
         <many-to-one name="pageType"
-			class="com.eh.shop.entity.TbPageType">
+			class="com.eh.shop.entity.TbGoodsCategory">
 			<column name="PAGE_TYPE" precision="10" scale="0"/>
 		 </many-to-one>
 		 <property name="categoryName" type="java.lang.String">

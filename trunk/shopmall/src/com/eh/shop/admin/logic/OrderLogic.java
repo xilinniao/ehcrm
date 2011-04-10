@@ -1,5 +1,7 @@
 package com.eh.shop.admin.logic;
 
+import java.util.List;
+
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.admin.web.qry.OrderQry;
@@ -41,4 +43,15 @@ public interface OrderLogic extends IBaseLogic {
 	 * @return
 	 */
 	public Page findUserOrderList(OrderQry qry);
+	/**
+	 * 商品列表
+	 * @return
+	 */
+	public List findOrderGoodsList(TbOrderMain orderMain);
+	/**
+	 * 查找订单处理列表
+	 * @param orderMain
+	 * @return
+	 */
+	public List findOrderFlowList(TbOrderMain orderMain);
 }

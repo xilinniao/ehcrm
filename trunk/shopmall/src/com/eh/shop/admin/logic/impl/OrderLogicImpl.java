@@ -1,5 +1,7 @@
 package com.eh.shop.admin.logic.impl;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 
 import com.eh.base.dao.hibernate.Page;
@@ -64,4 +66,21 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 		CriteriaUtil.addEq(criteria, "c.custId", qry.getCustId());
 		return super.baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.OrderLogic#findGoodsList(com.eh.shop.entity.TbOrderMain)
+	 */
+	public List findOrderGoodsList(TbOrderMain orderMain) {
+		return super.baseDao.find("from TbOrderDetail t where t.order = ? ", orderMain);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.OrderLogic#findOrderFlowList(com.eh.shop.entity.TbOrderMain)
+	 */
+	public List findOrderFlowList(TbOrderMain orderMain) {
+		return super.baseDao.find("from TbOrderFlow t where t.order = ? ", orderMain);
+	}
+	
+	
+	
 }

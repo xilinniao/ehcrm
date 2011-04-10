@@ -74,7 +74,7 @@ public class PageCategoryLogicImpl extends BaseLogic implements PageCategoryLogi
 	public List<TbPageCategory> findPageCategoryByType(Long shopId,Long pageTypeId){
 		return super.baseDao
 				.find(
-						"from TbPageCategory t where t.shopInfo.shopId = ? and t.pageType.typeId = ?",
+						"from TbPageCategory t where t.shopInfo.shopId = ? and t.pageType.categoryId = ?",
 						new Object[] { shopId, pageTypeId });
 	}
 

@@ -40,8 +40,8 @@ public class IndexCtrl extends BaseCtrl {
 	 * 查找商品列表
 	 * @param request
 	 */
-	private void findGoodList(HttpServletRequest request,Long pageTypeId){
-		List<TbPageCategory> categoryList = pageCategoryLogic.findPageCategoryByType(Constants.SYSTEM_SHOP, pageTypeId);
+	private void findGoodList(HttpServletRequest request,Long categoryId){
+		List<TbPageCategory> categoryList = pageCategoryLogic.findPageCategoryByType(Constants.SYSTEM_SHOP, categoryId);
 		List categoryGoodsList = new ArrayList();
 		
 		for(int i = 0,len = categoryList.size();i<len;i++){
@@ -49,7 +49,8 @@ public class IndexCtrl extends BaseCtrl {
 			vo.setCategoryName(categoryList.get(i).getCategoryName());
 			vo.setGoodsList(findGoodsByCategory(categoryList.get(i).getCategoryId(),Long.valueOf(8)));
 			categoryGoodsList.add(vo);
-		}		
+		}
+		
 		request.setAttribute("categoryGoodsList", categoryGoodsList);
 	}
 	
@@ -75,16 +76,6 @@ public class IndexCtrl extends BaseCtrl {
 	
 	/**
 	 * 
-	 * <dl class="">
-        <dt><a href="http://mall.woyo.com/getCounterGoodsList.html?lCategoryId=12002&amp;nLevel=2" title="潮流女鞋">潮流女鞋</a></dt>
-        <dd>
-                   <a href="http://mall.woyo.com/search/%E5%A5%B3%E9%9E%8B.shtml" title="女鞋">女鞋</a>
-           <a href="http://mall.woyo.com/search/%E8%BF%90%E5%8A%A8%E9%9E%8B%20%E5%A5%B3.shtml" title="运动鞋">运动鞋</a>
-           <a href="http://mall.woyo.com/search/%E5%8D%95%E9%9E%8B%20%E5%A5%B3.shtml" title="单鞋">单鞋</a>
-           <a href="http://mall.woyo.com/search/%E6%9D%BF%E9%9E%8B%20%E5%A5%B3.shtml" title="板鞋">板鞋</a>
-                           </dd>
-      </dl>
-      
 	 * 设置头部信息
 	 * @param request
 	 */
@@ -133,67 +124,8 @@ public class IndexCtrl extends BaseCtrl {
 	 */
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		findGoodList(request, PAGE_INDEX);
-		findHeadNavSub(request);
 		return new ModelAndView("/jsp/shop/front/index");
 	}
-	
-	/**
-	 * 团购栏目
-	 */
-	public ModelAndView tuan(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		return new ModelAndView("/jsp/shop/front/tuan");
-	}
-	
-	/**
-	 * 菜篮子
-	 */
-	public ModelAndView food(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		findGoodList(request, PAGE_INDEX);
-		findHeadNavSub(request);
-		return new ModelAndView("/jsp/shop/front/food");
-	}
-	
-	/**
-	 * 家电
-	 */
-	public ModelAndView electronic(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		findGoodList(request, PAGE_INDEX);
-		findHeadNavSub(request);
-		return new ModelAndView("/jsp/shop/front/electronic");
-	}
-	
-	/**
-	 * 数码产品
-	 */
-	public ModelAndView digital(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		findGoodList(request, PAGE_INDEX);
-		return new ModelAndView("/jsp/shop/front/digital");
-	}
-	
-	/**
-	 * 家居家纺
-	 */
-	public ModelAndView home(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		findGoodList(request, PAGE_INDEX);
-		return new ModelAndView("/jsp/shop/front/home");
-	}
-	
-	/**
-	 * 服饰
-	 */
-	public ModelAndView clothing(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		findGoodList(request, PAGE_INDEX);
-		return new ModelAndView("/jsp/shop/front/clothing");
-	}
-	
-	/**
-	 * 母婴
-	 */
-	public ModelAndView baby(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		findGoodList(request, PAGE_INDEX);
-		return new ModelAndView("/jsp/shop/front/baby");
-	}
-
 	
 	/**
 	 * 获取商品明细
@@ -240,7 +172,7 @@ public class IndexCtrl extends BaseCtrl {
 		findGoodList(request, PAGE_INDEX);
 		findHeadNavSub(request);
 		Long productId = super.getLong(request, "productId", true);
-		TbGoodsInfo product = this.goodsCatLogic.get(TbGoodsInfo.class, productId);		
+		TbGoodsInfo product = this.goodsCatLogic.get(TbGoodsInfo.class, productId);
 		//查找产品图片信息
 		this.getProductDetail(request,product);
 		this.goodsCatLogic.save(product);
@@ -250,6 +182,79 @@ public class IndexCtrl extends BaseCtrl {
 		
 		//http://img14.360buyimg.com/n5/
 		
+		return mav;
+	}
+	
+	/**
+	 * 大的分类
+	 * <div class="mt"><h2>电脑、软件、办公</h2></div>
+				<div class="mc">
+                    <div class="item current">
+                    <h3><b></b><a href="http://www.360buy.com/products/670-671-000.html">电脑整机</a></h3>
+                    <ul>
+                    <li><a href="http://www.360buy.com/products/670-671-672-0-0-0-0-0-0-0-1-1-1.html">笔记本</a></li>
+                    <li><a href="http://www.360buy.com/products/670-671-1105-0-0-0-0-0-0-0-1-1-1.html">上网本</a></li>
+                    <li><a href="http://www.360buy.com/products/670-671-2694-0-0-0-0-0-0-0-1-1-1.html">平板电脑</a></li>
+                    <li><a href="http://www.360buy.com/products/670-671-673-0-0-0-0-0-0-0-1-1-1.html">台式机</a></li>
+                    <li><a href="http://www.360buy.com/products/670-671-674-0-0-0-0-0-0-0-1-1-1.html">服务器</a></li>
+                    <li><a href="http://www.360buy.com/products/670-671-675-0-0-0-0-0-0-0-1-1-1.html">笔记本配件</a></li>
+                    </ul>
+                    </div>
+				</div>
+				
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView category(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/category");
+		Long categoryId = super.getLong(request, "categoryId", false);		
+		TbGoodsCategory category = this.goodsCatLogic.get(TbGoodsCategory.class, categoryId);
+		List<TbGoodsCategory> categoryList = this.goodsCatLogic.findCategoryListByTreeNo(category.getTreeNo(), Constants.SYSTEM_SHOP);
+		StringBuffer div = new StringBuffer("<div class=\"mt\"><h2>");
+		div.append(category.getCategoryName());
+		div.append("</h2></div><div class=\"mc\">");
+		for (int i = 1, size = categoryList.size(); i < size; i++) {
+			TbGoodsCategory tmp = (TbGoodsCategory)categoryList.get(i);
+			//如果相等，则做循环
+			if(tmp.getParent().getCategoryId().longValue()==category.getCategoryId().longValue()){
+				div.append("<div class=\"item current\"><h3><b></b><a href=\"http://www.360buy.com/products/670-671-000.html\">");
+				div.append(tmp.getCategoryName());
+				div.append("</a></h3><ul>");
+				this.loopCategory(categoryList, category.getCategoryId(), div);
+				div.append("</ul></div>");
+			}
+		}
+		div.append("</div>");
+		mav.addObject("categoryList", div.toString());		
+		findGoodList(request, categoryId);//分类
+		return mav;
+	}
+	
+	private void loopCategory(List<TbGoodsCategory> categoryList,Long category,StringBuffer div){
+		for (int i = 1, size = categoryList.size(); i < size; i++) {
+			TbGoodsCategory tmp = (TbGoodsCategory)categoryList.get(i);
+			if(tmp.getParent().getCategoryId().longValue()==category.longValue()){
+				div.append("<li><a href=\"http://www.360buy.com/products/670-671-672-0-0-0-0-0-0-0-1-1-1.html\">");
+				div.append(tmp.getCategoryName());
+				div.append("</a></li>");
+			}
+		}
+	}
+	
+	
+	
+	/**
+	 * 产品分类
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView products(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/products");
+		Long categoryId = super.getLong(request, "categoryId", false);		
 		return mav;
 	}
 	
