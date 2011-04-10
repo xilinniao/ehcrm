@@ -2,6 +2,7 @@ package com.eh.base.logic;
 
 import java.io.Serializable;
 import java.sql.Connection;
+import java.util.List;
 
 import com.eh.base.dao.hibernate.BaseHibernateDAO;
 
@@ -62,5 +63,14 @@ public class BaseLogic implements IBaseLogic{
 	 */
 	public <T> void removeById(Class<T> entityClass, Serializable id) {
 		baseDao.removeById(entityClass,id);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.base.logic.IBaseLogic#find(java.lang.String, java.lang.Object[])
+	 */
+	public List find(String hql, Object[] values) {
+		return baseDao.find(hql, values);
 	}	
+	
+	
 }

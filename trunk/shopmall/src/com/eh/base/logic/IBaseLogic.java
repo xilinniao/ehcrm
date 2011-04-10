@@ -1,6 +1,7 @@
 package com.eh.base.logic;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -28,4 +29,11 @@ public interface IBaseLogic {
 	 * @param atgs
 	 */
 	public void bulkUpdate(String sql,Object[] atgs) ;
+	/**
+	 * 查找列表
+	 * @param sql
+	 * @param args
+	 * @return
+	 */
+	public List find(String hql,Object[] values);
 }

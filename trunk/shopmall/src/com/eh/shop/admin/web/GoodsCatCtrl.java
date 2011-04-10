@@ -1,6 +1,7 @@
 package com.eh.shop.admin.web;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,8 @@ import com.eh.shop.admin.logic.GoodsCatLogic;
 import com.eh.shop.admin.logic.ShopLogic;
 import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbGoodsInfo;
+import com.eh.shop.entity.TbPageCategory;
+import com.eh.shop.entity.TbPageGoodsRel;
 import com.eh.shop.entity.TbShopInfo;
 
 public class GoodsCatCtrl extends BaseTreeCtrl{
@@ -28,8 +31,6 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 	 * 商店LOGIC
 	 */
 	ShopLogic shopLogic;
-	
-
 	/**
 	 * <li> <a href="<%=homeUrl %>" class="home">首页</a></li>
 	 * @param request
@@ -41,13 +42,13 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 		List<TbGoodsCategory> categoryList = goodsCatLogic.findCategoryListByParentId(Long.valueOf(1), Long.valueOf(1));
 		StringBuffer ul = new StringBuffer("<ul id=\"topnav\">");
 		for(TbGoodsCategory levela:categoryList){
-			ul.append("<li><a href=\"/category/"+levela.getCategoryId()+"\" class=\"products\">"+levela.getCategoryName()+"</a><div class=\"sub\">");
+			ul.append("<li><a href=\"/category/"+levela.getCategoryId()+".html\" class=\"products\">"+levela.getCategoryName()+"</a><div class=\"sub\">");
 			List<TbGoodsCategory> listb = goodsCatLogic.findCategoryListByParentId(levela.getCategoryId(), Long.valueOf(1));
 			for(TbGoodsCategory levelb:listb){
-				ul.append("<dl><dt><a href=\"/category/"+levelb.getCategoryId()+"\">"+levelb.getCategoryName()+"</a></dt><dd>");
+				ul.append("<dl><dt><a href=\"/category/"+levelb.getCategoryId()+".html\">"+levelb.getCategoryName()+"</a></dt><dd>");
 				List<TbGoodsCategory> listc = goodsCatLogic.findCategoryListByParentId(levelb.getCategoryId(), Long.valueOf(1));
 				for(TbGoodsCategory levelc:listc){
-					ul.append("<a href=\"/category/"+levelc.getCategoryId()+"\">"+levelc.getCategoryName()+"</a>");
+					ul.append("<a href=\"/products/"+levelc.getCategoryId()+".html\">"+levelc.getCategoryName()+"</a>");
 				}
 				ul.append("</dd></dl>");
 			}
@@ -57,6 +58,104 @@ public class GoodsCatCtrl extends BaseTreeCtrl{
 		System.out.println(ul.toString());
 		return null;
 	}
+	
+	/**
+	 * 初始化good rel
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView initGoodsRel(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		List<TbGoodsCategory> categoryList = goodsCatLogic.find("select t from TbGoodsCategory t join t.shopInfo as s where s.shopId = ? order by t.treeNo asc",new Object[]{Long.valueOf(1)});
+		for (int i = 0, size = categoryList.size(); i < size; i++) {
+			TbGoodsCategory category = categoryList.get(i);
+			if(category.getTreeNo().length()<10){
+				initGoodsRelAaa(category);
+			}
+		}		
+		return null;
+	}
+	
+	private void initGoodsRelAaa(TbGoodsCategory category) throws Exception {
+		List tmpList = this.goodsCatLogic
+				.find(
+						"select min(t.goodsId),max(t.goodsId)  from TbGoodsInfo t join t.category as cat where cat.treeNo like ?",
+						new Object[] { category.getTreeNo() + "%" });
+		if(tmpList.size()>0){
+			Object[] t = (Object[])tmpList.get(0);
+			Long from = (Long)t[0];
+			Long to = (Long)t[1];
+			if(from==null||to==null){
+				return;
+			}
+			int between = to.intValue()-from.intValue();
+			Random ram = new Random();
+			int[] ramints = new int[100];
+			for(int i = 0 ;i < 100 ;i++){
+				ramints[i] = from.intValue()+ram.nextInt(between);
+			}
+			
+			
+			TbPageCategory a = new TbPageCategory();
+			a.setCategoryName("热门商品");
+			a.setOrderNum(Long.valueOf(1));
+			a.setPageType(category);
+			a.setShopInfo(this.goodsCatLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			this.goodsCatLogic.save(a);
+			for (int i = 0;i<8;i++){
+				TbPageGoodsRel rel = new TbPageGoodsRel();
+				rel.setGoodsInfo(goodsCatLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
+				rel.setPageCategory(a);
+				rel.setOrderNum(Long.valueOf(i));
+				this.goodsCatLogic.save(rel);
+			}
+			
+			TbPageCategory b = new TbPageCategory();
+			b.setCategoryName("新品");
+			b.setOrderNum(Long.valueOf(1));
+			b.setPageType(category);
+			b.setShopInfo(this.goodsCatLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			this.goodsCatLogic.save(b);
+			for (int i = 10;i<18;i++){
+				TbPageGoodsRel rel = new TbPageGoodsRel();
+				rel.setPageCategory(b);
+				rel.setGoodsInfo(goodsCatLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
+				rel.setOrderNum(Long.valueOf(i));
+				this.goodsCatLogic.save(rel);
+			}
+			
+			TbPageCategory c = new TbPageCategory();
+			c.setCategoryName("特价促销");
+			c.setOrderNum(Long.valueOf(1));
+			c.setPageType(category);
+			c.setShopInfo(this.goodsCatLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			this.goodsCatLogic.save(c);
+			for (int i = 20;i<28;i++){
+				TbPageGoodsRel rel = new TbPageGoodsRel();
+				rel.setPageCategory(c);
+				rel.setGoodsInfo(goodsCatLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
+				rel.setOrderNum(Long.valueOf(i));
+				this.goodsCatLogic.save(rel);
+			}
+			
+			
+			TbPageCategory d = new TbPageCategory();
+			d.setCategoryName("疯狂抢购");
+			d.setOrderNum(Long.valueOf(1));
+			d.setPageType(category);
+			d.setShopInfo(this.goodsCatLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			this.goodsCatLogic.save(d);
+			for (int i = 30;i<38;i++){
+				TbPageGoodsRel rel = new TbPageGoodsRel();
+				rel.setPageCategory(d);
+				rel.setGoodsInfo(goodsCatLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
+				rel.setOrderNum(Long.valueOf(i));
+				this.goodsCatLogic.save(rel);
+			}
+		}
+	}
+	
 	
 	public ModelAndView getJingDongCat(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		this.goodsCatLogic.bulkUpdate("delete from TbGoodsCategory t where t.categoryId <> 1 ",new Object[]{});

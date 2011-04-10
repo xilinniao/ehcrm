@@ -1,6 +1,7 @@
 package com.eh.shop.admin.web;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,26 @@ public class OrderCtrl extends BaseShopAdminCtrl {
 		Page page = this.orderLogic.findOrderList(qry);
 		mav.addObject("qry", qry);
 		mav.addObject("page", page);
+		return mav;
+	}
+	
+	/**
+	 * 处理该订单
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView edit(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/order/edit");
+		Long orderId = super.getLong(request, "orderId", false);
+		TbOrderMain main = this.orderLogic.get(TbOrderMain.class, orderId);
+		List goodsList = this.orderLogic.findOrderGoodsList(main);
+		List flowList = this.orderLogic.findOrderFlowList(main);
+		mav.addObject("goodsList", goodsList);
+		mav.addObject("flowList", flowList);
+		mav.addObject("order", main);
 		return mav;
 	}
 	
