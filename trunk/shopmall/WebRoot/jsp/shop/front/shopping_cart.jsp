@@ -4,16 +4,16 @@
 <title>抚州网上购物商城</title>
 <link href="<%=path %>/resources/front/css/index.css" rel="stylesheet" type="text/css" />
 <link href="<%=path %>/resources/front/css/skin.css" rel="stylesheet" type="text/css" />
-
-<style type="text/css">
-
-</style> 
 <%@include file="/jsp/shop/front/common/head.jsp"%>
 <script src="<%=path %>/resources/front/js/jquery.tools.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/jquery.tmpl.min.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
 
+//-->
+</script>
 </head>
 <body id="index">
 <%@include file="/jsp/shop/front/common/toptop.jsp"%>
@@ -93,9 +93,8 @@
 			    </li>
 			    -->
 			    
-			
-				<!-- 
 				<li class="li2"><a href="#none" onclick="this.blur();clearCart()" clstag="clickcart|keycount|shoppingcartpop|clearcartlink">清空购物车</a></li>
+				<!-- 
 				<li class="li1"><a href="http://www.360buy.com/special.aspx?id=7&amp;price=1" target="_blank" clstag="clickcart|keycount|shoppingcartpop|coudanlink">凑单商品</a></li>
 				 -->
 				 
