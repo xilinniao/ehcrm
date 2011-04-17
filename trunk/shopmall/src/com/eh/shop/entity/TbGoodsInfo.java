@@ -1,5 +1,6 @@
 package com.eh.shop.entity;
 
+import java.util.Date;
 
 
 /**
@@ -14,6 +15,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private Long goodsId;
      private TbShopInfo shopInfo;
      private TbGoodsCategory category;
+     private TbSiteCategory siteCategory;
      private TbBrandInfo brandInfo;
      private TbPageCategory pageCategory;
      private String goodsName;
@@ -26,6 +28,8 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private Long leavesCount;
      private String imageUrl;
      private String jdUrl;
+     private Long createUser;
+     private Date createTime;
 
 
     // Constructors
@@ -36,9 +40,10 @@ public class TbGoodsInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbBrandInfo brandInfo, TbPageCategory pageCategory, String goodsName, String keyWord, String goodNo, Double weight, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount, String imageUrl, String jdUrl) {
+    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbSiteCategory siteCategory, TbBrandInfo brandInfo, TbPageCategory pageCategory, String goodsName, String keyWord, String goodNo, Double weight, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount, String imageUrl, String jdUrl, Long createUser, Date createTime) {
         this.shopInfo = shopInfo;
         this.category = category;
+        this.siteCategory = siteCategory;
         this.brandInfo = brandInfo;
         this.pageCategory = pageCategory;
         this.goodsName = goodsName;
@@ -51,6 +56,8 @@ public class TbGoodsInfo  implements java.io.Serializable {
         this.leavesCount = leavesCount;
         this.imageUrl = imageUrl;
         this.jdUrl = jdUrl;
+        this.createUser = createUser;
+        this.createTime = createTime;
     }
 
    
@@ -78,6 +85,14 @@ public class TbGoodsInfo  implements java.io.Serializable {
     
     public void setCategory(TbGoodsCategory category) {
         this.category = category;
+    }
+
+    public TbSiteCategory getSiteCategory() {
+        return this.siteCategory;
+    }
+    
+    public void setSiteCategory(TbSiteCategory siteCategory) {
+        this.siteCategory = siteCategory;
     }
 
     public TbBrandInfo getBrandInfo() {
@@ -174,6 +189,22 @@ public class TbGoodsInfo  implements java.io.Serializable {
     
     public void setJdUrl(String jdUrl) {
         this.jdUrl = jdUrl;
+    }
+
+    public Long getCreateUser() {
+        return this.createUser;
+    }
+    
+    public void setCreateUser(Long createUser) {
+        this.createUser = createUser;
+    }
+
+    public Date getCreateTime() {
+        return this.createTime;
+    }
+    
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
    
 

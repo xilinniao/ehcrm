@@ -7,9 +7,13 @@
 <hibernate-mapping>
 	<class name="com.eh.shop.entity.TbShopInfo" table="tb_shop_info">
 		<id name="shopId" type="java.lang.Long">
-			<column name="SHOP_ID" />
+			<column name="SHOP_ID" precision="12" scale="0" />
 			<generator class="native" />
 		</id>
+		<many-to-one name="parent"
+			class="com.eh.shop.entity.TbShopInfo">
+			<column name="PARENT_SHOP_ID" precision="12" scale="0" />
+		</many-to-one>
 		<property name="shopName" type="java.lang.String">
 			<column name="SHOP_NAME" length="300" not-null="true" />
 		</property>
@@ -24,46 +28,37 @@
 		</property>
 		<property name="shopAddr" type="java.lang.String">
 			<column name="SHOP_ADDR" length="300">
-				<comment>地址</comment>
 			</column>
 		</property>
 		<property name="linkerMan" type="java.lang.String">
 			<column name="LINKER_MAN" length="100">
-				<comment>联系人</comment>
 			</column>
 		</property>
 		<property name="linkerMobile" type="java.lang.String">
 			<column name="LINKER_MOBILE" length="100">
-				<comment>手机</comment>
 			</column>
 		</property>
 		<property name="linkTel" type="java.lang.String">
 			<column name="LINK_TEL" length="100">
-				<comment>固定电话</comment>
 			</column>
 		</property>
 		<property name="email" type="java.lang.String">
 			<column name="EMAIL" length="100">
-				<comment>电子邮件</comment>
 			</column>
 		</property>		
 		<many-to-one name="admin" class="com.eh.base.entity.TbUserInfo">
 			<column name="ADMIN_ID"/>
 		</many-to-one>
-
 		<property name="imgLogo" type="java.lang.Long">
 			<column name="IMG_LOGO">
-				<comment>店标</comment>
 			</column>
 		</property>
 		<property name="imgoAd" type="java.lang.Long">
 			<column name="IMGO_AD">
-				<comment>店铺条幅</comment>
 			</column>
 		</property>
 		<property name="foundDate" type="java.util.Date">
 			<column name="FOUND_DATE" length="10">
-				<comment>成立时间</comment>
 			</column>
 		</property>
 		<property name="modiDate" type="java.util.Date">

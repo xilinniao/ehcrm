@@ -17,7 +17,7 @@
 	<bean name="indexCtrl" class="com.eh.shop.front.web.IndexCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
-        <property name="goodsCatLogic" ref="goodsCatLogic"/>
+        <property name="goodsCategoryLogic" ref="goodsCategoryLogic"/>
    	</bean>
    	
    	<bean name="frontAjaxCtrl" class="com.eh.shop.front.web.FrontAjaxCtrl">

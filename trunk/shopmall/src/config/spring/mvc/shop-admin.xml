@@ -5,7 +5,8 @@
 		<property name="mappings">
 			<value>
 				/shop/admin/shopInfo.xhtml=shopInfoCtrl
-				/shop/admin/goodscat.xhtml=goodsCatCtrl
+				/shop/admin/goodsCategory.xhtml=goodsCategoryCtrl
+				/shop/admin/siteCategory.xhtml=siteCategoryCtrl
 				/shop/admin/goodsInfo.xhtml=goodsInfoCtrl
 				/shop/admin/brandInfo.xhtml=brandInfoCtrl
 				/shop/admin/articleCategory.xhtml=articleCategoryCtrl
@@ -21,10 +22,15 @@
         <property name="shopLogic" ref="shopLogic"/>
    	</bean>
    
-   <bean name="goodsCatCtrl" class="com.eh.shop.admin.web.GoodsCatCtrl">
+   <bean name="goodsCategoryCtrl" class="com.eh.shop.admin.web.GoodsCategoryCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
-        <property name="goodsCatLogic" ref="goodsCatLogic"/>
+        <property name="goodsCategoryLogic" ref="goodsCategoryLogic"/>
         <property name="shopLogic" ref="shopLogic"/>
+   </bean>
+   
+   <bean name="siteCategoryCtrl" class="com.eh.shop.admin.web.SiteCategoryCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="siteCategoryLogic" ref="siteCategoryLogic"/>
    </bean>
    
     <bean name="goodsInfoCtrl" class="com.eh.shop.admin.web.GoodsInfoCtrl">

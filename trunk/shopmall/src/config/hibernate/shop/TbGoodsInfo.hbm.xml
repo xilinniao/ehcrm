@@ -14,7 +14,11 @@
 		</many-to-one>
 		<many-to-one name="category"
 			class="com.eh.shop.entity.TbGoodsCategory">
-			<column name="CAT_ID" precision="10" scale="0" />
+			<column name="category_id" precision="10" scale="0" />
+		</many-to-one>
+		<many-to-one name="siteCategory"
+			class="com.eh.shop.entity.TbSiteCategory">
+			<column name="site_category" precision="12" scale="0" />
 		</many-to-one>
 		<many-to-one name="brandInfo"
 			class="com.eh.shop.entity.TbBrandInfo">
@@ -23,7 +27,7 @@
 		<many-to-one name="pageCategory"
 			class="com.eh.shop.entity.TbPageCategory">
 			<column name="page_category_id" precision="10" scale="0" />
-		</many-to-one>			
+		</many-to-one>
 		<property name="goodsName" type="java.lang.String">
 			<column name="GOODS_NAME" length="500" />
 		</property>
@@ -54,5 +58,11 @@
 		<property name="jdUrl" type="java.lang.String">
 			<column name="jd_url" length="500" />
 		</property>
+		<property name="createUser" type="java.lang.Long">
+			<column name="CREATE_USER" precision="12" scale="0" />
+		</property>
+		 <property name="createTime" type="java.util.Date">
+		 	<column name="CREATE_TIME" length="7" />
+        </property>
 	</class>
 </hibernate-mapping>
