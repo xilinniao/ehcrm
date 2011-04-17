@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.controller.BaseCtrl;
 import com.eh.base.util.Constants;
-import com.eh.shop.admin.logic.GoodsCatLogic;
+import com.eh.shop.admin.logic.GoodsCategoryLogic;
 import com.eh.shop.admin.logic.PageCategoryLogic;
 import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbGoodsInfo;
@@ -34,7 +34,7 @@ public class IndexCtrl extends BaseCtrl {
 	
 	PageCategoryLogic pageCategoryLogic = null;
 	
-	GoodsCatLogic goodsCatLogic;
+	GoodsCategoryLogic goodsCategoryLogic;
 	
 	/**
 	 * 查找商品列表
@@ -82,7 +82,7 @@ public class IndexCtrl extends BaseCtrl {
 	private void findHeadNavSubByUrl(HttpServletRequest request,String url,String attr){
 		//查找首页下属分页
 		/*StringBuffer html = new StringBuffer();
-		List subList = this.goodsCatLogic.findCategoryListByUrl(url);
+		List subList = this.goodsCategoryLogic.findCategoryListByUrl(url);
 		for(int i = 0,len = subList.size();i<len;i++){
 			TbGoodsCategory category = (TbGoodsCategory)subList.get(i);
 			html.append(" <dl>");
@@ -91,7 +91,7 @@ public class IndexCtrl extends BaseCtrl {
 			html.append("\">");
 			html.append(category.getCategoryName());
 			html.append("</a></dt>");	
-			List ddList = this.goodsCatLogic.findCategoryListByTreeNo(category.getTreeNo(), Constants.SYSTEM_SHOP);
+			List ddList = this.goodsCategoryLogic.findCategoryListByTreeNo(category.getTreeNo(), Constants.SYSTEM_SHOP);
 			if(ddList.size()>0){
 				html.append("<dd>");
 				for(int j = 0,lenj = ddList.size();j<lenj;j++){
@@ -172,10 +172,10 @@ public class IndexCtrl extends BaseCtrl {
 		findGoodList(request, PAGE_INDEX);
 		findHeadNavSub(request);
 		Long productId = super.getLong(request, "productId", true);
-		TbGoodsInfo product = this.goodsCatLogic.get(TbGoodsInfo.class, productId);
+		TbGoodsInfo product = this.goodsCategoryLogic.get(TbGoodsInfo.class, productId);
 		//查找产品图片信息
 		this.getProductDetail(request,product);
-		this.goodsCatLogic.save(product);
+		this.goodsCategoryLogic.save(product);
 		mav.addObject("product", product);
 		
 		//获取分类
@@ -210,8 +210,8 @@ public class IndexCtrl extends BaseCtrl {
 	public ModelAndView category(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("/jsp/shop/front/category");
 		Long categoryId = super.getLong(request, "categoryId", false);		
-		TbGoodsCategory category = this.goodsCatLogic.get(TbGoodsCategory.class, categoryId);
-		List<TbGoodsCategory> categoryList = this.goodsCatLogic.findCategoryListByTreeNo(category.getTreeNo(), Constants.SYSTEM_SHOP);
+		TbGoodsCategory category = this.goodsCategoryLogic.get(TbGoodsCategory.class, categoryId);
+		List<TbGoodsCategory> categoryList = this.goodsCategoryLogic.findCategoryListByTreeNo(category.getTreeNo(), Constants.SYSTEM_SHOP);
 		StringBuffer div = new StringBuffer("<div class=\"mt\"><h2>");
 		div.append(category.getCategoryName());
 		div.append("</h2></div><div class=\"mc\">");
@@ -273,16 +273,18 @@ public class IndexCtrl extends BaseCtrl {
 	}
 
 	/**
-	 * @return the goodsCatLogic
+	 * @return the goodsCategoryLogic
 	 */
-	public GoodsCatLogic getGoodsCatLogic() {
-		return goodsCatLogic;
+	public GoodsCategoryLogic getGoodsCategoryLogic() {
+		return goodsCategoryLogic;
 	}
 
 	/**
-	 * @param goodsCatLogic the goodsCatLogic to set
+	 * @param goodsCategoryLogic the goodsCategoryLogic to set
 	 */
-	public void setGoodsCatLogic(GoodsCatLogic goodsCatLogic) {
-		this.goodsCatLogic = goodsCatLogic;
+	public void setGoodsCategoryLogic(GoodsCategoryLogic goodsCategoryLogic) {
+		this.goodsCategoryLogic = goodsCategoryLogic;
 	}
+
+
 }

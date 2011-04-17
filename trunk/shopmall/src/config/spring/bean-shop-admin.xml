@@ -10,9 +10,20 @@
 			</bean>
 		</property>
 	</bean>
-	<bean id="goodsCatLogic" parent="TransactionProxyFactoryBean">
+	
+	<bean id="siteCategoryLogic" parent="TransactionProxyFactoryBean">
 		<property name="target">
-			<bean class="com.eh.shop.admin.logic.impl.GoodsCatLogicImpl">
+			<bean class="com.eh.shop.admin.logic.impl.SiteCategoryLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="goodsCategoryLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.shop.admin.logic.impl.GoodsCategoryLogicImpl">
 				<property name="baseDao">
 					<ref bean="baseDao" />
 				</property>

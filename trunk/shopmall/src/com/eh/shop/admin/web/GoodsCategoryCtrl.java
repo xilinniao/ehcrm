@@ -15,9 +15,10 @@ import org.jsoup.select.Elements;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.controller.BaseTreeCtrl;
+import com.eh.base.util.Constants;
 import com.eh.base.util.FreeMarkerUtil;
 import com.eh.base.vo.UserInfo;
-import com.eh.shop.admin.logic.GoodsCatLogic;
+import com.eh.shop.admin.logic.GoodsCategoryLogic;
 import com.eh.shop.admin.logic.ShopLogic;
 import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbGoodsInfo;
@@ -26,7 +27,7 @@ import com.eh.shop.entity.TbPageGoodsRel;
 import com.eh.shop.entity.TbShopInfo;
 
 public class GoodsCategoryCtrl extends BaseTreeCtrl{
-	GoodsCatLogic goodsCatLogic;
+	GoodsCategoryLogic goodsCategoryLogic;
 	/**
 	 * 商店LOGIC
 	 */
@@ -39,14 +40,14 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 	 * @throws Exception
 	 */
 	public ModelAndView top(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		List<TbGoodsCategory> categoryList = goodsCatLogic.findCategoryListByParentId(Long.valueOf(1), Long.valueOf(1));
+		List<TbGoodsCategory> categoryList = goodsCategoryLogic.findCategoryListByParentId(Long.valueOf(1), Long.valueOf(1));
 		StringBuffer ul = new StringBuffer("<ul id=\"topnav\">");
 		for(TbGoodsCategory levela:categoryList){
 			ul.append("<li><a href=\"/category/"+levela.getCategoryId()+".html\" class=\"products\">"+levela.getCategoryName()+"</a><div class=\"sub\">");
-			List<TbGoodsCategory> listb = goodsCatLogic.findCategoryListByParentId(levela.getCategoryId(), Long.valueOf(1));
+			List<TbGoodsCategory> listb = goodsCategoryLogic.findCategoryListByParentId(levela.getCategoryId(), Long.valueOf(1));
 			for(TbGoodsCategory levelb:listb){
 				ul.append("<dl><dt><a href=\"/category/"+levelb.getCategoryId()+".html\">"+levelb.getCategoryName()+"</a></dt><dd>");
-				List<TbGoodsCategory> listc = goodsCatLogic.findCategoryListByParentId(levelb.getCategoryId(), Long.valueOf(1));
+				List<TbGoodsCategory> listc = goodsCategoryLogic.findCategoryListByParentId(levelb.getCategoryId(), Long.valueOf(1));
 				for(TbGoodsCategory levelc:listc){
 					ul.append("<a href=\"/products/"+levelc.getCategoryId()+".html\">"+levelc.getCategoryName()+"</a>");
 				}
@@ -67,7 +68,7 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 	 * @throws Exception
 	 */
 	public ModelAndView initGoodsRel(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		List<TbGoodsCategory> categoryList = goodsCatLogic.find("select t from TbGoodsCategory t join t.shopInfo as s where s.shopId = ? order by t.treeNo asc",new Object[]{Long.valueOf(1)});
+		List<TbGoodsCategory> categoryList = goodsCategoryLogic.find("select t from TbGoodsCategory t join t.shopInfo as s where s.shopId = ? order by t.treeNo asc",new Object[]{Long.valueOf(1)});
 		for (int i = 0, size = categoryList.size(); i < size; i++) {
 			TbGoodsCategory category = categoryList.get(i);
 			if(category.getTreeNo().length()<10){
@@ -78,7 +79,7 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 	}
 	
 	private void initGoodsRelAaa(TbGoodsCategory category) throws Exception {
-		List tmpList = this.goodsCatLogic
+		List tmpList = this.goodsCategoryLogic
 				.find(
 						"select min(t.goodsId),max(t.goodsId)  from TbGoodsInfo t join t.category as cat where cat.treeNo like ?",
 						new Object[] { category.getTreeNo() + "%" });
@@ -101,42 +102,42 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 			a.setCategoryName("热门商品");
 			a.setOrderNum(Long.valueOf(1));
 			a.setPageType(category);
-			a.setShopInfo(this.goodsCatLogic.get(TbShopInfo.class, Long.valueOf(1)));
-			this.goodsCatLogic.save(a);
+			a.setShopInfo(this.goodsCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			this.goodsCategoryLogic.save(a);
 			for (int i = 0;i<8;i++){
 				TbPageGoodsRel rel = new TbPageGoodsRel();
-				rel.setGoodsInfo(goodsCatLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
+				rel.setGoodsInfo(goodsCategoryLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
 				rel.setPageCategory(a);
 				rel.setOrderNum(Long.valueOf(i));
-				this.goodsCatLogic.save(rel);
+				this.goodsCategoryLogic.save(rel);
 			}
 			
 			TbPageCategory b = new TbPageCategory();
 			b.setCategoryName("新品");
 			b.setOrderNum(Long.valueOf(1));
 			b.setPageType(category);
-			b.setShopInfo(this.goodsCatLogic.get(TbShopInfo.class, Long.valueOf(1)));
-			this.goodsCatLogic.save(b);
+			b.setShopInfo(this.goodsCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			this.goodsCategoryLogic.save(b);
 			for (int i = 10;i<18;i++){
 				TbPageGoodsRel rel = new TbPageGoodsRel();
 				rel.setPageCategory(b);
-				rel.setGoodsInfo(goodsCatLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
+				rel.setGoodsInfo(goodsCategoryLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
 				rel.setOrderNum(Long.valueOf(i));
-				this.goodsCatLogic.save(rel);
+				this.goodsCategoryLogic.save(rel);
 			}
 			
 			TbPageCategory c = new TbPageCategory();
 			c.setCategoryName("特价促销");
 			c.setOrderNum(Long.valueOf(1));
 			c.setPageType(category);
-			c.setShopInfo(this.goodsCatLogic.get(TbShopInfo.class, Long.valueOf(1)));
-			this.goodsCatLogic.save(c);
+			c.setShopInfo(this.goodsCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			this.goodsCategoryLogic.save(c);
 			for (int i = 20;i<28;i++){
 				TbPageGoodsRel rel = new TbPageGoodsRel();
 				rel.setPageCategory(c);
-				rel.setGoodsInfo(goodsCatLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
+				rel.setGoodsInfo(goodsCategoryLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
 				rel.setOrderNum(Long.valueOf(i));
-				this.goodsCatLogic.save(rel);
+				this.goodsCategoryLogic.save(rel);
 			}
 			
 			
@@ -144,21 +145,21 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 			d.setCategoryName("疯狂抢购");
 			d.setOrderNum(Long.valueOf(1));
 			d.setPageType(category);
-			d.setShopInfo(this.goodsCatLogic.get(TbShopInfo.class, Long.valueOf(1)));
-			this.goodsCatLogic.save(d);
+			d.setShopInfo(this.goodsCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			this.goodsCategoryLogic.save(d);
 			for (int i = 30;i<38;i++){
 				TbPageGoodsRel rel = new TbPageGoodsRel();
 				rel.setPageCategory(d);
-				rel.setGoodsInfo(goodsCatLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
+				rel.setGoodsInfo(goodsCategoryLogic.get(TbGoodsInfo.class, Long.valueOf(ramints[i])));
 				rel.setOrderNum(Long.valueOf(i));
-				this.goodsCatLogic.save(rel);
+				this.goodsCategoryLogic.save(rel);
 			}
 		}
 	}
 	
 	
 	public ModelAndView getJingDongCat(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		this.goodsCatLogic.bulkUpdate("delete from TbGoodsCategory t where t.categoryId <> 1 ",new Object[]{});
+		this.goodsCategoryLogic.bulkUpdate("delete from TbGoodsCategory t where t.categoryId <> 1 ",new Object[]{});
 		
 		Document doc = Jsoup.connect("http://www.360buy.com/allSort.aspx").get();
 		
@@ -172,8 +173,8 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 			level1.setOrderNum(Long.valueOf(i));
 			level1.setTreeNo("001"+String.valueOf(100+i));
 			level1.setShopInfo(this.shopLogic.load(TbShopInfo.class, Long.valueOf(1)));
-			level1.setParent(this.goodsCatLogic.load(TbGoodsCategory.class, Long.valueOf(1)));
-			this.goodsCatLogic.save(level1);
+			level1.setParent(this.goodsCategoryLogic.load(TbGoodsCategory.class, Long.valueOf(1)));
+			this.goodsCategoryLogic.save(level1);
 			
 			//二级分类
 			Element mc = bc.select("div.mc").first();
@@ -187,7 +188,7 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 				level2.setTreeNo(level1.getTreeNo()+String.valueOf(100+j));
 				level2.setShopInfo(this.shopLogic.load(TbShopInfo.class, Long.valueOf(1)));
 				level2.setParent(level1);
-				this.goodsCatLogic.save(level2);
+				this.goodsCategoryLogic.save(level2);
 				
 				Elements ems = dl.select(" dd > em");
 				for (int k = 0,lenk = ems.size();k<lenk;k++) {
@@ -201,7 +202,7 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 					level3.setTreeNo(level2.getTreeNo()+String.valueOf(100+k));
 					level3.setShopInfo(this.shopLogic.load(TbShopInfo.class, Long.valueOf(1)));
 					level3.setParent(level2);
-					this.goodsCatLogic.save(level3);
+					this.goodsCategoryLogic.save(level3);
 					/*if(k==0){
 						getProduct(url,level3);
 					}*/
@@ -257,7 +258,7 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 					//明细就不获取了
 					//this.getProductDetail(elm.select("div.p-name > a").attr("href"), goods);
 					/*Double price =  goods.setDiscountPrice(discountPrice)*/
-					this.goodsCatLogic.save(goods);
+					this.goodsCategoryLogic.save(goods);
 				}
 
 				if (isLoop) {
@@ -329,8 +330,8 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 	 */
 	public ModelAndView getProductByCategory(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		Long categoryId = super.getLong(request, "categoryId", false);
-		TbGoodsCategory category = this.goodsCatLogic.get(TbGoodsCategory.class, categoryId);
-		this.goodsCatLogic.bulkUpdate("delete from TbGoodsInfo t where t.category = ? ", new Object[]{category});
+		TbGoodsCategory category = this.goodsCategoryLogic.get(TbGoodsCategory.class, categoryId);
+		this.goodsCategoryLogic.bulkUpdate("delete from TbGoodsInfo t where t.category = ? ", new Object[]{category});
 		this.getProduct(category.getCategoryUrl(), category,true);
 		super.renderText(response, "ok");
 		return null;
@@ -338,9 +339,12 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 	
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goodscat/index");
-		TbGoodsCategory rootCategory = this.goodsCatLogic.getRootCategory(userInfo.getShopInfo().getShopId());
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goods_category/index");
+		TbGoodsCategory rootCategory = this.goodsCategoryLogic.getRootCategory(userInfo.getShopInfo().getShopId());
 		mav.addObject("rootId", rootCategory.getCategoryId());
+		
+		List categoryList = this.goodsCategoryLogic.findFirstLevelCategory(userInfo.getShopInfo().getShopId());
+		mav.addObject("categoryList", categoryList);
 		return mav;
 	}
 	
@@ -349,18 +353,18 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 	protected List prepareTree(HttpServletRequest request,HttpServletResponse response)throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);		
 		//设置ROOT根节点信息
-		TbGoodsCategory rootGoodscat = this.goodsCatLogic.getRootCategory(userInfo.getShopInfo().getShopId());
+		TbGoodsCategory rootGoodscat = this.goodsCategoryLogic.getRootCategory(userInfo.getShopInfo().getShopId());
 		super.rootId = rootGoodscat.getCategoryId();
 		super.rootTreeName = rootGoodscat.getCategoryName();
 		TbShopInfo shop = this.shopLogic.getUserShop(userInfo.getUser().getUserId());
-		return goodsCatLogic.findGoodscatTree(rootGoodscat.getTreeNo(),shop.getShopId());
+		return goodsCategoryLogic.findGoodscatTree(rootGoodscat.getTreeNo(),shop.getShopId());
 	}
 	
 	@SuppressWarnings("unchecked")
 	public ModelAndView editGoodscat(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {	
 		Long goodscatId = super.getLong(request, "categoryId", false);
-		TbGoodsCategory entity = goodsCatLogic.get(TbGoodsCategory.class, goodscatId);
+		TbGoodsCategory entity = goodsCategoryLogic.get(TbGoodsCategory.class, goodscatId);
 		super.renderJson(response, FreeMarkerUtil.process("shop.admin.goodscat.entity.ftl", entity));
 		return null;
 	}
@@ -371,16 +375,16 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 		TbShopInfo shop = this.shopLogic.getUserShop(userInfo.getUser().getUserId());
 		TbGoodsCategory entity = null;
 		if(goodscatId.longValue()!=Long.valueOf(-99)){
-			entity = goodsCatLogic.get(TbGoodsCategory.class, goodscatId);
+			entity = goodsCategoryLogic.get(TbGoodsCategory.class, goodscatId);
 		}else{
 			entity = new TbGoodsCategory();
 		}
 		super.bindObject(request, entity);
 		Long parentGoodscatId = super.getLong(request, "parentGoodscatId", false);
-		TbGoodsCategory parentGoodscat = goodsCatLogic.load(TbGoodsCategory.class, parentGoodscatId);
+		TbGoodsCategory parentGoodscat = goodsCategoryLogic.load(TbGoodsCategory.class, parentGoodscatId);
 		entity.setParent(parentGoodscat);
 		entity.setShopInfo(shop);
-		goodsCatLogic.saveGoodscatInfo(entity);
+		goodsCategoryLogic.saveGoodscatInfo(entity);
 		super.renderText(response, "OK");
 		return null;
 	}
@@ -394,7 +398,7 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 	 */
 	public ModelAndView selectGoodscat(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		return new ModelAndView("/jsp/shop/admin/goodscat/tree");
+		return new ModelAndView("/jsp/shop/admin/goods_category/tree");
 	}
 	
 	/**
@@ -406,7 +410,10 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 	 */
 	public ModelAndView addGoodscat(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		return new ModelAndView("/jsp/shop/admin/goodscat/add");
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goods_category/add");
+		List categoryList = this.goodsCategoryLogic.findFirstLevelCategory(userInfo.getShopInfo().getShopId());
+		mav.addObject("categoryList", categoryList);
+		return mav;
 	}
 	
 	/**
@@ -419,23 +426,24 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 	public ModelAndView deleteGoodscat(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
 		Long goodscatId = super.getLong(request, "categoryId", false);		
-		String result = this.goodsCatLogic.deleteGoodscatInfo(goodscatId);
+		String result = this.goodsCategoryLogic.deleteGoodscatInfo(goodscatId);
 		super.renderText(response, result);
 		return null;
 	}
 
+
 	/**
-	 * @return the goodsCatLogic
+	 * @return the goodsCategoryLogic
 	 */
-	public GoodsCatLogic getGoodsCatLogic() {
-		return goodsCatLogic;
+	public GoodsCategoryLogic getGoodsCategoryLogic() {
+		return goodsCategoryLogic;
 	}
 
 	/**
-	 * @param goodsCatLogic the goodsCatLogic to set
+	 * @param goodsCategoryLogic the goodsCategoryLogic to set
 	 */
-	public void setGoodsCatLogic(GoodsCatLogic goodsCatLogic) {
-		this.goodsCatLogic = goodsCatLogic;
+	public void setGoodsCategoryLogic(GoodsCategoryLogic goodsCategoryLogic) {
+		this.goodsCategoryLogic = goodsCategoryLogic;
 	}
 
 	/**

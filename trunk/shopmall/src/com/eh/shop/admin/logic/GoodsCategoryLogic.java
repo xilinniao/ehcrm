@@ -5,13 +5,19 @@ import java.util.List;
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.entity.TbGoodsCategory;
 
-public interface GoodsCatLogic extends IBaseLogic {
+public interface GoodsCategoryLogic extends IBaseLogic {
 	/**
 	 * 查找商品分类数据
 	 * @param treeNo
 	 * @return
 	 */
 	public List findGoodscatTree(String treeNo,Long shopId);
+	/**
+	 * 查找第一层分类
+	 * @param shopId
+	 * @return
+	 */
+	public List findFirstLevelCategory(Long shopId);
 	/**
 	 * 保存商品分类数据
 	 * @param goodscat

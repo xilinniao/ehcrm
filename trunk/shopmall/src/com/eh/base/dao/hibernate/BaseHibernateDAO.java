@@ -140,6 +140,16 @@ public class BaseHibernateDAO extends HibernateDaoSupport {
 		return ((Long)count.get(0)).intValue();
 	}
 	
+	public Long findLong(String hql,Object[] values){
+		Assert.hasText(hql);
+		List count = getHibernateTemplate().find(hql,values);
+		if(count.size()>0){
+			return (Long)count.get(0);
+		}else{
+			return null;
+		}
+	}
+	
 	/**
 	 * 分页查询函数，使用hql.
 	 * @param pageNo 页号,从1开始.

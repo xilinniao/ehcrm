@@ -4,6 +4,7 @@
 package com.eh.shop.admin.logic.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -14,8 +15,10 @@ import com.eh.base.util.Constants;
 import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.GoodsLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
+import com.eh.shop.entity.TbGoodsCategoryRel;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoShort;
+import com.eh.shop.entity.TbSiteCategory;
 
 /**
  * @author zhoucl
@@ -38,15 +41,37 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 	/* (non-Javadoc)
 	 * @see com.eh.shop.admin.logic.GoodsLogic#saveGoodsInfo(com.eh.shop.entity.TbGoodsInfo)
 	 */
-	public String saveGoodsInfo(TbGoodsInfo info) {
+	public String saveGoodsInfo(TbGoodsInfo info,TbSiteCategory siteCategory) {
 		if(info.getGoodsId().longValue()==Constants.ADD_PK_ID.longValue()){
 			info.setGoodsId(null);
 			//增加一条对应关系
+			if(siteCategory!=null){
+				info.setSiteCategory(siteCategory);
+			}
 			super.save(info);
+			if(siteCategory != null ){
+				TbGoodsCategoryRel rel = new TbGoodsCategoryRel();
+				rel.setGoods(info);
+				rel.setCategory(siteCategory);
+				Long orderNum = this.getMaxOrderNum(siteCategory);
+				rel.setOrderNum(orderNum);
+				rel.setCreateTime(new Date());
+				super.save(rel);
+			}
 		}else{
 			super.save(info);
 		}
 		return null;
+	}
+	
+	
+	private Long getMaxOrderNum(TbSiteCategory siteCategory){
+		Long max = super.baseDao.findLong("select max(orderNum) from TbGoodsCategoryRel t where t.category = ? ", new Object[]{siteCategory});
+		if(max==null){
+			return Long.valueOf(1);
+		}else{
+			return max+1;
+		}
 	}
 
 	/* (non-Javadoc)

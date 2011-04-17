@@ -14,6 +14,7 @@ public class TbShopInfo  implements java.io.Serializable {
     // Fields    
 
      private Long shopId;
+     private TbShopInfo parent;
      private String shopName;
      private String shopDesc;
      private String keyword;
@@ -43,7 +44,8 @@ public class TbShopInfo  implements java.io.Serializable {
     }
     
     /** full constructor */
-    public TbShopInfo(String shopName, String shopDesc, String keyword, String idNo, String shopAddr, String linkerMan, String linkerMobile, String linkTel, String email, TbUserInfo admin, Long imgLogo, Long imgoAd, Date foundDate, Date modiDate) {
+    public TbShopInfo(TbShopInfo parent, String shopName, String shopDesc, String keyword, String idNo, String shopAddr, String linkerMan, String linkerMobile, String linkTel, String email, TbUserInfo admin, Long imgLogo, Long imgoAd, Date foundDate, Date modiDate) {
+        this.parent = parent;
         this.shopName = shopName;
         this.shopDesc = shopDesc;
         this.keyword = keyword;
@@ -69,6 +71,14 @@ public class TbShopInfo  implements java.io.Serializable {
     
     public void setShopId(Long shopId) {
         this.shopId = shopId;
+    }
+
+    public TbShopInfo getParent() {
+        return this.parent;
+    }
+    
+    public void setParent(TbShopInfo parent) {
+        this.parent = parent;
     }
 
     public String getShopName() {
