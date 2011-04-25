@@ -34,7 +34,7 @@
     	
     	$('#parent_category_select').click(function(){
 			$.colorbox({
-				href:'<%=path%>/shop/admin/goodscat.xhtml?method=selectGoodscat',
+				href:'<%=path%>/shop/admin/goodsCategory.xhtml?method=selectGoodscat',
 				iframe:true,
 				width:"500",
 				height:"90%"
@@ -48,7 +48,7 @@
   </head>
   <body class="input">
   	<div class="inputBar">
-		<h1><span class="icon">&nbsp;</span>商品管理->新增商品</h1>
+		<h1><span class="icon">&nbsp;</span>商品管理->商品信息设置</h1>
 	</div>
 	 <div class="box column-center">
 		<div class="box-content form-table" style="display: block; ">
