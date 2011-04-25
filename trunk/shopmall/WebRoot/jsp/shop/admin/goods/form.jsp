@@ -6,7 +6,7 @@
 							  <tbody>							  
 							  <tr>
 							    <th>商品名称</th>
-								<td><input type="text" name="goodsName" class="formText {required: true}" id="goodsName" size="40" value="${info.goodsName }"></td>
+								<td><input type="text" name="goodsName" class="formTextLL {required: true}" id="goodsName" size="40" value="${info.goodsName }"></td>
 							  </tr>
 							  <tr>
 							    <th>品牌</th>
