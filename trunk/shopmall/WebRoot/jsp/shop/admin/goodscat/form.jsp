@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-			<form action="<%=path%>/shop/admin/goodscat.xhtml?method=onEditGoodscat" class="validate" id="saveform" name="saveform" method="post">
+			<form action="<%=path%>/shop/admin/siteCategory.xhtml?method=onEditCategory" class="validate" id="saveform" name="saveform" method="post">
 						<input type="hidden" name="categoryId" id="categoryId"/>
-						<input type="hidden" name="parentGoodscatId" id="id_category_id" />
+						<input type="hidden" name="parentCategoryId" id="id_category_id" />
 							<table border="0" cellspacing="0" cellpadding="0" class="inputTable tabContent" style="display: table;">
 							  <tbody>
 							  <tr>
@@ -12,19 +12,23 @@
 							  </tr>
 							  <tr>
 							    <th>分类名称</th>
-								<td><input type="text" name="categoryName" class="formText {required: true}" id="categoryName" size="40"></td>
+								<td><input type="text" name="categoryName" class="formText {required: true}" id="categoryName"/></td>
 							  </tr>
 							  <tr>
-							    <th>页面关键字</th>
-								<td><input type="text" name="keyWords" class="formText {required: true}" id="keyWords" size="40"></td>
+							    <th>分类URL</th>
+								<td><input type="text" name="categoryUrl" id="categoryUrl" class="formText" /></td>
+							  </tr>
+							  <tr>
+							    <th nowrap>页面关键字</th>
+								<td><input type="text" name="keyWords" id="keyWords" class="formTextLL {required: true}" /></td>
 							  </tr>
 							  <tr>
 							    <th>页面描述</th>
-								<td><input type="text" name="categoryDesc" class="formText {required: true}" id="categoryDesc" size="40"></td>
+								<td><textarea name="categoryDesc" id="categoryDesc" style="width:450px;height:100px;"></textarea></td>
 							  </tr>
 							  <tr>
 							    <th>排序号</th>
-								<td><input type="text" name="orderNum" class="formText {required: true}" id="orderNum" size="40"></td>
+								<td><input type="text" name="orderNum" class="formText {required: true}" id="orderNum"></td>
 							  </tr>
 							  </tbody>
 							</table>

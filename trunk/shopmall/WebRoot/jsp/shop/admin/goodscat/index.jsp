@@ -15,7 +15,7 @@
 	<!--
 	var saveform_validator;
 	$(document).ready(function(){
-		$("#goodscat_tree").jstree({
+		$("#category_tree").jstree({
 			"ui" : {
 				"select_limit" : 1,
 				"select_multiple_modifier" : "alt",
@@ -24,27 +24,27 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/shop/admin/goodscat.xhtml?method=getXmlTree"
+					"url" : "<%=path%>/shop/admin/siteCategory.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]
 		}).bind("select_node.jstree", function(e, data) {
 			var data_id = data.rslt.obj.attr("id");
 			if(data_id=='id_${rootId}'){
-				$('#parent_goodscat_select').hide();
+				$('#parent_siteCategory_select').hide();
 				$('#btnSave').hide();
 				$('#btnDelete').hide();
 			}else{
-				$('#parent_goodscat_select').show();
+				$('#parent_siteCategory_select').show();
 				$('#btnSave').show();
 				$('#btnDelete').show();
 			}
 			//更新右边的输入框
 			$.ajax({
-				  url: '<%=path%>/shop/admin/goodscat.xhtml',
+				  url: '<%=path%>/shop/admin/siteCategory.xhtml',
 				  type: 'POST',
 				  dataType:'json',
-				  data: 'method=editGoodscat&categoryId='+data_id.substr(3),
+				  data: 'method=editCategory&categoryId='+data_id.substr(3),
 				  success: function(data) {
 				  	saveform_validator.resetForm();
 				  	$('#categoryId').val(data.categoryId);
@@ -72,7 +72,7 @@
 				$('#saveform').ajaxSubmit({
 					success:function(respText){
 						if(respText=='OK'){
-							$("#goodscat_tree").jstree("refresh");
+							$("#category_tree").jstree("refresh");
 						}else{
 							alert('操作失败');
 						}
@@ -83,18 +83,18 @@
     	});
     	
     	$('#btnDelete').click(function(){
-    		if(confirm('是否删除该商品分类?')){
+    		if(confirm('是否删除该网站分类?')){
 	    		$.ajax({
-					  url: '<%=path%>/shop/admin/goodscat.xhtml',
+					  url: '<%=path%>/shop/admin/siteCategory.xhtml',
 					  type: 'POST',
 					  dataType:'text',
-					  data: 'method=deleteGoodscat&categoryId='+$('#categoryId').val(),
+					  data: 'method=deleteCategory&categoryId='+$('#categoryId').val(),
 					  success: function(respText) {
 						  	if(respText=='OK'){
-								alert('商品分类删除成功！');
-								$("#goodscat_tree").jstree("refresh");
+								alert('网站分类删除成功！');
+								$("#category_tree").jstree("refresh");
 							}else if(respText=='EER01'){
-								alert('操作失败：请先删除该商品分类下子商品分类');
+								alert('操作失败：请先删除该网站分类下子网站分类');
 							}else{
 								alert('操作失败');
 							}
@@ -106,7 +106,7 @@
     	
     	$('#parent_category_select').click(function(){
 			$.colorbox({
-				href:'<%=path%>/shop/admin/goodscat.xhtml?method=selectGoodscat',
+				href:'<%=path%>/shop/admin/siteCategory.xhtml?method=selectCategory',
 				iframe:true,
 				width:"500",
 				height:"90%"
@@ -120,26 +120,26 @@
   </head>
   <body class="input">
   	<div class="inputBar">
-		<h1><span class="icon">&nbsp;</span>系统管理->商品分类管理</h1>
+		<h1><span class="icon">&nbsp;</span>系统管理->网站分类管理</h1>
 	</div>
 	<div class="operateBar">
-		<input type="button" class="addButton" onclick="location.href='goodscat.xhtml?method=addGoodscat'" value="新增分类">
+		<input type="button" class="addButton" onclick="location.href='siteCategory.xhtml?method=addCategory'" value="新增分类">
 		
-		<input type="button" class="addButton" onclick="location.href='goodscat.xhtml?method=getJingDongCat'" value="京东分类">
+		<input type="button" class="addButton" onclick="location.href='siteCategory.xhtml?method=getJingDongCat'" value="京东分类">
 		
-		<input type="button" class="addButton" onclick="location.href='goodscat.xhtml?method=top'" value="分类HTML">
+		<input type="button" class="addButton" onclick="location.href='siteCategory.xhtml?method=top'" value="分类HTML">
 		
-		<input type="button" class="addButton" onclick="location.href='goodscat.xhtml?method=initGoodsRel'" value="随机产品">
+		<input type="button" class="addButton" onclick="location.href='siteCategory.xhtml?method=initGoodsRel'" value="随机产品">
 	</div>
 	
 	<div class="box column-left">
-		<h2 class="box-header">商品分类列表</h2>
-		<div class="box-content" id="goodscat_tree" style="display: block; "></div>
+		<h2 class="box-header">网站分类列表</h2>
+		<div class="box-content" id="category_tree" style="display: block; "></div>
 	</div>
 	 <div class="box column-right">
-		<h2 class="box-header">商品分类详情</h2>
+		<h2 class="box-header">网站分类详情</h2>
 		<div class="box-content form-table" style="display: block; ">
-			<%@include file="/jsp/shop/admin/goodscat/form.jsp"%>
+			<%@include file="/jsp/shop/admin/site_category/form.jsp"%>
     	</div>
     </div>
   </body>
