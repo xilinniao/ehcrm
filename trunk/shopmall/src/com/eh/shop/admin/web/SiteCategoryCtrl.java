@@ -241,7 +241,7 @@ public class SiteCategoryCtrl extends BaseTreeCtrl{
 					
 					//原价
 					String orgPrice = elm.select("div.p-price > del").text().substring(1);
-					goods.setOriginalPrice(Double.parseDouble(orgPrice));
+					goods.setMarketPrice(Double.parseDouble(orgPrice));
 					
 					goods.setJdUrl(elm.select("div.p-name > a").attr("href"));
 					//明细就不获取了

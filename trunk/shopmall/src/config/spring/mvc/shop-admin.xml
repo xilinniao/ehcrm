@@ -37,6 +37,8 @@
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="goodsLogic" ref="goodsLogic"/>
         <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
+        <property name="goodsCategoryLogic" ref="goodsCategoryLogic"/>
+        <property name="brandInfoLogic" ref="brandInfoLogic"/>
    </bean>
    
    <bean name="brandInfoCtrl" class="com.eh.shop.admin.web.BrandInfoCtrl">

@@ -9,6 +9,7 @@ import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
 import com.eh.shop.entity.TbGoodsInfo;
+import com.eh.shop.entity.TbGoodsInfoSub;
 import com.eh.shop.entity.TbSiteCategory;
 
 /**
@@ -27,13 +28,19 @@ public interface GoodsLogic extends IBaseLogic {
 	 * @param info
 	 * @return
 	 */
-	public String saveGoodsInfo(TbGoodsInfo info,TbSiteCategory siteCategory);
+	public String saveGoodsInfo(TbGoodsInfo info,TbSiteCategory siteCategory,TbGoodsInfoSub[] subs);
 	/**
 	 * 根据物品ID查询图片列表
 	 * @param goodsId
 	 * @return
 	 */
 	public List findImageList(Long goodsId);
+	/**
+	 * 查找商品子列表
+	 * @param goodsId
+	 * @return
+	 */
+	public List findGoodSubList(Long goodsId);
 	/**
 	 * 查找商品列表
 	 * @param productId
