@@ -32,7 +32,7 @@
 			}
     	});
     	
-    	$('#parent_category_select').click(function(){
+    	$('#site_category_select').click(function(){
 			$.colorbox({
 				href:'<%=path%>/shop/admin/goodsCategory.xhtml?method=selectGoodscat',
 				iframe:true,

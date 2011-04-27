@@ -46,7 +46,7 @@
 	 
 	<div class="box">
 		<h2 class="box-header">商品分类列表</h2>
-		<div class="box-content min-height-500" id="goodscat_tree" style="display: block; "></div>
+		<div class="box-content" id="goodscat_tree" style="display: block;"></div>
 	</div>
   </body>
 </html>
