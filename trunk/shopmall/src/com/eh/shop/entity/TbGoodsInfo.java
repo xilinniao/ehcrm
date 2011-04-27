@@ -22,7 +22,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private String keyWord;
      private String goodNo;
      private Double weight;
-     private Double originalPrice;
+     private Double marketPrice;
      private Double discountPrice;
      private String goodsDesc;
      private Long leavesCount;
@@ -40,7 +40,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbSiteCategory siteCategory, TbBrandInfo brandInfo, TbPageCategory pageCategory, String goodsName, String keyWord, String goodNo, Double weight, Double originalPrice, Double discountPrice, String goodsDesc, Long leavesCount, String imageUrl, String jdUrl, Long createUser, Date createTime) {
+    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbSiteCategory siteCategory, TbBrandInfo brandInfo, TbPageCategory pageCategory, String goodsName, String keyWord, String goodNo, Double weight, Double marketPrice, Double discountPrice, String goodsDesc, Long leavesCount, String imageUrl, String jdUrl, Long createUser, Date createTime) {
         this.shopInfo = shopInfo;
         this.category = category;
         this.siteCategory = siteCategory;
@@ -50,7 +50,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
         this.keyWord = keyWord;
         this.goodNo = goodNo;
         this.weight = weight;
-        this.originalPrice = originalPrice;
+        this.marketPrice = marketPrice;
         this.discountPrice = discountPrice;
         this.goodsDesc = goodsDesc;
         this.leavesCount = leavesCount;
@@ -143,12 +143,12 @@ public class TbGoodsInfo  implements java.io.Serializable {
         this.weight = weight;
     }
 
-    public Double getOriginalPrice() {
-        return this.originalPrice;
+    public Double getMarketPrice() {
+        return this.marketPrice;
     }
     
-    public void setOriginalPrice(Double originalPrice) {
-        this.originalPrice = originalPrice;
+    public void setMarketPrice(Double marketPrice) {
+        this.marketPrice = marketPrice;
     }
 
     public Double getDiscountPrice() {

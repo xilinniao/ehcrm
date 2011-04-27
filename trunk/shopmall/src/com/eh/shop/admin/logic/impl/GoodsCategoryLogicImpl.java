@@ -16,8 +16,25 @@ public class GoodsCategoryLogicImpl extends BaseLogic implements GoodsCategoryLo
 	 * @see com.eh.shop.admin.logic.GoodsCatLogic#getRootCategory(java.lang.Long)
 	 */
 	public TbGoodsCategory getRootCategory(Long shopId) {
-		List cats = super.baseDao.find("from TbGoodsCategory t where t.treeNo = '001' and t.shopInfo.shopId= ? ",shopId);
-		return (TbGoodsCategory)cats.get(0);
+		List cats = super.baseDao.find("from TbGoodsCategory t where t.parent is null and t.shopInfo.shopId= ? ",shopId);
+		if(cats.size()==0){
+			return null;
+		}else{
+			return (TbGoodsCategory)cats.get(0);
+		}
+	}
+	
+	public TbGoodsCategory saveRootCategory(TbShopInfo shopInfo){
+		TbGoodsCategory root = new TbGoodsCategory();
+		root.setCategoryName("顶层分类");
+		root.setShopInfo(shopInfo);
+		root.setCategoryLevel(Long.valueOf(0));
+		root.setIsLeaf(Constants.NO);
+		root.setDataStatus(Constants.YES);
+		root.setTreeNo("100");
+		root.setOrderNum(Long.valueOf(0));
+		super.save(root);
+		return root;
 	}
 	
 	/* (non-Javadoc)
@@ -52,24 +69,31 @@ public class GoodsCategoryLogicImpl extends BaseLogic implements GoodsCategoryLo
 			goodscat.setCategoryId(null);
 			goodscat.setDataStatus(Constants.YES);
 			super.save(goodscat);
-			loopGoodscat(goodscat.getParent().getCategoryId(),goodscat.getParent().getTreeNo());
+			loopGoodscat(goodscat.getParent(),goodscat.getParent().getTreeNo());
 		}else{
 			super.save(goodscat);
-			loopGoodscat(goodscat.getParent().getCategoryId(),goodscat.getParent().getTreeNo());
+			loopGoodscat(goodscat.getParent(),goodscat.getParent().getTreeNo());
 		}
 		return goodscat.getCategoryId();
 	}
 	
-	private void loopGoodscat(Long pid,String treeNo){
-		List childs = super.baseDao.find("from TbGoodsCategory t where t.parent.categoryId = ? order by t.orderNum asc", pid);
+	private void loopGoodscat(TbGoodsCategory parent,String treeNo){
+		List childs = super.baseDao.find("from TbGoodsCategory t where t.parent = ? order by t.orderNum asc", parent);
+		if(childs.size()==0){
+			parent.setIsLeaf(Constants.YES);
+		}else{
+			parent.setIsLeaf(Constants.NO);
+		}
+		super.save(parent);
 		String myTreeNo = "";
 		TbGoodsCategory goodscat = null;
 		for(int i = 0,len = childs.size();i<len;i++){
 			goodscat = (TbGoodsCategory)childs.get(i);
 			myTreeNo = treeNo+String.valueOf(100+i);
 			goodscat.setTreeNo(myTreeNo);
+			goodscat.setCategoryLevel(parent.getCategoryLevel()+1);
 			super.save(goodscat);
-			loopGoodscat(goodscat.getCategoryId(),goodscat.getTreeNo());
+			loopGoodscat(goodscat,goodscat.getTreeNo());
 		}
 	}
 
@@ -111,6 +135,16 @@ public class GoodsCategoryLogicImpl extends BaseLogic implements GoodsCategoryLo
 				.find(
 						"from TbGoodsCategory t where t.treeNo like ? and t.shopInfo.shopId = ? ",
 						new Object[] { treeNo+"%", Constants.SYSTEM_SHOP });
+	}
+	
+	/**
+	 * 查找店铺所有分类信息
+	 * @param treeNo
+	 * @param shopId
+	 * @return
+	 */
+	public List findShopCategory(Long shopId) {
+		return super.baseDao.find("from TbGoodsCategory t where t.parent is not null and t.shopInfo.shopId = ? order by t.treeNo asc",shopId);
 	}
 
 	/* (non-Javadoc)

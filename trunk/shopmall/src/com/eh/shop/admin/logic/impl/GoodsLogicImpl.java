@@ -18,6 +18,7 @@ import com.eh.shop.admin.web.qry.GoodsInfoQry;
 import com.eh.shop.entity.TbGoodsCategoryRel;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoShort;
+import com.eh.shop.entity.TbGoodsInfoSub;
 import com.eh.shop.entity.TbSiteCategory;
 
 /**
@@ -35,20 +36,26 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		//加上商店的判断
 		CriteriaUtil.addEq(criteria, "s.shopId", qry.getUserInfo().getShopInfo().getShopId());
 		CriteriaUtil.addRightLike(criteria, "c.treeNo", qry.getTreeNo());
-		return baseDao.pagedQuery(criteria, qry.getDataTablesPageNo(), qry.getPageSize());
+		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 
 	/* (non-Javadoc)
 	 * @see com.eh.shop.admin.logic.GoodsLogic#saveGoodsInfo(com.eh.shop.entity.TbGoodsInfo)
 	 */
-	public String saveGoodsInfo(TbGoodsInfo info,TbSiteCategory siteCategory) {
+	public String saveGoodsInfo(TbGoodsInfo info,TbSiteCategory siteCategory,TbGoodsInfoSub[] subs) {
 		if(info.getGoodsId().longValue()==Constants.ADD_PK_ID.longValue()){
 			info.setGoodsId(null);
 			//增加一条对应关系
 			if(siteCategory!=null){
 				info.setSiteCategory(siteCategory);
 			}
+			info.setMarketPrice(subs[0].getMarketPrice());
+			info.setDiscountPrice(subs[0].getDiscountPrice());			
 			super.save(info);
+			for(TbGoodsInfoSub next:subs){
+				next.setGoods(info);
+				super.save(next);
+			}
 			if(siteCategory != null ){
 				TbGoodsCategoryRel rel = new TbGoodsCategoryRel();
 				rel.setGoods(info);
@@ -59,6 +66,11 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 				super.save(rel);
 			}
 		}else{
+			//查询到原来的价格
+			for(TbGoodsInfoSub next:subs){
+				next.setGoods(info);
+				super.save(next);
+			}
 			super.save(info);
 		}
 		return null;
@@ -73,6 +85,14 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 			return max+1;
 		}
 	}
+	
+	/*private Long cntCategoryRel(TbSiteCategory siteCategory,){
+		Long cnt = super.baseDao.findLong("select count(*) from TbGoodsCategoryRel where category = ? and goods = ? ", new Object[]{
+				
+		}); 
+	}*/
+	
+	
 
 	/* (non-Javadoc)
 	 * @see com.eh.shop.admin.logic.GoodsLogic#findImageList(java.lang.Long)
@@ -117,4 +137,12 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		criteria.setMaxResults(10);
 		return criteria.list();
 	}
+	/**
+	 * 查找商品子列表
+	 */
+	public List findGoodSubList(Long goodsId) {
+		return super.baseDao.find("from TbGoodsInfoSub t where t.goods.goodsId = ? ",goodsId);
+	}
+	
+	
 }

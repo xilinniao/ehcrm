@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.entity.TbGoodsCategory;
+import com.eh.shop.entity.TbShopInfo;
 
 public interface GoodsCategoryLogic extends IBaseLogic {
 	/**
@@ -34,7 +35,13 @@ public interface GoodsCategoryLogic extends IBaseLogic {
 	 * 根据商店ID获取根分类
 	 * @return
 	 */
-	public TbGoodsCategory getRootCategory(Long shopId);	
+	public TbGoodsCategory getRootCategory(Long shopId);
+	/**
+	 * 创建顶层分类
+	 * @param shopInfo
+	 * @return
+	 */
+	public TbGoodsCategory saveRootCategory(TbShopInfo shopInfo);
 	/**
 	 * 系统店铺使用
 	 * 根据URL查询分类信息
@@ -54,4 +61,10 @@ public interface GoodsCategoryLogic extends IBaseLogic {
 	 * @return
 	 */
 	public List findCategoryListByParentId(Long parentId,Long shopId);
+	/**
+	 * 查找商店分类信息
+	 * @param shopId
+	 * @return
+	 */
+	public List findShopCategory(Long shopId);
 }

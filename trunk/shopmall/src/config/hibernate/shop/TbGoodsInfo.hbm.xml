@@ -40,8 +40,8 @@
 		<property name="weight" type="java.lang.Double">
 			<column name="weight" precision="12" />
 		</property>
-		<property name="originalPrice" type="java.lang.Double">
-			<column name="ORIGINAL_PRICE" precision="12" />
+		<property name="marketPrice" type="java.lang.Double">
+			<column name="market_price" precision="12" />
 		</property>
 		<property name="discountPrice" type="java.lang.Double">
 			<column name="DISCOUNT_PRICE" precision="12" />

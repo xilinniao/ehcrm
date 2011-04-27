@@ -5,7 +5,6 @@ package com.eh.shop.admin.web;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,15 +14,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.util.Constants;
-import com.eh.base.util.VelocityUtils;
 import com.eh.base.vo.UserInfo;
 import com.eh.shop.admin.logic.BrandInfoLogic;
+import com.eh.shop.admin.logic.GoodsCategoryLogic;
 import com.eh.shop.admin.logic.GoodsLogic;
 import com.eh.shop.admin.logic.PageCategoryLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
 import com.eh.shop.entity.TbBrandInfo;
 import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbGoodsInfo;
+import com.eh.shop.entity.TbGoodsInfoSub;
 import com.eh.shop.entity.TbPageCategory;
 import com.eh.shop.entity.TbSiteCategory;
 
@@ -35,6 +35,7 @@ import com.eh.shop.entity.TbSiteCategory;
  */
 public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 	GoodsLogic goodsLogic;
+	GoodsCategoryLogic goodsCategoryLogic;
 	PageCategoryLogic pageCategoryLogic = null;
 	BrandInfoLogic brandInfoLogic = null;
 
@@ -72,43 +73,47 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 	 * @return
 	 * @throws Exception
 	 */
-	public ModelAndView goodsList(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView goodsList(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
 		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goods/list");
 		GoodsInfoQry qry = new GoodsInfoQry();
 		bindObject(request, qry);
 		qry.setUserInfo(userInfo);
-		if (StringUtils.isBlank(qry.getTreeNo())) {
+		if (StringUtils.isBlank(qry.getTreeNo())&& qry.getCategoryId()!=null) {
 			TbGoodsCategory category = this.goodsLogic.load(TbGoodsCategory.class, qry.getCategoryId());
 			qry.setTreeNo(category.getTreeNo());
 		}
 		Page page = goodsLogic.findGoodsList(qry);
 		mav.addObject("page",page);
+		mav.addObject("qry", qry);
 		return mav;
 	}
 
 	/**
 	 * 新增商品信息
-	 * 
 	 * @param request
 	 * @param response
 	 * @return
 	 * @throws Exception
 	 */
-	public ModelAndView add(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView add(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
 		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goods/edit");
 		TbGoodsInfo info = new TbGoodsInfo();
 		info.setGoodsId(Constants.ADD_PK_ID);
 		mav.addObject("info", info);
+		
+		//首页分类
 		List pageCategoryList = pageCategoryLogic.findAllPageCategoryList(userInfo.getShopInfo().getShopId());
 		mav.addObject("pageCategoryList", pageCategoryList);
 		
+		//所属分类
+		List categoryList = this.goodsCategoryLogic.findShopCategory(userInfo.getShopInfo().getShopId());
+		mav.addObject("categoryList", categoryList);
+		
 		//品牌列表
-		/*List brandList = this.brandInfoLogic.findAllBrandListByShop(userInfo.getShopInfo().getShopId());
-		mav.addObject("brandList", brandList);*/
+		List brandList = this.brandInfoLogic.findAllBrandListByShop(userInfo.getShopInfo().getShopId());
+		mav.addObject("brandList", brandList);
 		return mav;
 	}
 
@@ -119,10 +124,11 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 	 * @return
 	 * @throws Exception
 	 */
-	public ModelAndView editGoods(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView editGoods(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
 		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goods/edit");
+		//判断商品分类是否添加，如果没有添加，则提示需要添加商品分类
+		
 		Long goodsId = super.getLong(request, "goodsId", false);
 		//修改操作
 		TbGoodsInfo info = this.goodsLogic.get(TbGoodsInfo.class, goodsId);
@@ -130,9 +136,24 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			// 获取图片列表
 			List imageList = this.goodsLogic.findImageList(goodsId);
 			mav.addObject("imageList", imageList);
-			mav.addObject("info", info);
+			
+			//首页分类
 			List pageCategoryList = pageCategoryLogic.findAllPageCategoryList(userInfo.getShopInfo().getShopId());
 			mav.addObject("pageCategoryList", pageCategoryList);
+			
+			//所属分类
+			List categoryList = this.goodsCategoryLogic.findShopCategory(userInfo.getShopInfo().getShopId());
+			mav.addObject("categoryList", categoryList);
+			
+			//品牌列表
+			List brandList = this.brandInfoLogic.findAllBrandListByShop(userInfo.getShopInfo().getShopId());
+			mav.addObject("brandList", brandList);
+			
+			//子商品信息
+			List subList = this.goodsLogic.findGoodSubList(goodsId);
+			mav.addObject("subList", subList);
+			
+			mav.addObject("info", info);
 			return mav;
 		}else{
 			//设置错误信息
@@ -141,8 +162,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		}
 	}
 
-	public ModelAndView onEditGoods(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView onEditGoods(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
 		Long goodsId = super.getLong(request, "goodsId", false);
 		Long categoryId = super.getLong(request, "categoryId", false);
@@ -162,6 +182,23 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			siteCategory = this.goodsLogic.get(TbSiteCategory.class, siteCategoryId);
 		}
 		TbGoodsCategory category = this.goodsLogic.get(TbGoodsCategory.class,categoryId);
+		
+		String[] subName = super.getStrings(request, "subName", true);//货号名称
+		String[] subNo = super.getStrings(request, "subNo", true);//货号
+		String[] marketPrice = super.getStrings(request, "marketPrice", true);//市场价
+		String[] discountPrice = super.getStrings(request, "discountPrice", true);//折扣价
+		//String[] qty = super.getStrings(request, "qty", true);//数量
+		
+		TbGoodsInfoSub[] subs = new TbGoodsInfoSub[subName.length];
+		for(int i = 0, len = subName.length ; i < len ; i++){
+			subs[i] = new TbGoodsInfoSub();
+			subs[i].setMarketPrice(Double.parseDouble(marketPrice[i]));
+			subs[i].setDiscountPrice(Double.parseDouble(discountPrice[i]));
+			subs[i].setGoodsSubNo(subNo[i]);
+			subs[i].setGoodsSubName(subName[i]);
+			//subs[i].setLeavesCount(Long.parseLong(qty[i]));
+		}
+		
 		if (goodsId.longValue() == Constants.ADD_PK_ID.longValue()) {
 			// 新增操作
 			TbGoodsInfo info = new TbGoodsInfo();
@@ -172,7 +209,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			info.setPageCategory(pageCategory);
 			info.setCreateUser(userInfo.getUser().getUserId());
 			info.setCreateTime(new Date());
-			this.goodsLogic.saveGoodsInfo(info,siteCategory);
+			this.goodsLogic.saveGoodsInfo(info,siteCategory,subs);
 		}else{
 			//修改操作
 			TbGoodsInfo info = this.goodsLogic.get(TbGoodsInfo.class, goodsId);
@@ -181,7 +218,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 				info.setCategory(category);
 				info.setBrandInfo(brandInfo);
 				info.setPageCategory(pageCategory);
-				this.goodsLogic.saveGoodsInfo(info,siteCategory);
+				this.goodsLogic.saveGoodsInfo(info,siteCategory,subs);
 			}else{
 				super.addErrors(request, "非法操作，没有找到指定的商品信息");
 			}
@@ -199,8 +236,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 	 * @return
 	 * @throws Exception
 	 */
-	public ModelAndView deleteGoods(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView deleteGoods(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		return null;
 	}
 
@@ -245,6 +281,14 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 	 */
 	public void setBrandInfoLogic(BrandInfoLogic brandInfoLogic) {
 		this.brandInfoLogic = brandInfoLogic;
+	}
+
+	public GoodsCategoryLogic getGoodsCategoryLogic() {
+		return goodsCategoryLogic;
+	}
+
+	public void setGoodsCategoryLogic(GoodsCategoryLogic goodsCategoryLogic) {
+		this.goodsCategoryLogic = goodsCategoryLogic;
 	}
 	
 	
