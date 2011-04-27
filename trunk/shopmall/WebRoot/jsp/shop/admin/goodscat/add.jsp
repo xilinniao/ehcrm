@@ -32,8 +32,8 @@
 					beforeSubmit:defaultBeforeSubmit,
 					success:function(respText){
 						if(respText=='OK'){
-							alert('商品分类新增成功');
-							location.href='goodscat.xhtml?method=index';
+							alert('网站分类新增成功');
+							location.href='siteCategory.xhtml?method=index';
 						}else{
 							alert('数据保存失败');
 						}					
@@ -47,7 +47,7 @@
     	
     	$('#parent_category_select').click(function(){
 			$.colorbox({
-				href:'<%=path%>/shop/admin/goodscat.xhtml?method=selectGoodscat',
+				href:'<%=path%>/shop/admin/siteCategory.xhtml?method=selectCategory',
 				iframe:true,
 				width:"500",
 				height:"90%"
@@ -61,11 +61,11 @@
   </head>
   <body class="input">
   	<div class="inputBar">
-		<h1><span class="icon">&nbsp;</span>商品分类管理->新增商品分类</h1>
+		<h1><span class="icon">&nbsp;</span>网站分类管理->新增网站分类</h1>
 	</div>
 	 <div class="box column-center">
 		<div class="box-content form-table" style="display: block; ">
-			<%@include file="/jsp/shop/admin/goodscat/form.jsp"%>
+			<%@include file="/jsp/shop/admin/site_category/form.jsp"%>
     	</div>
     </div>
   </body>

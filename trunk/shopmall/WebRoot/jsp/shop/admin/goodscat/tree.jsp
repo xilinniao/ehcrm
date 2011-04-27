@@ -14,7 +14,7 @@
 	<!--
 	var saveform_validator;
 	$(document).ready(function(){
-		$("#goodscat_tree").jstree({
+		$("#siteCategory_tree").jstree({
 			"ui" : {
 				"select_limit" : 1,
 				"select_multiple_modifier" : "alt",
@@ -23,7 +23,7 @@
 			},
 			"html_data" : {
 				"ajax" : {
-					"url" : "<%=path%>/shop/admin/goodscat.xhtml?method=getXmlTree"
+					"url" : "<%=path%>/shop/admin/siteCategory.xhtml?method=getXmlTree"
 				}
 			},
 			"plugins" : [ "themes","ui","html_data"]
@@ -43,7 +43,7 @@
 		<h1><span class="icon">&nbsp;</span>选择商品分类</h1>
 	</div>	
 	<div class="box column-center">
-		<div class="box-content min-height-500" id="goodscat_tree" style="display: block; "></div>
+		<div class="box-content min-height-500" id="siteCategory_tree" style="display: block; "></div>
 	</div>
   </body>
 </html>
