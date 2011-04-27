@@ -32,8 +32,9 @@
 					beforeSubmit:defaultBeforeSubmit,
 					success:function(respText){
 						if(respText=='OK'){
-							alert('商品分类新增成功');
-							location.href='goodsCategory.xhtml?method=index';
+							$.dialog({type: "success", content: "成功新增商品分类", width: 360, modal: true, ok:'确定', okCallback:function(){
+								location.href='goodsCategory.xhtml?method=index';
+							}});
 						}else{
 							alert('数据保存失败');
 						}					

@@ -19,15 +19,14 @@
 			"ui" : {
 				"select_limit" : 1,
 				"select_multiple_modifier" : "alt",
-				"selected_parent_close" : "select_parent",
-				"initially_select":['id_${rootId}']
+				"selected_parent_close" : "select_parent"
 			},
 			"html_data" : {
 				"ajax" : {
 					"url" : "<%=path%>/shop/admin/goodsCategory.xhtml?method=getXmlTree"
 				}
 			},
-			"plugins" : [ "themes","ui","html_data"]
+			"plugins" : [ "themes","ui","html_data","cookies"]
 		}).bind("select_node.jstree", function(e, data) {
 			var data_id = data.rslt.obj.attr("id");
 			if(data_id=='id_${rootId}'){
@@ -63,7 +62,7 @@
 			errorClass: "validateError",
 			ignore: ".ignoreValidate",
 			errorPlacement:defaultErrorPlacement,
-			submitHandler:defaultSubmitHandler			
+			submitHandler:defaultSubmitHandler
 		});
     	
     	$('#btnSave').click(function(){
@@ -72,6 +71,7 @@
 				$('#saveform').ajaxSubmit({
 					success:function(respText){
 						if(respText=='OK'){
+							$.dialog({type: "success", content: "保存成功！", width: 360, modal: true, ok:'确定'});//$.message({type: "warn", content: "保存成功！"});
 							$("#goodscat_tree").jstree("refresh");
 						}else{
 							alert('操作失败');
@@ -91,12 +91,12 @@
 					  data: 'method=deleteGoodscat&categoryId='+$('#categoryId').val(),
 					  success: function(respText) {
 						  	if(respText=='OK'){
-								alert('商品分类删除成功！');
+								$.dialog({type: "success", content: "商品分类删除成功！！", width: 360, modal: true, ok:'确定'});
 								$("#goodscat_tree").jstree("refresh");
 							}else if(respText=='EER01'){
-								alert('操作失败：请先删除该商品分类下子商品分类');
+								$.dialog({type: "success", content: "操作失败：请先删除该商品分类下子商品分类！", width: 360, modal: true,ok:'确定'});
 							}else{
-								alert('操作失败');
+								$.dialog({type: "success", content: "操作失败", width: 360, modal: true,ok:'确定'});
 							}
 					  },
 					  error:defaultErrorHandler
@@ -124,12 +124,6 @@
 	</div>
 	<div class="operateBar">
 		<input type="button" class="addButton" onclick="location.href='goodsCategory.xhtml?method=addGoodscat'" value="新增分类">
-		
-		<input type="button" class="addButton" onclick="location.href='goodsCategory.xhtml?method=getJingDongCat'" value="京东分类">
-		
-		<input type="button" class="addButton" onclick="location.href='goodsCategory.xhtml?method=top'" value="分类HTML">
-		
-		<input type="button" class="addButton" onclick="location.href='goodsCategory.xhtml?method=initGoodsRel'" value="随机产品">
 	</div>
 	
 	<div class="box column-left">
