@@ -34,17 +34,17 @@
   <body class="header">
   
   	<div id="header-container" class="body">
-		<div class="headerLogo"></div>
+		<!-- <div class="headerLogo"></div> -->
 		<div class="headerTop">
 			<div class="headerLink">
 				<span class="welcome">
 					<strong></strong>&nbsp;您好!&nbsp;
 				</span>
 				<a href="admin!index.action" target="mainFrame">后台首页</a>|
-            	<a href="http://bbs.shopxx.net" target="_blank">技术支持</a>|
-                <a href="http://www.shopxx.net" target="_blank">购买咨询</a>|
-                <a href="http://about.shopxx.net" target="_blank">关于我们</a>|
-                <a href="http://contact.shopxx.net" target="_blank">联系我们</a>
+            	<a href="" target="_blank">技术支持</a>|
+                <a href="" target="_blank">购买咨询</a>|
+                <a href="" target="_blank">关于我们</a>|
+                <a href="" target="_blank">联系我们</a>
 			</div>
 		</div>
 		<div class="headerBottom">
