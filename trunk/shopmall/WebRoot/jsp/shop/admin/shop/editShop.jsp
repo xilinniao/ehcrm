@@ -84,6 +84,7 @@
 						<input type="text" name="email" id="email" class="formText" value="${shop.email}">
 					</td>
 				</tr>
+				<!-- 
 				<tr>
 					<th>
 						 店铺条幅
@@ -93,12 +94,14 @@
 						<label class="requireField">*</label>
 					</td>
 				</tr>
+				 -->
 				<tr>
 					<th>
-						 店铺首页关键字
+						 店铺关键字
 					</th>
 					<td>
-					<input type="text" name="keyword" id="keyword" class="formTextLL+ {required: true}" value="${shop.keyword}">
+					<input type="text" name="keyword" id="keyword" class="formTextLL {required: true}" value="${shop.keyword}"><label class="requireField">*</label>
+					<div class="userTip">店铺关键字能更好的推广您的网站，请认真填写该项内容,多个关键字用空格分开</div>
 					</td>
 				</tr>				
 				<tr>
@@ -106,7 +109,8 @@
 						 店铺描述
 					</th>
 					<td>
-					<textarea name="shopDesc" class="wysiwyg" id="shopDesc" style="width: 500px; height: 150px;">${shop.shopDesc }</textarea>
+					<textarea name="shopDesc" id="shopDesc" style="width: 500px; height: 100px;">${shop.shopDesc }</textarea>
+					<div class="userTip">店铺描述能更好的推广您的网站，请认真填写该项内容</div>
 					</td>
 				</tr>		
 			</tbody></table>
