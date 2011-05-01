@@ -167,7 +167,13 @@ public class TbGoodsCategory  implements java.io.Serializable {
     }
    
 
-
+    public String getCategoryNameFormate() {
+    	String blank="";
+    	for(int i = 1,len = this.categoryLevel.intValue();i<len;i++){
+    		blank+="&nbsp;&nbsp;&nbsp;&nbsp;";
+        }
+    	return blank+this.categoryName;
+    }
 
 
 
