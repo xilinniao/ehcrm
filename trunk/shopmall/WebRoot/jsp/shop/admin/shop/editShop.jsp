@@ -7,7 +7,6 @@
     <title><%=projName %></title>
 	<link href="<%=path %>/resources/common/css/base.css" rel="stylesheet" type="text/css" />
 	<link href="<%=path %>/resources/admin/css/input.css" rel="stylesheet" type="text/css">
-	<link href="<%=path %>/resources/admin/css/datatables.css" rel="stylesheet" type="text/css">
 	<%@include file="/jsp/shop/common/head.jsp"%>
 	<script src="<%=path %>/resources/common/js/base.js" type="text/javascript"></script>
 	<script type="text/javascript">
@@ -109,7 +108,7 @@
 						 店铺描述
 					</th>
 					<td>
-					<textarea name="shopDesc" id="shopDesc" style="width: 500px; height: 100px;">${shop.shopDesc }</textarea>
+					<textarea name="shopDesc" class="formTextarea" id="shopDesc" style="width: 500px; height: 100px;">${shop.shopDesc }</textarea>
 					<div class="userTip">店铺描述能更好的推广您的网站，请认真填写该项内容</div>
 					</td>
 				</tr>		
