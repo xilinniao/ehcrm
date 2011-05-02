@@ -26,7 +26,7 @@
 					"url" : "<%=path%>/shop/admin/siteCategory.xhtml?method=getXmlTree"
 				}
 			},
-			"plugins" : [ "themes","ui","html_data"]
+			"plugins" : [ "themes","ui","html_data","cookies"]
 		}).bind("select_node.jstree", function(e, data) {
 			parent.$('#id_category_id').val(data.rslt.obj.attr("id").substr(3));
 			parent.$('#id_category_name').val(data.args[0].innerText.trim());
