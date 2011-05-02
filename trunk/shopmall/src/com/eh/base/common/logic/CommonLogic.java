@@ -1,8 +1,8 @@
 package com.eh.base.common.logic;
 
-import com.eh.base.entity.TbDeptInfo;
+import com.eh.base.logic.IBaseLogic;
 
-public interface CommonLogic {
+public interface CommonLogic extends IBaseLogic{
 	
 	
 }
