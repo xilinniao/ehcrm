@@ -3,8 +3,8 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.eh.shop.entity.TbGoodsInfoSub" table="TB_GOODS_INFO_SUB">    
-		<id name="recId" type="java.lang.Long">
-            <column name="REC_ID" precision="10" scale="0"/>
+		<id name="goodsSubId" type="java.lang.Long">
+            <column name="GOODS_SUB_ID" precision="10" scale="0"/>
             <generator class="native" />
       	</id>
         <many-to-one name="goods" class="com.eh.shop.entity.TbGoodsInfo">
