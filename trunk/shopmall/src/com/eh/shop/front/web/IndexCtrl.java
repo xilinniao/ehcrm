@@ -20,9 +20,11 @@ import com.eh.base.controller.BaseCtrl;
 import com.eh.base.util.Constants;
 import com.eh.shop.admin.logic.GoodsCategoryLogic;
 import com.eh.shop.admin.logic.PageCategoryLogic;
-import com.eh.shop.entity.TbGoodsCategory;
+import com.eh.shop.admin.logic.SiteCategoryLogic;
+import com.eh.shop.entity.TbSiteCategory;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbPageCategory;
+import com.eh.shop.entity.TbSiteCategory;
 import com.eh.shop.front.vo.GoodsCategoryVo;
 
 /**
@@ -34,23 +36,21 @@ public class IndexCtrl extends BaseCtrl {
 	
 	PageCategoryLogic pageCategoryLogic = null;
 	
-	GoodsCategoryLogic goodsCategoryLogic;
+	SiteCategoryLogic siteCategoryLogic;
 	
 	/**
 	 * 查找商品列表
 	 * @param request
 	 */
-	private void findGoodList(HttpServletRequest request,Long categoryId){
-		List<TbPageCategory> categoryList = pageCategoryLogic.findPageCategoryByType(Constants.SYSTEM_SHOP, categoryId);
-		List categoryGoodsList = new ArrayList();
-		
+	private void findGoodList(HttpServletRequest request,Long siteCategoryId){
+		List<TbPageCategory> categoryList = pageCategoryLogic.findPageCategoryByType(siteCategoryId);
+		List categoryGoodsList = new ArrayList();		
 		for(int i = 0,len = categoryList.size();i<len;i++){
 			GoodsCategoryVo vo = new GoodsCategoryVo();
 			vo.setCategoryName(categoryList.get(i).getCategoryName());
 			vo.setGoodsList(findGoodsByCategory(categoryList.get(i).getCategoryId(),Long.valueOf(8)));
 			categoryGoodsList.add(vo);
-		}
-		
+		}		
 		request.setAttribute("categoryGoodsList", categoryGoodsList);
 	}
 	
@@ -84,7 +84,7 @@ public class IndexCtrl extends BaseCtrl {
 		/*StringBuffer html = new StringBuffer();
 		List subList = this.goodsCategoryLogic.findCategoryListByUrl(url);
 		for(int i = 0,len = subList.size();i<len;i++){
-			TbGoodsCategory category = (TbGoodsCategory)subList.get(i);
+			TbSiteCategory category = (TbSiteCategory)subList.get(i);
 			html.append(" <dl>");
 			html.append("<dt><a href=\"");
 			html.append(category.getCategoryUrl());
@@ -95,7 +95,7 @@ public class IndexCtrl extends BaseCtrl {
 			if(ddList.size()>0){
 				html.append("<dd>");
 				for(int j = 0,lenj = ddList.size();j<lenj;j++){
-					TbGoodsCategory dd = (TbGoodsCategory)ddList.get(j);
+					TbSiteCategory dd = (TbSiteCategory)ddList.get(j);
 					html.append("<a href=\"");
 					html.append(dd.getCategoryUrl());
 					html.append("\">");
@@ -172,10 +172,10 @@ public class IndexCtrl extends BaseCtrl {
 		findGoodList(request, PAGE_INDEX);
 		findHeadNavSub(request);
 		Long productId = super.getLong(request, "productId", true);
-		TbGoodsInfo product = this.goodsCategoryLogic.get(TbGoodsInfo.class, productId);
+		TbGoodsInfo product = this.siteCategoryLogic.get(TbGoodsInfo.class, productId);
 		//查找产品图片信息
 		this.getProductDetail(request,product);
-		this.goodsCategoryLogic.save(product);
+		this.siteCategoryLogic.save(product);
 		mav.addObject("product", product);
 		
 		//获取分类
@@ -210,13 +210,13 @@ public class IndexCtrl extends BaseCtrl {
 	public ModelAndView category(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("/jsp/shop/front/category");
 		Long categoryId = super.getLong(request, "categoryId", false);		
-		TbGoodsCategory category = this.goodsCategoryLogic.get(TbGoodsCategory.class, categoryId);
-		List<TbGoodsCategory> categoryList = this.goodsCategoryLogic.findCategoryListByTreeNo(category.getTreeNo(), Constants.SYSTEM_SHOP);
+		TbSiteCategory category = this.siteCategoryLogic.get(TbSiteCategory.class, categoryId);
+		List<TbSiteCategory> categoryList = this.siteCategoryLogic.findCategoryListByTreeNo(category.getTreeNo());
 		StringBuffer div = new StringBuffer("<div class=\"mt\"><h2>");
 		div.append(category.getCategoryName());
 		div.append("</h2></div><div class=\"mc\">");
 		for (int i = 1, size = categoryList.size(); i < size; i++) {
-			TbGoodsCategory tmp = (TbGoodsCategory)categoryList.get(i);
+			TbSiteCategory tmp = (TbSiteCategory)categoryList.get(i);
 			//如果相等，则做循环
 			if(tmp.getParent().getCategoryId().longValue()==category.getCategoryId().longValue()){
 				div.append("<div class=\"item current\"><h3><b></b><a href=\"http://www.360buy.com/products/670-671-000.html\">");
@@ -232,9 +232,9 @@ public class IndexCtrl extends BaseCtrl {
 		return mav;
 	}
 	
-	private void loopCategory(List<TbGoodsCategory> categoryList,Long category,StringBuffer div){
+	private void loopCategory(List<TbSiteCategory> categoryList,Long category,StringBuffer div){
 		for (int i = 1, size = categoryList.size(); i < size; i++) {
-			TbGoodsCategory tmp = (TbGoodsCategory)categoryList.get(i);
+			TbSiteCategory tmp = (TbSiteCategory)categoryList.get(i);
 			if(tmp.getParent().getCategoryId().longValue()==category.longValue()){
 				div.append("<li><a href=\"http://www.360buy.com/products/670-671-672-0-0-0-0-0-0-0-1-1-1.html\">");
 				div.append(tmp.getCategoryName());
@@ -272,19 +272,12 @@ public class IndexCtrl extends BaseCtrl {
 		this.pageCategoryLogic = pageCategoryLogic;
 	}
 
-	/**
-	 * @return the goodsCategoryLogic
-	 */
-	public GoodsCategoryLogic getGoodsCategoryLogic() {
-		return goodsCategoryLogic;
+	public SiteCategoryLogic getSiteCategoryLogic() {
+		return siteCategoryLogic;
 	}
 
-	/**
-	 * @param goodsCategoryLogic the goodsCategoryLogic to set
-	 */
-	public void setGoodsCategoryLogic(GoodsCategoryLogic goodsCategoryLogic) {
-		this.goodsCategoryLogic = goodsCategoryLogic;
+	public void setSiteCategoryLogic(SiteCategoryLogic siteCategoryLogic) {
+		this.siteCategoryLogic = siteCategoryLogic;
 	}
-
 
 }
