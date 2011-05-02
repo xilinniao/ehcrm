@@ -12,6 +12,7 @@ import com.eh.shop.admin.logic.PageCategoryLogic;
 import com.eh.shop.admin.web.qry.PageCategoryQry;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbPageCategory;
+import com.eh.shop.entity.TbPageGoodsRel;
 
 public class PageCategoryLogicImpl extends BaseLogic implements PageCategoryLogic {
 
@@ -46,20 +47,10 @@ public class PageCategoryLogicImpl extends BaseLogic implements PageCategoryLogi
 	 */
 	public Page findPageCategoryList(PageCategoryQry qry) {
 		Criteria criteria = baseDao.createCriteria(TbPageCategory.class);
-		return baseDao.pagedQuery(criteria, qry.getDataTablesPageNo(), qry.getPageSize());
+		CriteriaUtil.addEq(criteria, "siteCategory.categoryId", qry.getCategoryId());
+		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 
-	/* (non-Javadoc)
-	 * @see com.eh.shop.admin.logic.PageCategoryLogic#findPageTypeList()
-	 */
-	public List findPageTypeList(Long shopId) {
-		List resultList = super.baseDao.find("from TbPageType where shopInfo.shopId = ?",shopId);
-		if(resultList.size()>0){
-			return resultList;
-		}else{
-			return null;
-		}
-	}
 
 	/* (non-Javadoc)
 	 * @see com.eh.shop.admin.logic.PageCategoryLogic#findAllPageCategoryList()
@@ -71,11 +62,11 @@ public class PageCategoryLogicImpl extends BaseLogic implements PageCategoryLogi
 	/**
 	 * 根据ID查找页面分类
 	 */
-	public List<TbPageCategory> findPageCategoryByType(Long shopId,Long pageTypeId){
+	public List<TbPageCategory> findPageCategoryByType(Long siteCategoryId){
 		return super.baseDao
 				.find(
-						"from TbPageCategory t where t.shopInfo.shopId = ? and t.pageType.categoryId = ?",
-						new Object[] { shopId, pageTypeId });
+						"from TbPageCategory t where t.siteCategory.categoryId = ? and t.isShow = 0 order by orderNum asc ",
+						new Object[] { siteCategoryId });
 	}
 
 	/* (non-Javadoc)
@@ -85,5 +76,21 @@ public class PageCategoryLogicImpl extends BaseLogic implements PageCategoryLogi
 		return super.baseDao.find("select t.goodsInfo from TbPageGoodsRel t where t.pageCategory.categoryId = ? ", categoryId);
 	}
 	
+	/**
+	 * 保存商品到商品列表
+	 */
+	public void addGoodsToPage(List<TbPageGoodsRel> rels) {
+		if(rels!=null){
+			for(TbPageGoodsRel next:rels){
+				super.save(next);
+			}
+		}
+	}
 	
+	/**
+	 * 查找最多达到ORDER NUM
+	 */
+	public Long findMaxPageCategoryOrderNumber(Long categoryId) {
+		return super.baseDao.findLong("select max(t.orderNum) from TbPageGoodsRel t where t.pageCategory.categoryId = ?", categoryId);
+	}
 }

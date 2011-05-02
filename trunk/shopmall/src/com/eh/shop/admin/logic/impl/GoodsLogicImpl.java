@@ -8,13 +8,16 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 
 import com.eh.base.dao.hibernate.Page;
+import com.eh.base.entity.TbAttachment;
 import com.eh.base.logic.BaseLogic;
 import com.eh.base.util.Constants;
 import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.GoodsLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
+import com.eh.shop.entity.TbGoodsAttach;
 import com.eh.shop.entity.TbGoodsCategoryRel;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoShort;
@@ -33,16 +36,35 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		Criteria criteria = baseDao.createCriteria(TbGoodsInfo.class);
 		criteria.createAlias("category","c");
 		criteria.createAlias("shopInfo", "s");
+		
+		
+		
 		//加上商店的判断
 		CriteriaUtil.addEq(criteria, "s.shopId", qry.getUserInfo().getShopInfo().getShopId());
 		CriteriaUtil.addRightLike(criteria, "c.treeNo", qry.getTreeNo());
+		CriteriaUtil.addOrder(criteria, "createTime", CriteriaUtil.DESC);
+		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.GoodsLogic#findGoodsListForPageSelect(com.eh.shop.admin.web.qry.GoodsInfoQry)
+	 */
+	public Page findGoodsListForPage(GoodsInfoQry qry) {
+		Criteria criteria = baseDao.createCriteria(TbGoodsInfo.class);
+		criteria.createAlias("siteCategory","c");
+		criteria.createAlias("shopInfo", "s");		
+		CriteriaUtil.addRightLike(criteria, "c.treeNo", qry.getTreeNo());
+		CriteriaUtil.addFullLike(criteria, "goodsName", qry.getGoodsName());
+		criteria.addOrder(Order.asc("c.treeNo"));
+		criteria.addOrder(Order.desc("createTime"));
 		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 
 	/* (non-Javadoc)
 	 * @see com.eh.shop.admin.logic.GoodsLogic#saveGoodsInfo(com.eh.shop.entity.TbGoodsInfo)
 	 */
-	public String saveGoodsInfo(TbGoodsInfo info,TbSiteCategory siteCategory,TbGoodsInfoSub[] subs) {
+	public String saveGoodsInfo(TbGoodsInfo info,TbSiteCategory siteCategory,TbGoodsInfoSub[] subs,Long[] imageIds) {
 		if(info.getGoodsId().longValue()==Constants.ADD_PK_ID.longValue()){
 			info.setGoodsId(null);
 			//增加一条对应关系
@@ -56,6 +78,20 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 				next.setGoods(info);
 				super.save(next);
 			}
+			
+			//
+			if(imageIds!=null){
+				long i = 0;
+				for(Long imageId:imageIds){
+					TbGoodsAttach ga = new TbGoodsAttach();
+					ga.setAttachment(super.get(TbAttachment.class, imageId));
+					ga.setGoodsInfo(info);
+					ga.setOrderNum(i++);
+					ga.setRelType(Constants.GOODS_ATTACHMENT_TYPE);
+					super.save(ga);
+				}
+			}
+			
 			if(siteCategory != null ){
 				TbGoodsCategoryRel rel = new TbGoodsCategoryRel();
 				rel.setGoods(info);
@@ -63,6 +99,7 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 				Long orderNum = this.getMaxOrderNum(siteCategory);
 				rel.setOrderNum(orderNum);
 				rel.setCreateTime(new Date());
+				rel.setCreateUser(info.getCreateUser());
 				super.save(rel);
 			}
 		}else{
@@ -70,6 +107,19 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 			for(TbGoodsInfoSub next:subs){
 				next.setGoods(info);
 				super.save(next);
+			}
+			
+			//图片
+			if(imageIds!=null){
+				long i = 0;
+				for(Long imageId:imageIds){
+					TbGoodsAttach ga = new TbGoodsAttach();
+					ga.setAttachment(super.get(TbAttachment.class, imageId));
+					ga.setGoodsInfo(info);
+					ga.setOrderNum(i++);
+					ga.setRelType(Constants.GOODS_ATTACHMENT_TYPE);
+					super.save(ga);
+				}
 			}
 			super.save(info);
 		}
@@ -98,7 +148,7 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 	 * @see com.eh.shop.admin.logic.GoodsLogic#findImageList(java.lang.Long)
 	 */
 	public List findImageList(Long goodsId) {
-		return super.baseDao.find("select r.attachment from TbGoodsAttach r where r.goodsInfo.goodsId = ?", goodsId);
+		return super.baseDao.find("select r.attachment from TbGoodsAttach r where r.goodsInfo.goodsId = ? order by r.orderNum asc", goodsId);
 	}
 
 	/* (non-Javadoc)

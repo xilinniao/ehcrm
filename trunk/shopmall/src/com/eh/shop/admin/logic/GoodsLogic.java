@@ -24,11 +24,18 @@ public interface GoodsLogic extends IBaseLogic {
 	 */
 	public Page findGoodsList(GoodsInfoQry qry);
 	/**
-	 * 保存商品信息
-	 * @param info
+	 * 查找商品列表用于栏目商品选择
+	 * @param qry
 	 * @return
 	 */
-	public String saveGoodsInfo(TbGoodsInfo info,TbSiteCategory siteCategory,TbGoodsInfoSub[] subs);
+	public Page findGoodsListForPage(GoodsInfoQry qry);
+	/**
+	 * 保存商品信息
+	 * @param info
+	 * @param imageIds 附件
+	 * @return
+	 */
+	public String saveGoodsInfo(TbGoodsInfo info,TbSiteCategory siteCategory,TbGoodsInfoSub[] subs,Long[] imageIds);
 	/**
 	 * 根据物品ID查询图片列表
 	 * @param goodsId

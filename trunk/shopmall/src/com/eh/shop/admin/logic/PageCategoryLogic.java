@@ -10,6 +10,7 @@ import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.admin.web.qry.PageCategoryQry;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbPageCategory;
+import com.eh.shop.entity.TbPageGoodsRel;
 
 /**
  *
@@ -29,12 +30,6 @@ public interface PageCategoryLogic extends IBaseLogic {
 	 */
 	public Page findPageCategoryList(PageCategoryQry qry);
 	/**
-	 * 查找pageType
-	 * @param shopId
-	 * @return
-	 */
-	public List findPageTypeList(Long shopId);
-	/**
 	 * 查找所有页面分类信息
 	 * @return
 	 */
@@ -45,11 +40,23 @@ public interface PageCategoryLogic extends IBaseLogic {
 	 * @param typeId
 	 * @return
 	 */
-	public List<TbPageCategory> findPageCategoryByType(Long shopId,Long pageTypeId);
+	public List<TbPageCategory> findPageCategoryByType(Long siteCategoryId);
 	/**
 	 * 查找商品列表，根据列表信息
 	 * @param categoryId
 	 * @return
 	 */
 	public List<TbGoodsInfo> findGoodsByPageCategory(Long categoryId);
+	/**
+	 * 将商品添加到PAGE
+	 * @param category
+	 * @param goodsIds
+	 */
+	public void addGoodsToPage(List<TbPageGoodsRel> rels);
+	/**
+	 * 最找最大的ORDER NUM
+	 * @param categoryId
+	 * @return
+	 */
+	public Long findMaxPageCategoryOrderNumber(Long categoryId);
 }

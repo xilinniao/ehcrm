@@ -34,4 +34,10 @@ public interface BrandInfoLogic extends IBaseLogic {
 	 * @return
 	 */
 	public List findAllBrandListByShop(Long shopId);
+	/**
+	 * 根据店铺查找最大的排序号
+	 * @param shopId
+	 * @return
+	 */
+	public Long findMaxSortNum(Long shopId);
 }
