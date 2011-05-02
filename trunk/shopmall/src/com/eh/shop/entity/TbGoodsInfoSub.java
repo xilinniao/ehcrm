@@ -11,7 +11,7 @@ public class TbGoodsInfoSub  implements java.io.Serializable {
 
     // Fields    
 
-     private Long recId;
+     private Long goodsSubId;
      private TbGoodsInfo goods;
      private String goodsSubName;
      private String goodsSubNo;
@@ -42,12 +42,12 @@ public class TbGoodsInfoSub  implements java.io.Serializable {
    
     // Property accessors
 
-    public Long getRecId() {
-        return this.recId;
+    public Long getGoodsSubId() {
+        return this.goodsSubId;
     }
     
-    public void setRecId(Long recId) {
-        this.recId = recId;
+    public void setGoodsSubId(Long goodsSubId) {
+        this.goodsSubId = goodsSubId;
     }
 
     public TbGoodsInfo getGoods() {
