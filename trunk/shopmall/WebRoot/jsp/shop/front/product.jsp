@@ -196,7 +196,7 @@ $(document).ready(function() {
 							销 售 价：<span id="price" class="price">￥${product.discountPrice }</span>
 						</div>
 						<div class="bottom">
-							市 场 价：<span id="marketPrice" class="marketPrice">￥${product.originalPrice }</span>
+							市 场 价：<span id="marketPrice" class="marketPrice">￥${product.marketPrice }</span>
 						</div>
 					</div>
 				</div>

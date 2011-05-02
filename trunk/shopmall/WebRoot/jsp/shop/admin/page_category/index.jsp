@@ -1,66 +1,25 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <%@include file="/common/head.jsp"%>
-<%@include file="/common/headA.jsp"%>
-<title><%=projName %></title>
-	<link href="<%=path %>/resources/common/css/base.css" rel="stylesheet" type="text/css" />
-	<link href="<%=path %>/resources/admin/css/input.css" rel="stylesheet" type="text/css">
-	<link href="<%=path %>/resources/admin/css/datatables.css" rel="stylesheet" type="text/css">
-	<%@include file="/jsp/shop/common/head.jsp"%>
-	<script src="<%=path %>/resources/common/js/base.js" type="text/javascript"></script>
-    <script type="text/javascript">
-	<!--
-	var saveform_validator;
-	var mainTable;
-	$(document).ready(function(){
-		//加载表格		
-		mainTable = $('#id_mainTable').dataTable({
-			"bAutoWidth" : true,
-	 		"bProcessing": true,
-	 		"bServerSide": true,
-	 		"bSort":false,
-	 		"bFilter":false,
-	 		"bInfo": true,
-			"oLanguage":oLanguage_cn,
-			"sPaginationType": "full_numbers",
-			"sAjaxSource": "<%=path%>/shop/admin/pageCategory.xhtml?method=list",
-			"fnServerData": function ( sSource, aoData, fnCallback ) {					
-				$.ajax( {
-					"dataType": 'json',
-					"type": "POST", 
-					"url": sSource,
-					"data": aoData, 
-					"success": fnCallback
-				} );
-			}
-		});
-	});
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>商品管理</title>
+</head>
+<frameset id="mainFrameset" name="mainFrameset" cols="200,6,*" frameborder="no" border="0" framespacing="0">
+	<frame id="menuFrame" name="menuFrame" src="<%=path %>/shop/admin/pageCategory.xhtml?method=category" frameborder="no" scrolling="no" noresize="noresize" />
+	<frame id="middleFrame" name="middleFrame" src="<%=path %>/shop/admin/goodsInfo.xhtml?method=middle" frameborder="no" scrolling="no" noresize="noresize" />
+	<!-- 
+	<frame id="rightFrame" name="rightFrame" src="" frameborder="no" noresize="noresize" />
+	 -->
+	<frameset rows="50%,50%" frameborder="yes" border="3" framespacing="3">
+	  <frame name="rightFrame" id="rightFrame">
+	  <frame name="rightBottomFrame">
+	</frameset>
 	
-	
-	//-->
-	</script>
-
-  </head>
-  <body class="input">
-  	<div class="inputBar">
-		<h1><span class="icon">&nbsp;</span>首页分类</h1>
-	</div>
-	
-	<div class="operateBar">
-		<input type="button" class="addButton" onclick="location.href='pageCategory.xhtml?method=add'" value="新增分类">
-	</div>
-	
-	<div class="box column-center">
-		<div class="box-content padding-zero " style="display: block; ">
-			<table class="display stylized" id="id_mainTable">
-				<thead class="table-header">
-					<tr>
-						<th><input type="checkbox"></th>
-						<th nowrap>分类名称</th>
-						<th nowrap>操作</th>
-					</tr>
-				</thead>							
-			</table>
-		</div>
-    </div>
-  </body>
+</frameset>
+<noframes>
+	<body>
+		noframes
+	</body>
+</noframes>
 </html>
