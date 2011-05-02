@@ -13,6 +13,11 @@ import com.eh.shop.admin.web.qry.BrandInfoQry;
 import com.eh.shop.entity.TbBrandInfo;
 
 public class BrandInfoLogicImpl extends BaseLogic implements BrandInfoLogic {
+	
+
+	public Long findMaxSortNum(Long shopId) {
+		return super.baseDao.findLong("select max(t.orderNum) from TbBrandInfo t where t.shopInfo.shopId=?", shopId);
+	}
 
 	/* (non-Javadoc)
 	 * @see com.eh.shop.admin.logic.BrandInfoLogic#saveBrandInfo(com.eh.shop.entity.TbBrandInfo)
@@ -45,7 +50,8 @@ public class BrandInfoLogicImpl extends BaseLogic implements BrandInfoLogic {
 	public Page findBrandList(BrandInfoQry qry) {
 		Criteria criteria = baseDao.createCriteria(TbBrandInfo.class);
 		CriteriaUtil.addFullLike(criteria, "name", qry.getName());
-		return baseDao.pagedQuery(criteria, qry.getDataTablesPageNo(), qry.getPageSize());
+		CriteriaUtil.addEq(criteria, "shopInfo.shopId", qry.getUserInfo().getShopInfo().getShopId());
+		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 
 	/* (non-Javadoc)
