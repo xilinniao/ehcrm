@@ -3,7 +3,6 @@
  */
 package com.eh.shop.admin.web;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,29 +12,28 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.util.Constants;
 import com.eh.base.vo.UserInfo;
-import com.eh.shop.admin.logic.BrandInfoLogic;
-import com.eh.shop.admin.web.qry.BrandInfoQry;
-import com.eh.shop.entity.TbBrandInfo;
+import com.eh.shop.admin.logic.IndexCategoryLogic;
+import com.eh.shop.admin.web.qry.ShopIndexCategoryQry;
+import com.eh.shop.entity.TbIndexCategory;
 
 /**
- * 品牌控制类
- * @author zhoucl
+ * 控制类
  *
  */
-public class BrandInfoCtrl extends BaseShopAdminCtrl {
-	BrandInfoLogic brandInfoLogic = null;
+public class IndexCategoryCtrl extends BaseShopAdminCtrl {
+	IndexCategoryLogic indexCategoryLogic = null;
 	/**
 	 * 首页
 	 */
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/brand/index");
-		BrandInfoQry qry = new BrandInfoQry();
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/index_category/index");		
+		ShopIndexCategoryQry qry = new ShopIndexCategoryQry();
 		bindObject(request, qry);
 		qry.setUserInfo(userInfo);
-		Page page = this.brandInfoLogic.findBrandList(qry);
+		Page page = this.indexCategoryLogic.findIndexCategoryList(qry);
 		mav.addObject("page", page);
-		mav.addObject("qry", qry);
+		mav.addObject("qry", qry);		
 		return mav;
 	}
 	
@@ -48,11 +46,13 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 	 */
 	public ModelAndView add(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/brand/edit");
-		TbBrandInfo entity = new TbBrandInfo();
-		entity.setBrandId(Constants.ADD_PK_ID);
-		entity.setOrderNum(this.brandInfoLogic.findMaxSortNum(userInfo.getShopInfo().getShopId())+1);
-		mav.addObject("entity", entity);
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/index_category/edit");
+		TbIndexCategory entity = new TbIndexCategory();
+		entity.setCategoryId(Constants.ADD_PK_ID);
+		entity.setIsShow(Constants.YES);
+		entity.setShowNum(Long.valueOf(10));
+		entity.setOrderNum(this.indexCategoryLogic.findMaxOrderNum(userInfo.getShopInfo().getShopId()));
+		mav.addObject("entity", entity);		
 		return mav;
 	}
 	
@@ -65,43 +65,43 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 	 */
 	public ModelAndView edit(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/brand/edit");
-		Long brandId = super.getLong(request, "brandId", false);
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/index_category/edit");
+		Long categoryId = super.getLong(request, "categoryId", false);
 		// 修改操作
-		TbBrandInfo entity = this.brandInfoLogic.get(TbBrandInfo.class, brandId);
+		TbIndexCategory entity = this.indexCategoryLogic.get(TbIndexCategory.class, categoryId);
 		if(entity!=null&&isYourShop(entity.getShopInfo(), userInfo)){
 			mav.addObject("entity", entity);
 			return mav;
 		}else{
 			//设置错误信息
-			super.addErrors(request, "非法操作，没有找到指定的商品信息");
+			super.addErrors(request, "非法操作，没有找到指定的首页分类");
 			return new ModelAndView(REDIRECT_URL);
 		}
 	}
 	
 	public  ModelAndView onEdit(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);		
-		Long brandId = super.getLong(request, "brandId", false);
+		Long categoryId = super.getLong(request, "categoryId", false);
 		
-		if(brandId.longValue() == Constants.ADD_PK_ID.longValue()) {
+		if(categoryId.longValue() == Constants.ADD_PK_ID.longValue()) {
 			//新增操作
-			TbBrandInfo entity = new TbBrandInfo();
+			TbIndexCategory entity = new TbIndexCategory();
 			super.bindObject(request,entity);
 			entity.setShopInfo(userInfo.getShopInfo());
-			this.brandInfoLogic.saveBrandInfo(entity);
+			this.indexCategoryLogic.saveIndexCategory(entity);
 		}else{
 			//修改操作
-			TbBrandInfo entity = this.brandInfoLogic.get(TbBrandInfo.class, brandId);
+			TbIndexCategory entity = this.indexCategoryLogic.get(TbIndexCategory.class, categoryId);
 			if(entity!=null&&super.isYourShop(entity.getShopInfo(), userInfo)){
 				super.bindObject(request, entity);
-				this.brandInfoLogic.saveBrandInfo(entity);
+				this.indexCategoryLogic.saveIndexCategory(entity);
 			}else{
-				super.addErrors(request, "非法操作，没有找到指定的品牌");
+				super.addErrors(request, "非法操作，没有找到指定的首页分类");
 			}
 		}
 		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", "brandInfo.xhtml?method=index");
+		mav.addObject("redirectUrl", "indexCategory.xhtml?method=index");
 		return mav;
 	}
 	
@@ -114,10 +114,10 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 	 */
 	public ModelAndView onDelete(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		Long brandId = super.getLong(request, "brandId", false);
-		TbBrandInfo entity = this.brandInfoLogic.get(TbBrandInfo.class, brandId);
+		Long categoryId = super.getLong(request, "categoryId", false);
+		TbIndexCategory entity = this.indexCategoryLogic.get(TbIndexCategory.class, categoryId);
 		if(entity!=null&&super.isYourShop(entity.getShopInfo(), userInfo)){
-			String result = this.brandInfoLogic.deleteBrandInfo(entity);
+			String result = this.indexCategoryLogic.deleteIndexCategory(entity);
 			//返回错误信息
 			if(StringUtils.isNotBlank(result)){
 				super.addErrors(request, result);
@@ -126,21 +126,16 @@ public class BrandInfoCtrl extends BaseShopAdminCtrl {
 			super.addErrors(request, "非法操作，没有找到指定的品牌");
 		}		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", "brandInfo.xhtml?method=index");
+		mav.addObject("redirectUrl", "indexCategory.xhtml?method=index");
 		return mav;
 	}
 
-	/**
-	 * @return the brandInfoLogic
-	 */
-	public BrandInfoLogic getBrandInfoLogic() {
-		return brandInfoLogic;
+	public IndexCategoryLogic getIndexCategoryLogic() {
+		return indexCategoryLogic;
 	}
 
-	/**
-	 * @param brandInfoLogic the brandInfoLogic to set
-	 */
-	public void setBrandInfoLogic(BrandInfoLogic brandInfoLogic) {
-		this.brandInfoLogic = brandInfoLogic;
+	public void setIndexCategoryLogic(IndexCategoryLogic indexCategoryLogic) {
+		this.indexCategoryLogic = indexCategoryLogic;
 	}
+
 }

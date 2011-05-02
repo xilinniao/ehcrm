@@ -69,5 +69,4 @@ public class GoodsInfoQry extends BaseQuery {
 		this.treeNo = treeNo;
 	}
 	
-	
 }
