@@ -281,6 +281,7 @@ abstract public class BaseCtrl extends MultiActionController {
     
     protected String[] getStrings(HttpServletRequest request,String parameter,boolean allowNull)throws ParameterException{
     	String[] values = request.getParameterValues(parameter);
+    	
     	return values;
 	}
     
