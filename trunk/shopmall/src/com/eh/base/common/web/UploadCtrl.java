@@ -5,6 +5,8 @@ package com.eh.base.common.web;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -20,7 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eh.base.common.logic.CommonLogic;
 import com.eh.base.controller.BaseCtrl;
+import com.eh.base.entity.TbAttachment;
 import com.eh.base.util.CommonUtil;
 import com.eh.base.util.Constants;
 import com.eh.base.util.ImageUtil;
@@ -33,6 +37,11 @@ import com.eh.base.vo.UserInfo;
  * 
  */
 public class UploadCtrl extends BaseCtrl {
+	/**
+	 * 公用LOGIC
+	 */
+	CommonLogic commonLogic;
+	
 	public String getUUID() {
 		String uuid = UUID.randomUUID().toString();
 		return uuid.substring(0, 8) + uuid.substring(9, 13)
@@ -85,18 +94,53 @@ public class UploadCtrl extends BaseCtrl {
 				//是否需要生成缩略图
 				String zoom = multipartRequest.getParameter("zoom");
 				if("true".equals(zoom)){
-					String destFilePath = saveDir + uuid +"_s."+ imageExtension;
-					File destFile = new File(destFilePath);
-					BufferedImage srcBufferedImage = ImageIO.read(saveFile);
-					ImageUtil.zoom(srcBufferedImage,destFile,50,50);
+					this.zoom(saveDir, uuid, imageExtension, "ss", saveFile,50,50);
+					this.zoom(saveDir, uuid, imageExtension, "s", saveFile,150,150);					
 				}
 				
 				Map<String, String> jsonMap = new HashMap<String, String>();
 				jsonMap.put(STATUS, SUCCESS);
-				jsonMap.put("url", super.getContextPath(request)+"/uploads/images/"+userInfo.getShopInfo().getShopId() + "/" + uuid +"."+ imageExtension);
+				if("true".equals(zoom)){
+					TbAttachment attach = new TbAttachment();
+					attach.setAttactType(Constants.ATTACHMENT_GOODS);
+					attach.setCreateDate(new Date());
+					attach.setUserId(userInfo.getUser().getUserId());
+					attach.setFileExtension(imageExtension);
+					attach.setFileLoaction("/uploads/images/"+userInfo.getShopInfo().getShopId() + "/" + uuid );
+					//attach.setFileName(fileName)
+					this.commonLogic.save(attach);
+					
+					jsonMap.put("imagesId", attach.getRecId().toString());
+					jsonMap.put("url", super.getContextPath(request)+"/uploads/images/"+userInfo.getShopInfo().getShopId() + "/" + uuid +"_s."+ imageExtension);					
+				}else{
+					jsonMap.put("url", super.getContextPath(request)+"/uploads/images/"+userInfo.getShopInfo().getShopId() + "/" + uuid +"."+ imageExtension);
+				}
+				
+				
+				
 				super.renderJson(response, JSONObject.fromObject(jsonMap).toString());
 			}
 		}
 		return null;
 	}
+	
+	
+	private void zoom(String saveDir,String uuid,String imageExtension,String another,File saveFile,int width,int height) throws IOException{
+		//50*50
+		String destFilePath = saveDir + uuid +"_"+another+"."+ imageExtension;
+		File destFile = new File(destFilePath);
+		BufferedImage srcBufferedImage = ImageIO.read(saveFile);
+		ImageUtil.zoom(srcBufferedImage,destFile,width,height);
+	}
+
+	public CommonLogic getCommonLogic() {
+		return commonLogic;
+	}
+
+	public void setCommonLogic(CommonLogic commonLogic) {
+		this.commonLogic = commonLogic;
+	}
+	
+	
+	
 }
