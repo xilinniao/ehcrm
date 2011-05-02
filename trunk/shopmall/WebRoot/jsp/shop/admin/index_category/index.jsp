@@ -12,18 +12,17 @@
   </head>
   <body class="list">
   	<div class="listBar">
-		<h1><span class="icon">&nbsp;</span>商品列表&nbsp;<span class="pageInfo">总记录数: ${page.totalCount}(共${page.totalPageCount}页)</span</h1>
+		<h1><span class="icon">&nbsp;</span>首页分类设置&nbsp;<span class="pageInfo">总记录数: ${page.totalCount}(共${page.totalPageCount}页)</span></h1>
 	</div>
 	
 
 	
 	<div class="body">
-		<form id="listForm" action="<%=path %>/shop/admin/goodsInfo.xhtml?method=goodsList" method="post">
-		<input type="hidden" name="treeNo" value="${qry.treeNo }">
+		<form id="listForm" action="<%=path %><%=path%>/shop/admin/indexCategory.xhtml?method=index" method="post">
 		<div class="operateBar">
-			<label>商品名称:</label>
-			<input type="text" name="goodsName" id="goodsName" class="formText" value="${qry.goodsName }">
-			<label>显示:</label>
+			<label>名称:</label>
+			<input type="text" name="name" class="formText" value="${qry.name }">
+			<label>每页显示:</label>
 			<select name="pageSize" id="pageSize">
 				<option value="20">
 					20
@@ -35,34 +34,24 @@
 					100
 				</option>
 			</select>
-			<input type="button" id="searchButton" class="searchButton" value="">				
+			<input type="button" id="searchButton" class="searchButton" value="">&nbsp;
+			<input type="button" class="addButton" onclick="location.href='indexCategory.xhtml?method=add'" value="新增分类">		
 		</div>
 		
-		<div class="operateBar">
-			<input type="button" class="addButton" onclick="location.href='goodsInfo.xhtml?method=add'" value="新增商品">
-		</div>
 	
 		<table class="listTable" id="listTable">
 				<tr>
 						<th><input type="checkbox"></th>
-					    <th nowrap>商品名称</th>
-					    <th nowrap>商品编号</th>
-					    <th nowrap>所属分类</th>
-					    <th nowrap>市场价</th>
-					    <th nowrap>商城价</th>
-					    <th nowrap>库存</th>
-					    <th nowrap>操作</th>
+							<th nowrap>品牌名称</th>
+						    <th nowrap>排序</th>
+						    <th nowrap>操作</th>
 				</tr>
 				<c:forEach items="${page.result}" var="b">
 				<tr>
-					<td><input type="checkbox" class="allCheck" name="ids" value="2fe680f62eec0481012f15a0272f0114" /></td>
-					<td>${b.goodsName }</td>
-					<td>${b.goodNo }</td>
-					<td>${b.category.categoryName }</td>
-					<td>${b.marketPrice }</td>
-					<td>${b.discountPrice }</td>
-					<td></td>
-					<td><a href='<%=path %>/shop/admin/goodsInfo.xhtml?method=editGoods&goodsId=${b.goodsId }' title='编辑'>[编辑]</a>&nbsp;<a href='<%=path %>/shop/admin/goodsInfo.xhtml?method=editGoods&goodsId=${b.goodsId }' title='浏览'>[浏览]</a></td>
+					<td><input type="checkbox" name="ids" value="2fe680f62eec0481012f15a0272f0114" /></td>
+					<td>${b.categoryName }</td>
+					<td>${b.orderNum }</td>
+					<td><a href='indexCategory.xhtml?method=edit&categoryId=${b.categoryId }' title='编辑'>[编辑]</a>&nbsp;</td>
 				</tr>
 				</c:forEach>				
 		</table>

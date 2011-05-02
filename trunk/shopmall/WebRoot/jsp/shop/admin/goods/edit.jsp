@@ -14,8 +14,10 @@
     <script type="text/javascript">
 	<!--
 	$(document).ready(function(){
-		$('#brandId').val('${entity.brandInfo.brandId}');
-		$('#pageCategoryId').val('${entity.pageCategory.categoryId}');
+		$('#brandId').val('${info.brandInfo.brandId}');
+		$('#id_shop_category').val('${info.category.categoryId}');
+		$('#pageCategoryId').val('${info.pageCategory.categoryId}');
+		
 		//加载验证框架
 		saveform_validator = $("form.validate").validate({
 			errorClass: "validateError",
@@ -25,21 +27,54 @@
 			submitHandler:defaultSubmitHandler
 		});
     	
-    	$('#btnSave').click(function(){
-    		//验证输入数据
+    	/*$('#btnSave').click(function(){
     		if (saveform_validator.form()) {
 				$('#saveform').submit();
 			}
-    	});
+    	});*/
     	
     	$('#site_category_select').click(function(){
 			$.colorbox({
-				href:'<%=path%>/shop/admin/goodsCategory.xhtml?method=selectGoodscat',
+				href:'<%=path%>/shop/admin/siteCategory.xhtml?method=selectCategory',
 				iframe:true,
 				width:"500",
 				height:"90%"
 			});
     	});
+    	
+    	$('#btnAddNewSub').click(function(){
+    		var idx = $('#goods_sub').find('tbody > tr').size();
+    		$('#goods_sub').find('tbody').append('<tr><td><input type="hidden" name="sub_id" id="sub_id_'+idx+'" value="">规格：<input type="text" name="goodsSubName" id="goodsSubName_'+idx+'" class="formTextS {required: true}">&nbsp;&nbsp;市场价：<input type="text" name="marketPrice" id="marketPrice_'+idx+'" class="formTextSS {required: true}">&nbsp;&nbsp;商城售价:<input type="text" name="discountPrice" id="discountPrice_'+idx+'" class="formTextSS {required: true}">&nbsp;&nbsp;库存:<input type="text" name="leavesCount" id="leavesCount_'+idx+'" class="formTextSS {required: true}" value="${b.leavesCount }"></td></tr>');
+    	});
+    	
+    	$('#uploadButton').click(function(){
+			if ($("#upload").val() != "") {
+				$("#uploadButton")
+				.ajaxStart(function() {
+					$(this).attr("disabled", true);
+				})
+				.ajaxComplete(function() {
+					$(this).attr("disabled", false);
+				});
+				$.ajaxFileUpload({
+					url: "<%=path%>/upload.xhtml?method=image&zoom=true",
+					secureuri: false,
+					dataType: "json",
+					fileElementId: "upload",
+					success: function (data) {
+						if(data.status == "error") {
+							alert(data.message);
+							return false;
+						}
+						if (data.status == "success") {
+							//$("#src").val(data.url);
+							$('#goods_images').append('<li><input type="hidden" name="good_attach_id"><input type="hidden" name="imagesId" value="'+data.imagesId+'"/><img src="'+data.url+'"></li>');
+						}
+					}
+				})
+				return false;
+			}
+		});
 	});
 	
 	//-->
