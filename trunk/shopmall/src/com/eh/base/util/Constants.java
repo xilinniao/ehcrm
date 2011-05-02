@@ -59,4 +59,8 @@ public class Constants {
 	public final static Long ORDER_STATUS_SHOP_CHECK = Long.valueOf(3);//店铺已确认订单
 	public final static Long ORDER_STATUS_SHOP_SEND = Long.valueOf(4);//店铺已送货
 	public final static Long ORDER_STATUS_SHOP_FINISH = Long.valueOf(9);//订单已完成
+	
+	public final static String ATTACHMENT_GOODS = "goods";//附件类型：商品附件
+	
+	public final static Long GOODS_ATTACHMENT_TYPE = Long.valueOf(1);// 商品附件类型（图片）
 }
