@@ -3,6 +3,7 @@
  */
 package com.eh.shop.admin.web;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import com.eh.shop.admin.logic.GoodsLogic;
 import com.eh.shop.admin.logic.PageCategoryLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
 import com.eh.shop.entity.TbBrandInfo;
+import com.eh.shop.entity.TbGoodsAttach;
 import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoSub;
@@ -88,6 +90,29 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		mav.addObject("qry", qry);
 		return mav;
 	}
+	
+	/**
+	 * 商品列表
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView goodsListForPage(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/page_category/goodsList");
+		GoodsInfoQry qry = new GoodsInfoQry();
+		bindObject(request, qry);
+		qry.setUserInfo(userInfo);
+		if (StringUtils.isBlank(qry.getTreeNo())&& qry.getCategoryId()!=null) {
+			TbSiteCategory category = this.goodsLogic.load(TbSiteCategory.class, qry.getCategoryId());
+			qry.setTreeNo(category.getTreeNo());
+		}
+		Page page = goodsLogic.findGoodsListForPage(qry);
+		mav.addObject("page",page);
+		mav.addObject("qry", qry);
+		return mav;
+	}
 
 	/**
 	 * 新增商品信息
@@ -114,6 +139,12 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		//品牌列表
 		List brandList = this.brandInfoLogic.findAllBrandListByShop(userInfo.getShopInfo().getShopId());
 		mav.addObject("brandList", brandList);
+		
+		List subList = new ArrayList();
+		TbGoodsInfoSub sub = new TbGoodsInfoSub();
+		sub.setGoodsSubName("默认规格");
+		subList.add(sub);
+		mav.addObject("subList", subList);
 		return mav;
 	}
 
@@ -183,20 +214,27 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		}
 		TbGoodsCategory category = this.goodsLogic.get(TbGoodsCategory.class,categoryId);
 		
-		String[] subName = super.getStrings(request, "subName", true);//货号名称
-		String[] subNo = super.getStrings(request, "subNo", true);//货号
+		String[] subId = super.getStrings(request, "sub_id", true);
+		String[] subName = super.getStrings(request, "goodsSubName", true);//货号名称
+		//String[] subNo = super.getStrings(request, "subNo", true);//货号
 		String[] marketPrice = super.getStrings(request, "marketPrice", true);//市场价
 		String[] discountPrice = super.getStrings(request, "discountPrice", true);//折扣价
-		//String[] qty = super.getStrings(request, "qty", true);//数量
+		String[] leavesCount = super.getStrings(request, "leavesCount", true);//数量
+		
+		//图片信息
+		Long[] imageIds = super.getLongs(request, "imagesId", true);		
 		
 		TbGoodsInfoSub[] subs = new TbGoodsInfoSub[subName.length];
 		for(int i = 0, len = subName.length ; i < len ; i++){
 			subs[i] = new TbGoodsInfoSub();
 			subs[i].setMarketPrice(Double.parseDouble(marketPrice[i]));
 			subs[i].setDiscountPrice(Double.parseDouble(discountPrice[i]));
-			subs[i].setGoodsSubNo(subNo[i]);
+			//subs[i].setGoodsSubNo(subNo[i]);
 			subs[i].setGoodsSubName(subName[i]);
-			//subs[i].setLeavesCount(Long.parseLong(qty[i]));
+			if(StringUtils.isNotBlank(subId[i])){
+				subs[i].setGoodsSubId(Long.valueOf(subId[i]));
+			}
+			subs[i].setLeavesCount(Long.parseLong(leavesCount[i]));
 		}
 		
 		if (goodsId.longValue() == Constants.ADD_PK_ID.longValue()) {
@@ -209,7 +247,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			info.setPageCategory(pageCategory);
 			info.setCreateUser(userInfo.getUser().getUserId());
 			info.setCreateTime(new Date());
-			this.goodsLogic.saveGoodsInfo(info,siteCategory,subs);
+			this.goodsLogic.saveGoodsInfo(info,siteCategory,subs,imageIds);
 		}else{
 			//修改操作
 			TbGoodsInfo info = this.goodsLogic.get(TbGoodsInfo.class, goodsId);
@@ -218,7 +256,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 				info.setCategory(category);
 				info.setBrandInfo(brandInfo);
 				info.setPageCategory(pageCategory);
-				this.goodsLogic.saveGoodsInfo(info,siteCategory,subs);
+				this.goodsLogic.saveGoodsInfo(info,siteCategory,subs,imageIds);
 			}else{
 				super.addErrors(request, "非法操作，没有找到指定的商品信息");
 			}

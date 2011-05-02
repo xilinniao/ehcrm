@@ -96,7 +96,7 @@ public class SiteCategoryCtrl extends BaseTreeCtrl{
 			a.setCategoryName("热门商品");
 			a.setOrderNum(Long.valueOf(1));
 			//a.setPageType(category);
-			a.setShopInfo(this.siteCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			//a.setShopInfo(this.siteCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
 			this.siteCategoryLogic.save(a);
 			for (int i = 0;i<8;i++){
 				TbPageGoodsRel rel = new TbPageGoodsRel();
@@ -110,7 +110,7 @@ public class SiteCategoryCtrl extends BaseTreeCtrl{
 			b.setCategoryName("新品");
 			b.setOrderNum(Long.valueOf(1));
 			//b.setPageType(category);
-			b.setShopInfo(this.siteCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			//b.setShopInfo(this.siteCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
 			this.siteCategoryLogic.save(b);
 			for (int i = 10;i<18;i++){
 				TbPageGoodsRel rel = new TbPageGoodsRel();
@@ -124,7 +124,7 @@ public class SiteCategoryCtrl extends BaseTreeCtrl{
 			c.setCategoryName("特价促销");
 			c.setOrderNum(Long.valueOf(1));
 			//c.setPageType(category);
-			c.setShopInfo(this.siteCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			//c.setShopInfo(this.siteCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
 			this.siteCategoryLogic.save(c);
 			for (int i = 20;i<28;i++){
 				TbPageGoodsRel rel = new TbPageGoodsRel();
@@ -139,7 +139,7 @@ public class SiteCategoryCtrl extends BaseTreeCtrl{
 			d.setCategoryName("疯狂抢购");
 			d.setOrderNum(Long.valueOf(1));
 			//d.setPageType(category);
-			d.setShopInfo(this.siteCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
+			//d.setShopInfo(this.siteCategoryLogic.get(TbShopInfo.class, Long.valueOf(1)));
 			this.siteCategoryLogic.save(d);
 			for (int i = 30;i<38;i++){
 				TbPageGoodsRel rel = new TbPageGoodsRel();
@@ -392,7 +392,7 @@ public class SiteCategoryCtrl extends BaseTreeCtrl{
 	 * @throws Exception
 	 */
 	public ModelAndView addCategory(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		UserInfo userInfo = super.getUserInfo(request);
+		UserInfo userInfo = super.getUserInfo(request);		
 		return new ModelAndView("/jsp/shop/admin/site_category/add");
 	}
 	
