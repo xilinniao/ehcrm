@@ -140,7 +140,7 @@ public class BaseHibernateDAO extends HibernateDaoSupport {
 		return ((Long)count.get(0)).intValue();
 	}
 	
-	public Long findLong(String hql,Object[] values){
+	public Long findLong(String hql,Object... values){
 		Assert.hasText(hql);
 		List count = getHibernateTemplate().find(hql,values);
 		if(count.size()>0){
