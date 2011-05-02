@@ -25,5 +25,6 @@
     
     <bean name="uploadCtrl" class="com.eh.base.common.web.UploadCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="commonLogic" ref="commonLogic"/>
     </bean>
 </beans>

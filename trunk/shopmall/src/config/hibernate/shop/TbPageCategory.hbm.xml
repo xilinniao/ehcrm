@@ -7,23 +7,30 @@
             <column name="CATEGORY_ID" precision="10" scale="0"/>
             <generator class="native" />
       	 </id>
-		 <many-to-one name="shopInfo"
-			class="com.eh.shop.entity.TbShopInfo">
-			<column name="SHOP_ID" precision="10" scale="0" />
-		 </many-to-one>
         <many-to-one name="siteCategory"
 			class="com.eh.shop.entity.TbSiteCategory">
 			<column name="SITE_CATEGORY_ID" precision="10" scale="0"/>
-		 </many-to-one>
-		 
+		 </many-to-one>		 
 		 <property name="categoryName" type="java.lang.String">
             <column name="CATEGORY_NAME" length="200"/>
         </property>
-		 <property name="goodsCnt" type="java.lang.Long">
+		<property name="goodsCnt" type="java.lang.Long">
             <column name="GOODS_CNT" precision="10" scale="0"/>
-        </property>
+        </property>        
+        <property name="showNum" type="java.lang.Long">
+            <column name="SHOW_NUM" precision="2" scale="0"/>
+        </property>        
+        <property name="adHtml" type="java.lang.String">
+            <column name="AD_HTML" length="1000"/>
+        </property>        
         <property name="orderNum" type="java.lang.Long">
-			<column name="ORDER_NUM" precision="10" scale="0" />
+			<column name="ORDER_NUM" precision="3" scale="0" />
+		</property>
+		<property name="categoryType" type="java.lang.Long">
+			<column name="category_type" precision="1" scale="0" />
+		</property>
+		<property name="isShow" type="java.lang.Long">
+			<column name="is_show" precision="1" scale="0" />
 		</property>
     </class>
 </hibernate-mapping>
