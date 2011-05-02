@@ -6,7 +6,7 @@ package com.eh.shop.entity;
  * TbShopIndexCategory entity. @author MyEclipse Persistence Tools
  */
 
-public class TbShopIndexCategory  implements java.io.Serializable {
+public class TbIndexCategory  implements java.io.Serializable {
 
 
     // Fields    
@@ -23,12 +23,12 @@ public class TbShopIndexCategory  implements java.io.Serializable {
     // Constructors
 
     /** default constructor */
-    public TbShopIndexCategory() {
+    public TbIndexCategory() {
     }
 
     
     /** full constructor */
-    public TbShopIndexCategory(TbShopInfo shopInfo, String categoryName, Long goodsCnt, Long orderNum, Long showNum, Long isShow) {
+    public TbIndexCategory(TbShopInfo shopInfo, String categoryName, Long goodsCnt, Long orderNum, Long showNum, Long isShow) {
         this.shopInfo = shopInfo;
         this.categoryName = categoryName;
         this.goodsCnt = goodsCnt;

@@ -1,5 +1,6 @@
 package com.eh.shop.entity;
 
+import java.util.Date;
 
 
 /**
@@ -15,6 +16,8 @@ public class TbPageGoodsRel  implements java.io.Serializable {
      private TbGoodsInfo goodsInfo;
      private TbPageCategory pageCategory;
      private Long orderNum;
+     private Long createUser;
+     private Date createTime;
 
 
     // Constructors
@@ -25,10 +28,12 @@ public class TbPageGoodsRel  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbPageGoodsRel(TbGoodsInfo goodsInfo, TbPageCategory pageCategory, Long orderNum) {
+    public TbPageGoodsRel(TbGoodsInfo goodsInfo, TbPageCategory pageCategory, Long orderNum, Long createUser, Date createTime) {
         this.goodsInfo = goodsInfo;
         this.pageCategory = pageCategory;
         this.orderNum = orderNum;
+        this.createUser = createUser;
+        this.createTime = createTime;
     }
 
    
@@ -64,6 +69,22 @@ public class TbPageGoodsRel  implements java.io.Serializable {
     
     public void setOrderNum(Long orderNum) {
         this.orderNum = orderNum;
+    }
+
+    public Long getCreateUser() {
+        return this.createUser;
+    }
+    
+    public void setCreateUser(Long createUser) {
+        this.createUser = createUser;
+    }
+
+    public Date getCreateTime() {
+        return this.createTime;
+    }
+    
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
    
 
