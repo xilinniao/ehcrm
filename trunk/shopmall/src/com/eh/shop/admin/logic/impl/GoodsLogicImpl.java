@@ -142,15 +142,6 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		}); 
 	}*/
 	
-	
-
-	/* (non-Javadoc)
-	 * @see com.eh.shop.admin.logic.GoodsLogic#findImageList(java.lang.Long)
-	 */
-	public List findImageList(Long goodsId) {
-		return super.baseDao.find("select r.attachment from TbGoodsAttach r where r.goodsInfo.goodsId = ? order by r.orderNum asc", goodsId);
-	}
-
 	/* (non-Javadoc)
 	 * @see com.eh.shop.admin.logic.GoodsLogic#findGoodsForPrice(java.lang.Long[])
 	 */
@@ -187,6 +178,7 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		criteria.setMaxResults(10);
 		return criteria.list();
 	}
+	
 	/**
 	 * 查找商品子列表
 	 */
@@ -194,5 +186,11 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		return super.baseDao.find("from TbGoodsInfoSub t where t.goods.goodsId = ? ",goodsId);
 	}
 	
+	/**
+	 * 查找图片信息
+	 */
+	public List findImageList(Long goodsId) {
+		return super.baseDao.find("select r.attachment from TbGoodsAttach r where r.goodsInfo.goodsId = ? order by r.orderNum asc", goodsId);
+	}
 	
 }

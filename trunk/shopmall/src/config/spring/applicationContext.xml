@@ -97,5 +97,23 @@
         <property name="dataSource">
             <ref bean="dataSource" />
         </property>
-    </bean>    
+    </bean>
+    
+    <!-- 缓存设置 -->
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+	  <property name="configLocation">
+	    <value>classpath:/config/ehcache-shopmall.xml</value>
+	  </property>
+	</bean>
+	
+	<!-- 前台缓存 -->
+	<bean id="frontCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+	  <property name="cacheManager">
+	    <ref local="cacheManager"/>
+	  </property>
+	  <property name="cacheName">
+	    <value>front_cache</value>
+	  </property>
+	</bean>
+	
 </beans>
