@@ -121,4 +121,17 @@
 			</bean>
 		</property>
 	</bean>
+	
+	<bean id="frontCacheLogic" parent="TransactionProxyFactoryBean">
+		<property name="target">
+			<bean class="com.eh.shop.front.logic.impl.FrontCacheLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao"/>
+				</property>
+				<property name="frontCache">
+					<ref bean="frontCache"/>
+				</property>				
+			</bean>
+		</property>
+	</bean>
 </beans>

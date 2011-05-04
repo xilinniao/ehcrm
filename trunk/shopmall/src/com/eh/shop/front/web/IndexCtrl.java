@@ -17,14 +17,12 @@ import org.jsoup.select.Elements;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.controller.BaseCtrl;
-import com.eh.base.util.Constants;
-import com.eh.shop.admin.logic.GoodsCategoryLogic;
 import com.eh.shop.admin.logic.PageCategoryLogic;
 import com.eh.shop.admin.logic.SiteCategoryLogic;
-import com.eh.shop.entity.TbSiteCategory;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbPageCategory;
 import com.eh.shop.entity.TbSiteCategory;
+import com.eh.shop.front.logic.FrontCacheLogic;
 import com.eh.shop.front.vo.GoodsCategoryVo;
 
 /**
@@ -33,6 +31,10 @@ import com.eh.shop.front.vo.GoodsCategoryVo;
  */
 public class IndexCtrl extends BaseCtrl {
 	public static final Long PAGE_INDEX = Long.valueOf(1);
+	/**
+	 * 前端缓存LOGIC
+	 */
+	FrontCacheLogic frontCacheLogic;
 	
 	PageCategoryLogic pageCategoryLogic = null;
 	
@@ -280,4 +282,11 @@ public class IndexCtrl extends BaseCtrl {
 		this.siteCategoryLogic = siteCategoryLogic;
 	}
 
+	public FrontCacheLogic getFrontCacheLogic() {
+		return frontCacheLogic;
+	}
+
+	public void setFrontCacheLogic(FrontCacheLogic frontCacheLogic) {
+		this.frontCacheLogic = frontCacheLogic;
+	}
 }
