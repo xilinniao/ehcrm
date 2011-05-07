@@ -7,7 +7,7 @@ import com.eh.base.entity.TbAttachment;
  * TbGoodsAttach entity. @author MyEclipse Persistence Tools
  */
 
-public class TbGoodsAttach  implements java.io.Serializable {
+public class TbGoodsImages  implements java.io.Serializable {
 
 
     // Fields    
@@ -22,12 +22,12 @@ public class TbGoodsAttach  implements java.io.Serializable {
     // Constructors
 
     /** default constructor */
-    public TbGoodsAttach() {
+    public TbGoodsImages() {
     }
 
     
     /** full constructor */
-    public TbGoodsAttach(TbGoodsInfo goodsInfo, TbAttachment attachment, Long relType, Long orderNum) {
+    public TbGoodsImages(TbGoodsInfo goodsInfo, TbAttachment attachment, Long relType, Long orderNum) {
         this.goodsInfo = goodsInfo;
         this.attachment = attachment;
         this.relType = relType;
