@@ -5,12 +5,14 @@
 <link href="<%=path %>/resources/front/css/index.css" rel="stylesheet" type="text/css" />
 <link href="<%=path %>/resources/front/css/skin.css" rel="stylesheet" type="text/css" />
 <%@include file="/jsp/shop/front/common/head.jsp"%>
-<script src="<%=path %>/resources/front/js/jquery.tools.js" type="text/javascript"></script>
-<script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
-<script src="<%=path %>/resources/front/js/jquery.tmpl.min.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
+function clearCart(){
+   if(confirm('确定清空购物车吗？')){
+		$.cookie('cartitems',null,{path:shop_constant.cookie_path});
+   }
+}
 
 //-->
 </script>
@@ -93,7 +95,7 @@
 			    </li>
 			    -->
 			    
-				<li class="li2"><a href="#none" onclick="this.blur();clearCart()" clstag="clickcart|keycount|shoppingcartpop|clearcartlink">清空购物车</a></li>
+				<li class="li2"><a href="#none" onclick="this.blur();clearCart()">清空购物车</a></li>
 				<!-- 
 				<li class="li1"><a href="http://www.360buy.com/special.aspx?id=7&amp;price=1" target="_blank" clstag="clickcart|keycount|shoppingcartpop|coudanlink">凑单商品</a></li>
 				 -->

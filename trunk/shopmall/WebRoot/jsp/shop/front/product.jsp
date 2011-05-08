@@ -38,9 +38,9 @@ $(document).ready(function() {
 			if(newhistoryproduct.length>6){
 				newhistoryproduct.pop();
 			}
-			$.cookie('goodsHistoryList',newhistoryproduct,{expires:shop_constant.cookie_days});
+			$.cookie('goodsHistoryList',newhistoryproduct,{expires:shop_constant.cookie_days,path:shop_constant.cookie_path});
 		}else{
-			$.cookie('goodsHistoryList',goodsid+"=1",{expires:shop_constant.cookie_days});
+			$.cookie('goodsHistoryList',goodsid+"=1",{expires:shop_constant.cookie_days,path:shop_constant.cookie_path});
 		}
 	}
 	
@@ -59,7 +59,7 @@ $(document).ready(function() {
 				var is_replace = false;//是否替换
 				var item_qty = jQuery.grep(tmps,function(value,i) {
 					var values = value.split("=");
-					if(goodsid==values[0]){					
+					if(goodsid==values[0]){
 						tmps[i] = goodsid+'='+(parseInt(values[1])+parseInt(quantity));
 						is_replace = true;
 					}
@@ -67,9 +67,9 @@ $(document).ready(function() {
 				if(!is_replace){
 					tmps.push(goodsid+"="+quantity);
 				}
-				$.cookie('cartitems',tmps,{expires:shop_constant.cookie_days});
+				$.cookie('cartitems',tmps,{expires:shop_constant.cookie_days,path:shop_constant.cookie_path});
 			}else{
-				$.cookie('cartitems',goodsid+"="+quantity,{expires:shop_constant.cookie_days});
+				$.cookie('cartitems',goodsid+"="+quantity,{expires:shop_constant.cookie_days,path:shop_constant.cookie_path});
 			}
 			
 			data = {
@@ -85,7 +85,7 @@ $(document).ready(function() {
 	
 	$quantity = $("#quantity");
 	$("#goodsButton").click(function(){
-		$.addCartItem(${product.goodsId},$quantity.val());
+		$.addCartItem('${product.goodsId}',$quantity.val());
 	});
 });
 //-->
@@ -110,7 +110,7 @@ $(document).ready(function() {
 				</div>
 				<div class="mc padding8">
                     <p>所属商家：</p>
-                    <p><span class="cpyname" id="strSellerCnName"><a href="<%=path %>/shop/${product.shopInfo.shopId}.xhtml" target="_blank">${product.shopInfo.shopName }</a></span></p>
+                    <p><span class="cpyname" id="strSellerCnName"><a href="<%=path %>/shop/1.xhtml" target="_blank">${shopInfo.shopName }</a></span></p>
                     <p class="clrline"></p> 
                     <p>您好：</p>
                     <p>有任何疑问请联系我们：</p>
@@ -168,7 +168,7 @@ $(document).ready(function() {
 	
 	<div class="right">
 		<div id="name">
-			<h1>${product.goodsName }</h1>
+			<h1>${product.name }</h1>
 		</div>
 		<div id="preview">
 			<div id="spec-n1" class="jqzoom"><img src="${bigphoto }" width="350" height="350"></div>
@@ -187,16 +187,16 @@ $(document).ready(function() {
 		</div><!-- end of preview -->
 		
 		<ul id="summary">
-			<li><span>商品编号：${product.goodNo }</span></li>
+			<li><span>商品编号：dsd</span></li>
 			<li>
 			    <div class="goodsInfo">
 					<div class="lefta"></div>
 					<div class="righta">
 						<div class="top">
-							销 售 价：<span id="price" class="price">￥${product.discountPrice }</span>
+							商 城 价：<span id="price" class="price">￥${product.discountPriceStr }</span>
 						</div>
 						<div class="bottom">
-							市 场 价：<span id="marketPrice" class="marketPrice">￥${product.marketPrice }</span>
+							市 场 价：<span id="marketPrice" class="marketPrice">￥${product.priceStr }</span>
 						</div>
 					</div>
 				</div>

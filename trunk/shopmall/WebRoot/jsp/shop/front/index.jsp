@@ -10,7 +10,6 @@
 <%@include file="/jsp/shop/front/common/head.jsp"%>
 <script src="<%=path %>/resources/front/js/jquery.easyslider.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/dialog.js" type="text/javascript"></script>
-<script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
 
 </head>
@@ -196,8 +195,8 @@
 				<ul class="p-list">
 					<c:forEach items="${b.goodsList}" var="bb">
 	                <li>
-					<div class="p-img"><a target="_blank" href="<%=path %>/index.xhtml?method=product&productId=${bb.goodsId }"><img src="${bb.imageUrl }" width="130" height="130" alt="爱慕文胸" app="image:product"></a></div>
-					<div class="p-name"><a target="_blank" href="http://www.360buy.com/product/1000102803.html">${bb.goodsName }</a></div>
+					<div class="p-img"><a target="_blank" href="<%=path %>/product/${bb.goodsId }.html"><img src="${bb.faceImage.filePathD }" width="130" height="130" app="image:product"></a></div>
+					<div class="p-name"><a target="_blank" href="<%=path %>/product/${bb.goodsId }.html">${bb.goodsName }</a></div>
 					<div class="p-price">商城价：<strong>${bb.discountPrice }</strong></div>					
 					</li>
 					</c:forEach>
