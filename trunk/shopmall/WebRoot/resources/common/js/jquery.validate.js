@@ -326,7 +326,16 @@ $.extend($.validator, {
 		checkForm: function() {
 			this.prepareForm();
 			for ( var i = 0, elements = (this.currentElements = this.elements()); elements[i]; i++ ) {
-				this.check( elements[i] );
+				//add same name validator
+				var xxx_name = this.findByName(elements[i].name);
+				var xxx_len = xxx_name.length;
+				if(xxx_len!= undefined && xxx_len>1){
+					for(var x = 0;x<xxx_len;x++){
+						this.check(xxx_name[x]);
+					}
+				}else{
+					this.check( elements[i] );
+				}
 			}
 			return this.valid(); 
 		},
