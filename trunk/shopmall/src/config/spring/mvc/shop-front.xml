@@ -10,12 +10,20 @@
 				/front/login.xhtml=frontLoginCtrl
 				/front/user.xhtml=frontUserCtrl
 				/front/product.xhtml=productCtrl
+				/front/category.xhtml=categoryCtrl
 			</value>
 		</property>
 	</bean>
     
 	
 	<bean name="indexCtrl" class="com.eh.shop.front.web.IndexCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
+        <property name="siteCategoryLogic" ref="siteCategoryLogic"/>
+        <property name="frontCacheLogic" ref="frontCacheLogic"/>
+   	</bean>
+   	
+   	<bean name="categoryCtrl" class="com.eh.shop.front.web.CategoryCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
         <property name="siteCategoryLogic" ref="siteCategoryLogic"/>
@@ -39,7 +47,7 @@
         <property name="goodsLogic" ref="goodsLogic"/>
         <property name="custAddrLogic" ref="custAddrLogic"/>
         <property name="orderLogic" ref="orderLogic"/>
-        <property name="frontCache" ref="frontCache"/>
+        <property name="frontCacheLogic" ref="frontCacheLogic"/>
    	</bean>
    	
    	<bean name="frontLoginCtrl" class="com.eh.shop.front.web.LoginCtrl">

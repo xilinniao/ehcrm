@@ -1,5 +1,6 @@
 package com.eh.shop.entity;
 
+import com.eh.base.entity.TbAttachment;
 import java.util.Date;
 
 
@@ -17,7 +18,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private TbGoodsCategory category;
      private TbSiteCategory siteCategory;
      private TbBrandInfo brandInfo;
-     private TbPageCategory pageCategory;
+     private TbIndexCategory indexCategory;
      private String goodsName;
      private String keyWord;
      private String goodNo;
@@ -26,7 +27,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private Double discountPrice;
      private String goodsDesc;
      private Long leavesCount;
-     private String imageUrl;
+     private TbAttachment faceImage;
      private String jdUrl;
      private Long createUser;
      private Date createTime;
@@ -40,12 +41,12 @@ public class TbGoodsInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbSiteCategory siteCategory, TbBrandInfo brandInfo, TbPageCategory pageCategory, String goodsName, String keyWord, String goodNo, Double weight, Double marketPrice, Double discountPrice, String goodsDesc, Long leavesCount, String imageUrl, String jdUrl, Long createUser, Date createTime) {
+    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbSiteCategory siteCategory, TbBrandInfo brandInfo, TbIndexCategory indexCategory, String goodsName, String keyWord, String goodNo, Double weight, Double marketPrice, Double discountPrice, String goodsDesc, Long leavesCount, TbAttachment faceImage, String jdUrl, Long createUser, Date createTime) {
         this.shopInfo = shopInfo;
         this.category = category;
         this.siteCategory = siteCategory;
         this.brandInfo = brandInfo;
-        this.pageCategory = pageCategory;
+        this.indexCategory = indexCategory;
         this.goodsName = goodsName;
         this.keyWord = keyWord;
         this.goodNo = goodNo;
@@ -54,7 +55,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
         this.discountPrice = discountPrice;
         this.goodsDesc = goodsDesc;
         this.leavesCount = leavesCount;
-        this.imageUrl = imageUrl;
+        this.faceImage = faceImage;
         this.jdUrl = jdUrl;
         this.createUser = createUser;
         this.createTime = createTime;
@@ -103,12 +104,12 @@ public class TbGoodsInfo  implements java.io.Serializable {
         this.brandInfo = brandInfo;
     }
 
-    public TbPageCategory getPageCategory() {
-        return this.pageCategory;
+    public TbIndexCategory getIndexCategory() {
+        return this.indexCategory;
     }
     
-    public void setPageCategory(TbPageCategory pageCategory) {
-        this.pageCategory = pageCategory;
+    public void setIndexCategory(TbIndexCategory indexCategory) {
+        this.indexCategory = indexCategory;
     }
 
     public String getGoodsName() {
@@ -175,12 +176,12 @@ public class TbGoodsInfo  implements java.io.Serializable {
         this.leavesCount = leavesCount;
     }
 
-    public String getImageUrl() {
-        return this.imageUrl;
+    public TbAttachment getFaceImage() {
+        return this.faceImage;
     }
     
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setFaceImage(TbAttachment faceImage) {
+        this.faceImage = faceImage;
     }
 
     public String getJdUrl() {

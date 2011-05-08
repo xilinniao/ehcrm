@@ -1,8 +1,8 @@
 package com.eh.shop.front.cache;
 
+import java.io.Serializable;
 import java.util.List;
 
-import com.eh.base.util.FormateUtil;
 
 /**
  * 商品详细信息
@@ -10,20 +10,15 @@ import com.eh.base.util.FormateUtil;
  * @author zhoucl
  * 
  */
-public class GoodsDetail extends GoodsShort {
+public class GoodsDetail extends GoodsShort implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4687887357088971477L;
 	/**
 	 * 商品名称
 	 */
 	String name;
-	/**
-	 * 商品价格
-	 */
-	Double price;
-	/**
-	 * 这后价格
-	 */
-	Double discountPrice;
-	
 	/**
 	 * 子商品信息
 	 */
@@ -36,6 +31,10 @@ public class GoodsDetail extends GoodsShort {
 	private String goodsDesc;
 	
 	private Long leavesCount;
+	/**
+	 * 店铺ID
+	 */
+	private Long shopId;
 
 	public String getName() {
 		return name;
@@ -44,31 +43,6 @@ public class GoodsDetail extends GoodsShort {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public Double getDiscountPrice() {
-		return discountPrice;
-	}
-
-	public void setDiscountPrice(Double discountPrice) {
-		this.discountPrice = discountPrice;
-	}
-
-	public String getPriceStr() {
-		return FormateUtil.getInstance().formateDouble(this.price);
-	}
-
-	public String getDiscountPriceStr() {
-		return FormateUtil.getInstance().formateDouble(this.discountPrice);
-	}
-
 
 	public List getSubGoods() {
 		return subGoods;
@@ -100,5 +74,13 @@ public class GoodsDetail extends GoodsShort {
 
 	public void setLeavesCount(Long leavesCount) {
 		this.leavesCount = leavesCount;
+	}
+
+	public Long getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
 	}
 }

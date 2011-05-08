@@ -22,11 +22,10 @@ import com.eh.shop.admin.logic.GoodsLogic;
 import com.eh.shop.admin.logic.PageCategoryLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
 import com.eh.shop.entity.TbBrandInfo;
-import com.eh.shop.entity.TbGoodsAttach;
 import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoSub;
-import com.eh.shop.entity.TbPageCategory;
+import com.eh.shop.entity.TbIndexCategory;
 import com.eh.shop.entity.TbSiteCategory;
 
 /**
@@ -201,13 +200,13 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		Long brandId = super.getLong(request, "brandId", true);//品牌
 		Long pageCategoryId = super.getLong(request, "pageCategoryId", true);
 		TbBrandInfo brandInfo = null;
-		TbPageCategory pageCategory = null;
+		TbIndexCategory pageCategory = null;
 		TbSiteCategory siteCategory = null;
 		if(brandId!=null){
 			brandInfo = this.goodsLogic.get(TbBrandInfo.class, brandId);
 		}
 		if(pageCategoryId!=null){
-			pageCategory = this.goodsLogic.get(TbPageCategory.class, pageCategoryId);
+			pageCategory = this.goodsLogic.get(TbIndexCategory.class, pageCategoryId);
 		}
 		if(siteCategoryId!=null){
 			siteCategory = this.goodsLogic.get(TbSiteCategory.class, siteCategoryId);
@@ -229,7 +228,6 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			subs[i] = new TbGoodsInfoSub();
 			subs[i].setMarketPrice(Double.parseDouble(marketPrice[i]));
 			subs[i].setDiscountPrice(Double.parseDouble(discountPrice[i]));
-			//subs[i].setGoodsSubNo(subNo[i]);
 			subs[i].setGoodsSubName(subName[i]);
 			if(StringUtils.isNotBlank(subId[i])){
 				subs[i].setGoodsSubId(Long.valueOf(subId[i]));
@@ -244,7 +242,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			info.setCategory(category);
 			info.setShopInfo(userInfo.getShopInfo());
 			info.setBrandInfo(brandInfo);
-			info.setPageCategory(pageCategory);
+			info.setIndexCategory(pageCategory);
 			info.setCreateUser(userInfo.getUser().getUserId());
 			info.setCreateTime(new Date());
 			this.goodsLogic.saveGoodsInfo(info,siteCategory,subs,imageIds);
@@ -255,7 +253,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 				super.bindObject(request, info);
 				info.setCategory(category);
 				info.setBrandInfo(brandInfo);
-				info.setPageCategory(pageCategory);
+				info.setIndexCategory(pageCategory);
 				this.goodsLogic.saveGoodsInfo(info,siteCategory,subs,imageIds);
 			}else{
 				super.addErrors(request, "非法操作，没有找到指定的商品信息");

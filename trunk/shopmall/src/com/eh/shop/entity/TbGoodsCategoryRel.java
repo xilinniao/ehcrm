@@ -1,6 +1,5 @@
 package com.eh.shop.entity;
 
-import java.util.Date;
 
 
 /**
@@ -13,11 +12,11 @@ public class TbGoodsCategoryRel  implements java.io.Serializable {
     // Fields    
 
      private Long recId;
-     private TbSiteCategory category;
-     private TbGoodsInfo goods;
+     private Long categoryId;
+     private Long goodsId;
      private Long orderNum;
-     private Long createUser;
-     private Date createTime;
+     
+      
 
 
     // Constructors
@@ -28,12 +27,10 @@ public class TbGoodsCategoryRel  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsCategoryRel(TbSiteCategory category, TbGoodsInfo goods, Long orderNum, Long createUser, Date createTime) {
-        this.category = category;
-        this.goods = goods;
+    public TbGoodsCategoryRel(Long categoryId, Long goodsId, Long orderNum) {
+        this.categoryId = categoryId;
+        this.goodsId = goodsId;
         this.orderNum = orderNum;
-        this.createUser = createUser;
-        this.createTime = createTime;
     }
 
    
@@ -47,20 +44,20 @@ public class TbGoodsCategoryRel  implements java.io.Serializable {
         this.recId = recId;
     }
 
-    public TbSiteCategory getCategory() {
-        return this.category;
+    public Long getCategoryId() {
+        return this.categoryId;
     }
     
-    public void setCategory(TbSiteCategory category) {
-        this.category = category;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public TbGoodsInfo getGoods() {
-        return this.goods;
+    public Long getGoodsId() {
+        return this.goodsId;
     }
     
-    public void setGoods(TbGoodsInfo goods) {
-        this.goods = goods;
+    public void setGoodsId(Long goodsId) {
+        this.goodsId = goodsId;
     }
 
     public Long getOrderNum() {
@@ -69,22 +66,6 @@ public class TbGoodsCategoryRel  implements java.io.Serializable {
     
     public void setOrderNum(Long orderNum) {
         this.orderNum = orderNum;
-    }
-
-    public Long getCreateUser() {
-        return this.createUser;
-    }
-    
-    public void setCreateUser(Long createUser) {
-        this.createUser = createUser;
-    }
-
-    public Date getCreateTime() {
-        return this.createTime;
-    }
-    
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
    
 

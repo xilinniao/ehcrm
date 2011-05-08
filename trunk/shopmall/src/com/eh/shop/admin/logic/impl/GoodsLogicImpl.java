@@ -4,7 +4,6 @@
 package com.eh.shop.admin.logic.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -17,12 +16,12 @@ import com.eh.base.util.Constants;
 import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.GoodsLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
-import com.eh.shop.entity.TbGoodsAttach;
-import com.eh.shop.entity.TbGoodsCategoryRel;
+import com.eh.shop.entity.TbGoodsImages;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoShort;
 import com.eh.shop.entity.TbGoodsInfoSub;
 import com.eh.shop.entity.TbSiteCategory;
+import com.eh.shop.front.cache.GoodsShort;
 
 /**
  * @author zhoucl
@@ -83,7 +82,7 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 			if(imageIds!=null){
 				long i = 0;
 				for(Long imageId:imageIds){
-					TbGoodsAttach ga = new TbGoodsAttach();
+					TbGoodsImages ga = new TbGoodsImages();
 					ga.setAttachment(super.get(TbAttachment.class, imageId));
 					ga.setGoodsInfo(info);
 					ga.setOrderNum(i++);
@@ -92,7 +91,7 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 				}
 			}
 			
-			if(siteCategory != null ){
+			/*if(siteCategory != null ){
 				TbGoodsCategoryRel rel = new TbGoodsCategoryRel();
 				rel.setGoods(info);
 				rel.setCategory(siteCategory);
@@ -101,7 +100,7 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 				rel.setCreateTime(new Date());
 				rel.setCreateUser(info.getCreateUser());
 				super.save(rel);
-			}
+			}*/
 		}else{
 			//查询到原来的价格
 			for(TbGoodsInfoSub next:subs){
@@ -113,7 +112,7 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 			if(imageIds!=null){
 				long i = 0;
 				for(Long imageId:imageIds){
-					TbGoodsAttach ga = new TbGoodsAttach();
+					TbGoodsImages ga = new TbGoodsImages();
 					ga.setAttachment(super.get(TbAttachment.class, imageId));
 					ga.setGoodsInfo(info);
 					ga.setOrderNum(i++);
@@ -153,15 +152,14 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 				String[] tmp = productIds[i].split("=");//0为商品ID,1为商品订购数量
 				if(tmp.length==2){
 					Long product = Long.parseLong(tmp[0]);
-					Long cnt = Long.parseLong(tmp[1]);
-					TbGoodsInfoShort goods = super.get(TbGoodsInfoShort.class,product);
-					goods.setCnt(cnt);
+					Long cnt = Long.parseLong(tmp[1]);					
+					
+					GoodsShort goods = new GoodsShort();
+					TbGoodsInfoSub subGoods = super.get(TbGoodsInfoSub.class,product);
 					if(goods!=null){
 						goodsList.add(goods);
 					}
 				}
-				
-				
 			}catch(NumberFormatException ne){
 				//忽略
 			}

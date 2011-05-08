@@ -3,11 +3,17 @@ package com.eh.shop.admin.logic.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
+
+import com.eh.base.dao.hibernate.Page;
 import com.eh.base.entity.TreeVo;
 import com.eh.base.logic.BaseLogic;
 import com.eh.base.util.Constants;
+import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.SiteCategoryLogic;
+import com.eh.shop.entity.TbGoodsCategoryRel;
 import com.eh.shop.entity.TbSiteCategory;
+import com.eh.shop.front.web.qry.ProductQry;
 
 public class SiteCategoryLogicImpl extends BaseLogic implements SiteCategoryLogic {
 	/* (non-Javadoc)
@@ -108,6 +114,12 @@ public class SiteCategoryLogicImpl extends BaseLogic implements SiteCategoryLogi
 						"from TbSiteCategory t where t.parent.categoryId = ? order by treeNo asc ",
 						new Object[] { parentId });
 	}
-	
+
+	public Page findFrontGoodsList(ProductQry qry) {
+		Criteria criteria = super.baseDao.createCriteria(TbGoodsCategoryRel.class);
+		CriteriaUtil.addEq(criteria, "categoryId", qry.getCategoryId());		
+		CriteriaUtil.addOrder(criteria, "orderNum", CriteriaUtil.ASC);		
+		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
+	}
 	
 }

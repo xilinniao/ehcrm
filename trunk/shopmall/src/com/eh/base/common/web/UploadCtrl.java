@@ -106,7 +106,7 @@ public class UploadCtrl extends BaseCtrl {
 					attach.setCreateDate(new Date());
 					attach.setUserId(userInfo.getUser().getUserId());
 					attach.setFileExtension(imageExtension);
-					attach.setFileLoaction("/uploads/images/"+userInfo.getShopInfo().getShopId() + "/" + uuid );
+					//attach.setFilePath("/uploads/images/"+userInfo.getShopInfo().getShopId() + "/" + uuid );
 					//attach.setFileName(fileName)
 					this.commonLogic.save(attach);
 					

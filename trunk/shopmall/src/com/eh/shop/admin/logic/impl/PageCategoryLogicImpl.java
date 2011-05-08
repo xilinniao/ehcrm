@@ -56,7 +56,7 @@ public class PageCategoryLogicImpl extends BaseLogic implements PageCategoryLogi
 	 * @see com.eh.shop.admin.logic.PageCategoryLogic#findAllPageCategoryList()
 	 */
 	public List findAllPageCategoryList(Long shopId) {
-		return super.baseDao.find("from TbPageCategory t where t.shopInfo.shopId = ?",shopId);
+		return super.baseDao.find("from TbIndexCategory t where t.shopInfo.shopId = ?",shopId);
 	}
 	
 	/**
