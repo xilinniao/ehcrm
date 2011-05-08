@@ -29,8 +29,5 @@
 		<property name="leavesCount" type="java.lang.Long">
 			<column name="LEAVES_COUNT" precision="10" scale="0" />
 		</property>
-		<property name="imageUrl" type="java.lang.String">
-			<column name="image_url" length="500" />
-		</property>
 	</class>
 </hibernate-mapping>

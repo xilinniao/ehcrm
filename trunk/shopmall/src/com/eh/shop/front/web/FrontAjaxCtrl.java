@@ -48,15 +48,24 @@ public class FrontAjaxCtrl extends BaseFrontCtrl {
 			try{
 				String[] tmp = productIds[i].split("=");//0为商品ID,1为商品订购数量
 				if(tmp.length==2){
-					Long goodsId = Long.parseLong(tmp[0]);
-					GoodsShort product = this.frontCacheLogic.findGoodsShort(goodsId);				
-					Map data = new HashMap();
-					data.put("subId", goodsId);
-					data.put("name", product.getName());
-					data.put("price", product.getPriceStr());
-					data.put("discountPrice", product.getDiscountPriceStr());
-					data.put("cnt", Long.parseLong(tmp[1]));
-					productList.add(data);
+					Long subGoodsId = Long.parseLong(tmp[0]);
+					GoodsShort product = this.frontCacheLogic.findGoodsShort(subGoodsId,false);
+					if(product!=null){
+						Map data = new HashMap();
+						data.put("subGoodsId", subGoodsId);
+						data.put("goodsId", product.getGoodsId());
+						data.put("goodsName", product.getName());
+						data.put("price", product.getPriceStr());
+						data.put("discountPrice", product.getDiscountPriceStr());
+						data.put("cnt", Long.parseLong(tmp[1]));
+						data.put("imagea", product.getImageA());
+						data.put("imageb", product.getImageB());
+						data.put("imagec", product.getImageC());
+						data.put("imaged", product.getImageD());
+						data.put("imagee", product.getImageE());
+						data.put("imagef", product.getImageF());
+						productList.add(data);
+					}
 				}
 			}catch(NumberFormatException ne){
 			}

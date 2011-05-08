@@ -2,9 +2,10 @@ package com.eh.shop.admin.logic;
 
 import java.util.List;
 
+import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.IBaseLogic;
-import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbSiteCategory;
+import com.eh.shop.front.web.qry.ProductQry;
 
 public interface SiteCategoryLogic extends IBaseLogic {
 	/**
@@ -47,4 +48,10 @@ public interface SiteCategoryLogic extends IBaseLogic {
 	 * @return
 	 */
 	public List findCategoryListByParentId(Long parentId);
+	/**
+	 * 前台查找商品列表信息
+	 * @param qry
+	 * @return
+	 */
+	public Page findFrontGoodsList(ProductQry qry);
 }

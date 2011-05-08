@@ -28,5 +28,8 @@
 		<property name="dataStatus" type="java.lang.Long">
             <column name="DATA_STATUS" precision="10" scale="0"/>
         </property>
+        <property name="orderNum" type="java.lang.Long">
+			<column name="order_num" precision="5" scale="0" />
+		</property>
     </class>
 </hibernate-mapping>

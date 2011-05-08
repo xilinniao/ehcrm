@@ -24,8 +24,8 @@
 			class="com.eh.shop.entity.TbBrandInfo">
 			<column name="brand_id" precision="10" scale="0" />
 		</many-to-one>
-		<many-to-one name="pageCategory"
-			class="com.eh.shop.entity.TbPageCategory">
+		<many-to-one name="indexCategory"
+			class="com.eh.shop.entity.TbIndexCategory">
 			<column name="page_category_id" precision="10" scale="0" />
 		</many-to-one>
 		<property name="goodsName" type="java.lang.String">
@@ -51,10 +51,10 @@
 		</property>
 		<property name="leavesCount" type="java.lang.Long">
 			<column name="LEAVES_COUNT" precision="10" scale="0" />
-		</property>
-		<property name="faceImageId" type="java.lang.String">
+		</property>		
+		<many-to-one name="faceImage" class="com.eh.base.entity.TbAttachment">
 			<column name="FACE_IMAGE_ID" precision="12" scale="0" />
-		</property>
+		</many-to-one>		
 		<property name="jdUrl" type="java.lang.String">
 			<column name="jd_url" length="500" />
 		</property>

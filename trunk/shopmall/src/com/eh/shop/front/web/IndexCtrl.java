@@ -46,7 +46,7 @@ public class IndexCtrl extends BaseCtrl {
 	 */
 	private void findGoodList(HttpServletRequest request,Long siteCategoryId){
 		List<TbPageCategory> categoryList = pageCategoryLogic.findPageCategoryByType(siteCategoryId);
-		List categoryGoodsList = new ArrayList();		
+		List categoryGoodsList = new ArrayList();
 		for(int i = 0,len = categoryList.size();i<len;i++){
 			GoodsCategoryVo vo = new GoodsCategoryVo();
 			vo.setCategoryName(categoryList.get(i).getCategoryName());
@@ -181,7 +181,6 @@ public class IndexCtrl extends BaseCtrl {
 		mav.addObject("product", product);
 		
 		//获取分类
-		
 		//http://img14.360buyimg.com/n5/
 		
 		return mav;

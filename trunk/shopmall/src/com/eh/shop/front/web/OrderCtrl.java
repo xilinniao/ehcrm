@@ -4,8 +4,11 @@
 package com.eh.shop.front.web;
 
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +26,8 @@ import com.eh.shop.admin.logic.OrderLogic;
 import com.eh.shop.entity.TbCustInfo;
 import com.eh.shop.entity.TbOrderMain;
 import com.eh.shop.entity.TbShopInfo;
+import com.eh.shop.front.cache.GoodsShort;
+import com.eh.shop.front.logic.FrontCacheLogic;
 import com.eh.shop.front.vo.CustInfo;
 
 /**
@@ -33,14 +38,44 @@ public class OrderCtrl extends BaseFrontCtrl {
 	GoodsLogic goodsLogic;
 	CustAddrLogic custAddrLogic;
 	OrderLogic orderLogic;
+	FrontCacheLogic frontCacheLogic;
 	
+	/**
+	 * 购物车
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	public ModelAndView shoppingcart(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/shopping_cart");
 		//获取COOKIE信息
 		Cookie cookie = CookieUtils.getCookie(request, "cartitems");
-		String products = URLDecoder.decode(cookie.getValue(), "UTF-8");
-		List productList = goodsLogic.findGoodsForPrice(products);
-		ModelAndView mav = new ModelAndView("/jsp/shop/front/shopping_cart");
-		mav.addObject("productList", productList);
+		if(cookie!=null){
+			String cartList = URLDecoder.decode(cookie.getValue(), "UTF-8");
+			String[] productIds = cartList.split(",");
+			
+			List productList = new ArrayList();
+			for(int i = 0,len = productIds.length;i<len;i++){
+				try{
+					String[] tmp = productIds[i].split("=");//0为商品ID,1为商品订购数量
+					if(tmp.length==2){
+						Long productId = Long.parseLong(tmp[0]);
+						Long cnt = Long.parseLong(tmp[1]);
+						GoodsShort goods = frontCacheLogic.findGoodsShort(productId, true);
+						if(goods!=null){
+							Map product = new HashMap();
+							product.put("discountPrice", goods.getDiscountPriceStr());
+							product.put("price", goods.getPriceStr());
+							product.put("cnt", cnt);
+							productList.add(product);
+						}
+					}
+				}catch(NumberFormatException ne){
+				}
+			}
+			mav.addObject("productList", productList);
+		}
 		return mav;
 	}
 	
@@ -146,6 +181,14 @@ public class OrderCtrl extends BaseFrontCtrl {
 	 */
 	public void setOrderLogic(OrderLogic orderLogic) {
 		this.orderLogic = orderLogic;
+	}
+
+	public FrontCacheLogic getFrontCacheLogic() {
+		return frontCacheLogic;
+	}
+
+	public void setFrontCacheLogic(FrontCacheLogic frontCacheLogic) {
+		this.frontCacheLogic = frontCacheLogic;
 	}
 	
 	

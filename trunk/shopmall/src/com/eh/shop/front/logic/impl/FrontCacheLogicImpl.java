@@ -10,9 +10,11 @@ import com.eh.base.entity.TbAttachment;
 import com.eh.base.logic.BaseLogic;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoSub;
+import com.eh.shop.entity.TbShopInfo;
 import com.eh.shop.front.cache.GoodsDetail;
 import com.eh.shop.front.cache.GoodsShort;
 import com.eh.shop.front.cache.ImageUrl;
+import com.eh.shop.front.cache.ShopInfo;
 import com.eh.shop.front.logic.FrontCacheLogic;
 
 public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
@@ -20,23 +22,29 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 	 * 缓存
 	 */
 	Ehcache frontCache;
-	
 	/**
 	 * 
 	 */
-	public GoodsDetail findGoodsDetail(Long goodsId) {
-		String key = "gs_"+goodsId;
-		TbGoodsInfo goodInfo = this.baseDao.get(TbGoodsInfo.class, goodsId);
+	public GoodsDetail findGoodsDetail(Long subGoodsId,boolean reRead) {
+		String key = "gsd_"+subGoodsId;//good sub detail	
+		frontCache.remove(key);
 		Element elm = frontCache.get(key);
 		if(elm==null){
-			GoodsDetail vo = new GoodsDetail();
-			vo.setName(goodInfo.getGoodsName());
-			vo.setPrice(goodInfo.getMarketPrice());
-			vo.setDiscountPrice(goodInfo.getDiscountPrice());
-			vo.setGoodsDesc(goodInfo.getGoodsDesc());
-			vo.setLeavesCount(goodInfo.getLeavesCount());
+			TbGoodsInfoSub goodInfoSub = this.baseDao.get(TbGoodsInfoSub.class, subGoodsId);
+			if(goodInfoSub==null){
+				return null;
+			}
+			TbGoodsInfo goodInfo = goodInfoSub.getGoods();
 			
-			List<TbGoodsInfoSub> goodsSubList = baseDao.find("from TbGoodsInfoSub t where t.goods.goodsId = ? order by ",goodsId);			
+			GoodsDetail vo = new GoodsDetail();
+			vo.setGoodsId(subGoodsId);
+			vo.setName(goodInfo.getGoodsName());
+			vo.setPrice(goodInfoSub.getMarketPrice());
+			vo.setDiscountPrice(goodInfoSub.getDiscountPrice());
+			vo.setGoodsDesc(goodInfo.getGoodsDesc());
+			vo.setLeavesCount(goodInfoSub.getLeavesCount());
+			
+			List<TbGoodsInfoSub> goodsSubList = baseDao.find("from TbGoodsInfoSub t where t.goods = ? order by t.orderNum asc ",goodInfo);			
 			List subList = new ArrayList();
 			for(TbGoodsInfoSub next:goodsSubList){
 				GoodsShort subvo = new GoodsShort();
@@ -44,19 +52,24 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 				subvo.setPrice(next.getMarketPrice());
 				subvo.setDiscountPrice(next.getDiscountPrice());
 				subList.add(subvo);
-			}			
+			}
 			vo.setSubGoods(subList);
 			
-			List<TbAttachment> attachList = baseDao.find("select r.attachment from TbGoodsAttach r where r.goodsInfo.goodsId = ? order by r.orderNum asc", goodsId);
+			List<TbAttachment> attachList = baseDao.find("select r.attachment from TbGoodsImages r where r.goodsInfo = ? order by r.orderNum asc", goodInfo);
 			
 			List imageList = new ArrayList();
 			for(TbAttachment next:attachList){
 				ImageUrl image = new ImageUrl();
-				image.setMiddle(next.getFileLoaction()+"."+next.getFileExtension());
+				image.setImageA(next.getFilePathA());
+				image.setImageB(next.getFilePathB());
+				image.setImageC(next.getFilePathC());
+				image.setImageD(next.getFilePathD());
+				image.setImageE(next.getFilePathE());
+				image.setImageF(next.getFilePathF());
 				imageList.add(image);
 			}
 			vo.setImageList(imageList);
-			
+			vo.setShopId(goodInfo.getShopInfo().getShopId());
 			this.frontCache.put(new Element(key,vo));
 			return vo;
 		}else{
@@ -67,20 +80,50 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 	/**
 	 * 传入子商品信息
 	 */
-	public GoodsShort findGoodsShort(Long subGoodsId) {
-		String key = "gs_"+subGoodsId;
-		TbGoodsInfoSub goodInfo = this.baseDao.get(TbGoodsInfoSub.class, subGoodsId);
+	public GoodsShort findGoodsShort(Long subGoodsId,boolean reRead) {
+		String key = "gss_"+subGoodsId;//good sub short		
+		frontCache.remove(key);
 		Element elm = frontCache.get(key);
 		if(elm==null){
+			TbGoodsInfoSub goodInfo = this.baseDao.get(TbGoodsInfoSub.class, subGoodsId);
+			if(goodInfo==null){
+				return null;
+			}
 			GoodsShort vo = new GoodsShort();
-			vo.setGoodId(goodInfo.getGoods().getGoodsId());
+			vo.setGoodsId(subGoodsId);
+			vo.setGoodsId(goodInfo.getGoods().getGoodsId());
 			vo.setName(goodInfo.getGoods().getGoodsName()+goodInfo.getGoodsSubName());
 			vo.setPrice(goodInfo.getMarketPrice());
 			vo.setDiscountPrice(goodInfo.getDiscountPrice());
+			vo.setImageA(goodInfo.getGoods().getFaceImage().getFilePathA());
+			vo.setImageB(goodInfo.getGoods().getFaceImage().getFilePathB());
+			vo.setImageC(goodInfo.getGoods().getFaceImage().getFilePathC());
+			vo.setImageD(goodInfo.getGoods().getFaceImage().getFilePathD());
+			vo.setImageE(goodInfo.getGoods().getFaceImage().getFilePathE());
+			vo.setImageF(goodInfo.getGoods().getFaceImage().getFilePathF());
 			this.frontCache.put(new Element(key,vo));
 			return vo;
 		}else{
 			return (GoodsShort)elm.getValue();
+		}
+	}
+
+	/**
+	 * 店铺信息缓存
+	 */
+	public ShopInfo findShopInfo(Long shopId,boolean reRead) {
+		String key = "si_"+shopId;//shop info
+		frontCache.remove(key);
+		Element elm = frontCache.get(key);
+		if(elm==null){
+			TbShopInfo shopInfo = super.baseDao.get(TbShopInfo.class, shopId);
+			ShopInfo vo = new ShopInfo();
+			vo.setShopName(shopInfo.getShopName());
+			vo.setLinkerMobile(shopInfo.getLinkerMobile());
+			vo.setLinkerMan(shopInfo.getLinkerMan());
+			return vo;
+		}else{
+			return (ShopInfo)elm.getValue();
 		}
 	}
 

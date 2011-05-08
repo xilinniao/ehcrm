@@ -22,8 +22,23 @@
     <property name="fileSize" type="java.lang.String" unique="false" optimistic-lock="true" lazy="false" generated="never">
       <column name="FILE_SIZE" length="200" />
     </property>
-    <property name="fileLoaction" type="java.lang.String" unique="false" optimistic-lock="true" lazy="false" generated="never">
-      <column name="FILE_LOACTION" length="200" />
+    <property name="filePathA" type="java.lang.String">
+      <column name="FILE_PATH_A" length="200" />
+    </property>
+    <property name="filePathB" type="java.lang.String">
+      <column name="FILE_PATH_B" length="200" />
+    </property>
+    <property name="filePathC" type="java.lang.String">
+      <column name="FILE_PATH_C" length="200" />
+    </property>
+    <property name="filePathD" type="java.lang.String">
+      <column name="FILE_PATH_D" length="200" />
+    </property>
+    <property name="filePathE" type="java.lang.String">
+      <column name="FILE_PATH_E" length="200" />
+    </property>
+    <property name="filePathF" type="java.lang.String">
+      <column name="FILE_PATH_F" length="200" />
     </property>
     <property name="userId" type="java.lang.Long" unique="false" optimistic-lock="true" lazy="false" generated="never">
       <column name="USER_ID" />

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.shop.front.cache.GoodsDetail;
+import com.eh.shop.front.cache.ShopInfo;
 import com.eh.shop.front.logic.FrontCacheLogic;
 
 /**
@@ -20,9 +21,11 @@ public class ProductCtrl extends BaseFrontCtrl {
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("/jsp/shop/front/product");
 		Long productId = super.getLong(request, "productId", true);
-		GoodsDetail detail =frontCacheLogic.findGoodsDetail(productId);
-		mav.addObject("detail", detail);		
-		return super.index(request, response);
+		GoodsDetail product =frontCacheLogic.findGoodsDetail(productId,false);
+		ShopInfo shopInfo = frontCacheLogic.findShopInfo(product.getShopId(),false);
+		mav.addObject("product", product);
+		mav.addObject("shopInfo", shopInfo);
+		return mav;
 	}
 
 	public FrontCacheLogic getFrontCacheLogic() {

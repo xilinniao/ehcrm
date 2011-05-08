@@ -237,7 +237,7 @@ public class SiteCategoryCtrl extends BaseTreeCtrl{
 						imageUrl = elm.select("div.p-img > a > img").attr(
 								"src2");
 					}
-					goods.setImageUrl(imageUrl);
+					//goods.setImageUrl(imageUrl);
 					
 					//原价
 					String orgPrice = elm.select("div.p-price > del").text().substring(1);
