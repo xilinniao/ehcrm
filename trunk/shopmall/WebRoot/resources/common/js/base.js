@@ -3,12 +3,12 @@ function defaultErrorPlacement(error, element) {
 	if("undefined" != typeof messagePosition && messagePosition != "") {
 		var $messagePosition = $(messagePosition);
 		if ($messagePosition.size() > 0) {
-			error.insertAfter($messagePosition).fadeOut(300).fadeIn(300);
+			error.insertAfter($messagePosition).hide().show();
 		} else {
-			error.insertAfter(element).fadeOut(300).fadeIn(300);
+			error.insertAfter(element).hide().show();
 		}
 	} else {
-		error.insertAfter(element).fadeOut(300).fadeIn(300);
+		error.insertAfter(element).hide().show();
 	}
 }
 function defaultSubmitHandler(form) {
@@ -184,7 +184,7 @@ $(document).ready( function() {
 				if("undefined" != typeof messagePosition && messagePosition != "") {
 					var $messagePosition = $(messagePosition);
 					if ($messagePosition.size() > 0) {
-						error.insertAfter($messagePosition).hide().show(300);
+						error.insertAfter($messagePosition).hide().show();
 					} else {
 						error.insertAfter(element).hide().show();
 					}
