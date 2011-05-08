@@ -19,7 +19,8 @@ shop_constant = {
 	priceRoundType: "roundHalfUp",
 	orderScale: "2",
 	orderRoundType: "roundHalfUp",
-	cookie_days: 60
+	cookie_days: 60,
+	cookie_path:'/'
 };
 
 // 浮点数加法运算
