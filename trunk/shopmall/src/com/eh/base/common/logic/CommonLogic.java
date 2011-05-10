@@ -5,4 +5,7 @@ import com.eh.base.logic.IBaseLogic;
 public interface CommonLogic extends IBaseLogic{
 	
 	
+	
+	
+	
 }
