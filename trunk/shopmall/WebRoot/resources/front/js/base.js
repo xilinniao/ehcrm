@@ -298,7 +298,10 @@ jQuery(document).ready(function() {
 				continuous:true
 			});
 	    }  
-	    	  
+	    
+	    /**
+	     * needclr 是否需要清除购物篮
+	     **/
 	   	$.flushcartitems=function(needclr){
 	   		if(needclr){$('#mycart-list').empty()};
 	   		var cart_items = $.cookie('cartitems');
@@ -307,9 +310,10 @@ jQuery(document).ready(function() {
 				$('#mycart-amount').text('0');
 				$('#mycart-list').append("<div class=\"norecode ac\">您的购物车中暂无商品，赶快选择心爱的商品吧！</div>");
 			}else{
+				alert(cart_items);	
 				var cartAmount=cart_items.split(",").length;
 				$('#mycart-amount').text(cartAmount);
-				var mycart_tpl = "<div><dl><dt class=\"p-img\"><a href=\""+shop_constant.base+"/product/#{goodsId}.html\" target=\"_blank\"><img src=\"#{imageUrl}\" width=\"50\" height=\"50\"></a></dt><dd class=\"p-name\"><a href=\""+shop_constant.base+"/product/#{goodsId}.html\">#{goodsName}</a></dd><dd class=\"extra\"><strong>￥#{discountPrice}×#{cnt}</strong></dd></dl></div>";
+				var mycart_tpl = "<div><dl><dt class=\"p-img\"><a href=\""+shop_constant.base+"/product/#{subGoodsId}.html\" target=\"_blank\"><img src=\"#{imagea}\" width=\"50\" height=\"50\"></a></dt><dd class=\"p-name\"><a href=\""+shop_constant.base+"/product/#{subGoodsId}.html\">#{goodsName}</a></dd><dd class=\"extra\"><strong>￥#{discountPrice}×#{cnt}</strong></dd></dl></div>";
 				$.ajax({
 					  dataType:'json',
 					  type: "get",
@@ -342,7 +346,7 @@ jQuery(document).ready(function() {
 		var $goodsHistory = $("#goodsHistory");
 		if ($goodsHistory.size() > 0) {
 			var historyproduct = $.cookie('goodsHistoryList');
-			var history_tpl = "<li class=\"fore\"><div class=\"p-img\"><a href=\""+shop_constant.base+"/product/#{goodsId}.html\"><img src=\"#{imageUrl}\" width=\"50\" height=\"50\"></a></div><div class=\"p-name\"><a href=\""+shop_constant.base+"/product/#{goodsId}.html\">#{goodsName}</a></div></li>";
+			var history_tpl = "<li class=\"fore\"><div class=\"p-img\"><a href=\""+shop_constant.base+"/product/#{subGoodsId}.html\"><img src=\"#{imagea}\" width=\"50\" height=\"50\"></a></div><div class=\"p-name\"><a href=\""+shop_constant.base+"/product/#{subGoodsId}.html\">#{goodsName}</a></div></li>";
 			$.ajax({
 				  dataType:'json',
 				  type: "get",
