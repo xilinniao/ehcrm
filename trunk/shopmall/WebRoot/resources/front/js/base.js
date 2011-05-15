@@ -310,7 +310,6 @@ jQuery(document).ready(function() {
 				$('#mycart-amount').text('0');
 				$('#mycart-list').append("<div class=\"norecode ac\">您的购物车中暂无商品，赶快选择心爱的商品吧！</div>");
 			}else{
-				alert(cart_items);	
 				var cartAmount=cart_items.split(",").length;
 				$('#mycart-amount').text(cartAmount);
 				var mycart_tpl = "<div><dl><dt class=\"p-img\"><a href=\""+shop_constant.base+"/product/#{subGoodsId}.html\" target=\"_blank\"><img src=\"#{imagea}\" width=\"50\" height=\"50\"></a></dt><dd class=\"p-name\"><a href=\""+shop_constant.base+"/product/#{subGoodsId}.html\">#{goodsName}</a></dd><dd class=\"extra\"><strong>￥#{discountPrice}×#{cnt}</strong></dd></dl></div>";
