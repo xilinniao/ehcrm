@@ -23,6 +23,7 @@ import com.eh.shop.admin.logic.PageCategoryLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
 import com.eh.shop.entity.TbBrandInfo;
 import com.eh.shop.entity.TbGoodsCategory;
+import com.eh.shop.entity.TbGoodsExtend;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoSub;
 import com.eh.shop.entity.TbIndexCategory;
@@ -199,6 +200,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		Long siteCategoryId = super.getLong(request, "siteCategoryId", true);//网站分类
 		Long brandId = super.getLong(request, "brandId", true);//品牌
 		Long pageCategoryId = super.getLong(request, "pageCategoryId", true);
+		String goodsDesc = super.getString(request, "goodsDesc", true);
 		TbBrandInfo brandInfo = null;
 		TbIndexCategory pageCategory = null;
 		TbSiteCategory siteCategory = null;
@@ -245,6 +247,9 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			info.setIndexCategory(pageCategory);
 			info.setCreateUser(userInfo.getUser().getUserId());
 			info.setCreateTime(new Date());
+			TbGoodsExtend ext = new TbGoodsExtend();
+			ext.setGoodsDesc(goodsDesc);
+			info.setExt(ext);
 			this.goodsLogic.saveGoodsInfo(info,siteCategory,subs,imageIds);
 		}else{
 			//修改操作
@@ -254,6 +259,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 				info.setCategory(category);
 				info.setBrandInfo(brandInfo);
 				info.setIndexCategory(pageCategory);
+				info.getExt().setGoodsDesc(goodsDesc);
 				this.goodsLogic.saveGoodsInfo(info,siteCategory,subs,imageIds);
 			}else{
 				super.addErrors(request, "非法操作，没有找到指定的商品信息");

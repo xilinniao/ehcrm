@@ -28,6 +28,7 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 	public GoodsDetail findGoodsDetail(Long subGoodsId,boolean reRead) {
 		String key = "gsd_"+subGoodsId;//good sub detail	
 		frontCache.remove(key);
+		
 		Element elm = frontCache.get(key);
 		if(elm==null){
 			TbGoodsInfoSub goodInfoSub = this.baseDao.get(TbGoodsInfoSub.class, subGoodsId);
@@ -41,7 +42,7 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 			vo.setName(goodInfo.getGoodsName());
 			vo.setPrice(goodInfoSub.getMarketPrice());
 			vo.setDiscountPrice(goodInfoSub.getDiscountPrice());
-			vo.setGoodsDesc(goodInfo.getGoodsDesc());
+			vo.setGoodsDesc(goodInfo.getExt().getGoodsDesc());
 			vo.setLeavesCount(goodInfoSub.getLeavesCount());
 			
 			List<TbGoodsInfoSub> goodsSubList = baseDao.find("from TbGoodsInfoSub t where t.goods = ? order by t.orderNum asc ",goodInfo);			
@@ -92,7 +93,7 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 			GoodsShort vo = new GoodsShort();
 			vo.setGoodsId(subGoodsId);
 			vo.setGoodsId(goodInfo.getGoods().getGoodsId());
-			vo.setName(goodInfo.getGoods().getGoodsName()+goodInfo.getGoodsSubName());
+			vo.setName(goodInfo.getGoods().getGoodsName()+(goodInfo.getGoodsSubName()==null?"":goodInfo.getGoodsSubName()));
 			vo.setPrice(goodInfo.getMarketPrice());
 			vo.setDiscountPrice(goodInfo.getDiscountPrice());
 			vo.setImageA(goodInfo.getGoods().getFaceImage().getFilePathA());

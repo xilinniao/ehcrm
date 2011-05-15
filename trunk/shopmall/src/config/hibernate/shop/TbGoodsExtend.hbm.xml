@@ -2,16 +2,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.eh.shop.admin.entity.TbGoodsExtend" table="TB_GOODS_EXTEND">    
+    <class name="com.eh.shop.entity.TbGoodsExtend" table="TB_GOODS_EXTEND">    
 		 <id name="goodsId" type="java.lang.Long">
             <column name="GOODS_ID" precision="10" scale="0"/>
-            <generator class="native" />
+            <generator class="foreign">
+				<param name="property">goods</param>
+			</generator>
       	 </id>
+      	 <one-to-one name="goods" class="com.eh.shop.entity.TbGoodsInfo" cascade="save-update"></one-to-one>
 		 <property name="goodsDesc" type="java.lang.String">
-            <column name="GOODS_DESC" length="65,535"/>
+            <column name="GOODS_DESC" length="65535"/>
         </property>
 		 <property name="packList" type="java.lang.String">
-            <column name="PACK_LIST" length="1,000"/>
+            <column name="PACK_LIST" length="1000"/>
         </property>
     </class>
 </hibernate-mapping>
