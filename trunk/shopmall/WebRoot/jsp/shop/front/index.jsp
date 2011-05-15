@@ -6,11 +6,10 @@
 <link href="<%=path %>/resources/front/css/slide.css" rel="stylesheet" type="text/css" />
 <link href="<%=path %>/resources/front/css/product.css" rel="stylesheet" type="text/css" />
 
-
 <%@include file="/jsp/shop/front/common/head.jsp"%>
 <script src="<%=path %>/resources/front/js/jquery.easyslider.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/dialog.js" type="text/javascript"></script>
-<script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
+<script src="<%=path %>/resources/front/js/base.js?09" type="text/javascript"></script>
 
 </head>
 <body id="index">
