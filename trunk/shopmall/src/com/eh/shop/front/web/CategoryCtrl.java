@@ -101,6 +101,7 @@ public class CategoryCtrl extends BaseFrontCtrl {
 		Long categoryId = super.getLong(request, "categoryId", false);
 		ProductQry qry = new ProductQry();
 		qry.setCategoryId(categoryId);
+		qry.setPageSize(24);
 		Page page = this.siteCategoryLogic.findFrontGoodsList(qry);
 		List data = page.getResult();
 		if(data!=null){

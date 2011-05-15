@@ -118,7 +118,7 @@ public class SiteCategoryLogicImpl extends BaseLogic implements SiteCategoryLogi
 	public Page findFrontGoodsList(ProductQry qry) {
 		Criteria criteria = super.baseDao.createCriteria(TbGoodsCategoryRel.class);
 		CriteriaUtil.addEq(criteria, "categoryId", qry.getCategoryId());		
-		CriteriaUtil.addOrder(criteria, "orderNum", CriteriaUtil.ASC);		
+		CriteriaUtil.addOrder(criteria, "orderNum", CriteriaUtil.ASC);
 		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 	

@@ -296,7 +296,7 @@ public class SiteCategoryCtrl extends BaseTreeCtrl{
 			try {
 				Document doc = Jsoup.connect(realurl).get();
 				Elements elms = doc.select("div.mc > div.content");
-				goods.setGoodsDesc(elms.get(0).html());
+//				goods.setGoodsDesc(elms.get(0).html());
 				//Thread.sleep(3000);
 				
 				/*Elements uls = doc.select("div.mc > div.i-detail");

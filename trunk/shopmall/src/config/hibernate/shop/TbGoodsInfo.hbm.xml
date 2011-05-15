@@ -46,9 +46,6 @@
 		<property name="discountPrice" type="java.lang.Double">
 			<column name="DISCOUNT_PRICE" precision="12" />
 		</property>
-		<property name="goodsDesc" type="java.lang.String">
-			<column name="GOODS_DESC" length="65535" />
-		</property>
 		<property name="leavesCount" type="java.lang.Long">
 			<column name="LEAVES_COUNT" precision="10" scale="0" />
 		</property>		
@@ -64,5 +61,6 @@
 		 <property name="createTime" type="java.util.Date">
 		 	<column name="CREATE_TIME" length="7" />
         </property>
+        <one-to-one name="ext" class="com.eh.shop.entity.TbGoodsExtend" cascade="save-update"></one-to-one>
 	</class>
 </hibernate-mapping>

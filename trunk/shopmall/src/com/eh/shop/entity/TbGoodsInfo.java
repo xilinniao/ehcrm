@@ -25,12 +25,12 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private Double weight;
      private Double marketPrice;
      private Double discountPrice;
-     private String goodsDesc;
      private Long leavesCount;
      private TbAttachment faceImage;
      private String jdUrl;
      private Long createUser;
      private Date createTime;
+     private TbGoodsExtend ext;
 
 
     // Constructors
@@ -41,7 +41,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbSiteCategory siteCategory, TbBrandInfo brandInfo, TbIndexCategory indexCategory, String goodsName, String keyWord, String goodNo, Double weight, Double marketPrice, Double discountPrice, String goodsDesc, Long leavesCount, TbAttachment faceImage, String jdUrl, Long createUser, Date createTime) {
+    public TbGoodsInfo(TbShopInfo shopInfo, TbGoodsCategory category, TbSiteCategory siteCategory, TbBrandInfo brandInfo, TbIndexCategory indexCategory, String goodsName, String keyWord, String goodNo, Double weight, Double marketPrice, Double discountPrice, Long leavesCount, TbAttachment faceImage, String jdUrl, Long createUser, Date createTime, TbGoodsExtend ext) {
         this.shopInfo = shopInfo;
         this.category = category;
         this.siteCategory = siteCategory;
@@ -53,12 +53,12 @@ public class TbGoodsInfo  implements java.io.Serializable {
         this.weight = weight;
         this.marketPrice = marketPrice;
         this.discountPrice = discountPrice;
-        this.goodsDesc = goodsDesc;
         this.leavesCount = leavesCount;
         this.faceImage = faceImage;
         this.jdUrl = jdUrl;
         this.createUser = createUser;
         this.createTime = createTime;
+        this.ext = ext;
     }
 
    
@@ -160,14 +160,6 @@ public class TbGoodsInfo  implements java.io.Serializable {
         this.discountPrice = discountPrice;
     }
 
-    public String getGoodsDesc() {
-        return this.goodsDesc;
-    }
-    
-    public void setGoodsDesc(String goodsDesc) {
-        this.goodsDesc = goodsDesc;
-    }
-
     public Long getLeavesCount() {
         return this.leavesCount;
     }
@@ -206,6 +198,14 @@ public class TbGoodsInfo  implements java.io.Serializable {
     
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public TbGoodsExtend getExt() {
+        return this.ext;
+    }
+    
+    public void setExt(TbGoodsExtend ext) {
+        this.ext = ext;
     }
    
 

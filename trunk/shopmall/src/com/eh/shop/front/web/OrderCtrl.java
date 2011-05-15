@@ -62,13 +62,22 @@ public class OrderCtrl extends BaseFrontCtrl {
 					if(tmp.length==2){
 						Long productId = Long.parseLong(tmp[0]);
 						Long cnt = Long.parseLong(tmp[1]);
-						GoodsShort goods = frontCacheLogic.findGoodsShort(productId, true);
-						if(goods!=null){
-							Map product = new HashMap();
-							product.put("discountPrice", goods.getDiscountPriceStr());
-							product.put("price", goods.getPriceStr());
-							product.put("cnt", cnt);
-							productList.add(product);
+						GoodsShort product = frontCacheLogic.findGoodsShort(productId, true);
+						if(product!=null){
+							Map data = new HashMap();
+							data.put("subGoodsId", productId);
+							data.put("goodsId", product.getGoodsId());
+							data.put("goodsName", product.getName());
+							data.put("price", product.getPriceStr());
+							data.put("discountPrice", product.getDiscountPriceStr());
+							data.put("cnt", Long.parseLong(tmp[1]));
+							data.put("imagea", product.getImageA());
+							data.put("imageb", product.getImageB());
+							data.put("imagec", product.getImageC());
+							data.put("imaged", product.getImageD());
+							data.put("imagee", product.getImageE());
+							data.put("imagef", product.getImageF());
+							productList.add(data);
 						}
 					}
 				}catch(NumberFormatException ne){

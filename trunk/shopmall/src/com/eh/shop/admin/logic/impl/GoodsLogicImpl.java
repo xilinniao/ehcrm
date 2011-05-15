@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.entity.TbAttachment;
@@ -57,6 +58,13 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		CriteriaUtil.addFullLike(criteria, "goodsName", qry.getGoodsName());
 		criteria.addOrder(Order.asc("c.treeNo"));
 		criteria.addOrder(Order.desc("createTime"));
+		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
+	}
+	
+	public Page findGoodsListForJingdong(GoodsInfoQry qry) {
+		Criteria criteria = baseDao.createCriteria(TbGoodsInfo.class);
+		criteria.add(Restrictions.isNull("createUser"));
+		criteria.addOrder(Order.asc("goodsId"));
 		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 

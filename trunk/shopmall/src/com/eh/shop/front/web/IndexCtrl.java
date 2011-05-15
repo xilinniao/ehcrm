@@ -147,7 +147,7 @@ public class IndexCtrl extends BaseCtrl {
 			try {
 				Document doc = Jsoup.connect(realurl).get();
 				Elements elms = doc.select("div.mc > div.content");
-				goods.setGoodsDesc(elms.get(0).html());
+				//goods.setGoodsDesc(elms.get(0).html());
 				
 				Elements imgs = doc.select("div#spec-list > ul  > li > img");
 				//System.out.println(imgs);

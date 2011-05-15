@@ -29,6 +29,8 @@ public interface GoodsLogic extends IBaseLogic {
 	 * @return
 	 */
 	public Page findGoodsListForPage(GoodsInfoQry qry);
+	
+	public Page findGoodsListForJingdong(GoodsInfoQry qry);
 	/**
 	 * 保存商品信息
 	 * @param info
