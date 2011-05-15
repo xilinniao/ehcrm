@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.info, .success, .warning, .error, .validation {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding:5px 0px 5px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	width:80%;
+}
+
+.error {
+color: #D8000C;
+background-color: #FFBABA;
+background-image: url('../images/btn/error.png');
+}
+</style>
+<script type="text/javascript" src="./jquery/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="formvalidator.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var config = [
+		{'id':'f_date','empty':false,'type':'number','name':'浮点数'},
+		{'id':'f_number','empty':false,'type':'integer','name':'整数'},
+		{'id':'f_integer','empty':false,'type':'date','name':'日期'}
+		];	
+		fv = new FormValidator(config);		
+	});
+	function cl(){
+		fv.check();
+	}
+</script>
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>日期
+<input id="f_date" name="f_date" type="text">
+<div id="msg_f_date"></div></td>
+    <td>数字<input id="f_number" name="f_number" type="text">
+<div id="msg_f_number"></div></td>
+  </tr>
+  <tr>
+    <td>整数<input id="f_integer" name="f_integer" type="text">
+<div id="msg_f_integer"></div></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2"><input type="button" name="Submit" onClick="cl()" value="提交"></td>
+  </tr>
+</table>
+</body>
+</html>
