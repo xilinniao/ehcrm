@@ -20,8 +20,11 @@ public class GetProductDetail {
 						"/config/spring/bean-shop-admin.xml" });
 		GoodsLogic goodsLogic = (GoodsLogic) context.getBean("goodsLogic");		
 		GoodsInfoQry qry = new GoodsInfoQry();
-		
+		qry.setPageSize(20);
+		int i=0;
 		while(true){
+			i++;
+			qry.setPageNo(i);
 			List<TbGoodsInfo> goodsList = goodsLogic.findGoodsListForJingdong(qry).getResult();
 			
 			if(goodsList.size()>0){
