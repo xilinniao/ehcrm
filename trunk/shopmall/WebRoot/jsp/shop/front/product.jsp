@@ -4,10 +4,11 @@
 <title>抚州网上购物商城</title>
 <link href="<%=path %>/resources/front/css/index.css" rel="stylesheet" type="text/css" />
 <link href="<%=path %>/resources/front/css/product.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<%=path %>/resources/front/css/jquery.lightbox-0.5.css" media="screen" />
+
 <%@include file="/jsp/shop/front/common/head.jsp"%>
-<script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
-<script src="<%=path %>/resources/front/js/jquery.tmpl.min.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/dialog.js" type="text/javascript"></script>
+<script src="<%=path %>/resources/front/js/jquery.lightbox-0.5.pack.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
 <script type="text/javascript">
 <!--
@@ -24,6 +25,13 @@ $(document).ready(function() {
 		$('#detail'+'_'+$("ul.tab li").index($(this))).fadeIn();
 		return false;
 	});
+	
+	$('#product_imgages a').lightBox({		
+		imageLoading: '<%=path %>/resources/front/images/lightbox-ico-loading.gif',
+		imageBtnClose: '<%=path %>/resources/front/images/lightbox-btn-close.gif',
+		imageBtnPrev: '<%=path %>/resources/front/images/lightbox-btn-prev.gif',
+		imageBtnNext: '<%=path %>/resources/front/images/lightbox-btn-next.gif'
+	});	
 	
 	$.addGoodsHistory = function(goodsid){
 		var historyproduct = $.cookie('goodsHistoryList');
@@ -53,7 +61,7 @@ $(document).ready(function() {
 			$.dialog({type: "warn", content: "商品数量必须为正整数!", modal: true, autoCloseTime: 3000});
 			return false;
 		}else{
-			var cart_items = $.cookie('cartitems');			
+			var cart_items = $.cookie('cartitems');
 			if(cart_items!=null){
 				var tmps = cart_items.split(",");
 				var is_replace = false;//是否替换
@@ -94,11 +102,13 @@ $(document).ready(function() {
 <body id="index">
 <%@include file="/jsp/shop/front/common/top.jsp"%>
 
+<!-- 
 <div class="w">
 	    <div class="crumb">
          <a href="http://www.360buy.com">首页</a>&nbsp;&gt;&nbsp;<a href="http://www.360buy.com/electronic.html">家用电器、汽车用品</a>&nbsp;&gt;&nbsp;<a href="http://www.360buy.com/products/737-794-000.html">大 家 电</a>&nbsp;&gt;&nbsp;<a href="http://www.360buy.com/products/737-794-798.html">平板电视</a>&nbsp;&gt;&nbsp;<a href="http://www.360buy.com/brands/798-2182.html">LG</a>&nbsp;&gt;&nbsp;<a href="http://www.360buy.com/product/277669.html">LG32LD320-CA</a>
         </div>
 </div>
+ -->
 	
 <!-- 正文开始 -->
 <div class="w main">
@@ -171,14 +181,16 @@ $(document).ready(function() {
 			<h1>${product.name }</h1>
 		</div>
 		<div id="preview">
-			<div id="spec-n1" class="jqzoom"><img src="${bigphoto }" width="350" height="350"></div>
 		    <span class="clr5"></span>
 		    <div id="spec-list">
-				<div style="position:relative;overflow:hidden;z-index:1;width:300px;height:56px;"><ul class="list-h" style="width: 420px; overflow-x: hidden; overflow-y: hidden; position: absolute; left: 0px; top: 0px; margin-top: 0px; margin-left: 0px; ">
-					<ul>
-                       <c:forEach items="${imageList}" var="b">
+				<div style="position:relative;overflow:hidden;z-index:1;width:345px;height:400px;">
+					<ul class="list-h" style="width: 345px; overflow-x: hidden; overflow-y: hidden; position: absolute; left: 0px; top: 0px; margin-top: 0px; margin-left: 0px; ">
+					<ul id="product_imgages">
+                       <c:forEach items="${product.imageList}" var="b">
                        <li>
-                           <a href="#"><img src="${b}" width="50" height="50" /></a>
+                       		<div class="pi_img">
+                           <a href="${b.imageF}"><img src="${b.imageB}" width="100" height="100" /></a>
+                           </div>
                        </li>
                        </c:forEach>
 					</ul>
@@ -193,7 +205,7 @@ $(document).ready(function() {
 					<div class="lefta"></div>
 					<div class="righta">
 						<div class="top">
-							商 城 价：<span id="price" class="price">￥${product.discountPriceStr }</span>
+							直 销 价：<span id="price" class="price">￥${product.discountPriceStr }</span>
 						</div>
 						<div class="bottom">
 							市 场 价：<span id="marketPrice" class="marketPrice">￥${product.priceStr }</span>
