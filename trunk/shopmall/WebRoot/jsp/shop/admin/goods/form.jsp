@@ -80,7 +80,7 @@
 							  <c:forEach items="${subList }" var="b" varStatus="idx">
 							  <tr>
 								<td>
-								<input type="hidden" name="sub_id" value="${b.recId }">
+								<input type="hidden" name="sub_id" value="${b.goodsSubId }">
 								规格：<input type="text" name="goodsSubName" id="goodsSubName${idx.index }" class="formTextS {required: true}" value="${b.goodsSubName }"/>&nbsp;
 								市场价：<input type="text" name="marketPrice" id="marketPrice${idx.index }" class="formTextSS {required: true,number:true}" value="${b.marketPrice }"/>&nbsp;
 								商城售价:<input type="text" name="discountPrice" id="discountPrice${idx.index }" class="formTextSS {required: true,number:true}" value="${b.discountPrice }"/>&nbsp;
