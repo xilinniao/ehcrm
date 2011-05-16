@@ -67,6 +67,13 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		criteria.addOrder(Order.asc("goodsId"));
 		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
+	
+	public Page findGoodsListForJingDongPrice(GoodsInfoQry qry) {
+		Criteria criteria = baseDao.createCriteria(TbGoodsInfo.class);
+		criteria.add(Restrictions.isNull("createTime"));
+		criteria.addOrder(Order.asc("goodsId"));
+		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
+	}
 
 	/* (non-Javadoc)
 	 * @see com.eh.shop.admin.logic.GoodsLogic#saveGoodsInfo(com.eh.shop.entity.TbGoodsInfo)
