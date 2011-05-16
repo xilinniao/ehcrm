@@ -47,18 +47,7 @@
 		</init-param>
 	</filter>
 	
-	<filter>
-        <filter-name>UrlRewriteFilter</filter-name>
-        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
-        <init-param>
-            <param-name>logLevel</param-name>
-            <param-value>WARN</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>UrlRewriteFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+	
 
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
@@ -81,7 +70,59 @@
 		<filter-name>hibernateFilter</filter-name>
 		<url-pattern>*.jsp</url-pattern>
 	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>/product/*</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>/products/*</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>/category/*</url-pattern>
+	</filter-mapping>
 
+	<filter>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+        <init-param>
+            <param-name>logLevel</param-name>
+            <param-value>DEBUG</param-value>
+        </init-param>
+        <init-param>
+            <param-name>confReloadCheckInterval</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>confPath</param-name>
+            <param-value>/WEB-INF/urlrewrite.xml</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/product/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/products/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/category/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/front/common/*</url-pattern>
+    </filter-mapping>
+    
 	<listener>
 		<listener-class>
 			org.springframework.web.context.ContextLoaderListener
