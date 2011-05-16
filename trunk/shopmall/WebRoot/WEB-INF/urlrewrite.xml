@@ -14,18 +14,12 @@
         <from>/front/common/(.*).html</from>
         <to>/front/login.xhtml?method=$1</to>
     </rule>
-    
+        
     <rule>
-        <note>导航栏页面</note>
+        <note>首页</note>
         <from>/index.html</from>
         <to>/index.xhtml?method=index</to>
-    </rule>
-    
-    <rule>
-        <note>导航栏页面</note>
-        <from>/index/(.*).html</from>
-        <to>/index.xhtml?method=$1</to>
-    </rule>
+    </rule>    
     
     <rule>
         <note>用户中心</note>
@@ -34,10 +28,23 @@
     </rule>
     
     <rule>
-        <note>导航栏页面</note>
+        <note>产品</note>
         <from>/product/(.*).html</from>
-        <to>/index.xhtml?method=product&productId=$1</to>
+        <to>/front/product.xhtml?method=index&amp;productId=$1</to>
     </rule>
+    
+    <rule>
+        <note>分类</note>
+        <from>/category/(.*).html</from>
+        <to>/index.xhtml?method=category&amp;categoryId=$1</to>
+    </rule>
+    
+    <rule>
+        <note>分类产品列表</note>
+        <from>/products/(.*).html</from>
+        <to>/front/category.xhtml?method=products&amp;categoryId=$1</to>
+    </rule>
+    
     
  <!-- 
     <rule>
