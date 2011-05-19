@@ -40,7 +40,8 @@ public class SiteCategoryCtrl extends BaseTreeCtrl{
 			ul.append("<li><a href=\"/category/"+levela.getCategoryId()+".html\" class=\"products\">"+levela.getCategoryName()+"</a><div class=\"sub\">");
 			List<TbSiteCategory> listb = siteCategoryLogic.findCategoryListByParentId(levela.getCategoryId());
 			for(TbSiteCategory levelb:listb){
-				ul.append("<dl><dt><a href=\"/category/"+levelb.getCategoryId()+".html\">"+levelb.getCategoryName()+"</a></dt><dd>");
+				//ul.append("<dl><dt><a href=\"/category/"+levelb.getCategoryId()+".html\">"+levelb.getCategoryName()+"</a></dt><dd>");
+				ul.append("<dl><dt>"+levelb.getCategoryName()+"</dt><dd>");
 				List<TbSiteCategory> listc = siteCategoryLogic.findCategoryListByParentId(levelb.getCategoryId());
 				for(TbSiteCategory levelc:listc){
 					ul.append("<a href=\"/products/"+levelc.getCategoryId()+".html\">"+levelc.getCategoryName()+"</a>");
