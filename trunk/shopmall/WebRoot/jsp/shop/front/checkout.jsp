@@ -104,7 +104,7 @@
 						   <input type="hidden" name="cnt" value="${b.cnt }"/>
 						   </td>
 						   <td class="align_Left">
-						   <a target="_blank" href="<%=path %>/product/detail/${b.goodsId }.html" onclick="this.blur();">${b.goodsName }</a></td>
+						   <a target="_blank" href="<%=path %>/product/${b.goodsId }.html">${b.goodsName }</a></td>
 						   <td><span class="price">￥${b.discountPrice }</span></td>
 						   <td>0</td>
 						   <td>现货</td>
