@@ -87,7 +87,6 @@ ul.sf-menu li li li.sfHover ul {
 	line-height: 30px;
 	display: block;
 	float: left;
-	padding: 0px 5px;
 	font-size: 14px;
 	color: #ffffff;
 	float: left;
@@ -120,7 +119,8 @@ ul.sf-menu li li li.sfHover ul {
 	border:	1px solid #ccc;
 	border-bottom:	0px solid #ccc;	
 	border-top:none;
-	}
+	width:170px;	
+}
 	
 .sf-menu li ul li ul {
 	border:	1px solid #ccc;
@@ -168,13 +168,4 @@ li.sfHover > a > .sf-sub-indicator {
 .sf-menu ul li:hover > a > .sf-sub-indicator,
 .sf-menu ul li.sfHover > a > .sf-sub-indicator {
 	background-position: -10px 0; /* arrow hovers for modern browsers*/
-}
-
-/*** shadows for all but IE6 ***/
-.sf-shadow ul {
-	//background:	url('shadow.png') no-repeat bottom right;
-	//padding: 0 8px 9px 0;
-}
-.sf-shadow ul.sf-shadow-off {
-	background: transparent;
 }
