@@ -3,6 +3,7 @@
  */
 package com.eh.shop.front.web;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,11 +49,26 @@ public class OrderCtrl extends BaseFrontCtrl {
 	 * @throws Exception
 	 */
 	public ModelAndView shoppingcart(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/shop/front/shopping_cart");
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/shopping_cart");		
+		//获取COOKIE信息
+		List productList = findCartItems(request);
+		mav.addObject("productList", productList);		
+		return mav;
+	}
+	
+	/**
+	 * 查找购物车中商品数量
+	 */
+	private List findCartItems(HttpServletRequest request){
 		//获取COOKIE信息
 		Cookie cookie = CookieUtils.getCookie(request, "cartitems");
 		if(cookie!=null){
-			String cartList = URLDecoder.decode(cookie.getValue(), "UTF-8");
+			String cartList = "";
+			try {
+				cartList = URLDecoder.decode(cookie.getValue(), "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 			String[] productIds = cartList.split(",");
 			
 			List productList = new ArrayList();
@@ -81,20 +97,19 @@ public class OrderCtrl extends BaseFrontCtrl {
 						}
 					}
 				}catch(NumberFormatException ne){
+					//忽略
 				}
 			}
-			mav.addObject("productList", productList);
+			return productList;
+		}else{
+			return null;
 		}
-		return mav;
 	}
 	
 	public ModelAndView checkout(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		CustInfo cust = super.getCustInfo(request);
 		if(cust!=null){
-			Cookie cookie = CookieUtils.getCookie(request, "cartitems");
-			String products = URLDecoder.decode(cookie.getValue(), "UTF-8");
-			List productList = goodsLogic.findGoodsForPrice(products);		
-			
+			List productList = this.findCartItems(request);
 			//取客户常用地址
 			List addrList = this.custAddrLogic.findAddrListByCustId(cust.getCustId());
 			ModelAndView mav = new ModelAndView("/jsp/shop/front/checkout");
@@ -132,7 +147,9 @@ public class OrderCtrl extends BaseFrontCtrl {
 			main.setUsesScore(usesScore);
 			main.setOrderStatus(Constants.ORDER_STATUS_CUST_INPUT);
 			main.setOrderTime(new Date());
-			this.orderLogic.addOrder(main, productIds, cnt);		
+			this.orderLogic.addOrder(main, productIds, cnt);
+			//移除COOKIE
+			CookieUtils.removeCookie(response,"cartitems");			
 			return new ModelAndView("/jsp/shop/front/checkout_success");
 		}else{
 			return super.gotoLogin(request);//按道理不会到这部，前台有判断是否登录操作

@@ -42,9 +42,11 @@ public class UserCtrl extends BaseFrontCtrl {
 		ModelAndView mav = new ModelAndView("/jsp/shop/front/user/order_list");
 		CustInfo custInfo = super.getCustInfo(request);
 		OrderQry qry = new OrderQry();
+		super.bindObject(request, qry);
+		//qry.setPageSize(20);
 		qry.setCustId(custInfo.getCustId());
 		Page page = this.orderLogic.findUserOrderList(qry);
-		mav.addObject("page", page);		
+		mav.addObject("page", page);
 		return mav;
 	}
 	
