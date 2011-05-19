@@ -53,11 +53,10 @@
    	<bean name="frontLoginCtrl" class="com.eh.shop.front.web.LoginCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="custInfoLogic" ref="custInfoLogic"/>
-        <property name="frontCache" ref="frontCache"/>
    	</bean>
    	
    	<bean name="frontUserCtrl" class="com.eh.shop.front.web.UserCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
-        <property name="frontCache" ref="frontCache"/>
+        <property name="orderLogic" ref="orderLogic"/>
    	</bean>
 </beans>
