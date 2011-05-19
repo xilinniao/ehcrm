@@ -187,7 +187,7 @@ jQuery(document).ready(function() {
 		var $shortcut_regist = $('#shortcut_regist');
 		var $shortcut_logout = $('#shortcut_logout');
 		
-		$.flushHeaderInfo = function () {		
+		$.flushHeaderInfo = function () {
 			if($.cookie("memberUsername") != null) {
 				$shortcut_user_name.text($.cookie("memberUsername")+",欢迎来到"+shop_constant.sysName);
 				$shortcut_login.hide();
@@ -450,7 +450,6 @@ jQuery(document).ready(function() {
 	};
  
 	$("ul#topnav li .sub").css({'opacity':'0'});
-	$("ul#topnav li").hoverIntent(config);
-	
+	$("ul#topnav li").hoverIntent(config);	
 	
 });
