@@ -4,10 +4,10 @@
     <div class="left_box1">
 	<h3>交易管理</h3>
     <ul class="margin_b6">
-    	<li><a href="">我的购物车</a></li>
-        <li><a href="">订单中心</a></li>
+    	<li><a href="user.xhtml">用户中心</a></li>
+    	<li><a href="user.xhtml?method=orderList">我的购物车</a></li>
+        <li><a href="user.xhtml?method=orderList">订单列表</a></li>
 		<li><a href="">我的团购</a></li>
-        <li><a href="">交易记录</a></li>
         <li><div><a href="">评价/晒单</a></div></li>
     </ul>
 	
