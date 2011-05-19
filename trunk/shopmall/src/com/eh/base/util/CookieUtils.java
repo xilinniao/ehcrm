@@ -16,8 +16,7 @@ public class CookieUtils {
 	 * @return <code>Cookie</code> of the requested key or <code>null</code>
 	 *         if no cookie under that name is found
 	 */
-	public static Cookie getCookie(HttpServletRequest request,
-			String cookieKey) {
+	public static Cookie getCookie(HttpServletRequest request,String cookieKey) {
 		Cookie[] cookies = request.getCookies();
 		if (cookies == null) {
 			return null;
@@ -50,4 +49,18 @@ public class CookieUtils {
 		cookie.setMaxAge(cookieExpiration);
 		response.addCookie(cookie);
 	}
+	
+	 /**
+     * Removes a cookie with the specified name.
+     *
+     * @param response the HttpServletResponse to remove the cookie from
+     * @param name     the name of the cookie
+     * @param domain   for example: .51void.com
+     */
+    public static void removeCookie(HttpServletResponse response, String name) {
+        Cookie cookie = new Cookie(name, "");
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+    }
 }
