@@ -14,7 +14,7 @@
 					<a id="shortcut_logout" href="javascript:void(0);" class="link-regist">[退出]</a>
 				</span>
 			</li>
-			<li class="fore2"><a href="http://jd2008.360buy.com/JdHome/OrderList.aspx">我的订单</a></li>
+			<li class="fore2"><a href="<%=path%>/front/user.xhtml?method=orderList">我的订单</a></li>
 			<li><a href="<%=path%>/front/user.xhtml">用户中心</a></li>
 			<li><a href="http://market.360buy.com/giftcard/" target="_blank">店铺申请</a></li>
 			<li><a href="http://market.360buy.com/giftcard/company/default.aspx" target="_blank">商家入驻</a></li>
