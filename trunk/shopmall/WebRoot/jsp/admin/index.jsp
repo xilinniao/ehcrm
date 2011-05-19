@@ -15,18 +15,27 @@
 	<SCRIPT type="text/javascript" src="<%=path %>/resources/js/plugin/superfish/hoverIntent.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="<%=path %>/resources/js/plugin/superfish/superfish.js"></SCRIPT>	
 	<script type="text/javascript">
-		function frameSize () {
+		/*function frameSize () {
 			$("#mainFrame").css({ height: $(document).height()-$('#header-container').height() + "px" ,width:'100%'});
-		}
+		}*/
+		
 		$(document).ready(function() {
-		  //$('#content').height( $(document).height( )-$('#top').height( ) -8);
-		  frameSize ();
-		  jQuery('ul.sf-menu').superfish() .find('li > ul > li').click(function(){
-		  	jQuery('ul.sf-menu').hideSuperfishUl();
-		  });
-		});
-		$(window).resize( function () {
-			frameSize ();
+		  	//frameSize ();
+		  	jQuery('ul.sf-menu').superfish().find('li > ul > li').click(function(){
+		  		jQuery('ul.sf-menu').hideSuperfishUl();
+		  	});
+		  	/*$(window).resize(function () {
+				frameSize ();
+			});*/
+			
+			function fixHeight () {
+		       	var headerHeight = $("#header-container").height();
+		       	$("#mainFrame").css({"height":(($(window).height() - 10) - headerHeight) + 'px',width:'100%'});
+	       	}
+	        
+			$(window).resize(function () {
+	        		fixHeight();
+	       	}).resize();
 		});
 	</script>
   </head>
@@ -38,23 +47,20 @@
 		<div class="headerTop">
 			<div class="headerLink">
 				<span class="welcome">
-					<strong></strong>&nbsp;您好!&nbsp;
+					<strong></strong>&nbsp;${userinfo.user.userName},您好!
 				</span>
-				<a href="admin!index.action" target="mainFrame">后台首页</a>|
+				<!-- <a href="admin!index.action" target="mainFrame">后台首页</a>|
             	<a href="" target="_blank">技术支持</a>|
                 <a href="" target="_blank">购买咨询</a>|
                 <a href="" target="_blank">关于我们</a>|
                 <a href="" target="_blank">联系我们</a>
+                 -->
 			</div>
 		</div>
 		<div class="headerBottom">
 			<div class="headerMenu">
 				<div class="menuLeft"></div>
-				
-	            
 	            ${userinfo.menuStr }
-	            
-	            
 	            <div class="menuRight"></div>
 			</div>
 			
