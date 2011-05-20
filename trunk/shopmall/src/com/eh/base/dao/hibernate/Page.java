@@ -17,6 +17,7 @@ import java.util.List;
 public class Page implements Serializable {
 
 	public final static int DEFAULT_PAGE_SIZE = 10;
+
 	public final static int DEFAULT_PAGE_NO = 1;
 
 	private int pageSize = DEFAULT_PAGE_SIZE; // 每页的记录数
