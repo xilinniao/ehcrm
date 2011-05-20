@@ -30,8 +30,8 @@
 					<div><a href="http://jd2008.360buy.com/complaint.aspx">投诉中心</a></div>
 				</dd>
 			</dl>
-			 -->
 			</li>
+			 -->
 		</ul>
 		<span class="clr"></span>
 	</div>

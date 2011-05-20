@@ -12,12 +12,12 @@
 <div class="w" id="header">
 	<div id="logo">
 		<a href="<%=homeUrl %>">
-			<img src="<%=path %>/resources/front/images/logo.gif" alt="抚州商城" width="251" height="46">
+			<img src="<%=path %>/resources/front/images/logo.gif" alt="抚州直销商城" width="251" height="46">
 		</a>
 	</div>
 	<div id="topad">
 		<a href="<%=homeUrl %>">
-			<img src="<%=path %>/uploads/site/adcs.jpg" alt="蚕丝被" width="485" height="49">
+			<img src="<%=path %>/uploads/site/adcs.jpg" alt="蚕丝被厂家直销" width="485" height="49">
 		</a>
 	</div>
 	<div class="clr"></div>
