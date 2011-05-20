@@ -35,14 +35,14 @@
     
     <rule>
         <note>分类</note>
-        <from>/category/(.*).html</from>
-        <to>/index.xhtml?method=category&amp;categoryId=$1</to>
+        <from>/category/(.*)-(.*).html</from>
+        <to>/front/category.xhtml?method=category&amp;categoryId=$1&amp;curr=$2</to>
     </rule>
     
     <rule>
         <note>分类产品列表</note>
-        <from>/products/(.*).html</from>
-        <to>/front/category.xhtml?method=products&amp;categoryId=$1</to>
+        <from>/products/(.*)-(.*).html</from>
+        <to>/front/category.xhtml?method=products&amp;categoryId=$1&amp;curr=$2</to>
     </rule>
     
     
