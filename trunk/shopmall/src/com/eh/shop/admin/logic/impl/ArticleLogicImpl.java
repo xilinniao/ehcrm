@@ -51,8 +51,8 @@ public class ArticleLogicImpl extends BaseLogic implements ArticleLogic {
 	/* (non-Javadoc)
 	 * @see com.eh.shop.admin.logic.ArticleLogic#findCategoryList(java.lang.Long)
 	 */
-	public List findCategoryList(Long shopId) {
-		return super.baseDao.find("from TbArticleCategory where shopInfo.shopId = ? order by orderNum asc", shopId);
+	public List findCategoryList() {
+		return super.baseDao.find("from TbArticleCategory order by orderNum asc");
 	}
 	
 }

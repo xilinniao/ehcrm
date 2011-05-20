@@ -3,8 +3,6 @@
  */
 package com.eh.shop.admin.web;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.util.Constants;
-import com.eh.base.util.VelocityUtils;
 import com.eh.base.vo.UserInfo;
 import com.eh.shop.admin.logic.ArticleCategoryLogic;
 import com.eh.shop.admin.web.qry.ArticleCategoryQry;
@@ -31,26 +28,12 @@ public class ArticleCategoryCtrl extends BaseShopAdminCtrl {
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
 		ModelAndView mav = new ModelAndView("/jsp/shop/admin/article_category/index");
-		return mav;
-	}
-	
-	/**
-	 * 列表
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
-	 */
-	public ModelAndView list(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		UserInfo userInfo = super.getUserInfo(request);
 		ArticleCategoryQry qry = new ArticleCategoryQry();
 		bindObject(request, qry);
 		qry.setUserInfo(userInfo);
-		Page page = this.articleCategoryLogic.findArticleCategoryList(qry,userInfo.getShopInfo().getShopId());
-		Map data = super.getParameterMap(request);
-		data.put("page", page);
-		renderJson(response, VelocityUtils.render("shop-admin-article-category-list",data));
-		return null;
+		Page page = this.articleCategoryLogic.findArticleCategoryList(qry);
+		mav.addObject("page", page);
+		return mav;
 	}
 	
 	/**
@@ -82,14 +65,8 @@ public class ArticleCategoryCtrl extends BaseShopAdminCtrl {
 		Long categoryId = super.getLong(request, "categoryId", false);
 		// 修改操作
 		TbArticleCategory entity = this. articleCategoryLogic.get(TbArticleCategory.class, categoryId);
-		if(entity!=null&&isYourShop(entity.getShopInfo(), userInfo)){
-			mav.addObject("entity", entity);
-			return mav;
-		}else{
-			//设置错误信息
-			super.addErrors(request, "非法操作，没有找到指定的商品信息");
-			return new ModelAndView(REDIRECT_URL);
-		}
+		mav.addObject("entity", entity);
+		return mav;
 	}
 	
 	public  ModelAndView onEdit(HttpServletRequest request,HttpServletResponse response) throws Exception {
@@ -100,17 +77,12 @@ public class ArticleCategoryCtrl extends BaseShopAdminCtrl {
 			//新增操作
 			TbArticleCategory entity = new TbArticleCategory();
 			super.bindObject(request,entity);
-			entity.setShopInfo(userInfo.getShopInfo());
 			this. articleCategoryLogic.saveArticleCategory(entity);
 		}else{
 			//修改操作
 			TbArticleCategory entity = this. articleCategoryLogic.get(TbArticleCategory.class, categoryId);
-			if(entity!=null&&super.isYourShop(entity.getShopInfo(), userInfo)){
-				super.bindObject(request, entity);
-				this. articleCategoryLogic.saveArticleCategory(entity);
-			}else{
-				super.addErrors(request, "非法操作，没有找到指定的类别");
-			}
+			super.bindObject(request, entity);
+			this. articleCategoryLogic.saveArticleCategory(entity);
 		}
 		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
@@ -128,16 +100,12 @@ public class ArticleCategoryCtrl extends BaseShopAdminCtrl {
 	public ModelAndView onDelete(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
 		Long articleCategoryId = super.getLong(request, "articleCategoryId", false);
-		TbArticleCategory entity = this. articleCategoryLogic.get(TbArticleCategory.class, articleCategoryId);
-		if(entity!=null&&super.isYourShop(entity.getShopInfo(), userInfo)){
-			String result = this. articleCategoryLogic.deleteArticleCategory(entity);
-			//返回错误信息
-			if(StringUtils.isNotBlank(result)){
-				super.addErrors(request, result);
-			}
-		}else{
-			super.addErrors(request, "非法操作，没有找到指定的品牌");
-		}		
+		TbArticleCategory entity = this.articleCategoryLogic.get(TbArticleCategory.class, articleCategoryId);
+		String result = this. articleCategoryLogic.deleteArticleCategory(entity);
+		//返回错误信息
+		if(StringUtils.isNotBlank(result)){
+			super.addErrors(request, result);
+		}	
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
 		mav.addObject("redirectUrl", " articleCategory.xhtml?method=index");
 		return mav;

@@ -30,7 +30,7 @@ public class ArticleCategoryLogicImpl extends BaseLogic implements ArticleCatego
 	public String deleteArticleCategory(TbArticleCategory entity) {
 		int cnt = super.baseDao.count("select count(*) from TbGoodsInfo t where t.ArticleCategoryInfo = ? ", entity);
 		if(cnt>0){
-			return "发现该品牌下有"+cnt+"个文章，不能删除该文章"; 
+			return "发现该分类下有"+cnt+"个文章，不能删除该文章"; 
 		}else{
 			super.remove(entity);
 			return null;
@@ -40,15 +40,12 @@ public class ArticleCategoryLogicImpl extends BaseLogic implements ArticleCatego
 	/* (non-Javadoc)
 	 * @see com.eh.shop.admin.logic.ArticleCategoryInfoLogic#findArticleCategoryList(com.eh.shop.admin.web.qry.ArticleCategoryInfoQry)
 	 */
-	public Page findArticleCategoryList(ArticleCategoryQry qry,Long shopId) {
+	public Page findArticleCategoryList(ArticleCategoryQry qry) {
 		Criteria criteria = baseDao.createCriteria(TbArticleCategory.class);
-		criteria.createAlias("shopInfo","shop");
 		CriteriaUtil.addFullLike(criteria, "categoryName", qry.getCategoryName());		
 		//店铺为必输条件		
-		CriteriaUtil.addEq(criteria, "shop.shopId",shopId);
 		CriteriaUtil.addOrder(criteria, "orderNum", CriteriaUtil.ASC);
 		return baseDao.pagedQuery(criteria, qry.getDataTablesPageNo(), qry.getPageSize());
 	}
-	
 	
 }

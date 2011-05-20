@@ -11,10 +11,6 @@
 			class="com.eh.shop.entity.TbArticleCategory">
 			<column name="CATEGORY_ID" precision="10" scale="0" />
 		</many-to-one>
-		 <many-to-one name="shopInfo"
-			class="com.eh.shop.entity.TbShopInfo">
-			<column name="SHOP_ID" precision="10" scale="0" />
-		</many-to-one>
 		 <property name="title" type="java.lang.String">
             <column name="TITLE" length="10"/>
         </property>

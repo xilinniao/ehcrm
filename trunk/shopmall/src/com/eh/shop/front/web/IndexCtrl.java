@@ -52,7 +52,7 @@ public class IndexCtrl extends BaseCtrl {
 			vo.setCategoryName(categoryList.get(i).getCategoryName());
 			vo.setGoodsList(findGoodsByCategory(categoryList.get(i).getCategoryId(),Long.valueOf(8)));
 			categoryGoodsList.add(vo);
-		}		
+		}
 		request.setAttribute("categoryGoodsList", categoryGoodsList);
 	}
 	
@@ -188,7 +188,10 @@ public class IndexCtrl extends BaseCtrl {
 	
 	/**
 	 * 大的分类
-	 * <div class="mt"><h2>电脑、软件、办公</h2></div>
+	 *
+	 
+	 
+	 <div class="mt"><h2>电脑、软件、办公</h2></div>
 				<div class="mc">
                     <div class="item current">
                     <h3><b></b><a href="http://www.360buy.com/products/670-671-000.html">电脑整机</a></h3>
