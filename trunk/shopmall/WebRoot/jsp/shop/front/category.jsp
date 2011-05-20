@@ -188,18 +188,18 @@
 		</div><!-- end of slidercontain -->
 		<span class="clr5"></span>
 		
-		<c:forEach items="${categoryGoodsList}" var="b">
+		<c:forEach items="${categoryGoods}" var="m">
 		<div class="hotprod">
 				<div class="mt">
-					<h2>${b.categoryName }</h2>
-					<div class="extra"><a href="special.aspx?id=2&amp;cid=0">更多&gt;&gt;</a></div>
+					<h2>${m.categoryName }</h2>
+					<div class="extra"><!-- <a href="342342">更多&gt;&gt;</a> --></div>
 				</div>
 				<ul class="p-list">
-					<c:forEach items="${b.goodsList}" var="bb">
+					<c:forEach items="${m.goodsList}" var="b">
 	                <li>
-					<div class="p-img"><a target="_blank" href="http://www.360buy.com/product/1000102803.html"><img src="${bb.imageUrl }" width="130" height="130" alt="爱慕文胸" app="image:product"></a></div>
-					<div class="p-name"><a target="_blank" title="爱慕文胸" href="http://www.360buy.com/product/1000102803.html">${bb.goodsName }</a></div>
-					<div class="p-price">抚州价：<strong><img app="image:price" onerror="this.src='http://www.360buy.com/images/no2.gif'" src="http://price.360buy.com/gp1000102803,2.png"></strong></div>					
+					<div class="p-img"><a target="_blank" href="/product/${b.goodsId }.html"><img src="${b.imageE }" width="160" height="160"></a></div>
+					<div class="p-name"><a target="_blank" title="${b.name }" href="/product/${b.goodsId }.html">${b.name }</a></div>
+					<div class="p-price">直销价：<strong>￥${b.discountPriceStr }</strong></div>					
 					</li>
 					</c:forEach>
 				</ul>
