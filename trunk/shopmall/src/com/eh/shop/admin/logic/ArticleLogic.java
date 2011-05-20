@@ -29,8 +29,7 @@ public interface ArticleLogic extends IBaseLogic {
 	public Page findArticleList(ArticleQry qry);
 	/**
 	 * 查找类别信息
-	 * @param shopId
 	 * @return
 	 */
-	public List findCategoryList(Long shopId);
+	public List findCategoryList();
 }

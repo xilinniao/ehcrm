@@ -24,5 +24,5 @@ public interface ArticleCategoryLogic extends IBaseLogic {
 	 * @param qry
 	 * @return
 	 */
-	public Page findArticleCategoryList(ArticleCategoryQry qry,Long shopId);
+	public Page findArticleCategoryList(ArticleCategoryQry qry);
 }

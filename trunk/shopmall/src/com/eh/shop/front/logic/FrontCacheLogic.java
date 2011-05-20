@@ -3,10 +3,13 @@
  */
 package com.eh.shop.front.logic;
 
+import java.util.List;
+
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.front.cache.GoodsDetail;
 import com.eh.shop.front.cache.GoodsShort;
 import com.eh.shop.front.cache.ShopInfo;
+import com.eh.shop.front.vo.GoodsCategoryVo;
 
 /**
  * 前端缓存LOGIC
@@ -33,4 +36,10 @@ public interface FrontCacheLogic extends IBaseLogic {
 	 * @return
 	 */
 	public ShopInfo findShopInfo(Long shopId,boolean reRead);
+	/**
+	 * 根据分类ID查找商品分类信息
+	 * @param categoryId
+	 * @return
+	 */
+	public List<GoodsCategoryVo> findCategoryGoods(Long categoryId);
 }

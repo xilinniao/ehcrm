@@ -7,10 +7,6 @@
             <column name="CATEGORY_ID" precision="10" scale="0"/>
             <generator class="native" />
       	 </id>
-		 <many-to-one name="shopInfo"
-			class="com.eh.shop.entity.TbShopInfo">
-			<column name="SHOP_ID" precision="10" scale="0" />
-		</many-to-one>
 		 <property name="categoryName" type="java.lang.String">
             <column name="CATEGORY_NAME" length="200"/>
         </property>

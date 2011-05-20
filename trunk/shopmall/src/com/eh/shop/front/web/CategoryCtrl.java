@@ -32,10 +32,11 @@ public class CategoryCtrl extends BaseFrontCtrl {
 	 * @return
 	 * @throws Exception
 	 */
-	public ModelAndView categorya(HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public ModelAndView category(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("/jsp/shop/front/category");
-		Long categoryId = super.getLong(request, "categoryId", false);		
-		TbSiteCategory category = this.siteCategoryLogic.get(TbSiteCategory.class, categoryId);
+		Long categoryId = super.getLong(request, "categoryId", false);
+		
+		/*TbSiteCategory category = this.siteCategoryLogic.get(TbSiteCategory.class, categoryId);
 		List<TbSiteCategory> categoryList = this.siteCategoryLogic.findCategoryListByTreeNo(category.getTreeNo());
 		StringBuffer div = new StringBuffer("<div class=\"mt\"><h2>");
 		div.append(category.getCategoryName());
@@ -52,8 +53,10 @@ public class CategoryCtrl extends BaseFrontCtrl {
 			}
 		}
 		div.append("</div>");
-		mav.addObject("categoryList", div.toString());		
-		findGoodList(request, categoryId);//分类
+		mav.addObject("categoryList", div.toString());*/
+		
+		List<GoodsCategoryVo> categoryGoods = this.frontCacheLogic.findCategoryGoods(categoryId);
+		mav.addObject("categoryGoods", categoryGoods);		
 		return mav;
 	}
 	
@@ -85,7 +88,6 @@ public class CategoryCtrl extends BaseFrontCtrl {
 		}
 		div.append("</div>");
 		mav.addObject("categoryList", div.toString());
-		findGoodList(request, categoryId);//分类
 		return mav;
 	}
 	
@@ -98,9 +100,9 @@ public class CategoryCtrl extends BaseFrontCtrl {
 	 */
 	public ModelAndView products(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("/jsp/shop/front/products");
-		Long categoryId = super.getLong(request, "categoryId", false);
+		//Long categoryId = super.getLong(request, "categoryId", false);
 		ProductQry qry = new ProductQry();
-		qry.setCategoryId(categoryId);
+		super.bindObject(request, qry);
 		qry.setPageSize(24);
 		Page page = this.siteCategoryLogic.findFrontGoodsList(qry);
 		List data = page.getResult();
@@ -113,7 +115,7 @@ public class CategoryCtrl extends BaseFrontCtrl {
 			mav.addObject("productList", productList);
 		}
 		mav.addObject("page", page);
-			
+		mav.addObject("qry", qry);			
 		return mav;
 	}
 	
@@ -128,33 +130,6 @@ public class CategoryCtrl extends BaseFrontCtrl {
 		}
 	}
 	
-	/**
-	 * 查找商品列表
-	 * @param request
-	 */
-	private void findGoodList(HttpServletRequest request,Long siteCategoryId){
-		List<TbPageCategory> categoryList = pageCategoryLogic.findPageCategoryByType(siteCategoryId);
-		List categoryGoodsList = new ArrayList();
-		for(int i = 0,len = categoryList.size();i<len;i++){
-			GoodsCategoryVo vo = new GoodsCategoryVo();
-			vo.setCategoryName(categoryList.get(i).getCategoryName());
-			vo.setGoodsList(findGoodsByCategory(categoryList.get(i).getCategoryId(),Long.valueOf(8)));
-			categoryGoodsList.add(vo);
-		}		
-		request.setAttribute("categoryGoodsList", categoryGoodsList);
-	}
-	
-	/**
-	 * 查找商品列表by pageCategory
-	 * @param categoryId
-	 * @param showNum
-	 * @return
-	 */
-	private List findGoodsByCategory(Long categoryId,Long showNum){
-		List<TbGoodsInfo> goodsList = this.pageCategoryLogic.findGoodsByPageCategory(categoryId);
-		return goodsList;
-	}
-
 	public SiteCategoryLogic getSiteCategoryLogic() {
 		return siteCategoryLogic;
 	}

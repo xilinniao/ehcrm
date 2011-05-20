@@ -12,7 +12,6 @@ public class TbArticleCategory  implements java.io.Serializable {
     // Fields    
 
      private Long categoryId;
-     private TbShopInfo shopInfo;
      private String categoryName;
      private String metaKeyWord;
      private String metaDesc;
@@ -27,8 +26,7 @@ public class TbArticleCategory  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbArticleCategory(TbShopInfo shopInfo, String categoryName, String metaKeyWord, String metaDesc, Long orderNum) {
-        this.shopInfo = shopInfo;
+    public TbArticleCategory(String categoryName, String metaKeyWord, String metaDesc, Long orderNum) {
         this.categoryName = categoryName;
         this.metaKeyWord = metaKeyWord;
         this.metaDesc = metaDesc;
@@ -44,14 +42,6 @@ public class TbArticleCategory  implements java.io.Serializable {
     
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public TbShopInfo getShopInfo() {
-        return this.shopInfo;
-    }
-    
-    public void setShopInfo(TbShopInfo shopInfo) {
-        this.shopInfo = shopInfo;
     }
 
     public String getCategoryName() {

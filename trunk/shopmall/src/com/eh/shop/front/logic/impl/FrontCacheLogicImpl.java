@@ -10,12 +10,14 @@ import com.eh.base.entity.TbAttachment;
 import com.eh.base.logic.BaseLogic;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoSub;
+import com.eh.shop.entity.TbPageCategory;
 import com.eh.shop.entity.TbShopInfo;
 import com.eh.shop.front.cache.GoodsDetail;
 import com.eh.shop.front.cache.GoodsShort;
 import com.eh.shop.front.cache.ImageUrl;
 import com.eh.shop.front.cache.ShopInfo;
 import com.eh.shop.front.logic.FrontCacheLogic;
+import com.eh.shop.front.vo.GoodsCategoryVo;
 
 public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 	/**
@@ -125,6 +127,36 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 			return vo;
 		}else{
 			return (ShopInfo)elm.getValue();
+		}
+	}
+	
+	
+	/**
+	 * 顶层商品分类信息
+	 */
+	public List<GoodsCategoryVo> findCategoryGoods(Long categoryId) {
+		String key = "gsc_"+categoryId;//category goods
+		frontCache.remove(key);
+		Element elm = frontCache.get(key);
+		if(elm==null){
+			List<GoodsCategoryVo> cacheList = new ArrayList<GoodsCategoryVo>();
+			List<TbPageCategory> pageCategoryList = super.baseDao.find(
+							"from TbPageCategory t where t.siteCategory.categoryId = ? and t.isShow = 0 order by orderNum asc ",
+							new Object[] { categoryId });
+			for(TbPageCategory pageCategory:pageCategoryList){
+				GoodsCategoryVo vo = new GoodsCategoryVo();
+				vo.setCategoryName(pageCategory.getCategoryName());
+				List<Long> goodsList = super.baseDao.find("select t.goodsInfo.goodsId from TbPageGoodsRel t where t.pageCategory = ? ",pageCategory);
+				List<GoodsShort> goodsAdapterList = new ArrayList<GoodsShort>();
+				for(Long goodsId:goodsList){
+					goodsAdapterList.add(this.findGoodsShort(goodsId, true));
+				}
+				vo.setGoodsList(goodsAdapterList);
+				cacheList.add(vo);
+			}
+			return cacheList;
+		}else{
+			return (List<GoodsCategoryVo>)elm.getValue();
 		}
 	}
 

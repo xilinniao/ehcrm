@@ -122,4 +122,6 @@ public class SiteCategoryLogicImpl extends BaseLogic implements SiteCategoryLogi
 		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 	
+	
+	
 }

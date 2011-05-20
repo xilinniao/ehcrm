@@ -14,7 +14,6 @@ public class TbArticleInfo  implements java.io.Serializable {
 
      private Long articleId;
      private TbArticleCategory category;
-     private TbShopInfo shopInfo;
      private String title;
      private String content;
      private Long isPublic;
@@ -37,9 +36,8 @@ public class TbArticleInfo  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbArticleInfo(TbArticleCategory category, TbShopInfo shopInfo, String title, String content, Long isPublic, Long isTop, Long isRecommend, Long orderNum, String metaKeyWord, String metaDesc, Date createTime, Long createUser, Date modifyTime, Long modifyUser) {
+    public TbArticleInfo(TbArticleCategory category, String title, String content, Long isPublic, Long isTop, Long isRecommend, Long orderNum, String metaKeyWord, String metaDesc, Date createTime, Long createUser, Date modifyTime, Long modifyUser) {
         this.category = category;
-        this.shopInfo = shopInfo;
         this.title = title;
         this.content = content;
         this.isPublic = isPublic;
@@ -71,14 +69,6 @@ public class TbArticleInfo  implements java.io.Serializable {
     
     public void setCategory(TbArticleCategory category) {
         this.category = category;
-    }
-
-    public TbShopInfo getShopInfo() {
-        return this.shopInfo;
-    }
-    
-    public void setShopInfo(TbShopInfo shopInfo) {
-        this.shopInfo = shopInfo;
     }
 
     public String getTitle() {
