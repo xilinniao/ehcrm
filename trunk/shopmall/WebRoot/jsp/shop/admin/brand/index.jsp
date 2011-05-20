@@ -4,7 +4,6 @@
 <title><%=projName %></title>
 	<link href="<%=path %>/resources/common/css/base.css" rel="stylesheet" type="text/css" />
 	<link href="<%=path %>/resources/admin/css/list.css" rel="stylesheet" type="text/css">
-	<link href="<%=path %>/resources/admin/css/datatables.css" rel="stylesheet" type="text/css">
 	<%@include file="/jsp/shop/common/head.jsp"%>
 	<script src="<%=path %>/resources/common/js/base.js" type="text/javascript"></script>
 	<script src="<%=path %>/resources/common/js/jquery.pager.js" type="text/javascript"></script>
@@ -14,9 +13,7 @@
   	<div class="listBar">
 		<h1><span class="icon">&nbsp;</span>品牌列表&nbsp;<span class="pageInfo">总记录数: ${page.totalCount}(共${page.totalPageCount}页)</span></h1>
 	</div>
-	
-
-	
+		
 	<div class="body">
 		<form id="listForm" action="<%=path %><%=path%>/shop/admin/brandInfo.xhtml?method=index" method="post">
 		<div class="operateBar">
