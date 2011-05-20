@@ -64,10 +64,21 @@
                 	<li><a href="737-738-751-0-0-0-0-0-0-0-1-4-1.html">好评度</a><span></span></li>
                 	<li><a href="737-738-751-0-0-0-0-0-0-0-1-5-1.html">上架时间</a><span></span></li>
                 </ul>
-                <div class="pagin pagin-m fr"><span class="text">5/5</span>
-                <a class="prev" href="737-738-751-0-0-0-0-0-0-0-1-1-4.html">上一页<b></b></a>
-                <span class="next-disabled">下一页<b></b></span></div><span class="clr"></span>
-                <div class="extra"><div class="total fr"><span>共<strong>153</strong>个商品</span></div><span class="clr"></span></div>
+                <div class="pagin pagin-m fr"><span class="text">${page.pageNo }/${page.totalPageCount }</span>
+                <c:choose>
+                	<c:when test="${page.hasPreviousPage}"><a class="prev" href="#none">上一页<b></b></a></c:when>
+                	<c:otherwise><span class="prev-disabled">上一页<b></b></span></c:otherwise>
+                </c:choose>
+                
+                <c:choose>
+                	<c:when test="${page.hasNextPage}"><a class="next" href="#none">下一页<b></b></a></c:when>
+                	<c:otherwise><span class="next-disabled">下一页<b></b></span></c:otherwise>
+                </c:choose>
+                </div>
+                
+                <span class="clr"></span>
+                
+                <div class="extra"><div class="total fr"><span>共<strong>${page.totalCount }</strong>个商品</span></div><span class="clr"></span></div>
 			</div>
 
 		<span class="clr5"></span>		
@@ -87,18 +98,29 @@
 		<div class="pagerBar">
 			
 			<script type="text/javascript">
-			$().ready( function() {			
+			$().ready( function() {
+				$.gotoPage = function(id) {
+					var new_url = '<%=path%>/front/category.xhtml?method=products&categoryId=${qry.categoryId}&curr=${param.curr}';
+					new_url=new_url+'&pageNo='+id;
+					document.location.href=new_url;
+				}
+				
+				$('a.prev').click(function(){
+					$.gotoPage(${page.pageNo-1});
+				});
+				
+				$('a.next').click(function(){
+					$.gotoPage(${page.pageNo+1});
+				});
+				
 				$("#pager").pager({
-					pagenumber: 5,
-					pagecount: 15,
+					pagenumber: ${page.pageNo},
+					pagecount: ${page.totalPageCount},
 					buttonClickCallback: $.gotoPage
 				});
 			})
 			</script>
 			<span id="pager"></span>
-			<input type="hidden" name="pageNo" id="pageNo" value="${page.pageNo}" />
-			<input type="hidden" name="pager.orderBy" id="orderBy" value="${pager.orderBy}" />
-			<input type="hidden" name="pager.orderType" id="order" value="${pager.orderType}" />
 		</div>
 	
 </div><!-- end of 正文 -->

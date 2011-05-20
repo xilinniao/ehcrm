@@ -2,7 +2,7 @@
 <!-- 顶部信息 -->
 <div id="shortcut">
 	<div class="w">
-		<div class="collect"><b></b><a href="###" onclick="addFavorite('', '抚州购物商城')">收藏抚州直销商城</a></div>
+		<div class="collect"><b></b><a href="#none" onclick="addFavorite('http://www.0794buy.com', '抚州购物商城')">收藏抚州直销商城</a></div>
 		<ul>
 			<li class="fore1" id="loginfo"><span id="shortcut_user_name"></span>
 				<span id="shortcut_login_regist">

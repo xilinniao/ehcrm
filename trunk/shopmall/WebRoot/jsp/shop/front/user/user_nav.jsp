@@ -5,7 +5,6 @@
 	<h3>交易管理</h3>
     <ul class="margin_b6">
     	<li><a href="user.xhtml">用户中心</a></li>
-    	<li><a href="user.xhtml?method=orderList">我的购物车</a></li>
         <li><a href="user.xhtml?method=orderList">订单列表</a></li>
 		<li><a href="">我的团购</a></li>
         <li><div><a href="">评价/晒单</a></div></li>
@@ -13,8 +12,8 @@
 	
 	<h3>个人信息管理</h3>
     <ul class="margin_b6">
-    	<li><div><a href="http://i.360buy.com/user/userinfo/show.html">个人资料</a></div></li>
-        <li><a href="http://club.360buy.com/MyMessages.aspx">短&nbsp;消&nbsp;息</a></li>
+    	<li><div><a href="">个人资料</a></div></li>
+        <li><a href="">短&nbsp;消&nbsp;息</a></li>
         <li><a href="">收&nbsp;藏&nbsp;夹</a></li>
         <li><a href="user_changepwd.aspx">修改密码</a></li>
         <li><a href="userclass.aspx">我的级别</a></li>
