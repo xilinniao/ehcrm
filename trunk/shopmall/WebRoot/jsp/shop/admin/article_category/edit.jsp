@@ -46,6 +46,7 @@
 						    <th>分类名称</th>
 							<td><input type="text" name="categoryName" class="formText {required: true}" id="categoryName" size="40" value="${entity.categoryName}"></td>
 						  </tr>
+						  <!-- 
 						  <tr>
 						    <th>关键字</th>
 							<td><input type="text" name="metaKeyWord" class="formText {required: true}" id="metaKeyWord" size="40" value="${entity.metaKeyWord}"></td>
@@ -54,9 +55,10 @@
 						    <th>页面关键字</th>
 							<td><input type="text" name="metaDesc" class="formText {required: true}" id="metaDesc" size="40" value="${entity.metaDesc}"></td>
 						  </tr>
+						   -->
 						  <tr>
 						    <th>排序号</th>
-							<td><input type="text" name="orderNum" class="formText {required: true}" id="orderNum" size="40" value="${entity.orderNum}"></td>
+							<td><input type="text" name="orderNum" class="formTextSS {required: true,positiveInteger:true}" id="orderNum" size="40" value="${entity.orderNum}"></td>
 						  </tr>
 						  </tbody>
 						</table>
