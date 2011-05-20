@@ -13,6 +13,10 @@
 	var saveform_validator;
 	$(document).ready(function(){
 		$('#categoryId').val('${entity.category.categoryId}');
+		$('#isPublic').val('${entity.isPublic}');
+		$('#isTop').val('${entity.isTop}');
+		$('#isRecommend').val('${entity.isRecommend}');
+		
 		//加载验证框架
 		saveform_validator = $("form.validate").validate({
 			errorClass: "validateError",
@@ -56,7 +60,7 @@
 						  </tr>						  
 						  <tr>
 						    <th>标题</th>
-							<td><input type="text" name="title" class="formTextLL {required: true}" id="title" size="40" value="${entity.title}"></td>
+							<td><input type="text" name="title" class="formTextLL {required: true}" id="title" value="${entity.title}"></td>
 						  </tr>
 						  <tr>
 						    <th>内容</th>
@@ -65,27 +69,47 @@
 						  </tr>
 						  <tr>
 						    <th>是否发布</th>
-							<td><input type="text" name="isPublic" class="formText {required: true}" id="isPublic" size="40" value="${entity.isPublic}"></td>
+							<td>
+							<select name="isPublic" id="isPublic" class="formText {required: true}">
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</select>
+							</td>
 						  </tr>
 						  <tr>
 						    <th>是否推荐</th>
-							<td><input type="text" name="isTop" class="formText {required: true}" id="isTop" size="40" value="${entity.isTop}"></td>
+							<td><select name="isTop" id="isTop" class="formText {required: true}">
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</select>
+							</td>
 						  </tr>
 						  <tr>
 						    <th>是否置顶</th>
-							<td><input type="text" name="isRecommend" class="formText {required: true}" id="isRecommend" size="40" value="${entity.isRecommend}"></td>
+							<td>
+							<select name="isRecommend" id="isRecommend" class="formText {required: true}">
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</select>
+							</td>
 						  </tr>
 						  <tr>
 						    <th>排序号</th>
-							<td><input type="text" name="orderNum" class="formText {required: true}" id="orderNum" size="40" value="${entity.orderNum}"></td>
+							<td><input type="text" name="orderNum" class="formTextSS {required: true,positiveInteger:true}" id="orderNum" value="${entity.orderNum}"></td>
 						  </tr>
 						  <tr>
 						    <th>关键字</th>
-							<td><input type="text" name="metaKeyWord" class="formText {required: true}" id="metaKeyWord" size="40" value="${entity.metaKeyWord}"></td>
+							<td>
+							<input type="text" name="metaKeyWord" class="formTextLL {required: true}" id="metaKeyWord" value="${entity.metaKeyWord}">
+							<div class="userTip">关键字能更好的推广您的网站，请认真填写该项内容,多个关键字用空格分开</div>
+							</td>
 						  </tr>
 						  <tr>
 						    <th>页面描述</th>
-							<td><input type="text" name="metaDesc" class="formText {required: true}" id="metaDesc" size="40" value="${entity.metaDesc}"></td>
+							<td>
+							<textarea name="shopDesc" class="formTextarea" id="shopDesc" style="width: 500px; height: 100px;">${entity.metaDesc }</textarea>
+							<div class="userTip">页面描述能更好的推广您的网站，请认真填写该项内容</div>
+							</td>
 						  </tr>
 						  </tbody>
 						</table>
