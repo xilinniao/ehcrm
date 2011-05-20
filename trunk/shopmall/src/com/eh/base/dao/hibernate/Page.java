@@ -97,11 +97,18 @@ public class Page implements Serializable {
 		return this.getCurrentPageNo() < this.getTotalPageCount() - 1;
 	}
 
+	public boolean isHasNextPage() {
+		return hasNextPage();
+	}
 	/**
 	 * 该页是否有上一页.
 	 */
 	public boolean hasPreviousPage() {
 		return this.getCurrentPageNo() > 1;
+	}
+	
+	public boolean isHasPreviousPage() {
+		return hasPreviousPage();
 	}
 
 	/**
