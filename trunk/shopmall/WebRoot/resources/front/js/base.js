@@ -158,6 +158,9 @@ function cnlength(str){
     return str.replace(/[^\x00-\xff]/gi,'oo').length;
 }
 jQuery(document).ready(function() {
+	//图片延时加载初始化
+	//$("img").lazyload();
+	
 	//检验是否登录
 	$.memberVerify = function () {
 		if($.cookie("memberUsername") != null) {
