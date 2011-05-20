@@ -12,39 +12,8 @@
 	var saveform_validator;
 	var mainTable;
 	$(document).ready(function(){
-		//加载表格		
-		mainTable = $('#id_mainTable').dataTable({
-			"bAutoWidth" : true,
-	 		"bProcessing": true,
-	 		"bServerSide": true,
-	 		"bSort":false,
-	 		"bFilter":false,
-	 		"bInfo": true,
-			"oLanguage":oLanguage_cn,
-			"sPaginationType": "full_numbers",
-			"sAjaxSource": "<%=path%>/shop/admin/articleCategory.xhtml?method=list",
-			"fnServerData": function ( sSource, aoData, fnCallback ) {
-				aoData.push( { 
-					"name":"categoryName",
-					"value":$("#categoryName").val()
-					});		
-				$.ajax( {
-					"dataType": 'json',
-					"type": "POST", 
-					"url": sSource,
-					"data": aoData, 
-					"success": fnCallback
-				} );
-			}
-		});
 		
-		//处理查询
-		$('#btnSearchSubmit').click(function(){
-			mainTable.fnDraw();
-		});
-	});
-	
-	
+	});	
 	//-->
 	</script>
 
