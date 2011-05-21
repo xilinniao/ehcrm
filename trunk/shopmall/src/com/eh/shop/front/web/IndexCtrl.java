@@ -125,8 +125,10 @@ public class IndexCtrl extends BaseCtrl {
 	 * 首页显示
 	 */
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		findGoodList(request, PAGE_INDEX);
-		return new ModelAndView("/jsp/shop/front/index");
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/index");
+		List<GoodsCategoryVo> categoryGoods = this.frontCacheLogic.findCategoryGoods(Long.valueOf(1));
+		mav.addObject("categoryGoods", categoryGoods);
+		return mav;
 	}
 	
 	/**
