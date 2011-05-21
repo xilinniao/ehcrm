@@ -9,7 +9,7 @@
 <%@include file="/jsp/shop/front/common/head.jsp"%>
 <script src="<%=path %>/resources/front/js/jquery.easyslider.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/dialog.js" type="text/javascript"></script>
-<script src="<%=path %>/resources/front/js/base.js?09" type="text/javascript"></script>
+<script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
 
 </head>
 <body id="index">
@@ -176,30 +176,29 @@
 					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
 				</ul>
 			</div>
-		</div>
-		
-		
-		
+		</div>		
 		<!-- end of slider -->
 		
 		
 		<span class="clr5"></span>
 		
-		<c:forEach items="${categoryGoodsList}" var="b">
+		<c:forEach items="${categoryGoods}" var="m">
 		<div class="hotprod">
 				<div class="mt">
-					<h2>${b.categoryName }</h2>
-					<div class="extra"><a href="special.aspx?id=2&amp;cid=0">更多&gt;&gt;</a></div>
+					<h2>${m.categoryName }</h2>
+					<div class="extra"></div>
 				</div>
-				<ul class="p-list">
-					<c:forEach items="${b.goodsList}" var="bb">
-	                <li>
-					<div class="p-img"><a target="_blank" href="<%=path %>/product/${bb.goodsId }.html"><img src="${bb.faceImage.filePathD }" width="130" height="130" app="image:product"></a></div>
-					<div class="p-name"><a target="_blank" href="<%=path %>/product/${bb.goodsId }.html">${bb.goodsName }</a></div>
-					<div class="p-price">商城价：<strong>${bb.discountPrice }</strong></div>					
-					</li>
-					</c:forEach>
-				</ul>
+				<div class="mc">
+					<ul class="p-list">
+						<c:forEach items="${m.goodsList}" var="b">
+		                <li>
+						<div class="p-img"><a target="_blank" href="/product/${b.goodsId }.html"><img src="${b.imageC }" width="130" height="130"></a></div>
+						<div class="p-name"><a target="_blank" title="${b.name }" href="/product/${b.goodsId }.html">${b.name }</a></div>
+						<div class="p-price">直销价：<strong>￥${b.discountPriceStr }</strong></div>					
+						</li>
+						</c:forEach>
+					</ul>
+				</div>
 		</div><!-- end of hotprod -->
 		<span class="clr clr5"></span>
 		</c:forEach>

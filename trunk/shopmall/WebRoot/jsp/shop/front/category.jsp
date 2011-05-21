@@ -40,7 +40,7 @@
                     </div>
 				</div>
 				 -->
-				 ${categoryList }
+				${categoryList }
 			</div><!-- 品牌结束 -->
 		
 		<div id="advertiseleft">
@@ -192,12 +192,12 @@
 		<div class="hotprod">
 				<div class="mt">
 					<h2>${m.categoryName }</h2>
-					<div class="extra"><!-- <a href="342342">更多&gt;&gt;</a> --></div>
+					<div class="extra"></div>
 				</div>
 				<ul class="p-list">
 					<c:forEach items="${m.goodsList}" var="b">
 	                <li>
-					<div class="p-img"><a target="_blank" href="/product/${b.goodsId }.html"><img src="${b.imageE }" width="160" height="160"></a></div>
+					<div class="p-img"><a target="_blank" href="/product/${b.goodsId }.html"><img src="${b.imageC }" width="130" height="130"></a></div>
 					<div class="p-name"><a target="_blank" title="${b.name }" href="/product/${b.goodsId }.html">${b.name }</a></div>
 					<div class="p-price">直销价：<strong>￥${b.discountPriceStr }</strong></div>					
 					</li>
