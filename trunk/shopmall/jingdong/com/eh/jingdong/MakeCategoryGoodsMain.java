@@ -30,20 +30,18 @@ public class MakeCategoryGoodsMain {
 						"/config/spring/bean-shop-admin.xml" });
 		SiteCategoryLogic siteCategoryLogic = (SiteCategoryLogic) context
 				.getBean("siteCategoryLogic");
-
-		List<TbSiteCategory> categoryList = siteCategoryLogic
-				.findCategoryListByParentId(Long.valueOf(1));
+		
+		List<TbSiteCategory> categoryList = siteCategoryLogic.findCategoryListByParentId(Long.valueOf(1));
+		categoryList.add(siteCategoryLogic.get(TbSiteCategory.class, Long.valueOf(1)));
 
 		String[] catName = { "新品上市", "疯狂抢购", "特价促销", "热门商品" };
 		for (TbSiteCategory next : categoryList) {
 
 			List objList = siteCategoryLogic
 					.find(
-							"select min(t.goodsId),max(t.goodsId) from TbGoodsInfo t join t.siteCategory as sc where sc.treeNo like ? or sc.categoryId = 1",
+							"select min(t.goodsId),max(t.goodsId) from TbGoodsInfo t join t.siteCategory as sc where sc.treeNo like ?",
 							new Object[] { next.getTreeNo() + "%" });
 			Object[] mm = (Object[]) objList.get(0);
-
-			
 
 			for (int i = 0; i < catName.length; i++) {
 				TbPageCategory page = new TbPageCategory();
@@ -51,9 +49,10 @@ public class MakeCategoryGoodsMain {
 				page.setIsShow(Long.valueOf(0));
 				page.setSiteCategory(next);
 				page.setOrderNum(new Long(i + 1));
+				page.setShowNum(new Long(8+i*4));
 				siteCategoryLogic.save(page);
 
-				for (int j = 0; j < 20; j++) {
+				for (int j = 0; ((j < (8+i*4))&&(j<20)); j++) {
 					TbPageGoodsRel rel = new TbPageGoodsRel();
 					rel.setCreateTime(new Date());
 					rel.setCreateUser(Long.valueOf(-1));
