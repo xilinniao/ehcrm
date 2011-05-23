@@ -18,11 +18,10 @@
 <%@include file="/jsp/shop/front/help/help_nav.jsp"%>
 <!-- 帮助导航结束 -->
 
-
 <!-- end of helpMainLeft -->
 	
 	<div class="right">		
-			
+		
 	</div><!-- end of right -->
 	
 </div><!-- end of 正文 -->

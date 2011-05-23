@@ -11,8 +11,6 @@
 </style> 
 <%@include file="/jsp/shop/front/common/head.jsp"%>
 <script src="<%=path %>/resources/front/js/jquery.easyslider.js" type="text/javascript"></script>
-<script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
-<script src="<%=path %>/resources/front/js/jquery.tmpl.min.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
 
 </head>
