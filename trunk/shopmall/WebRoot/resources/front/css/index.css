@@ -498,6 +498,12 @@ background: url(../images/bg_tit_home.gif) no-repeat right -156px;
 text-align: right;
 line-height: 28px;
 }
+
+div.hotprod .mc {
+/*border: solid #E6E6E6;
+border-width: 0 1px 1px;*/
+}
+
 div.hotprod-1 {
 padding-bottom: 10px;
 border-bottom: 1px solid #E2EBF4;
@@ -510,27 +516,22 @@ width: 760px;
 }
 .p-list li {
 float: left;
-width: 25%;
+width: 190px;
 text-align: center;
 overflow: hidden;
-height: 189px;
 display: inline;
 }
 .p-img, .p-name, .p-price, .p-market {
 overflow: hidden;
 }
-.p-img {
-margin: 5px 0;
+.p-img {	
+	margin: 8px 1px;
 }
 .p-name {
-height: 22px;
-overflow: hidden;
+height: 4em;
 line-height: 22px;
-width: 150px;
+width: 180px;
 margin: 0 auto;
-}
-.p-img, .p-name, .p-price, .p-market {
-overflow: hidden;
 }
 .p-price strong{
 	font-size: 12px;
@@ -539,6 +540,7 @@ overflow: hidden;
 	font-family: Verdana;
 	font-weight: bold;
 }
+.p-list .p-img:hover{border-radius:1px;-moz-border-radius:1px;-moz-box-shadow:0 0 1px #f60;-webkit-border-radius:1px;-webkit-box-shadow:0 0 1px #f60;padding:0;border:1px solid #FFD9C0\9;}
 
 #service {
 padding: 20px 20px 10px;
@@ -639,125 +641,6 @@ line-height: 18px;
 color: #F60;
 }
 
-/**
-
-#nav {
-float: left;
-padding-top: 35px;
-position: relative;
-z-index: 10;
-overflow: hidden;
-margin-bottom: -3px;
-}
-
-#nav .curr, #nav-index,#nav_a, #nav-extra, #nav-extra ul {
-float: left;
-height: 27px;
-padding: 0 0 2px;
-background-image: url(../images/bg_nav_0816.jpg);
-background-repeat: no-repeat;
-}
-
-#nav a {
-float: left;
-height: 27px;
-line-height: 29px;
-text-decoration: none;
-text-align: center;
-font-size: 14px;
-font-weight: bold;
-}
-
-#nav-index {
-background-position: -216px -200px;
-background-color: #CC0C0C;
-}
-#index #nav-index {
-background-position: -216px -200px;
-}
-#nav-index a {
-width: 57px;
-}
-#index #nav-index a {
-color: black;
-}
-
-#nav_a{
-	background-position: -216px -233px;
-}
-#index #nav_a{
-	background-position: -216px -233px;
-}
-#nav_a a {
-width: 87px;
-}
-#index #nav_a a {
-color: white;
-}
-
-#nav-extra {
-background-position: 0 -82px;
-padding-left: 4px;
-position: relative;
-height: 29px;
-padding-bottom: 0;
-background-color: #CC0C0C;
-}
-#nav-extra ul {
-float: left;
-padding: 0 4px 2px 0;
-background-position: right -272px;
-}
-#nav .curr, #nav-index, #nav-extra {
-margin-right: 2px;
-}
-#nav-extra li {
-position: relative;
-z-index: 1;
-float: left;
-background: url(../images/bg_nav_0816.jpg) no-repeat -333px -210px;
-}
-#nav-extra .fore {
-background: none;
-}
-#nav-extra .corner {
-position: absolute;
-top: 0;
-right: 0;
-width: 8px;
-height: 27px;
-background-position: -277px -82px;
-}
-#nav-pop a {
-width: 81px;
-padding: 0 4px 0 0;
-}
-#nav-extra a {
-height: 27px;
-padding: 0 12px;
-line-height: 27px;
-text-align: center;
-color: #930;
-}
-#nav-tuan a {
-width: 61px;
-padding: 0;
-}
-#nav-auction a {
-width: 75px;
-padding: 0;
-}
-#nav-jifen a, #nav-read a, #nav-club a {
-width: 89px;
-padding: 0;
-}
-#nav-category a {
-width: 81px;
-padding: 0 0 0 4px;
-}
-*/
-
-
 #nav {
 float: left;
 padding-left:18px;
@@ -808,6 +691,11 @@ ul#topnav a.products {
 	line-height: 29px;
 }
 ul#topnav a.curr{
+	background-position: -216px -233px;
+	color: white;
+}
+
+ul#topnav a.curr2{
 	background-position: -216px -233px;
 	color: white;
 }
