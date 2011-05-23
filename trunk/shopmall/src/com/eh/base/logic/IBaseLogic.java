@@ -35,5 +35,5 @@ public interface IBaseLogic {
 	 * @param args
 	 * @return
 	 */
-	public List find(String hql,Object[] values);
+	public List find(String hql,Object... values);
 }

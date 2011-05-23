@@ -11,6 +11,7 @@
 				/front/user.xhtml=frontUserCtrl
 				/front/product.xhtml=productCtrl
 				/front/category.xhtml=categoryCtrl
+				/front/help.xhtml=frontHelpCtrl
 			</value>
 		</property>
 	</bean>
@@ -58,5 +59,10 @@
    	<bean name="frontUserCtrl" class="com.eh.shop.front.web.UserCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="orderLogic" ref="orderLogic"/>
+   	</bean>
+   	
+   	<bean name="frontHelpCtrl" class="com.eh.shop.front.web.HelpCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="frontCacheLogic" ref="frontCacheLogic"/>
    	</bean>
 </beans>

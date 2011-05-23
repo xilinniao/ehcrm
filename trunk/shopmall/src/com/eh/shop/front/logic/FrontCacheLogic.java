@@ -42,4 +42,5 @@ public interface FrontCacheLogic extends IBaseLogic {
 	 * @return
 	 */
 	public List<GoodsCategoryVo> findCategoryGoods(Long categoryId);
+	
 }
