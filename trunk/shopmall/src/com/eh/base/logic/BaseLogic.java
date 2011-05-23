@@ -68,9 +68,9 @@ public class BaseLogic implements IBaseLogic{
 	/* (non-Javadoc)
 	 * @see com.eh.base.logic.IBaseLogic#find(java.lang.String, java.lang.Object[])
 	 */
-	public List find(String hql, Object[] values) {
+	public List find(String hql, Object... values) {
 		return baseDao.find(hql, values);
-	}	
+	}
 	
 	
 }

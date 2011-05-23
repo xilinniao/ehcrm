@@ -8,17 +8,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eh.shop.front.logic.FrontCacheLogic;
+
 /**
  * 帮助中心
  */
 public class HelpCtrl extends BaseFrontCtrl {
+	FrontCacheLogic frontCacheLogic;
+	
 	/**
 	 * 帮助中心主页
 	 */
-	@Override
-	public ModelAndView index(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		return super.index(request, response);
+	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/help/main");
+		return mav;
 	}
 	
 	/**
@@ -28,8 +31,19 @@ public class HelpCtrl extends BaseFrontCtrl {
 	 * @return
 	 * @throws Exception
 	 */
-	public ModelAndView topic(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ModelAndView topic(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		String topic = super.getString(request, "topic", false);
+		
 		return super.index(request, response);
 	}
+
+	public FrontCacheLogic getFrontCacheLogic() {
+		return frontCacheLogic;
+	}
+
+	public void setFrontCacheLogic(FrontCacheLogic frontCacheLogic) {
+		this.frontCacheLogic = frontCacheLogic;
+	}
+	
+	
 }
