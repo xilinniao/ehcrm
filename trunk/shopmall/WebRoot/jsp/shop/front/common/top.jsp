@@ -1050,11 +1050,13 @@
 			</div>
 			<input type="submit" value="搜&nbsp;索" id="btn-search" onclick="search('key');return false;">
 		</div>
+		<!-- 
 		<div id="hotwords">
 			<strong>热门搜索：</strong>
-			<a href="http://search.360buy.com/Search?keyword=华硕笔记本" target="_blank">华硕笔记本</a>
-			<a href="http://search.360buy.com/Search?keyword=%CF%A3%BD%DD%D2%C6%B6%AF%D3%B2%C5%CC&amp;cid=693&amp;page=1" target="_blank">希捷移动硬盘</a>
+			<a href="" target="_blank">华硕笔记本</a>
+			<a href="" target="_blank">希捷移动硬盘</a>
 		</div>
+		 -->
 		<ul id="mycart">
 			<li class="fore1" id="i-mycart" load="true">
 				<a href="<%=path %>/front/order.xhtml?method=shoppingcart">购物车<b id="mycart-amount">0</b>件</a>

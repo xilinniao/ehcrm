@@ -19,7 +19,7 @@
 			<li><a href="http://market.360buy.com/giftcard/" target="_blank">店铺申请</a></li>
 			<li><a href="http://market.360buy.com/giftcard/company/default.aspx" target="_blank">商家入驻</a></li>
 			<li><a href="http://market.360buy.com/giftcard/company/default.aspx" target="_blank">联系我们</a></li>
-			<li><a href="http://market.360buy.com/giftcard/company/default.aspx" target="_blank">帮助中心</a></li>
+			<li><a href="<%=path%>/help/main-index.html">帮助中心</a></li>
 			<!--
 			<li class="sub">
 			<dl>
