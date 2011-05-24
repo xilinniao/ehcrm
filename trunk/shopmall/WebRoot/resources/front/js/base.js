@@ -211,6 +211,22 @@ jQuery(document).ready(function() {
 		}
 	}
 	
+	$.gotoUserCenter = function(){
+		if(!$.memberVerify()){
+			$.showLoginWindow(shop_constant.base+'/front/user.xhtml');
+		}else{
+			document.location.href = shop_constant.base+'/front/user.xhtml';
+		}
+	}
+	
+	$.gotoOrderList=function(){
+		if(!$.memberVerify()){
+			$.showLoginWindow(shop_constant.base+'/front/user.xhtml?method=orderList');
+		}else{
+			document.location.href = shop_constant.base+'/front/user.xhtml?method=orderList';
+		}
+	}
+	
 	//初始化top信息
 	var $header = $('#shortcut');
 	if ($header.size() > 0) {
