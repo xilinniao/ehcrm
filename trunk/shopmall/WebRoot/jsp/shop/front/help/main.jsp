@@ -20,9 +20,10 @@
 
 <!-- end of helpMainLeft -->
 	
-	<div class="right">		
-		
-	</div><!-- end of right -->
+	<div class="helpMainRight">
+		<div class="helpRightTitle"><span>${help_data.title }</span></div>
+		<div class="helpRightMain">${help_data.content }</div>
+	</div><!-- end of helpMainRight -->
 	
 </div><!-- end of 正文 -->
 <div class="clr5"></div>
