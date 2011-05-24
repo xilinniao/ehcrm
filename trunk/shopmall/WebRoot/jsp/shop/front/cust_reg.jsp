@@ -115,8 +115,8 @@
 		     	</c:if>
 			    <div class="item">
 				     <span class="label">&nbsp;</span>
-				     <input type="submit" class="btn-img btn-regist" id="registsubmit" value="理解注册" tabindex="8">
-			    </div>    			
+				     <input type="submit" class="btn-img btn-regist" id="registsubmit" value="立即注册" tabindex="8">
+			    </div>
 		    </div>
 		
 		</form>
