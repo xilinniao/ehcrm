@@ -50,17 +50,21 @@
 						  <tr>
 						    <th>文章分类</th>
 							<td>
-							<select name="categoryId" id="categoryId"  class="{required: true}">
+							<select name="categoryId" id="categoryId">
 							<option value="">请选择</option>
 							<c:forEach items="${categoryList}" var="b">
 								<option value="${b.categoryId }">${b.categoryName }</option>
 							</c:forEach>							
 							</select>
 							</td>
-						  </tr>						  
+						  </tr>		  
 						  <tr>
 						    <th>标题</th>
 							<td><input type="text" name="title" class="formTextLL {required: true}" id="title" value="${entity.title}"></td>
+						  </tr>
+						  <tr>
+						    <th>URL</th>
+							<td><input type="text" name="articleUrl" class="formTextLL {required: true}" id="articleUrl" value="${entity.articleUrl}"></td>
 						  </tr>
 						  <tr>
 						    <th>内容</th>
