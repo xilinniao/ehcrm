@@ -151,7 +151,7 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 	 */
 	public List<GoodsCategoryVo> findCategoryGoods(Long categoryId) {
 		String key = "gsc_" + categoryId;// category goods
-		frontCache.remove(key);
+		//frontCache.remove(key);
 		Element elm = frontCache.get(key);
 		if (elm == null) {
 			List<GoodsCategoryVo> cacheList = new ArrayList<GoodsCategoryVo>();
@@ -187,7 +187,7 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 	 */
 	public Map<String,String> findHelpContent(String url) {
 		String key = "help_" + url;// help
-		frontCache.remove(key);
+		//frontCache.remove(key);
 		Element elm = frontCache.get(key);
 		if (elm == null) {
 			List<TbArticleInfo> articleList = super.baseDao.find("from TbArticleInfo t where t.articleUrl = ? ", url);
