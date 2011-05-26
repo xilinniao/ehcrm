@@ -4,10 +4,6 @@
 <title>抚州网上购物商城</title>
 <link href="<%=path %>/resources/front/css/index.css" rel="stylesheet" type="text/css" />
 <link href="<%=path %>/resources/front/css/cust_reg.css" rel="stylesheet" type="text/css" />
-
-<style type="text/css">
-
-</style> 
 <%@include file="/jsp/shop/front/common/head.jsp"%>
 <script src="<%=path %>/resources/front/js/jquery.tools.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>

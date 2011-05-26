@@ -9,16 +9,16 @@
 		</div>
 		<ul class="helpLeftGroup">
 			<li>
-				<a href="/help/topic-1.html">关于我们</a>
+				<a href="<%=path%>/help/topic-aboutus.html">关于我们</a>
 			</li>
 			<li>
-				<a href="/help/topic-2.html">网站寄语</a>
+				<a href="<%=path%>/help/topic-2.html">网站寄语</a>
 			</li>
 			<li>
-				<a href="/help/topic-3.html">诚征英才</a>
+				<a href="<%=path%>/help/topic-3.html">诚征英才</a>
 			</li>
 			<li>
-				<a href="/help/topic-4.html">建议意见 </a>
+				<a href="<%=path%>/help/topic-4.html">建议意见 </a>
 			</li>
 		</ul>
 		<div class="helpLeftBar">
@@ -26,16 +26,16 @@
 		</div>
 		<ul class="helpLeftGroup">
 			<li>
-				<a href="/help/topic-5.html">支付方式</a>
+				<a href="<%=path%>/help/topic-5.html">支付方式</a>
 			</li>
 			<li>
-				<a href="/help/topic-6.html">配送方式</a>
+				<a href="<%=path%>/help/topic-6.html">配送方式</a>
 			</li>
 			<li>
-				<a href="/help/topic-7.html">售后服务</a>
+				<a href="<%=path%>/help/topic-7.html">售后服务</a>
 			</li>
 			<li>
-				<a href="/help/topic-8.html">常见问题</a>
+				<a href="<%=path%>/help/topic-8.html">常见问题</a>
 			</li>
 		</ul>
 		<div class="helpLeftBar">
@@ -43,13 +43,13 @@
 		</div>
 		<ul class="helpLeftGroup">
 			<li>
-				<a href="/help/topic-joinusstd.html">加盟标准</a>
+				<a href="<%=path%>/help/topic-joinusstd.html">加盟标准</a>
 			</li>
 			<li>
-				<a href="/help/topic-joinus.html">开店申请</a>
+				<a href="<%=path%>/help/topic-joinus.html">开店申请</a>
 			</li>
 			<li>
-				<a href="/help/topic-tuan.html">团购服务</a>
+				<a href="<%=path%>/help/topic-tuan.html">团购服务</a>
 			</li>
 		</ul>
 		<div class="helpLeftBar">
@@ -57,7 +57,7 @@
 		</div>
 		<ul class="helpLeftGroup">
 			<li>
-				<a href="/help/topic-11.html">广告服务</a>
+				<a href="<%=path%>/help/topic-adservice.html">广告服务</a>
 			</li>
 		</ul>
 		<div class="helpLeftBar">
@@ -65,7 +65,7 @@
 		</div>
 		<ul class="helpLeftGroup">
 			<li>
-				<a href="/help/topic-13.html">免责条款</a>
+				<a href="<%=path%>/help/topic-13.html">免责条款</a>
 			</li>
 		</ul>
 		<div class="helpLeftBar">
@@ -73,7 +73,7 @@
 		</div>
 		<ul class="helpLeftGroup">
 			<li>
-				<a href="/help/topic-linkus.html">联系我们</a>
+				<a href="<%=path%>/help/topic-linkus.html">联系我们</a>
 			</li>
 		</ul>
 	</div>

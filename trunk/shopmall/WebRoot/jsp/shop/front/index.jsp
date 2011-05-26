@@ -8,7 +8,6 @@
 
 <%@include file="/jsp/shop/front/common/head.jsp"%>
 <script src="<%=path %>/resources/front/js/jquery.easyslider.js" type="text/javascript"></script>
-<script src="<%=path %>/resources/front/js/dialog.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
 
 </head>
