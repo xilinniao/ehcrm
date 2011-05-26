@@ -4,6 +4,7 @@
 package com.eh.shop.front.logic;
 
 import java.util.List;
+import java.util.Map;
 
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.front.cache.GoodsDetail;
@@ -42,5 +43,10 @@ public interface FrontCacheLogic extends IBaseLogic {
 	 * @return
 	 */
 	public List<GoodsCategoryVo> findCategoryGoods(Long categoryId);
-	
+	/**
+	 * 查找帮助内容信息
+	 * @param url
+	 * @return
+	 */
+	public Map<String,String> findHelpContent(String url);
 }

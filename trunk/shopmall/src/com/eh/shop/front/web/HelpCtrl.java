@@ -3,6 +3,8 @@
  */
 package com.eh.shop.front.web;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -32,9 +34,11 @@ public class HelpCtrl extends BaseFrontCtrl {
 	 * @throws Exception
 	 */
 	public ModelAndView topic(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/help/main");
 		String topic = super.getString(request, "topic", false);
-		
-		return super.index(request, response);
+		 Map<String,String> help_data = this.frontCacheLogic.findHelpContent(topic);
+		mav.addObject("help_data", help_data);
+		return mav;
 	}
 
 	public FrontCacheLogic getFrontCacheLogic() {
