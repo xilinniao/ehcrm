@@ -2,24 +2,20 @@
 <!-- 顶部信息 -->
 <div id="shortcut">
 	<div class="w">
-		<div class="collect"><b></b><a href="#none" onclick="addFavorite('http://www.0794buy.com', '抚州购物商城')">收藏抚州直销商城</a></div>
 		<ul>
 			<li class="fore1" id="loginfo"><span id="shortcut_user_name"></span>
 				<span id="shortcut_login_regist">
-					<!-- 
-					<a id="shortcut_login" href="<%=path%>/front/common/login.html">[请登录]</a>，新用户？
-					 -->
-					<a id="shortcut_login" href="javascript:void(0);">[请登录]</a>
+					<a id="shortcut_login" href="javascript:void(0);">[登录]</a>
 					<a id="shortcut_regist" href="<%=path%>/front/common/custreg.html" class="link-regist">[免费注册]</a>
 					<a id="shortcut_logout" href="javascript:void(0);" class="link-regist">[退出]</a>
 				</span>
 			</li>
 			<li class="fore2"><a href="#none" onclick="$.gotoOrderList()">我的订单</a></li>
 			<li><a href="#none" onclick="$.gotoUserCenter()">用户中心</a></li>
-			<li><a href="<%=path%>/help/topic-joinus.html">店铺申请</a></li>
 			<li><a href="<%=path%>/help/topic-joinus.html">商铺加盟</a></li>
 			<li><a href="<%=path%>/help/topic-linkus.html">联系我们</a></li>
 			<li><a href="<%=path%>/help/main-index.html">帮助中心</a></li>
+			<li class="hottel">客服热线:<span>0794-12345678</span></li>
 			<!--
 			<li class="sub">
 			<dl>

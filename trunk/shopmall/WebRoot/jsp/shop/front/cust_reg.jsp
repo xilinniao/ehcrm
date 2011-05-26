@@ -1,18 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@include file="/common/head.jsp"%>
 <%@include file="/common/headA.jsp"%>
-<title>抚州网上购物商城</title>
+<title><%=projName %>（用户注册）</title>
 <link href="<%=path %>/resources/front/css/index.css" rel="stylesheet" type="text/css" />
 <link href="<%=path %>/resources/front/css/cust_reg.css" rel="stylesheet" type="text/css" />
-	<link href="<%=path %>/resources/common/css/base.css" rel="stylesheet" type="text/css" />
-	<link href="<%=path %>/resources/admin/css/input.css" rel="stylesheet" type="text/css">
 
-<style type="text/css">
-
-</style> 
 <%@include file="/jsp/shop/front/common/head.jsp"%>
-<script src="<%=path %>/resources/front/js/jquery.tools.js" type="text/javascript"></script>
-<script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
 <script type="text/javascript" src="<%=path %>/resources/front/js/jquery.metadata.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/front/js/jquery.validate.js"></script>
 
@@ -24,22 +17,24 @@
 	}
 	
 	$(document).ready(function() {
-		var  saveform_validator = $("#formpersonal").validate({
-			 errorClass: "validateError",
-            ignore: ".ignoreValidate",
+		$("#custregform").validate({
+			errorClass: "validateError",
             errorPlacement: function(error, element) {
                 var messagePosition = element.metadata().messagePosition;
                 if("undefined" != typeof messagePosition && messagePosition != "") {
                     var $messagePosition = $(messagePosition);
                     if ($messagePosition.size() > 0) {
-                        error.insertAfter($messagePosition).fadeOut(300).fadeIn(300);
+                        error.insertAfter($messagePosition).hide().show();
                     } else {
-                        error.insertAfter(element).fadeOut(300).fadeIn(300);
+                        error.insertAfter(element).hide().show();
                     }
                 } else {
-                    error.insertAfter(element).fadeOut(300).fadeIn(300);
+                    error.insertAfter(element).hide().show();
                 }
             },
+            /*success: function(label) {
+				label.text("ok!").removeClass("validateError").toggleClass("validateSuccess");
+			},*/
             submitHandler: function(form) {
                 $(form).find(":submit").attr("disabled", true);
                 form.submit();
@@ -62,7 +57,7 @@
 		<span>我已经注册，现在就&nbsp;<a href="<%=path %>/front/common/login.html" class="flk13">登录</a></span>
 	</div>
 	<div class="mc">
-		<form id="formpersonal" method="POST" action="<%=path %>/front/login.xhtml?method=onCustreg">
+		<form id="custregform" method="POST" action="<%=path %>/front/login.xhtml?method=onCustreg">
 		    <div class="form">
                 <div class="item">
 				    <span class="label">登录名：</span>
@@ -72,7 +67,7 @@
 				    </div>
 			    </div>
 			    <div class="item">
-				    <span class="label">设置密码：</span>
+				    <span class="label">密码：</span>
 				    <div class="fl">
 					    <input type="password" class="text {required: true}" id="custPwd" name="custPwd" tabindex="2">
 					    <span class="clr"></span>    						
@@ -88,7 +83,7 @@
 			    <div class="item">
 				    <span class="label">邮箱：</span>
 				    <div class="fl">
-					    <input type="text" id="email" name="email" class="text {required: true,email: true}" tabindex="4" sta="0" value="${custInfo.email }">			
+					    <input type="text" id="email" name="email" class="text {required: true,email: true}" tabindex="4">			
 					    <span class="clr"></span>    					
 				    </div>
 			    </div>
@@ -96,15 +91,24 @@
 				    <span class="label">验证码：</span>
 				    <div class="fl">
 					    <input type="text" id="authcode" name="authcode" class="text text-1 {required: true}" tabindex="6" maxlength="5">
+					    <br/>请输入以下验证码					    
+					    <span class="clr"></span>                       
+			    	</div>			    
+			    </div>
+			    
+			    <div class="item">
+				    <span class="label">&nbsp;</span>
+				    <div class="fl">
 					    <label class="img">
-                          <img id="img_verification" onclick="reloadvefifyimg()" src="<%=path %>/verification.jpg?data=<%=Math.random() %>'" alt="" style="cursor:pointer;width:140px;height:50px;">
+                          <img id="img_verification" onclick="reloadvefifyimg()" src="<%=path %>/verification.jpg?data=<%=Math.random() %>'" alt="" style="cursor:pointer;width:100px;height:30px;">
 					    </label>
 					    <label class="ftx23">&nbsp;看不清？
-					    	<a href="###" onclick="reloadvefifyimg()" class="flk13">换一张</a>
+					    	<a href="#none" onclick="reloadvefifyimg()" class="flk13">换一张</a>
 					    </label>
 					    <span class="clr"></span>                       
+			    	</div>
 			    </div>
-			    </div>
+			    
 			    <c:if test="${errors!=null}">
 		     	<div class="item">
 		     	<span class="label">&nbsp;</span>
@@ -117,8 +121,7 @@
 				     <span class="label">&nbsp;</span>
 				     <input type="submit" class="btn-img btn-regist" id="registsubmit" value="立即注册" tabindex="8">
 			    </div>
-		    </div>
-		
+		    </div>		
 		</form>
 
 		<!--[if !ie]>form end<![endif]-->

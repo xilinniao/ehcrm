@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <!-- footer -->
+
 <div class="w">
 	<div id="service">
 		<dl class="fore1">
@@ -45,20 +46,20 @@
 		<div class="clr"></div>
 		
 	</div>
-</div><!-- end of foot -->
+</div>
+
+<!-- end of foot -->
 
 
 <div class="w" id="footer">
 	<div class="flinks">
-		<a href="http://www.360buy.com/intro/about.aspx" target="_blank">关于我们</a>|
-		<a href="http://www.360buy.com/contact/" target="_blank">联系我们</a>|
-		<a href="http://www.360buy.com/intro/job.aspx" target="_blank">人才招聘</a>|
-		<a href="http://www.360buy.com/contact/joinin.aspx" target="_blank">商家入驻</a>|
-		<a href="http://www.360buy.com/intro/service.aspx" target="_blank">广告服务</a>|
-		<a href="http://app.360buy.com/" target="_blank">移动终端</a>|
-		<a href="http://club.360buy.com/links.aspx" target="_blank">友情链接</a>
+		<a href="/">商城首页</a>|
+		<a href="<%=path%>/help/topic-aboutus.html">关于我们</a>|
+		<a href="<%=path%>/help/topic-linkus.html">联系我们</a>|
+		<a href="<%=path%>/help/topic-joinus.html">商家入驻</a>|
+		<a href="<%=path%>/help/topic-adservice.html">广告服务</a>
 	</div>
 	<div class="copyright">
-		<br>Copyright©2010-2011&nbsp;&nbsp;0794buy抚州网上购物商城&nbsp;版权所有
+		Copyright©2010-2011&nbsp;&nbsp;0794buy抚州网上购物商城&nbsp;版权所有
 	</div>	
 </div>
