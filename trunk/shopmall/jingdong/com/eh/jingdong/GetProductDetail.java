@@ -33,9 +33,14 @@ public class GetProductDetail {
 					detailThread.setContext(context);
 					detailThread.setGoods(next);
 					detailThread.start();
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(4000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
