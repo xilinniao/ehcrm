@@ -48,4 +48,5 @@ public class ArticleCategoryLogicImpl extends BaseLogic implements ArticleCatego
 		return baseDao.pagedQuery(criteria, qry.getDataTablesPageNo(), qry.getPageSize());
 	}
 	
+	
 }

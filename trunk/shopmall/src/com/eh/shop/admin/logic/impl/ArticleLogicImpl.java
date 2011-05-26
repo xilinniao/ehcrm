@@ -10,6 +10,7 @@ import com.eh.base.util.Constants;
 import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.ArticleLogic;
 import com.eh.shop.admin.web.qry.ArticleQry;
+import com.eh.shop.entity.TbArticleCategory;
 import com.eh.shop.entity.TbArticleInfo;
 
 public class ArticleLogicImpl extends BaseLogic implements ArticleLogic {
@@ -54,5 +55,15 @@ public class ArticleLogicImpl extends BaseLogic implements ArticleLogic {
 	public List findCategoryList() {
 		return super.baseDao.find("from TbArticleCategory order by orderNum asc");
 	}
+
+	public TbArticleInfo findArticleByUrl(String url) {
+		List<TbArticleInfo> articleList = super.baseDao.find("from TbArticleInfo t where t.articleUrl = ? ", url);
+		if(articleList.size()>0){
+			return articleList.get(0);
+		}else{
+			return null;
+		}
+	}
+	
 	
 }

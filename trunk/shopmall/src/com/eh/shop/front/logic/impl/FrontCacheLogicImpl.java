@@ -1,7 +1,9 @@
 package com.eh.shop.front.logic.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
@@ -9,6 +11,7 @@ import net.sf.ehcache.Element;
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.entity.TbAttachment;
 import com.eh.base.logic.BaseLogic;
+import com.eh.shop.entity.TbArticleInfo;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoSub;
 import com.eh.shop.entity.TbPageCategory;
@@ -175,6 +178,30 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 			return cacheList;
 		} else {
 			return (List<GoodsCategoryVo>) elm.getValue();
+		}
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.eh.shop.front.logic.FrontCacheLogic#findHelpContent(java.lang.String)
+	 */
+	public Map<String,String> findHelpContent(String url) {
+		String key = "help_" + url;// help
+		frontCache.remove(key);
+		Element elm = frontCache.get(key);
+		if (elm == null) {
+			List<TbArticleInfo> articleList = super.baseDao.find("from TbArticleInfo t where t.articleUrl = ? ", url);
+			Map<String,String> data = new HashMap<String,String>();
+			if(articleList.size()>0){
+				TbArticleInfo article = articleList.get(0);
+				data.put("title", article.getTitle());
+				data.put("content", article.getContent());
+				return data;
+			}else{
+				return null;
+			}
+		} else {
+			return (Map<String,String>) elm.getValue();
 		}
 	}
 

@@ -25,4 +25,5 @@ public interface ArticleCategoryLogic extends IBaseLogic {
 	 * @return
 	 */
 	public Page findArticleCategoryList(ArticleCategoryQry qry);
+	
 }
