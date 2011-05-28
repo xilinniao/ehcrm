@@ -17,21 +17,52 @@
 <!-- 正文开始 -->
 <div class="w main">
 	<div class="left">
+		
 		<!-- 品牌开始 -->
 		<div class="boxa">
 			<div class="mt">
-				<h2>热门店铺</h2>
+				<h2 class="colorred">入驻店铺</h2>
 			</div>
 			<div class="mc">
+				<div id="shopapply">				
+		        	<a id="shopreg" href="/">商铺注册</a>
+		        	<a id="shopenter" href="#none">店铺管理</a>
+				</div>
                    <ul>
-                   <li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36209&amp;cus=9_501_7360_10809_10809000&amp;url=http://market.360buy.com/zhuanmai/hp/index.aspx?_mvsrc=430_5221_36209&amp;_mvcam=9_501_7360_10809_10809000&amp;_mven=c2c27e9e8a"><img width="88" height="31" src="http://img14.360buyimg.com/da/20110228/88_31_cuHtmr.jpg" alt="惠普"></a></li><li><a target="_blank" href="http://market.360buy.com/zhuanmai/joyoung/index.aspx"><img width="88" height="31" src="http://img13.360buyimg.com/da/20110228/88_31_kjWzso.jpg" alt="九阳"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36210&amp;cus=9_501_7361_10810_10810000&amp;url=http://market.360buy.com/zhuanmai/hpnotebook/index.aspx?_mvsrc=430_5221_36210&amp;_mvcam=9_501_7361_10810_10810000&amp;_mven=7d9eedac72"><img width="88" height="31" src="http://img10.360buyimg.com/da/20110228/88_31_Qeuzio.jpg" alt="惠普电脑"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36217&amp;cus=9_501_7368_10817_10817000&amp;url=http://market.360buy.com/zhuanmai/lenovo/index.aspx?_mvsrc=430_5221_36217&amp;_mvcam=9_501_7368_10817_10817000&amp;_mven=6bab0535eb"><img width="88" height="31" src="http://img11.360buyimg.com/da/20110228/88_31_VjKbZr.jpg" alt="联想"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36211&amp;cus=9_501_7362_10811_10811000&amp;url=http://market.360buy.com/zhuanmai/acer/index.aspx?_mvsrc=430_5221_36211&amp;_mvcam=9_501_7362_10811_10811000&amp;_mven=6503cf7ac1"><img width="88" height="31" src="http://img11.360buyimg.com/da/20110228/88_31_ANpmDk.jpg" alt="ACER"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36218&amp;cus=9_501_7369_10818_10818000&amp;url=http://market.360buy.com/zhuanmai/fujitsu/index.aspx?_mvsrc=430_5221_36218&amp;_mvcam=9_501_7369_10818_10818000&amp;_mven=23ace95e36"><img width="88" height="31" src="http://img10.360buyimg.com/da/20110228/88_31_ZXJZMd.jpg" alt="富士通"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36216&amp;cus=9_501_7367_10816_10816000&amp;url=http://market.360buy.com/zhuanmai/asus/index.aspx?_mvsrc=430_5221_36216&amp;_mvcam=9_501_7367_10816_10816000&amp;_mven=7f8e1a1c9c"><img width="88" height="31" src="http://img10.360buyimg.com/da/20110228/88_31_mzJTgq.jpg" alt="华硕"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36219&amp;cus=9_501_7370_10819_10819000&amp;url=http://market.360buy.com/zhuanmai/thinkpad/index.aspx?_mvsrc=430_5221_36219&amp;_mvcam=9_501_7370_10819_10819000&amp;_mven=589b30bd52"><img width="88" height="31" src="http://img12.360buyimg.com/da/20110228/88_31_fbwfqq.jpg" alt="THINKPAD"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36212&amp;cus=9_501_7363_10812_10812000&amp;url=http://market.360buy.com/zhuanmai/Dlink/index.aspx?_mvsrc=430_5221_36212&amp;_mvcam=9_501_7363_10812_10812000&amp;_mven=7c35334c46"><img width="88" height="31" src="http://img10.360buyimg.com/da/20110228/88_31_dGEUWI.jpg" alt="D-LINK"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36213&amp;cus=9_501_7364_10813_10813000&amp;url=http://market.360buy.com/zhuanmai/seagate/index.aspx?_mvsrc=430_5221_36213&amp;_mvcam=9_501_7364_10813_10813000&amp;_mven=46432c5102"><img width="88" height="31" src="http://img11.360buyimg.com/da/20110228/88_31_OEnyXa.jpg" alt="希捷"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36220&amp;cus=9_501_7371_10820_10820000&amp;url=http://market.360buy.com/zhuanmai/founder/index.aspx?_mvsrc=430_5221_36220&amp;_mvcam=9_501_7371_10820_10820000&amp;_mven=568e5588dc"><img width="88" height="31" src="http://img12.360buyimg.com/da/20110228/88_31_CwbzFj.jpg" alt="方正"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36214&amp;cus=9_501_7365_10814_10814000&amp;url=http://market.360buy.com/zhuanmai/weibao/index.aspx?_mvsrc=430_5221_36214&amp;_mvcam=9_501_7365_10814_10814000&amp;_mven=8fe2f82fc3"><img width="88" height="31" src="http://img11.360buyimg.com/da/20110228/88_31_BKvspG.jpg" alt="威宝"></a></li><li><a target="_blank" href="http://market.360buy.com/zhuanmai/yinglun/index.aspx"><img width="88" height="31" src="http://img14.360buyimg.com/da/20110228/88_31_otimYU.jpg" alt="JUSTYLE"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36221&amp;cus=9_501_7372_10821_10821000&amp;url=http://market.360buy.com/zhuanmai/hivi/index.aspx?_mvsrc=430_5221_36221&amp;_mvcam=9_501_7372_10821_10821000&amp;_mven=9159446789"><img width="88" height="31" src="http://img10.360buyimg.com/da/20110228/87_31_WhNdff.jpg" alt="惠威"></a></li><li><a target="_blank" href="http://market.360buy.com/zhuanmai/supor/index.aspx"><img width="88" height="31" src="http://img13.360buyimg.com/da/20110228/88_32_lLWUhr.jpg" alt="苏泊尔"></a></li><li><a target="_blank" href="http://market.360buy.com/zhuanmai/alcatel/index.aspx"><img width="88" height="31" src="http://img10.360buyimg.com/da/20110301/102_34_LsAlim.jpg" alt="阿尔卡特"></a></li>
-                   <li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36209&amp;cus=9_501_7360_10809_10809000&amp;url=http://market.360buy.com/zhuanmai/hp/index.aspx?_mvsrc=430_5221_36209&amp;_mvcam=9_501_7360_10809_10809000&amp;_mven=c2c27e9e8a"><img width="88" height="31" src="http://img14.360buyimg.com/da/20110228/88_31_cuHtmr.jpg" alt="惠普"></a></li><li><a target="_blank" href="http://market.360buy.com/zhuanmai/joyoung/index.aspx"><img width="88" height="31" src="http://img13.360buyimg.com/da/20110228/88_31_kjWzso.jpg" alt="九阳"></a></li><li><a target="_blank" href="http://click.mediav.com/c?type=2&amp;db=mediav&amp;pub=430_5221_36210&amp;cus=9_501_7361_10810_10810000&amp;url=http://market.360buy.com/zhuanmai/hpnotebook/index.aspx?_mvsrc=430_5221_36210&amp;_mvcam=9_501_7361_10810_10810000&amp;_mven=7d9eedac72"><img width="88" height="31" src="http://img10.360buyimg.com/da/20110228/88_31_Qeuzio.jpg" alt="惠普电脑"></a></li>
+	                   <li class="fore">
+							<span class="seq">1</span>							
+							<a href="/product/141195.html">店铺1232132132132</a>
+						</li>
+						
+						<li class="fore">
+							<span class="seq">2</span>							
+							<a href="/product/141195.html">店铺1232132132132</a>
+						</li>
+						<li class="fore">
+							<span class="seq">1</span>							
+							<a href="/product/141195.html">店铺1232132132132</a>
+						</li>
+						
+						<li class="fore">
+							<span class="seq">3</span>							
+							<a href="/product/141195.html">店铺1232132132132</a>
+						</li>
+						<li class="fore">
+							<span class="seq">4</span>							
+							<a href="/product/141195.html">店铺1232132132132</a>
+						</li>
+						
+						<li class="fore">
+							<span class="seq">5</span>							
+							<a href="/product/141195.html">店铺1232132132132</a>
+						</li>
                    </ul>
 
                    <div class="extra"><a href="http://www.360buy.com/brand.aspx">更多&gt;&gt;</a></div>
 			</div>
 		</div><!-- 品牌结束 -->
 		
+		<!-- 
 		<div id="advertiseleft">
 			<ul>
 				<li>
@@ -49,114 +80,82 @@
 						<img src="http://img14.360buyimg.com/da/20110311/211_90_NrVlGu.gif" width="211" height="90">
 					</a>
 				</li>
-		</div><!-- advertiseleft -->
+		</div>
 		<span class="clr5"></span>
-		
-		<div class="m rank" id="rank537" style="display: block; ">
+		 -->
+		 
+		 <span class="clr5"></span>
+		 <div class="boxa boxab">
 			<div class="mt">
-				<h2>销量排行榜</h2>
+				<h2 class="colorred">今日团购</h2>
 			</div>
 			<div class="mc">
-				<ul>
-					<li class="fore">
-						<span>1</span>
-						<div class="p-img">
-							<a href="/product/141195.html">
-							<img src="http://img10.360buyimg.com/n5/3348/db8d172d-62d1-4a9d-9b0a-297d96ea3a65.jpg" alt="安睡宝单人新羽高弹枕" width="50" height="50">
-							</a>
-						</div>
-						<div class="p-name">
-							<a title="安睡宝单人新羽高弹枕" href="/product/141195.html">
-								安睡宝单人新羽高弹枕<font color="#ff6600">便宜！品牌！质量保证！</font>
-							</a>
-						</div>
-						<div class="p-price">
-							<strong>￥75.00</strong>
-						</div>
-					</li>
-					<li class="fore">
-						<span>2</span>
-						<div class="p-img">
-							<a href="/product/141195.html">
-							<img src="http://img10.360buyimg.com/n5/833/17d078c1-5c6b-478e-b193-490f2bdd15a9.jpg" alt="安睡宝单人新羽高弹枕" width="50" height="50">
-							</a>
-						</div>
-						<div class="p-name">
-							<a title="安睡宝单人新羽高弹枕" href="/product/141195.html">
-								安睡宝单人新羽高弹枕<font color="#ff6600">便宜！品牌！质量保证！</font>
-							</a>
-						</div>
-						<div class="p-price">
-							<strong>￥75.00</strong>
-						</div>
-					</li>
-					<li class="fore">
-						<span>3</span>
-						<div class="p-img">
-							<a href="/product/141195.html">
-							<img src="http://img10.360buyimg.com/n5/809/5dfc9f42-d2a1-43d5-a368-20086f5d3926.jpg" alt="安睡宝单人新羽高弹枕" width="50" height="50">
-							</a>
-						</div>
-						<div class="p-name">
-							<a title="安睡宝单人新羽高弹枕" href="/product/141195.html">
-								安睡宝单人新羽高弹枕<font color="#ff6600">便宜！品牌！质量保证！</font>
-							</a>
-						</div>
-						<div class="p-price">
-							<strong>￥75.00</strong>
-						</div>
-					</li>
-					<li class="fore">
-						<span>4</span>
-						<div class="p-img">
-							<a href="/product/141195.html">
-							<img src="http://img10.360buyimg.com/n5/3348/db8d172d-62d1-4a9d-9b0a-297d96ea3a65.jpg" alt="安睡宝单人新羽高弹枕" width="50" height="50">
-							</a>
-						</div>
-						<div class="p-name">
-							<a title="安睡宝单人新羽高弹枕" href="/product/141195.html">
-								安睡宝单人新羽高弹枕<font color="#ff6600">便宜！品牌！质量保证！</font>
-							</a>
-						</div>
-						<div class="p-price">
-							<strong>￥75.00</strong>
-						</div>
-					</li>
-					<li class="fore">
-						<span>5</span>
-						<div class="p-img">
-							<a href="/product/141195.html">
-							<img src="http://img10.360buyimg.com/n5/833/17d078c1-5c6b-478e-b193-490f2bdd15a9.jpg" alt="安睡宝单人新羽高弹枕" width="50" height="50">
-							</a>
-						</div>
-						<div class="p-name">
-							<a title="安睡宝单人新羽高弹枕" href="/product/141195.html">
-								安睡宝单人新羽高弹枕<font color="#ff6600">便宜！品牌！质量保证！</font>
-							</a>
-						</div>
-						<div class="p-price">
-							<strong>￥75.00</strong>
-						</div>
-					</li>
-					<li class="fore">
-						<span>6</span>
-						<div class="p-img">
-							<a href="/product/141195.html">
-							<img src="http://img10.360buyimg.com/n5/809/5dfc9f42-d2a1-43d5-a368-20086f5d3926.jpg" alt="安睡宝单人新羽高弹枕" width="50" height="50">
-							</a>
-						</div>
-						<div class="p-name">
-							<a title="安睡宝单人新羽高弹枕" href="/product/141195.html">
-								安睡宝单人新羽高弹枕<font color="#ff6600">便宜！品牌！质量保证！</font>
-							</a>
-						</div>
-						<div class="p-price">
-							<strong>￥75.00</strong>
-						</div>
-					</li>
-				</ul>
-			</div>			
-		</div><!-- end of rank537 -->
+                   <ul>
+	                   <li class="tuan">
+							<div class="tuaning">
+								<h3>
+									<a href="#" target="_blank">3D游戏机PSP（8G）,附送16件套再全国包邮开团啦！</a>
+								</h3>
+								<div class="p_img">
+									<a href="#" target="_blank">
+										<img src="http://resource.360hqb.com/thumbs/product/4c/19/4c1927f46a82e3b379df6bcc9c89f8d3.130.jpg" alt="3D游戏机PSP（8G）,附送16件套再全国包邮开团啦！"></a>
+									</div>
+									<div class="ss_pos_btn">
+										<div class="price_i">
+											<span class="txt">团购价</span>
+											<span class="pri">￥ 255</span>
+										</div>
+										<div class="to_tuan_btn">
+											<a id="btnGroup" class="t_to" href="#" target="_blank" title="参团购买">&nbsp;</a>
+										</div>
+									</div>
+							</div>
+						</li>
+						<li class="tuan">
+							<div class="tuaning">
+								<h3>
+									<a href="#" target="_blank">3D游戏机PSP（8G）,附送16件套再全国包邮开团啦！</a>
+								</h3>
+								<div class="p_img">
+									<a href="#" target="_blank">
+										<img src="http://resource.360hqb.com/thumbs/product/4c/19/4c1927f46a82e3b379df6bcc9c89f8d3.130.jpg" alt="3D游戏机PSP（8G）,附送16件套再全国包邮开团啦！"></a>
+									</div>
+									<div class="ss_pos_btn">
+										<div class="price_i">
+											<span class="txt">团购价</span>
+											<span class="pri">￥ 255</span>
+										</div>
+										<div class="to_tuan_btn">
+											<a id="btnGroup" class="t_to" href="#" target="_blank" title="参团购买">&nbsp;</a>
+										</div>
+									</div>
+							</div>
+						</li>
+						<li class="tuan">
+							<div class="tuaning">
+								<h3>
+									<a href="#" target="_blank">3D游戏机PSP（8G）,附送16件套再全国包邮开团啦！</a>
+								</h3>
+								<div class="p_img">
+									<a href="#" target="_blank">
+										<img src="http://resource.360hqb.com/thumbs/product/4c/19/4c1927f46a82e3b379df6bcc9c89f8d3.130.jpg" alt="3D游戏机PSP（8G）,附送16件套再全国包邮开团啦！"></a>
+									</div>
+									<div class="ss_pos_btn">
+										<div class="price_i">
+											<span class="txt">团购价</span>
+											<span class="pri">￥ 255</span>
+										</div>
+										<div class="to_tuan_btn">
+											<a id="btnGroup" class="t_to" href="#" target="_blank" title="参团购买">&nbsp;</a>
+										</div>
+									</div>
+							</div>
+						</li>					
+                   </ul>
+
+                   <div class="extra"><a href="#">更多&gt;&gt;</a></div>
+			</div>
+		</div><!-- end of tuan -->
 	</div><!-- end of left -->
 	
 	<div class="right">
@@ -164,15 +163,15 @@
 		<div id="slidercontain">
 			<div id="slider">
 				<ul>
-					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
-					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
-					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
-					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
-					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
-					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
-					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
-					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
-					<li><a href="http://templatica.com/preview/27"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="#"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="#"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="#"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="#"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="#"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="#"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="#"><img src="http://www.shopxx.cn/upload/banner1.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="#"><img src="http://www.shopxx.cn/upload/banner2.jpg" alt="Css Template Preview" /></a></li>
+					<li><a href="#"><img src="http://www.shopxx.cn/upload/banner3.jpg" alt="Css Template Preview" /></a></li>
 				</ul>
 			</div>
 		</div>		
