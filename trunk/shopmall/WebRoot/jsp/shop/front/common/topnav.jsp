@@ -5,6 +5,9 @@
 		<a href="<%=path%>/index.xhtml" id="id_home" class="home">首页</a>
 	</li>
 	<li>
+		<a href="<%=path%>/tuan/index-1.html" id="id_tuan" class="home">团购</a>
+	</li>
+	<li>
 		<a href="<%=path%>/category/2-2.html" id="category_2" class="products">家用电器</a>
 		<div class="sub">
 			<dl>
@@ -889,89 +892,6 @@
 					<a href="<%=path%>/products/600-536.html">风湿骨痛</a>
 					<a href="<%=path%>/products/601-536.html">生殖泌尿</a>
 					<a href="<%=path%>/products/602-536.html">美体塑身</a>
-				</dd>
-			</dl>
-		</div>
-	</li>
-	<li>
-		<a href="<%=path%>/category/603-603.html" id="category_603" class="products">食品饮料</a>
-		<div class="sub">
-			<dl>
-				<dt>地方特产</dt>
-				<dd>
-					<a href="<%=path%>/products/605-603.html">华北</a>
-					<a href="<%=path%>/products/606-603.html">西北</a>
-					<a href="<%=path%>/products/607-603.html">西南</a>
-					<a href="<%=path%>/products/608-603.html">东北</a>
-					<a href="<%=path%>/products/609-603.html">华南</a>
-					<a href="<%=path%>/products/610-603.html">华东</a>
-					<a href="<%=path%>/products/611-603.html">华中</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>休闲食品</dt>
-				<dd>
-					<a href="<%=path%>/products/613-603.html">休闲小食</a>
-					<a href="<%=path%>/products/614-603.html">坚果炒货</a>
-					<a href="<%=path%>/products/615-603.html">肉干肉松</a>
-					<a href="<%=path%>/products/616-603.html">蜜饯果脯</a>
-					<a href="<%=path%>/products/617-603.html">糖果/巧克力</a>
-					<a href="<%=path%>/products/618-603.html">饼干蛋糕</a>
-					<a href="<%=path%>/products/619-603.html">进口食品</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>粮油调味</dt>
-				<dd>
-					<a href="<%=path%>/products/621-603.html">米面杂粮</a>
-					<a href="<%=path%>/products/622-603.html">食用油</a>
-					<a href="<%=path%>/products/623-603.html">调味品</a>
-					<a href="<%=path%>/products/624-603.html">南北干货</a>
-					<a href="<%=path%>/products/625-603.html">方便食品</a>
-					<a href="<%=path%>/products/626-603.html">有机食品</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>酒饮冲调</dt>
-				<dd>
-					<a href="<%=path%>/products/628-603.html">白酒/黄酒</a>
-					<a href="<%=path%>/products/629-603.html">葡萄酒</a>
-					<a href="<%=path%>/products/630-603.html">洋酒</a>
-					<a href="<%=path%>/products/631-603.html">啤酒</a>
-					<a href="<%=path%>/products/632-603.html">饮料</a>
-					<a href="<%=path%>/products/633-603.html">冲调</a>
-					<a href="<%=path%>/products/634-603.html">咖啡/奶茶</a>
-					<a href="<%=path%>/products/635-603.html">茗茶</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>营养健康</dt>
-				<dd>
-					<a href="<%=path%>/products/637-603.html">基础营养</a>
-					<a href="<%=path%>/products/638-603.html">美体养颜</a>
-					<a href="<%=path%>/products/639-603.html">滋补调养</a>
-					<a href="<%=path%>/products/640-603.html">骨骼健康</a>
-					<a href="<%=path%>/products/641-603.html">保健茶饮</a>
-					<a href="<%=path%>/products/642-603.html">成分保健</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>预防保健</dt>
-				<dd>
-					<a href="<%=path%>/products/644-603.html">高血脂保健</a>
-					<a href="<%=path%>/products/645-603.html">高血压保健</a>
-					<a href="<%=path%>/products/646-603.html">糖尿病保健</a>
-					<a href="<%=path%>/products/647-603.html">心脑血管病保健</a>
-					<a href="<%=path%>/products/648-603.html">失眠症保健</a>
-					<a href="<%=path%>/products/649-603.html">肝损伤保健</a>
-					<a href="<%=path%>/products/650-603.html">更多疾病保健</a>
-				</dd>
-			</dl>
-			<dl>
-				<dt>健康礼品</dt>
-				<dd>
-					<a href="<%=path%>/products/652-603.html">参茸礼品</a>
-					<a href="<%=path%>/products/653-603.html">更多礼品</a>
 				</dd>
 			</dl>
 		</div>
