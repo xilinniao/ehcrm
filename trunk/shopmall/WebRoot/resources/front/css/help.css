@@ -110,3 +110,59 @@
 .helpRightMain p {
 	line-height: 24px;
 }
+
+.mer {
+height: auto;
+width: 720px;
+padding: 20px 35px;
+text-align: left;
+}
+
+.mer_guide_img {
+margin: 0;
+padding: 0;
+width: 800px;
+height: 260px;
+display: block;
+overflow: hidden;
+background: url(../images/var/merchants.gif) top left no-repeat;
+}
+
+.mer_bg {
+background: #F9F9F9;
+border-top: 1px solid #EFEFEF;
+border-bottom: 1px solid #EFEFEF;
+}
+.mer h3 {
+	margin: 10px 0 10px 0;
+	color: #F60;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.mer ol {
+list-style-position: outside;
+list-style-type: decimal;
+margin: 0 0 0 1.8em;
+padding: 0;
+}
+.mer ol li {
+list-style-position: outside;
+list-style-type: decimal;
+margin-bottom: 2px;
+line-height:25px;
+}
+
+.mer span.span_img {
+width: auto;
+height: 42px;
+display: block;
+margin-bottom: 5px;
+background: url(../images/var/merchants.gif) top left no-repeat;
+background-position: 0 -371px;
+}
+
+.mer span strong {
+color: #F60;
+font-weight: normal;
+}

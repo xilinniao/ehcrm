@@ -7,22 +7,6 @@ function addFavorite(url, title) {
 	}
 }
 
-/**
- * cookie_days cookie保存天数
- **/
-shop_constant = {
-	sysName: "抚州直销商城",
-	base: "",
-	currencySign: "￥",
-	currencyUnit: "元",
-	priceScale: "2",
-	priceRoundType: "roundHalfUp",
-	orderScale: "2",
-	orderRoundType: "roundHalfUp",
-	cookie_days: 60,
-	cookie_path:'/'
-};
-
 // 浮点数加法运算
 function floatAdd(arg1, arg2) {
 	var r1, r2, m;
@@ -237,12 +221,12 @@ jQuery(document).ready(function() {
 		
 		$.flushHeaderInfo = function () {
 			if($.cookie("memberUsername") != null) {
-				$shortcut_user_name.text($.cookie("memberUsername")+",欢迎来到"+shop_constant.sysName);
+				$shortcut_user_name.text($.cookie("memberUsername")+"您好，欢迎来到"+shop_constant.sysName+"！");
 				$shortcut_login.hide();
 				$shortcut_regist.hide();
 				$shortcut_logout.show();
 			}else{
-				$shortcut_user_name.text("欢迎来到"+shop_constant.sysName+",你还没有登录")
+				$shortcut_user_name.text("您好，欢迎来到"+shop_constant.sysName+"！");
 				$shortcut_login.show();
 				$shortcut_regist.show();
 				$shortcut_logout.hide();
@@ -262,8 +246,9 @@ jQuery(document).ready(function() {
 				dataType: "json",
 				success: function(data) {
 					if (data.status == "success") {
-						$.message({type: data.status, content: data.message});
-						$.flushHeaderInfo();
+						//$.message({type: data.status, content: data.message});
+						//$.flushHeaderInfo();
+						document.location.href = shop_constant.index;
 					}
 				}
 			});
@@ -304,7 +289,7 @@ jQuery(document).ready(function() {
 							$.flushHeaderInfo();
 							$.closeDialog("loginWindow");
 						}
-						$.message({type: data.status, content: data.message});
+						//$.message({type: data.status, content: data.message});
 						if(redirectUrl != null) {
 							location.href = redirectUrl;
 						}

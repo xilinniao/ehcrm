@@ -3,10 +3,9 @@ margin: 0;
 padding: 0;
 }
 body {
-font-family: "宋体",Arial,Lucida,Verdana,Helvetica,sans-serif;
+font-family: "宋体",tahoma,serif;
 font-size: 12px;
 color: #333;
-line-height: 150%;
 background: white;
 }
 img {
@@ -77,7 +76,7 @@ color: #C00;
 text-decoration: underline;
 }
 #shortcut ul {
-float: right;
+float: left;
 position: relative;
 z-index: 11;
 background: url(../images/bg_shortcut.gif) repeat-x 0 -134px;
@@ -90,11 +89,22 @@ padding: 2px 10px;
 background: url(../images/bg_shortcut.gif) no-repeat -260px -100px;
 line-height: 26px;
 font-family: "宋体";
-color: #ACACAC;
+color: #000;
 }
 #shortcut .fore1 {
 background: none;
+width:410px;
 }
+#shortcut .fore1 a{
+	margin: 0 3px;
+	color: #F60;
+	text-decoration: none;
+}
+#shortcut .hottel span{
+	color: #F60;
+	font-weight: bold;
+}
+
 #shortcut .fore2 {
 padding-left: 50px;
 background: url(../images/bg_shortcut.gif) no-repeat -130px -165px;
@@ -360,19 +370,17 @@ width: 760px;
 zoom: 1;
 position: relative;
 overflow: visible;
-//z-index: 2;
 }
 .boxa .mt {
 height: 24px;
 padding: 3px 8px;
 background: url(../images/bg_tit_home.gif) #E6E6E6 no-repeat 0 -30px;
 line-height: 24px;
-overflow: visible;
 }
 .boxa h2 {
 float: left;
 }
-.boxa h2 .colorred{
+.boxa .colorred{
 color: #C00;
 }
 .boxa .mc {
@@ -381,22 +389,32 @@ border-width: 0 1px 1px;
 }
 .boxa ul {
 overflow: hidden;
-width: 201px;
-padding: 0 0 8px 8px;
+width: 211px;
 zoom: 1;
 }
-.boxa li {
+.boxa span.seq {
 float: left;
-overflow: hidden;
-width: 88px;
-height: 31px;
-padding: 1px;
-border: 1px solid #EFEFEF;
-margin: 8px 8px 0 0;
+padding: 0 8px 0 4px;
+font-size: 14px;
+font-weight: bold;
+color: #C00;
+font-family: arial;
 }
+.boxa li {
+	width:211px;
+	float: left;
+	height: 25px;
+	padding: 1px;
+	margin: 2px 2px 0 0;
+}
+
+.boxa .fore{
+		border-bottom: 1px solid #EFEFEF;
+}
+
 .boxa .mc .extra {
-padding: 5px 8px;
-text-align: right;
+	padding: 5px 8px;
+	text-align: right;
 }
 
 .boxa .mc p {
@@ -426,6 +444,30 @@ text-decoration: underline;
 
 .padding8{
 	padding: 8px;
+}
+
+#shopapply{
+	zoom: 1;
+	float:left;
+	clear:both;
+	padding-bottom:8px;
+}
+#shopapply a {
+line-height: 200px;
+display: block;
+height: 38px;
+background: url(../images/shopapply.gif);
+overflow: hidden;
+float: left;
+}
+#shopapply #shopreg {
+width: 103px;
+margin-right: 2px;
+background-position: -3px 0;
+}
+#shopapply #shopenter {
+background-position: -117px 0;
+width: 101px;
 }
 
 #sortlist .mt {
@@ -561,8 +603,14 @@ padding-left: 20px;
 width: 180px;
 }
 #footer {
-padding-bottom: 30px;
+margin-top:10px;
+padding-bottom: 10px;
+padding-top: 5px;
 text-align: center;
+border-top: 1px solid #E5E5E5;
+overflow: hidden;
+}
+
 }
 #footer .flinks a, #footer .flinks span {
 margin: 0 10px;
@@ -758,39 +806,6 @@ margin: 8px 8px 7px 0;
 padding: 1px 0 1px 8px;
 border-left: 1px solid #D0D4D6;
 }
-
-/*ul#topnav li .row {clear: both; float: left; width: 100%; margin-bottom: 10px;}
-ul#topnav li .sub ul{
-	list-style: none;
-	margin: 0; padding: 0;
-	width: 150px;
-	float: left;
-}
-ul#topnav .sub ul li {
-	width: 100%;
-	color: #fff;
-}
-ul#topnav .sub ul li h2 {
-	padding: 0;  margin: 0;
-	font-size: 1.3em;
-	font-weight: normal;
-}
-ul#topnav .sub ul li h2 a {
-	padding: 5px 0;
-	background-image: none;
-	color: #000;
-}
-ul#topnav .sub ul li a {
-	float: none; 
-	text-indent: 0;
-	height: auto;
-	background: url(http://www.sohtanaka.com/web-design/examples/mega-dropdowns/navlist_arrow.png) no-repeat 5px 12px;
-	padding: 7px 5px 7px 15px;
-	display: block;
-	color: #000;
-}
-ul#topnav .sub ul li a:hover {color: #ddd; background-position: 5px 12px ;}*/
-
 
 /** 购物车 */
 .List_cart {
@@ -1278,4 +1293,109 @@ padding-bottom: 10px;
 	padding: 5px 5px 5px 20px;
 	border: 1px solid #ffca80;
 	background: url(../images/base_icon.gif) no-repeat 0px -420px #fffee2;
+}
+
+label.validateError {
+	line-height: 12px;
+	padding: 6px 25px;
+	margin-left: 25px;
+	zoom: 1;
+	border: 1px solid #ffca88;
+	background-color: #fffeee;
+	background: url(../images/base_icon.gif) no-repeat 0px -360px #fffee2;
+}
+
+label.validateSuccess {
+	line-height: 12px;
+	padding: 6px 25px;
+	border: 0px;
+	margin-left: 25px;
+	background-color: #fff;
+	background: url(../images/base_icon.gif) no-repeat 0px -0px #fffee2;
+}
+
+.boxa .tuan{	
+	height: 220px;
+}
+
+.tuaning {
+padding: 0 0 6px;
+height: 219px;
+border-bottom: 1px solid #E0DFDF;
+position: relative;
+z-index: 100;
+}
+.tuaning h3 {
+margin: 0;
+padding: 8px 10px 0;
+height: 48px;
+color: #333;
+font-size: 12px;
+font-weight: normal;
+line-height: 16px;
+display: block;
+overflow: hidden;
+}
+.tuaning .p_img {
+margin: 0 0 60px;
+padding: 10px 10px 0;
+width: 178px;
+height: 90px;
+text-align: center;
+overflow: hidden;
+}
+.tuaning .p_img img {
+margin: 0 auto;
+width: 120px;
+height: 97px;
+border: none 0;
+}
+.tuaning .ss_pos_btn {
+width: 188px;
+height: 48px;
+overflow: hidden;
+position: absolute;
+z-index: 200;
+left: -2px;
+top: 165px;
+background: url(../images/tuaning.png) -792px -243px no-repeat;
+clear: both;
+}
+.tuaning .ss_pos_btn .price_i {
+float: left;
+padding: 6px 0 0 15px;
+padding: 8px 0 0 15px	9;
+height: 40px;
+line-height: 16px;
+color: white;
+text-align: center;
+overflow: hidden;
+}
+.tuaning .ss_pos_btn .price_i span {
+display: block;
+color: white;
+}
+.tuaning .ss_pos_btn .price_i span.txt {
+font-size: 12px;
+}
+.tuaning .ss_pos_btn .price_i span.pri {
+font-family: Arial;
+font-size: 16px;
+font-weight: bold;
+}
+.tuaning .ss_pos_btn .to_tuan_btn {
+float: left;
+padding: 10px 0 0 15px;
+width: 68px;
+height: 30px;
+}
+.tuaning .ss_pos_btn .to_tuan_btn a.t_to {
+width: 68px;
+height: 25px;
+font-size: 0;
+cursor: pointer;
+border: none 0;
+background: url(../images/tuaning.png) -558px 0px no-repeat;
+display: inline-block;
+text-decoration: none;
 }

@@ -193,6 +193,20 @@ font-family: arial,"ËÎÌו";
 #regist .text-1 {
 width: 100px;
 }
+#regist input.text{
+width: 280px;
+line-height: 16px;
+border: 1px solid #DEDEDE;
+border-color: #707070 #CECECE #CECECE #707070;
+text-align: left;
+color: #333;
+margin: 4px 5px 0 0;
+padding: 5px;
+}
+
+#regist input.text-l{
+	width: 100px;
+}
 #regist .img img {
 height: 26px;
 margin: 0 5px;
