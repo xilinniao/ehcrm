@@ -136,6 +136,7 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 		if (elm == null) {
 			TbShopInfo shopInfo = super.baseDao.get(TbShopInfo.class, shopId);
 			ShopInfo vo = new ShopInfo();
+			vo.setShopId(shopId);
 			vo.setShopName(shopInfo.getShopName());
 			vo.setLinkerMobile(shopInfo.getLinkerMobile());
 			vo.setLinkerMan(shopInfo.getLinkerMan());

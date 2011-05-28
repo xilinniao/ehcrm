@@ -9,7 +9,7 @@ public class ShopInfo  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -9009020881514617043L;
-	
+	private Long shopId;
 	private String shopName;
     private String shopDesc;
     private String keyword;
@@ -21,7 +21,11 @@ public class ShopInfo  implements Serializable{
     private String email;    
     private Long imgLogo;
     private Long imgoAd;
-    private Date foundDate;
+    private Date foundDate;    
+    /**
+     * 商品分类ul
+     */
+    private String ulCategory;
     
 	public String getShopName() {
 		return shopName;
@@ -73,6 +77,18 @@ public class ShopInfo  implements Serializable{
 	}
 	public String getEmail() {
 		return email;
+	}	
+	public Long getShopId() {
+		return shopId;
+	}
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
+	}
+	public String getUlCategory() {
+		return ulCategory;
+	}
+	public void setUlCategory(String ulCategory) {
+		this.ulCategory = ulCategory;
 	}
 	public void setEmail(String email) {
 		this.email = email;
