@@ -456,8 +456,7 @@ label.validateError {
 	line-height: 12px;
 	padding: 4px;
 	padding: 6px\9;
-	*padding: 7px;
-	_padding: 7px;
+	padding: 7px;
 	margin-left: 5px;
 	zoom: 1;
 	border: 1px solid #ffca88;
