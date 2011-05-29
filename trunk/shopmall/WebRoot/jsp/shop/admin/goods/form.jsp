@@ -49,18 +49,16 @@
 								</select>
 								</td>
 							  </tr>
-							  <tr>
-							    <th>在首页显示位置</th>
+							  
+							  <th>是否为推荐商品</th>
 								<td>
-								<select name="pageCategoryId" id="pageCategoryId">
-									<option value="">请选择</option>
-									<c:forEach items="${pageCategoryList}" var="b">
-									<option value="${b.categoryId }">${b.categoryName }</option>
-									</c:forEach>
+								<select name="isRecommend" id="isRecommend">
+									<option value="0">否</option>
+									<option value="1">是</option>
 								</select>
+								<div class="userTip">推荐商品将在店铺首页推荐区域显示，建议设置为推荐商品的数量不超过8个</div>
 								</td>
 							  </tr>
-							  
 							  
 							  <tr>
 							    <th>关键字</th>
@@ -98,7 +96,7 @@
 							  <tbody>
 							  <tr>
 								<td>
-								<textarea name="goodsDesc" class="wysiwyg"  style="width: 100%; height: 450px;">${info.goodsDesc }</textarea></td>
+								<textarea name="goodsDesc" class="wysiwyg"  style="width: 100%; height: 450px;">${info.ext.goodsDesc }</textarea></td>
 							  </tr>
 							  </tbody>
 							</table>
@@ -114,7 +112,7 @@
 									<c:forEach items="${imageList }" var="b">
 										<li>
 											<input type="hidden" name="good_attach_id">
-											<input type="hidden" name="imagesId" value="${b.recId }"/><img src="${b.fileLoaction }_s.${b.fileExtension }">
+											<input type="hidden" name="imagesId" value="${b.recId }"/><img src="${b.filePathC }">
 										</li>
 									</c:forEach>
 								</ul>

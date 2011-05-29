@@ -42,7 +42,7 @@
 			<input type="button" class="addButton" onclick="location.href='goodsInfo.xhtml?method=add'" value="新增商品">
 		</div>
 	
-		<table class="listTable" id="listTable">
+		<table class="listTable">
 				<tr>
 						<th><input type="checkbox"></th>
 					    <th nowrap>商品名称</th>
