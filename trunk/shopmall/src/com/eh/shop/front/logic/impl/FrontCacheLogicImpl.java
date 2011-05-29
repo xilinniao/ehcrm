@@ -131,7 +131,7 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 	 */
 	public ShopInfo findShopInfo(Long shopId, boolean reRead) {
 		String key = "si_" + shopId;// shop info
-		// frontCache.remove(key);
+		frontCache.remove(key);
 		Element elm = frontCache.get(key);
 		if (elm == null) {
 			TbShopInfo shopInfo = super.baseDao.get(TbShopInfo.class, shopId);
@@ -140,6 +140,9 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 			vo.setShopName(shopInfo.getShopName());
 			vo.setLinkerMobile(shopInfo.getLinkerMobile());
 			vo.setLinkerMan(shopInfo.getLinkerMan());
+			vo.setShopAddr(shopInfo.getShopAddr());
+			vo.setFoundDate(shopInfo.getFoundDateStr());
+			vo.setPubNote(shopInfo.getPubNote());
 			this.frontCache.put(new Element(key, vo));
 			return vo;
 		} else {

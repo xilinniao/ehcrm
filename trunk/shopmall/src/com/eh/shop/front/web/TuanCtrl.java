@@ -11,22 +11,21 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eh.base.dao.hibernate.Page;
 import com.eh.shop.admin.logic.GoodsLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
-import com.eh.shop.entity.TbGoodsCategoryRel;
 import com.eh.shop.front.cache.GoodsShort;
 import com.eh.shop.front.cache.ShopInfo;
 import com.eh.shop.front.logic.FrontCacheLogic;
 
 public class TuanCtrl extends BaseFrontCtrl {
 	FrontCacheLogic frontCacheLogic;
-	GoodsLogic goodsLogoic;
+	GoodsLogic goodsLogic;
 	/**
 	 * 商铺首页
 	 */
 	@Override
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/shop/front/shop/index");
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/tuan/index");
 		
-		Long shopId = super.getLong(request, "shopId", false);
+		/*Long shopId = super.getLong(request, "shopId", false);
 		ShopInfo shop = frontCacheLogic.findShopInfo(shopId, false);
 		mav.addObject("shop", shop);
 		GoodsInfoQry qry = new GoodsInfoQry();
@@ -41,7 +40,7 @@ public class TuanCtrl extends BaseFrontCtrl {
 			mav.addObject("productList", productList);
 		}
 		mav.addObject("page", page);
-		mav.addObject("qry", qry);
+		mav.addObject("qry", qry);*/
 		return mav;
 	}
 	
@@ -77,13 +76,13 @@ public class TuanCtrl extends BaseFrontCtrl {
 		this.frontCacheLogic = frontCacheLogic;
 	}
 
-	public GoodsLogic getGoodsLogoic() {
-		return goodsLogoic;
+	public GoodsLogic getGoodsLogic() {
+		return goodsLogic;
 	}
 
-	public void setGoodsLogoic(GoodsLogic goodsLogoic) {
-		this.goodsLogoic = goodsLogoic;
+	public void setGoodsLogic(GoodsLogic goodsLogic) {
+		this.goodsLogic = goodsLogic;
 	}
-	
-	
+
+
 }

@@ -5,11 +5,7 @@ package com.eh.base.util;
 
 import java.lang.reflect.Field;
 
-import com.eh.base.entity.DeptInfo;
-import com.eh.base.entity.TbDeptInfo;
-import com.eh.base.entity.TbMenuInfo;
-import com.eh.base.entity.TbRoleInfo;
-import com.eh.base.entity.TbUserInfo;
+import com.eh.shop.entity.TbShopInfo;
 
 
 /**
@@ -22,7 +18,7 @@ public class GetterUtils {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Class c = TbRoleInfo.class;
+		Class c = TbShopInfo.class;
 		Field[] fields = c.getDeclaredFields();
 		for(int i=0,len=fields.length-1;i<=len;i++){
 			if("java.lang.xhtmluble".equals(fields[i].getType().getName())){				

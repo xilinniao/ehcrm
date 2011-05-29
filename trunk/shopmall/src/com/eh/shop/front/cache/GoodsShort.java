@@ -64,6 +64,14 @@ public class GoodsShort implements Serializable{
 	 * 冗余属性，在CACHE中不会发生
 	 */
 	Long cnt;
+	/**
+	 * 成立时间
+	 */
+	String foundDate;
+	/**
+	 * 公告
+	 */
+	String pubNote;
 	
 	public String getName() {
 		return name;
@@ -160,6 +168,22 @@ public class GoodsShort implements Serializable{
 
 	public void setCnt(Long cnt) {
 		this.cnt = cnt;
+	}
+	
+	public String getFoundDate() {
+		return foundDate;
+	}
+
+	public void setFoundDate(String foundDate) {
+		this.foundDate = foundDate;
+	}
+
+	public String getPubNote() {
+		return pubNote;
+	}
+
+	public void setPubNote(String pubNote) {
+		this.pubNote = pubNote;
 	}
 
 	/**

@@ -19,6 +19,10 @@ public class GoodsInfoQry extends BaseQuery {
 	 * 商品名称
 	 */
 	private String goodsName;
+	/**
+	 * 商店ID
+	 */
+	private Long shopId;
 	
 	/**
 	 * @return the categoryId
@@ -55,6 +59,13 @@ public class GoodsInfoQry extends BaseQuery {
 	 */
 	public void setGoodsName(String goodsName) {
 		this.goodsName = goodsName;
+	}
+	
+	public Long getShopId() {
+		return shopId;
+	}
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
 	}
 	/**
 	 * @return the treeNo

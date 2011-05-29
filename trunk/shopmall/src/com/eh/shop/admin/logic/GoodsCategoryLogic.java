@@ -2,6 +2,7 @@ package com.eh.shop.admin.logic;
 
 import java.util.List;
 
+import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbShopInfo;
@@ -66,5 +67,5 @@ public interface GoodsCategoryLogic extends IBaseLogic {
 	 * @param shopId
 	 * @return
 	 */
-	public List findShopCategory(Long shopId);
+	public List findShopCategory(Long shopId);	
 }

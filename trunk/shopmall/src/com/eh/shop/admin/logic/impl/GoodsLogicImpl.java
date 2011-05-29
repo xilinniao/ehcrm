@@ -203,7 +203,13 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 	 * 查找图片信息
 	 */
 	public List findImageList(Long goodsId) {
-		return super.baseDao.find("select r.attachment from TbGoodsAttach r where r.goodsInfo.goodsId = ? order by r.orderNum asc", goodsId);
+		return super.baseDao.find("select r.attachment from TbGoodsImages r where r.goodsInfo.goodsId = ? order by r.orderNum asc", goodsId);
 	}
+
+	public Page findFrontGoodsList(GoodsInfoQry qry) {
+		StringBuffer hql = new StringBuffer("select t.goodsSubId from TbGoodsInfoSub t join t.goods as g where g.shopInfo.shopId = ? order by g.createTime desc");
+		return super.baseDao.pagedQuery(hql.toString(), qry.getPageNo(), qry.getPageSize(), qry.getShopId());
+	}
+	
 	
 }

@@ -64,4 +64,10 @@ public interface GoodsLogic extends IBaseLogic {
 	 * @return
 	 */
 	public List findAutoSuggest(String q);
+	/**
+	 * 前台查找商品信息
+	 * @param qry
+	 * @return
+	 */
+	public Page findFrontGoodsList(GoodsInfoQry qry);
 }
