@@ -1,7 +1,6 @@
 package com.eh.shop.front.cache;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class ShopInfo  implements Serializable{
 
@@ -21,7 +20,11 @@ public class ShopInfo  implements Serializable{
     private String email;    
     private Long imgLogo;
     private Long imgoAd;
-    private Date foundDate;    
+    private String foundDate;
+    /**
+     * 店铺公告
+     */
+    private String pubNote;
     /**
      * 商品分类ul
      */
@@ -105,10 +108,16 @@ public class ShopInfo  implements Serializable{
 	public void setImgoAd(Long imgoAd) {
 		this.imgoAd = imgoAd;
 	}
-	public Date getFoundDate() {
+	public String getFoundDate() {
 		return foundDate;
 	}
-	public void setFoundDate(Date foundDate) {
+	public void setFoundDate(String foundDate) {
 		this.foundDate = foundDate;
+	}
+	public String getPubNote() {
+		return pubNote;
+	}
+	public void setPubNote(String pubNote) {
+		this.pubNote = pubNote;
 	}
 }

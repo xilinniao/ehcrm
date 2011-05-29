@@ -26,6 +26,9 @@
 		<property name="idNo" type="java.lang.String">
 			<column name="ID_NO" length="50" />
 		</property>
+		<property name="pubNote" type="java.lang.String">
+			<column name="PUB_NOTE" length="1000" />
+		</property>
 		<property name="shopAddr" type="java.lang.String">
 			<column name="SHOP_ADDR" length="300">
 			</column>
