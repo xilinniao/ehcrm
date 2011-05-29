@@ -16,7 +16,8 @@
 	$(document).ready(function(){
 		$('#brandId').val('${info.brandInfo.brandId}');
 		$('#id_shop_category').val('${info.category.categoryId}');
-		$('#pageCategoryId').val('${info.pageCategory.categoryId}');
+		$('#isRecommend').val('${info.isRecommend}');
+		
 		
 		//加载验证框架
 		saveform_validator = $("form.validate").validate({
