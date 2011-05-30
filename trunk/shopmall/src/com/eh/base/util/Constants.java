@@ -17,8 +17,8 @@ public class Constants {
 	public static String UPLOAD_MEDIA_DIR = "";// 媒体文件上传目录
 	public static String UPLOAD_FILE_DIR = "";// 其它文件上传目录
 	
-	public static Long YES = Long.valueOf(0);
-	public static Long NO = Long.valueOf(1);	
+	public static Long YES = Long.valueOf(1);
+	public static Long NO = Long.valueOf(0);	
 	/**
 	 * MD5码前缀，为防止在线密码破解
 	 */

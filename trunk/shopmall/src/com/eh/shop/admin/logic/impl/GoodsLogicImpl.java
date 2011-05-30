@@ -211,5 +211,11 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		return super.baseDao.pagedQuery(hql.toString(), qry.getPageNo(), qry.getPageSize(), qry.getShopId());
 	}
 	
-	
+	/**
+	 * 最多显示12个推荐商品
+	 */
+	public List findRecommendGoods(GoodsInfoQry qry) {
+		StringBuffer hql = new StringBuffer("select g.defaultGoodsSub from TbGoodsInfo g where g.shopInfo.shopId = ? and g.isRecommend = 1 order by g.orderNum asc");
+		return super.baseDao.pagedQuery(hql.toString(), 1, 12, qry.getShopId()).getResult();
+	}	
 }
