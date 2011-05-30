@@ -190,7 +190,7 @@
 					<ul class="p-list">
 						<c:forEach items="${m.goodsList}" var="b">
 		                <li>
-						<div class="p-img"><a target="_blank" href="/product/${b.goodsId }.html"><img src="${b.imageC }" width="130" height="130"></a></div>
+						<div class="p-img"><a target="_blank" href="<%=path %>/product/${b.goodsId }.html"><img src="${b.imageC }" width="130" height="130"></a></div>
 						<div class="p-name"><a target="_blank" title="${b.name }" href="/product/${b.goodsId }.html">${b.name }</a></div>
 						<div class="p-price">直销价：<strong>￥${b.discountPriceStr }</strong></div>					
 						</li>
