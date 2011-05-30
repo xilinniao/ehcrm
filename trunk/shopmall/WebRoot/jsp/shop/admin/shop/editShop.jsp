@@ -83,17 +83,15 @@
 						<input type="text" name="email" id="email" class="formText" value="${shop.email}">
 					</td>
 				</tr>
-				<!-- 
 				<tr>
 					<th>
-						 店铺条幅
+						 店铺公告：
 					</th>
 					<td>
-						<input type="text" name="imgoAd" id="imgoAd" class="formText {required: true}" value="${shop.imgoAd}">
-						<label class="requireField">*</label>
+						<textarea name="pubNote" class="formTextarea" id="pubNote" style="width: 500px; height: 100px;">${shop.pubNote }</textarea>
+						<div class="userTip">改内容会在店铺首页滚动显示</div>
 					</td>
 				</tr>
-				 -->
 				<tr>
 					<th>
 						 店铺关键字
