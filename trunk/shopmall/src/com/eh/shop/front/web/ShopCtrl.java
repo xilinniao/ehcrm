@@ -31,6 +31,8 @@ public class ShopCtrl extends BaseFrontCtrl {
 		GoodsInfoQry qry = new GoodsInfoQry();
 		super.bindObject(request, qry);
 		qry.setPageSize(20);
+		
+		//全部商品
 		Page page = goodsLogic.findFrontGoodsList(qry);
 		List data = page.getResult();
 		if(data!=null){
@@ -40,6 +42,17 @@ public class ShopCtrl extends BaseFrontCtrl {
 			}
 			mav.addObject("productList", productList);
 		}
+		
+		//推荐商品
+		List recommendList = goodsLogic.findRecommendGoods(qry);
+		if(recommendList!=null){
+			List<GoodsShort> recommendGoodsList = new ArrayList();
+			for (int i = 0, size = recommendList.size(); i < size; i++) {
+				recommendGoodsList.add(this.frontCacheLogic.findGoodsShort((Long)recommendList.get(i),false));
+			}
+			mav.addObject("recommendList", recommendGoodsList);
+		}
+		
 		mav.addObject("page", page);
 		mav.addObject("qry", qry);
 		return mav;

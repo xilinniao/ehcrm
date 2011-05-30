@@ -12,10 +12,12 @@ import com.eh.base.dao.hibernate.Page;
 import com.eh.base.entity.TbAttachment;
 import com.eh.base.logic.BaseLogic;
 import com.eh.shop.entity.TbArticleInfo;
+import com.eh.shop.entity.TbGoodsCategory;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoSub;
 import com.eh.shop.entity.TbPageCategory;
 import com.eh.shop.entity.TbShopInfo;
+import com.eh.shop.front.cache.GoodsCategory;
 import com.eh.shop.front.cache.GoodsDetail;
 import com.eh.shop.front.cache.GoodsShort;
 import com.eh.shop.front.cache.ImageUrl;
@@ -143,6 +145,18 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 			vo.setShopAddr(shopInfo.getShopAddr());
 			vo.setFoundDate(shopInfo.getFoundDateStr());
 			vo.setPubNote(shopInfo.getPubNote());
+			
+			List<GoodsCategory> goodsCategoryList = new ArrayList<GoodsCategory>();
+			List<TbGoodsCategory> categoryList = super.baseDao.find("from TbGoodsCategory t where t.shopInfo = ? order by treeNo asc ", shopInfo);
+			for(TbGoodsCategory next:categoryList){
+				GoodsCategory cat = new GoodsCategory();
+				cat.setCategoryId(next.getCategoryId());
+				cat.setCategoryName(next.getCategoryName());
+				cat.setTreeNo(next.getTreeNo());
+				goodsCategoryList.add(cat);
+			}
+			vo.setCategoryList(goodsCategoryList);
+			
 			this.frontCache.put(new Element(key, vo));
 			return vo;
 		} else {

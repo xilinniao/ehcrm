@@ -70,4 +70,10 @@ public interface GoodsLogic extends IBaseLogic {
 	 * @return
 	 */
 	public Page findFrontGoodsList(GoodsInfoQry qry);
+	/**
+	 * 查找推荐商品信息
+	 * @param qry
+	 * @return
+	 */
+	public List findRecommendGoods(GoodsInfoQry qry);
 }

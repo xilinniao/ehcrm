@@ -1,7 +1,8 @@
 package com.eh.shop.entity;
 
-import com.eh.base.entity.TbAttachment;
 import java.util.Date;
+
+import com.eh.base.entity.TbAttachment;
 
 
 /**
@@ -14,6 +15,7 @@ public class TbGoodsInfo  implements java.io.Serializable {
     // Fields    
 
      private Long goodsId;
+     private Long defaultGoodsSub;//默认第一个子商品信息
      private TbShopInfo shopInfo;
      private TbGoodsCategory category;
      private TbSiteCategory siteCategory;
@@ -30,6 +32,8 @@ public class TbGoodsInfo  implements java.io.Serializable {
      private String jdUrl;
      private Long createUser;
      private Date createTime;
+     private Long isRecommend;
+     private Long orderNum;     
      private TbGoodsExtend ext;
 
 
@@ -207,6 +211,36 @@ public class TbGoodsInfo  implements java.io.Serializable {
     public void setExt(TbGoodsExtend ext) {
         this.ext = ext;
     }
+
+
+	public Long getIsRecommend() {
+		return isRecommend;
+	}
+
+
+	public void setIsRecommend(Long isRecommend) {
+		this.isRecommend = isRecommend;
+	}
+
+
+	public Long getDefaultGoodsSub() {
+		return defaultGoodsSub;
+	}
+
+
+	public void setDefaultGoodsSub(Long defaultGoodsSub) {
+		this.defaultGoodsSub = defaultGoodsSub;
+	}
+
+
+	public Long getOrderNum() {
+		return orderNum;
+	}
+
+
+	public void setOrderNum(Long orderNum) {
+		this.orderNum = orderNum;
+	}
    
 
 

@@ -49,11 +49,20 @@
 		<property name="leavesCount" type="java.lang.Long">
 			<column name="LEAVES_COUNT" precision="10" scale="0" />
 		</property>		
+		<property name="isRecommend" type="java.lang.Long">
+			<column name="IS_RECOMMEND" precision="1" scale="0" />
+		</property>
 		<many-to-one name="faceImage" class="com.eh.base.entity.TbAttachment">
 			<column name="FACE_IMAGE_ID" precision="12" scale="0" />
 		</many-to-one>		
 		<property name="jdUrl" type="java.lang.String">
 			<column name="jd_url" length="500" />
+		</property>
+		<property name="defaultGoodsSub" type="java.lang.Long">
+			<column name="DEFAULT_GOODS_SUB" precision="11" scale="0" />
+		</property>		
+		<property name="orderNum" type="java.lang.Long">
+			<column name="order_num" precision="5" scale="0" />
 		</property>
 		<property name="createUser" type="java.lang.Long">
 			<column name="CREATE_USER" precision="12" scale="0" />
