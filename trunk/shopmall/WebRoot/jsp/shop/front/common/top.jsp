@@ -5,7 +5,7 @@
 <script type="text/javascript">
 <!--
 	$(document).ready(function(){
-		$('#category_${param.curr}').addClass("curr-cp");
+		$('#category_${param.curr}').addClass("curr2");
 	});
 //-->
 </script>
