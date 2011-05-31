@@ -690,8 +690,8 @@ color: #F60;
 }
 
 #nav {
-float: left;
-padding-left:18px;
+float: right;
+padding-right:2px;
 padding-top: 5px;
 position: relative;
 z-index: 1200;
