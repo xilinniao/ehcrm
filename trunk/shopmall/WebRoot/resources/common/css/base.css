@@ -16,11 +16,7 @@ body {
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
 	margin: 0px;
 	padding: 0px;
-}
-
-html, body {
-	font: 12px tahoma, Arial, "宋体", Verdana, sans-serif;
-	background-color: #ffffff;
+	font: 12px "宋体",tahoma, Arial, Verdana, sans-serif;
 }
 
 a {
