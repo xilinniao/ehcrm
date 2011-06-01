@@ -61,7 +61,7 @@
         </property>
     </bean>
     
-	<bean id="TransactionProxyFactoryBean"
+	<bean id="txProxyTemplate"
         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
         abstract="true">
         <property name="transactionManager">

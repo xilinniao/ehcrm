@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-	<bean id="shopLogic" parent="TransactionProxyFactoryBean">
+	<bean id="shopLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.ShopLogicImpl">
 				<property name="baseDao">
@@ -12,7 +12,7 @@
 		</property>
 	</bean>
 	
-	<bean id="siteCategoryLogic" parent="TransactionProxyFactoryBean">
+	<bean id="siteCategoryLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.SiteCategoryLogicImpl">
 				<property name="baseDao">
@@ -22,7 +22,7 @@
 		</property>
 	</bean>
 	
-	<bean id="goodsCategoryLogic" parent="TransactionProxyFactoryBean">
+	<bean id="goodsCategoryLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.GoodsCategoryLogicImpl">
 				<property name="baseDao">
@@ -32,7 +32,7 @@
 		</property>
 	</bean>
 	
-	<bean id="goodsLogic" parent="TransactionProxyFactoryBean">
+	<bean id="goodsLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.GoodsLogicImpl">
 				<property name="baseDao">
@@ -42,7 +42,7 @@
 		</property>
 	</bean>
 	
-	<bean id="brandInfoLogic" parent="TransactionProxyFactoryBean">
+	<bean id="brandInfoLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.BrandInfoLogicImpl">
 				<property name="baseDao">
@@ -52,7 +52,7 @@
 		</property>
 	</bean>
 	
-	<bean id="articleCategoryLogic" parent="TransactionProxyFactoryBean">
+	<bean id="articleCategoryLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.ArticleCategoryLogicImpl">
 				<property name="baseDao">
@@ -62,7 +62,7 @@
 		</property>
 	</bean>
 	
-	<bean id="articleLogic" parent="TransactionProxyFactoryBean">
+	<bean id="articleLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.ArticleLogicImpl">
 				<property name="baseDao">
@@ -72,7 +72,7 @@
 		</property>
 	</bean>
 	
-	<bean id="pageCategoryLogic" parent="TransactionProxyFactoryBean">
+	<bean id="pageCategoryLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.PageCategoryLogicImpl">
 				<property name="baseDao">
@@ -83,7 +83,7 @@
 	</bean>
 	
 	<!-- 首页分类设置 -->
-	<bean id="indexCategoryLogic" parent="TransactionProxyFactoryBean">
+	<bean id="indexCategoryLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.IndexCategoryLogicImpl">
 				<property name="baseDao">
@@ -93,7 +93,7 @@
 		</property>
 	</bean>
 	
-	<bean id="custInfoLogic" parent="TransactionProxyFactoryBean">
+	<bean id="custInfoLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.CustInfoLogicImpl">
 				<property name="baseDao">
@@ -103,7 +103,7 @@
 		</property>
 	</bean>
 	
-	<bean id="custAddrLogic" parent="TransactionProxyFactoryBean">
+	<bean id="custAddrLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.CustAddrLogicImpl">
 				<property name="baseDao">
@@ -113,7 +113,7 @@
 		</property>
 	</bean>
 	
-	<bean id="orderLogic" parent="TransactionProxyFactoryBean">
+	<bean id="orderLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.OrderLogicImpl">
 				<property name="baseDao">
@@ -123,7 +123,7 @@
 		</property>
 	</bean>
 	
-	<bean id="frontCacheLogic" parent="TransactionProxyFactoryBean">
+	<bean id="frontCacheLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.front.logic.impl.FrontCacheLogicImpl">
 				<property name="baseDao">
@@ -132,6 +132,16 @@
 				<property name="frontCache">
 					<ref bean="frontCache"/>
 				</property>				
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="tuanApplyLogic" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.eh.shop.admin.logic.impl.TuanApplyLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
 			</bean>
 		</property>
 	</bean>

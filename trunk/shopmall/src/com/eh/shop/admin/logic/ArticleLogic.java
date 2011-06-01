@@ -8,7 +8,6 @@ import java.util.List;
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.admin.web.qry.ArticleQry;
-import com.eh.shop.entity.TbArticleCategory;
 import com.eh.shop.entity.TbArticleInfo;
 
 /**
