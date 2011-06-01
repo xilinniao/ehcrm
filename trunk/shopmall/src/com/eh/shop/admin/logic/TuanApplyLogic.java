@@ -2,7 +2,7 @@ package com.eh.shop.admin.logic;
 
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.IBaseLogic;
-import com.eh.shop.admin.tuanApply.qry.TuanApplyQry;
+import com.eh.shop.admin.web.qry.TuanApplyQry;
 import com.eh.shop.entity.TbTuanApply;
 
 /**
@@ -21,5 +21,5 @@ public interface TuanApplyLogic extends IBaseLogic {
 	 * @param qry
 	 * @return
 	 */
-	public Page findList(TuanApplyQry qry);
+	public Page findPage(TuanApplyQry qry);
 }

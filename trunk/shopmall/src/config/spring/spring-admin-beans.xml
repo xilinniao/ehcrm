@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-	<bean id="userLogic" parent="TransactionProxyFactoryBean">
+	<bean id="userLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.base.admin.logic.impl.UserLogicImpl">
 				<property name="baseDao">
@@ -12,7 +12,7 @@
 		</property>
 	</bean>
 	
-	<bean id="deptLogic" parent="TransactionProxyFactoryBean">
+	<bean id="deptLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.base.admin.logic.impl.DeptLogicImpl">
 				<property name="baseDao">
@@ -22,7 +22,7 @@
 		</property>
 	</bean>
 	
-	<bean id="roleLogic" parent="TransactionProxyFactoryBean">
+	<bean id="roleLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.base.admin.logic.impl.RoleLogicImpl">
 				<property name="baseDao">
@@ -32,7 +32,7 @@
 		</property>
 	</bean>
 	
-	<bean id="menuLogic" parent="TransactionProxyFactoryBean">
+	<bean id="menuLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.base.admin.logic.impl.MenuLogicImpl">
 				<property name="baseDao">
@@ -42,7 +42,7 @@
 		</property>
 	</bean>
 	
-	<bean id="paramLogic" parent="TransactionProxyFactoryBean">
+	<bean id="paramLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.base.admin.logic.impl.ParamLogicImpl">
 				<property name="baseDao">

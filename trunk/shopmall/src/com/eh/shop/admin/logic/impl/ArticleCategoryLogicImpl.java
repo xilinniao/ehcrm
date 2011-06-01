@@ -45,7 +45,7 @@ public class ArticleCategoryLogicImpl extends BaseLogic implements ArticleCatego
 		CriteriaUtil.addFullLike(criteria, "categoryName", qry.getCategoryName());		
 		//店铺为必输条件		
 		CriteriaUtil.addOrder(criteria, "orderNum", CriteriaUtil.ASC);
-		return baseDao.pagedQuery(criteria, qry.getDataTablesPageNo(), qry.getPageSize());
+		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 	
 	
