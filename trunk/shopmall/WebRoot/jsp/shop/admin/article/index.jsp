@@ -8,42 +8,8 @@
 	<script src="<%=path %>/resources/common/js/base.js" type="text/javascript"></script>
     <script type="text/javascript">
 	<!--
-	var saveform_validator;
-	var mainTable;
 	$(document).ready(function(){
-		//加载表格		
-		/*mainTable = $('#id_mainTable').dataTable({
-			"bAutoWidth" : true,
-	 		"bProcessing": true,
-	 		"bServerSide": true,
-	 		"bSort":false,
-	 		"bFilter":false,
-	 		"bInfo": true,
-			"oLanguage":oLanguage_cn,
-			"sPaginationType": "full_numbers",
-			"sAjaxSource": "<%=path%>/shop/admin/article.xhtml?method=list",
-			"fnServerData": function ( sSource, aoData, fnCallback ) {
-				aoData.push( { 
-					"name":"title",
-					"value":$("#title").val()
-					});		
-				$.ajax( {
-					"dataType": 'json',
-					"type": "POST", 
-					"url": sSource,
-					"data": aoData, 
-					"success": fnCallback
-				} );
-			}
-		});
-		
-		//处理查询
-		$('#btnSearchSubmit').click(function(){
-			mainTable.fnDraw();
-		});*/
 	});
-	
-	
 	//-->
 	</script>
 
@@ -54,7 +20,7 @@
 	</div>
 
 	<div class="body">
-		<form id="listForm" action="<%=path %><%=path%>/shop/admin/article.xhtml?method=index" method="post">
+		<form id="listForm" action="<%=path%>/shop/admin/article.xhtml?method=index" method="post">
 		<div class="operateBar">
 			<label>分类名称:</label>
 			<input type="text" name="name" class="formText" value="${qry.name }">
