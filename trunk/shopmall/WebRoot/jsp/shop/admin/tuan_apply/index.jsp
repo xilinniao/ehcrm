@@ -55,10 +55,10 @@
 				<c:forEach items="${page.result}" var="b">
 				<tr>
 					<td>${b.topicName}</td>
-					<td>${b.beginDate}</td>
-					<td>${b.endDate}</td>
-					<td>${b.price}</td>
-					<td>${b.discountPrice}</td>
+					<td>${b.beginDateStr}</td>
+					<td>${b.endDateStr}</td>
+					<td>${b.priceStr}</td>
+					<td>${b.discountPriceStr}</td>
 					<td>${b.maxQty}</td>
 					<td>${b.createTimeStr}</td>
 					<td></td>
