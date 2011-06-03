@@ -85,6 +85,21 @@
 		<filter-name>hibernateFilter</filter-name>
 		<url-pattern>/category/*</url-pattern>
 	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>/help/*</url-pattern>
+	</filter-mapping>
+	
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/shop/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>hibernateFilter</filter-name>
+        <url-pattern>/tuan/*</url-pattern>
+    </filter-mapping>
 
 	<filter>
         <filter-name>UrlRewriteFilter</filter-name>
@@ -121,6 +136,21 @@
     <filter-mapping>
         <filter-name>UrlRewriteFilter</filter-name>
         <url-pattern>/front/common/*</url-pattern>
+    </filter-mapping>
+ 
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/help/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/shopinfo/*</url-pattern>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>UrlRewriteFilter</filter-name>
+        <url-pattern>/tuan/*</url-pattern>
     </filter-mapping>
     
 	<listener>
