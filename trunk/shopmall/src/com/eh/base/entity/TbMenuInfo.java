@@ -20,7 +20,7 @@ public class TbMenuInfo  implements java.io.Serializable {
      private Long sortNum;
      private Long status;
      private String treeNo;
-     private boolean isLeaf;
+     private Long isLeaf;
 
     // Constructors
 
@@ -117,22 +117,22 @@ public class TbMenuInfo  implements java.io.Serializable {
     }
 
 
-	public boolean isLeaf() {
+	public Long getIsLeaf() {
 		return isLeaf;
-		//return this.treeNo.length()==9;
+	}
+	
+	public boolean isLeaf(){
+		if(this.isLeaf!=null&&this.isLeaf.longValue()==Long.valueOf(1)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 
-	public void setLeaf(boolean isLeaf) {
+	public void setIsLeaf(Long isLeaf) {
 		this.isLeaf = isLeaf;
 	}
-   
-    
-
-
-
-
-
 
 
 }

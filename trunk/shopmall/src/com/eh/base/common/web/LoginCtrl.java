@@ -85,7 +85,7 @@ public class LoginCtrl extends BaseCtrl {
 		TbMenuInfo menu = null;
 		for (int i = 0, len = menuList.size(); i < len; i++){
 			menu = (TbMenuInfo)menuList.get(i);
-			menu.setLeaf(hasChild(menuList, menu.getMenuId()));
+			menu.setIsLeaf(hasChild(menuList, menu.getMenuId())?Long.valueOf(1):Long.valueOf(0));
 		}
 	}
 	

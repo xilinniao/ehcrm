@@ -145,4 +145,15 @@
 			</bean>
 		</property>
 	</bean>
+	
+	<bean id="tuanInfoLogic" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.eh.shop.admin.logic.impl.TuanInfoLogicImpl">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+	
 </beans>

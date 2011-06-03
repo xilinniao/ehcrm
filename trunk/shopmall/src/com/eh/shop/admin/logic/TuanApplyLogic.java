@@ -11,13 +11,13 @@ import com.eh.shop.entity.TbTuanApply;
 public interface TuanApplyLogic extends IBaseLogic {
 	public String saveTuanApply(TbTuanApply entity);
 	/**
-	 * 删除品牌信息
+	 * 删除团购信息
 	 * @param entity
 	 * @return
 	 */
 	public String deleteTuanApply(TbTuanApply entity);
 	/**
-	 * 查找品牌列表
+	 * 查找列表
 	 * @param qry
 	 * @return
 	 */

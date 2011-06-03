@@ -16,6 +16,7 @@
 				/shop/admin/orders.xhtml=adminOrderCtrl
 				/shop/admin/orders.xhtml=adminOrderCtrl
 				/shop/admin/tuanApply.xhtml=tuanApplyCtrl
+				/shop/admin/tuanInfo.xhtml=tuanInfoCtrl
 			</value>
 		</property>
 	</bean>
@@ -77,5 +78,10 @@
    <bean name="tuanApplyCtrl" class="com.eh.shop.admin.web.TuanApplyCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="tuanApplyLogic" ref="tuanApplyLogic"/>
+   </bean>
+   
+   <bean name="tuanInfoCtrl" class="com.eh.shop.admin.web.TuanInfoCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="tuanInfoLogic" ref="tuanInfoLogic"/>
    </bean>
 </beans>
