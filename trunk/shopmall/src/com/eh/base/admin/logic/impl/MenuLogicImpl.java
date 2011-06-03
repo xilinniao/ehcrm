@@ -41,6 +41,13 @@ public class MenuLogicImpl extends BaseLogic implements MenuLogic {
 	
 	private void loopMenu(Long pid,String treeNo){
 		List childs = super.baseDao.find("from TbMenuInfo t where t.parent.menuId = ? order by t.sortNum asc", pid);
+		TbMenuInfo parentMenu = super.baseDao.get(TbMenuInfo.class, pid);
+		if(childs.size()==0){
+			parentMenu.setIsLeaf(Constants.YES);			
+		}else{
+			parentMenu.setIsLeaf(Constants.NO);
+		}
+		super.baseDao.save(parentMenu);
 		String myTreeNo = "";
 		TbMenuInfo menu = null;
 		for(int i = 0,len = childs.size();i<len;i++){

@@ -5,6 +5,7 @@ import org.hibernate.Criteria;
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.BaseLogic;
 import com.eh.base.util.Constants;
+import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.TuanApplyLogic;
 import com.eh.shop.admin.web.qry.TuanApplyQry;
 import com.eh.shop.entity.TbTuanApply;
@@ -29,6 +30,11 @@ public class TuanApplyLogicImpl extends BaseLogic implements TuanApplyLogic {
 	 */
 	public Page findPage(TuanApplyQry qry) {
 		Criteria criteria = baseDao.createCriteria(TbTuanApply.class);
+		criteria.createAlias("shopInfo", "s");
+		CriteriaUtil.addEq(criteria, "s.shopId",qry.getShopId());
+		CriteriaUtil.addEq(criteria, "applyStatus",qry.getApplyStatus());
+		CriteriaUtil.addFullLike(criteria, "topicName", qry.getTopicName());		
+		CriteriaUtil.addOrder(criteria, "createTime", CriteriaUtil.DESC);
 		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 }

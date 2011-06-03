@@ -3,7 +3,7 @@
  */
 package com.eh.shop.admin.web;
 
-import java.util.List;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +17,7 @@ import com.eh.base.vo.UserInfo;
 import com.eh.shop.admin.logic.TuanApplyLogic;
 import com.eh.shop.admin.web.qry.TuanApplyQry;
 import com.eh.shop.entity.TbTuanApply;
-
-
+import com.eh.shop.entity.TbTuanApplyExt;
 
 public class TuanApplyCtrl extends BaseShopAdminCtrl {
 	TuanApplyLogic tuanApplyLogic = null;
@@ -30,8 +29,33 @@ public class TuanApplyCtrl extends BaseShopAdminCtrl {
 		TuanApplyQry qry = new TuanApplyQry();
 		bindObject(request, qry);
 		qry.setUserInfo(userInfo);
+		qry.setShopId(userInfo.getShopInfo().getShopId());
 		Page page = tuanApplyLogic.findPage(qry);
 		mav.addObject("page", page);
+		mav.addObject("qry", qry);
+		return mav;
+	}
+	
+	/**
+	 * 审批列表
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView auditList(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/tuan_apply/auditList");
+		TuanApplyQry qry = new TuanApplyQry();
+		bindObject(request, qry);		
+		qry.setUserInfo(userInfo);
+		String isQry = super.getString(request, "is_qry", true);
+		if(StringUtils.isBlank(isQry)){
+			qry.setApplyStatus(Long.valueOf(1));
+		}
+		Page page = tuanApplyLogic.findPage(qry);
+		mav.addObject("page", page);
+		mav.addObject("qry", qry);
 		return mav;
 	}
 	
@@ -47,7 +71,9 @@ public class TuanApplyCtrl extends BaseShopAdminCtrl {
 		ModelAndView mav = new ModelAndView("/jsp/shop/admin/tuan_apply/edit");
 		TbTuanApply entity = new TbTuanApply();
 		entity.setApplyId(Constants.ADD_PK_ID);
+		entity.setApplyStatus(Long.valueOf(0));
 		mav.addObject("entity", entity);
+		mav.addObject(TITLE, "新增团购申请");
 		return mav;
 	}
 	
@@ -59,36 +85,112 @@ public class TuanApplyCtrl extends BaseShopAdminCtrl {
 	 * @throws Exception
 	 */
 	public ModelAndView edit(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/tuan_apply/edit");
+		UserInfo userInfo = super.getUserInfo(request);		
 		Long applyId = super.getLong(request, "applyId", false);
 		// 修改操作
-		TbTuanApply entity = this. tuanApplyLogic.get(TbTuanApply.class, applyId);
-		mav.addObject("entity", entity);
-		return mav;
+		TbTuanApply entity = tuanApplyLogic.get(TbTuanApply.class, applyId);
+		if(entity!=null&&super.isYourShop(entity.getShopInfo(), userInfo)){
+			ModelAndView mav = new ModelAndView("/jsp/shop/admin/tuan_apply/edit");
+			mav.addObject("entity", entity);
+			mav.addObject(TITLE, "修改团购申请");
+			return mav;
+		}else{
+			super.addErrors(request, "非法操作");
+			ModelAndView mav = new ModelAndView(ERROR_URL);
+			return mav;
+		}
 	}
 	
 	public  ModelAndView onEdit(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);		
 		Long applyId = super.getLong(request, "applyId", false);
+		Long applySt = super.getLong(request, "applySt", false);
 		
 		if(applyId.longValue() == Constants.ADD_PK_ID.longValue()) {
 			//新增操作
-			TbTuanApply entity = new TbTuanApply();
+			TbTuanApply entity = new TbTuanApply();	
 			super.bindObject(request,entity);
+			entity.setShopInfo(userInfo.getShopInfo());
+			entity.setApplyStatus(applySt);
+			entity.setCreateTime(new Date());
+			entity.setCreateUser(userInfo.getUser().getUserId());
+			TbTuanApplyExt ext = new TbTuanApplyExt();
+			super.bindObject(request, ext);
+			entity.setExt(ext);
+			ext.setApply(entity);
 			this.tuanApplyLogic.saveTuanApply(entity);
 		}else{
 			//修改操作
 			TbTuanApply entity = this.tuanApplyLogic.get(TbTuanApply.class, applyId);
-			if(entity!=null){
+			if(entity!=null&&super.isYourShop(entity.getShopInfo(), userInfo)){
 				super.bindObject(request, entity);
-				this. tuanApplyLogic.saveTuanApply(entity);
+				if(entity.getApplyStatus().longValue()==Long.valueOf(0)){
+					entity.setApplyStatus(applySt);//状态
+					TbTuanApplyExt ext = entity.getExt();
+					if(ext==null){
+						ext = new TbTuanApplyExt();					
+						super.bindObject(request, ext);
+						entity.setExt(ext);
+						ext.setApply(entity);
+					}else{
+						super.bindObject(request, ext);
+						entity.setExt(ext);
+					}
+					tuanApplyLogic.saveTuanApply(entity);
+				}else{
+					super.addErrors(request, "已经提交审批，不能再保存啦....");
+				}
 			}else{
 				super.addErrors(request, "非法操作");
 			}
-		}		
-		ModelAndView mav = new ModelAndView(SUCCESS_URL);
+		}
+		ModelAndView mav = new ModelAndView(hasErrors(request)?ERROR_URL:SUCCESS_URL);
 		mav.addObject("redirectUrl", " tuanApply.xhtml?method=index");
+		return mav;
+	}
+	
+	/**
+	 * 审批单修改
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView apply(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);		
+		Long applyId = super.getLong(request, "applyId", false);
+		TbTuanApply entity = this.tuanApplyLogic.get(TbTuanApply.class, applyId);
+		if(entity!=null){
+			ModelAndView mav = new ModelAndView("/jsp/shop/admin/tuan_apply/apply");
+			mav.addObject("entity", entity);
+			mav.addObject(TITLE, "审批团购申请");
+			return mav;
+		}else{
+			super.addErrors(request, "找不到该审批单");
+			ModelAndView mav = new ModelAndView(ERROR_URL);
+			return mav;
+		}
+	}
+	
+	/**
+	 * 审批单修改
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView onApply(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);		
+		Long applyId = super.getLong(request, "applyId", false);
+		TbTuanApply entity = this.tuanApplyLogic.get(TbTuanApply.class, applyId);
+		if(entity!=null){
+			super.bindObject(request, entity);
+			this.tuanApplyLogic.save(entity);
+		}else{
+			super.addErrors(request, "找不到该审批单");
+		}
+		ModelAndView mav = new ModelAndView(hasErrors(request)?ERROR_URL:SUCCESS_URL);
+		mav.addObject("redirectUrl", " tuanApply.xhtml?method=auditList");
 		return mav;
 	}
 	
@@ -102,15 +204,15 @@ public class TuanApplyCtrl extends BaseShopAdminCtrl {
 	public ModelAndView onDelete(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
 		Long applyId = super.getLong(request, "applyId", false);
-		TbTuanApply entity = this. tuanApplyLogic.get(TbTuanApply.class, applyId);
+		TbTuanApply entity = tuanApplyLogic.get(TbTuanApply.class,applyId);
 		if(entity!=null){
-			String result = this. tuanApplyLogic.deleteTuanApply(entity);
+			String result = tuanApplyLogic.deleteTuanApply(entity);
 			//返回错误信息
 			if(StringUtils.isNotBlank(result)){
 				super.addErrors(request, result);
 			}
 		}else{
-			super.addErrors(request, "非法操作，找不到相应文章");
+			super.addErrors(request, "非法操作");
 		}		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
 		mav.addObject("redirectUrl", " tuanApply.xhtml?method=index");

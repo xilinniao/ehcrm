@@ -12,9 +12,7 @@
 			</generator>
 		</id>
 		
-		<one-to-one name="apply" class="com.eh.shop.entity.TbTuanApply"
-			cascade="save-update">
-		</one-to-one>
+		<one-to-one name="apply" class="com.eh.shop.entity.TbTuanApply"></one-to-one>
 
 		<property name="rules" type="java.lang.String">
 			<column name="rules" length="65535" />

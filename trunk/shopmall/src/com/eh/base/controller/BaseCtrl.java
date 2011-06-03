@@ -49,6 +49,7 @@ abstract public class BaseCtrl extends MultiActionController {
 	 * 成功转向页面
 	 */
 	public static final String SUCCESS_URL = "/jsp/shop/common/success";
+	public static final String ERROR_URL = "/jsp/shop/common/error";
 	public static final String REDIRECT_URL = "redirectUrl";
 	
 	public static final String WARN = "warn";
@@ -56,6 +57,11 @@ abstract public class BaseCtrl extends MultiActionController {
 	public static final String ERROR = "error";
 	public static final String MESSAGE = "message";
 	public static final String STATUS = "status";
+	
+	/**
+	 * 标题
+	 */
+	public static final String TITLE = "title";
 	
 	/**
      * 不设置任何action参数时的默认 Action.

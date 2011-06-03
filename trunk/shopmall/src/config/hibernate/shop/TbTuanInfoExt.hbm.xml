@@ -8,7 +8,7 @@
 		<id name="extId" type="java.lang.Long">
 			<column name="tuan_id" precision="10" scale="0" />
 			<generator class="foreign">
-				<param name="property">apply</param>
+				<param name="property">info</param>
 			</generator>
 		</id>
 		

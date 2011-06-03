@@ -74,7 +74,7 @@ public class RoleLogicImpl extends BaseLogic implements RoleLogic {
 	 * @return
 	 */
 	public List findCheckedResId(Long roleId){
-		return super.baseDao.find("select menu from TbResRel t where t.relType = 'R' and t.objId = ?",roleId);
+		return super.baseDao.find("select menu from TbResRel t where t.relType = 'R' and t.objId = ? and t.menu.menuId <> 1 ",roleId);
 	}
 
 	public void saveRoleRes(Long roleId, String[] chkIds) {
