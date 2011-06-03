@@ -112,8 +112,7 @@
 				</tr>		
 			</tbody></table>
 			<div class="buttonArea">
-				<input type="submit" class="formButton" value="确  定" hidefocus="true" />&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="button" class="formButton" onclick="window.history.back(); return false;" value="返  回" hidefocus="true" />
+				<input type="submit" class="formButton" value="保 存" hidefocus="true" />&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 			</form>
   </body>
