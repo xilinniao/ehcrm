@@ -8,7 +8,7 @@ jQuery.extend(jQuery.validator.messages, {
 		email: "E-mail格式错误,请重新输入！",
 		url: "网址格式错误,请重新输入！",
 		date: "日期格式错误,请重新输入！",
-		dateISO: "日期格式错误,请重新输入！",
+		dateISO: "日期格式错误,正确的格式为[2011-01-05],请重新输入！",
 		number: "请输入合法的数字！",
 		digits: "请输入零或正整数！",
 		creditcard: "信用卡号格式错误,请重新输入！",
