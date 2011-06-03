@@ -17,6 +17,7 @@
   position: absolute;
   z-index: 100000;
   display: none;
+  width:230px;
 }
 .date_selector_ieframe {
   position: absolute;
@@ -77,7 +78,7 @@
     border-collapse: collapse;
     clear: both;
   }
-    .date_selector th, .date_selector td {
+    .date_selector table th, .date_selector table td {
       width: 2.5em;
       height: 2em;
       padding: 0;
