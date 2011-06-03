@@ -45,6 +45,24 @@
         <to>/front/category.xhtml?method=products&amp;categoryId=$1&amp;curr=$2</to>
     </rule>
     
+    <rule>
+        <note>帮助中心</note>
+        <from>/help/(.*)-(.*).html</from>
+        <to>/front/help.xhtml?method=$1&amp;topic=$2</to>
+    </rule>
+    
+    
+    <rule>
+        <note>店铺首页</note>
+        <from>/shopinfo/(.*)-(.*).html</from>
+        <to>/front/shop.xhtml?method=$1&amp;shopId=$2</to>
+    </rule>
+    
+    <rule>
+        <note>团购</note>
+        <from>/tuan/(.*)-(.*).html</from>
+        <to>/front/tuan.xhtml?method=$1&amp;shopId=$2</to>
+    </rule>
     
  <!-- 
     <rule>
