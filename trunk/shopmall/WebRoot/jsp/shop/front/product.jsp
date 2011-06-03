@@ -120,7 +120,7 @@ $(document).ready(function() {
 				</div>
 				<div class="mc padding8">
                     <p>所属商家：</p>
-                    <p><span class="cpyname" id="strSellerCnName"><a href="<%=path %>/shop/index-${shopInfo.shopId}.html" target="_blank">${shopInfo.shopName }</a></span></p>
+                    <p><span class="cpyname" id="strSellerCnName"><a href="<%=path %>/shopinfo/index-${shopInfo.shopId}.html" target="_blank">${shopInfo.shopName }</a></span></p>
                     <p class="clrline"></p> 
                     <p>您好：</p>
                     <p>有任何疑问请联系我们：</p>
