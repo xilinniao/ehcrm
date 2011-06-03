@@ -39,8 +39,7 @@
 					100
 				</option>
 			</select>
-			<input type="button" id="searchButton" class="searchButton" value="">&nbsp;
-			<input type="button" class="addButton" onclick="location.href='articleCategory.xhtml?method=add'" value="新增分类">
+			<input type="button" id="searchButton" class="addButton" value="查 询"><input type="button" class="addButton" onclick="location.href='articleCategory.xhtml?method=add'" value="新增分类">
 		</div>
 		
 	
