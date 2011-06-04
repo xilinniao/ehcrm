@@ -1,0 +1,40 @@
+package ${gobalVo.defaultPackage}.${gobalVo.moduleNameEn}.qry;
+
+import com.eh.base.util.BaseQuery;
+
+public class ${gobalVo.moduleNameEnJava}Qry extends BaseQuery {
+		<#list colList as x>		
+		<#if x.isQry>
+		/**
+		 * <#if x.remark??>${x.remark}</#if>
+		 **/
+		${x.javaType} ${x.javaName};		
+		</#if>
+	</#list>
+	
+	<#list colList as x>
+	<#if x.isQry>
+		public ${x.javaType} get${x.javaNameFU}(){
+			return this.${x.javaName};
+		}
+		public void set${x.javaNameFU}(${x.javaType} ${x.javaName}){
+			this.${x.javaName} = ${x.javaName};
+		}
+	</#if>	
+	</#list>
+	
+	<#list colList as x>
+	<#if x.isQry>
+		<#if x.javaType=='Double'>
+		public String get${x.javaNameFU}Str(){
+			return FormateUtil.getInstance().formateDouble(this.${x.javaName});
+		}
+		</#if>
+		<#if x.javaType=='Date'>
+		public String get${x.javaNameFU}Str(){
+			return DateUtil.getInstance().dateToString(this.${x.javaName});
+		}
+		</#if>
+	</#if>
+	</#list>
+}

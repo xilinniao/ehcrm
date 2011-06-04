@@ -1,0 +1,27 @@
+package ${gobalVo.defaultPackage}..logic;
+
+import java.util.List;
+
+import com.eh.base.dao.hibernate.Page;
+import com.eh.base.logic.IBaseLogic;
+import com.eh.shop.admin.web.qry.${gobalVo.moduleNameEnJava}Qry;
+import com.eh.shop.entity.${gobalVo.entityName};
+
+/**
+ *
+ */
+public interface ${gobalVo.moduleNameEnJava}Logic extends IBaseLogic {
+	public String save${gobalVo.moduleNameEnJava}(${gobalVo.entityName} entity);
+	/**
+	 * 删除品牌信息
+	 * @param entity
+	 * @return
+	 */
+	public String delete${gobalVo.moduleNameEnJava}(${gobalVo.entityName} entity);
+	/**
+	 * 查找品牌列表
+	 * @param qry
+	 * @return
+	 */
+	public Page findPage(${gobalVo.moduleNameEnJava}Qry qry);
+}

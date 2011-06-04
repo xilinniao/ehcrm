@@ -1,0 +1,37 @@
+package ${gobalVo.defaultPackage}.logic.impl;
+
+import java.util.List;
+
+import org.hibernate.Criteria;
+
+import com.eh.base.dao.hibernate.Page;
+import com.eh.base.logic.BaseLogic;
+import com.eh.base.util.Constants;
+import com.eh.base.util.CriteriaUtil;
+import com.eh.shop.admin.logic.${gobalVo.moduleNameEnJava}Logic;
+import com.eh.shop.admin.web.qry.${gobalVo.moduleNameEnJava}Qry;
+import com.eh.shop.entity.${gobalVo.entityName};
+
+public class ${gobalVo.moduleNameEnJava}LogicImpl extends BaseLogic implements ${gobalVo.moduleNameEnJava}Logic {
+
+	public String save${gobalVo.moduleNameEnJava}(${gobalVo.entityName} entity) {
+		if(entity.get${gobalVo.pk.javaName?cap_first}().longValue()==Constants.ADD_PK_ID.longValue()){
+			//新增操作
+			entity.set${gobalVo.pk.javaName?cap_first}(null);
+		}
+		super.save(entity);
+		return null;
+	}
+
+	public String delete${gobalVo.moduleNameEnJava}(${gobalVo.entityName} entity) {
+		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.${gobalVo.moduleNameEnJava}InfoLogic#find${gobalVo.moduleNameEnJava}List(com.eh.shop.admin.web.qry.${gobalVo.moduleNameEnJava}InfoQry)
+	 */
+	public Page findPage(${gobalVo.moduleNameEnJava}Qry qry) {
+		Criteria criteria = baseDao.createCriteria(${gobalVo.entityName}.class);
+		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
+	}
+}
