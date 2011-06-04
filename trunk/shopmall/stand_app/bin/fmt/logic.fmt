@@ -1,0 +1,10 @@
+package ${package}.logic;
+
+import java.util.List;
+
+import com.eh.base.logic.IBaseLogic;
+
+public interface ${moduleName?cap_first}Logic extends IBaseLogic {
+	public List find${moduleName?cap_first}Tree(String treeNo);
+	public Long save${moduleName?cap_first}Info(${entityName}  ${moduleName});
+}

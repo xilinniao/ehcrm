@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="adminHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/admin/user.xhtml=userCtrl
+				/admin/dept.xhtml=deptCtrl
+				/admin/role.xhtml=roleCtrl
+				/admin/menu.xhtml=menuCtrl
+				/admin/param.xhtml=paramCtrl
+			</value>
+		</property>
+	</bean>
+    
+	<bean name="userCtrl" class="com.eh.base.admin.web.UserCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="userLogic" ref="userLogic"/>
+        <property name="roleLogic" ref="roleLogic"/>
+   </bean>
+   
+   <bean name="deptCtrl" class="com.eh.base.admin.web.DeptCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="deptLogic" ref="deptLogic"/>
+    </bean>
+    
+    <bean name="roleCtrl" class="com.eh.base.admin.web.RoleCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="roleLogic" ref="roleLogic"/>
+        <property name="menuLogic" ref="menuLogic"/>
+    </bean>
+    
+    <bean name="menuCtrl" class="com.eh.base.admin.web.MenuCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="menuLogic" ref="menuLogic"/>
+    </bean>
+    
+    <bean name="paramCtrl" class="com.eh.base.admin.web.ParamCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="paramLogic" ref="paramLogic"/>
+    </bean>
+    
+</beans>

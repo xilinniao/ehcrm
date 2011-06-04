@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.eh.shop.entity.TbOrderMain"
+		table="TB_ORDER_MAIN">
+		<id name="orderId" type="java.lang.Long">
+            <column name="ORDER_ID" precision="10" scale="0"/>
+            <generator class="native" />
+      	 </id>
+		<many-to-one name="custInfo"
+			class="com.eh.shop.entity.TbCustInfo">
+			<column name="CUST_ID" precision="10" scale="0" />
+		</many-to-one>
+		<many-to-one name="shopInfo"
+			class="com.eh.shop.entity.TbShopInfo">
+			<column name="SHOP_ID" precision="10" scale="0" />
+		</many-to-one>
+		<property name="orderNo" type="java.lang.String">
+			<column name="ORDER_NO" length="50" />
+		</property>
+		<property name="revicedName" type="java.lang.String">
+			<column name="REVICED_NAME" length="50" />
+		</property>
+		<property name="revicedAddr" type="java.lang.String">
+			<column name="REVICED_ADDR" length="200" />
+		</property>
+		<property name="revicedMobile" type="java.lang.String">
+			<column name="REVICED_MOBILE" length="50" />
+		</property>
+		<property name="revicedTel" type="java.lang.String">
+			<column name="REVICED_TEL" length="50" />
+		</property>
+		<property name="revicedEmail" type="java.lang.String">
+			<column name="REVICED_EMAIL" length="100" />
+		</property>
+		<property name="orderRemark" type="java.lang.String">
+			<column name="ORDER_REMARK" length="300" />
+		</property>
+		<property name="orderMoney" type="java.lang.Double">
+			<column name="ORDER_MONEY" precision="12" />
+		</property>
+		<property name="fareFee" type="java.lang.Double">
+			<column name="FARE_FEE" precision="12" />
+		</property>
+		<property name="usesScore" type="java.lang.Long">
+			<column name="USES_SCORE" precision="10" scale="0" />
+		</property>
+		<property name="orderStatus" type="java.lang.Long">
+			<column name="ORDER_STATUS" precision="10" scale="0" />
+		</property>
+		<property name="orderTime" type="java.util.Date">
+			<column name="ORDER_TIME" length="7" />
+		</property>
+	</class>
+</hibernate-mapping>

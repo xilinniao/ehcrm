@@ -1,0 +1,32 @@
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@include file="/common/head.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  	<%@include file="/common/meta.jsp"%>
+    <title><%=projName %></title>
+	<link href="<%=path %>/resources/common/css/base.css" rel="stylesheet" type="text/css" />
+	<link href="<%=path %>/resources/admin/css/input.css" rel="stylesheet" type="text/css">
+  </head>
+  <body  class="input">
+  	<div class="inputBar">
+		<h1><span class="icon">&nbsp;</span>编辑个人资料</h1>
+	</div>
+	
+	<table class="inputTable tabContent" style="display: table;">
+				<tbody>
+				<#list attr as x>
+				<tr>
+					<th>
+						 <#if x.remark??>${x.remark}</#if>
+					</th>
+					<td>
+						<input type="text" name="${x.columnName}" id="${x.columnName}" class="formText {required: true}" value="${r"${shop."}${x.columnName}${r"}"}">
+						<label class="requireField">*</label>
+					</td>
+				</tr>
+				</#list>
+			</tbody></table>
+			
+  </body>
+</html>

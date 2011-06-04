@@ -1,0 +1,78 @@
+package ${package}.web;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.ModelAndView;
+
+import com.eh.base.controller.BaseTreeCtrl;
+import com.eh.base.util.FreeMarkerUtil;
+import com.eh.base.vo.UserInfo;
+
+public class ${moduleName?cap_first}Ctrl extends BaseTreeCtrl{
+	private static final Long ${moduleNameUpper}_ROOT_ID = Long.valueOf(1);
+	
+	${moduleName?cap_first}Logic ${moduleName}Logic;
+	
+	public ModelAndView index(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		ModelAndView mav = new ModelAndView("${jspfilepath}/index.jsp");
+		mav.addObject("rootId", ${moduleNameUpper}_ROOT_ID);
+		return mav;
+	}
+	
+	private ${entityName}  getRoot${moduleName?cap_first}(){
+		return ${moduleName}Logic.get(${entityName}.class,${moduleNameUpper}_ROOT_ID);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	protected List prepareTree(HttpServletRequest request,HttpServletResponse response)throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		${entityName}  root${moduleName?cap_first} = getRoot${moduleName?cap_first}();
+		super.rootId = root${moduleName?cap_first}.get${moduleName?cap_first}Id();
+		super.rootTreeName = root${moduleName?cap_first}.get${moduleName?cap_first}Name();
+		return ${moduleName}Logic.find${moduleName?cap_first}Tree(root${moduleName?cap_first}.getTreeNo());
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ModelAndView edit${moduleName?cap_first}(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {	
+		Long ${moduleName}Id = super.getLong(request, "${moduleName}Id", false);
+		${entityName}  entity = ${moduleName}Logic.get(${entityName}.class, ${moduleName}Id);
+		super.renderJson(response, FreeMarkerUtil.process("admin.${moduleName}.entity.ftl", entity),null);
+		return null;
+	}
+	/**
+	 * 测试
+	 **/
+	public ModelAndView onEdit${moduleName?cap_first}(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		Long ${moduleName}Id = super.getLong(request, "${moduleName}Id", false);
+		${entityName}  entity = null;
+		if(${moduleName}Id.longValue()!=Long.valueOf(-99)){
+			entity = ${moduleName}Logic.get(${entityName}.class, ${moduleName}Id);
+		}else{
+			entity = new ${entityName} ();
+		}
+		super.bindObject(request, entity);
+		Long parent${moduleName?cap_first}Id = super.getLong(request, "parent${moduleName?cap_first}Id", false);
+		${entityName}  parent${moduleName?cap_first} = ${moduleName}Logic.load(${entityName} .class, parent${moduleName?cap_first}Id);
+		entity.setParent(parent${moduleName?cap_first});
+		${moduleName}Logic.save${moduleName?cap_first}Info(entity);
+		super.renderText(response, "OK", null);
+		return null;
+	}
+	
+	public ${moduleName?cap_first}Logic get${moduleName?cap_first}Logic() {
+		return ${moduleName}Logic;
+	}
+
+	public void set${moduleName?cap_first}Logic(${moduleName?cap_first}Logic ${moduleName}Logic) {
+		this.${moduleName}Logic = ${moduleName}Logic;
+	}
+}
