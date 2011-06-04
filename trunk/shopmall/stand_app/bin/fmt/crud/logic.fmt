@@ -1,0 +1,28 @@
+/**
+ * 
+ */
+package ${package}.logic;
+
+import com.eh.base.dao.hibernate.Page;
+import com.eh.base.logic.IBaseLogic;
+import com.eh.shop.admin.web.qry.${moduleName?cap_first}InfoQry;
+import com.eh.shop.entity.${entityName};
+
+/**
+ *
+ */
+public interface ${moduleName?cap_first}InfoLogic extends IBaseLogic {
+	public String save${moduleName?cap_first}Info(${entityName} entity);
+	/**
+	 * 删除品牌信息
+	 * @param entity
+	 * @return
+	 */
+	public String delete${moduleName?cap_first}Info(${entityName} entity);
+	/**
+	 * 查找品牌列表
+	 * @param qry
+	 * @return
+	 */
+	public Page find${moduleName?cap_first}List(${moduleName?cap_first}InfoQry qry);
+}

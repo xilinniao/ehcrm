@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.eh.shop.entity.TbArticleInfo"
+		table="TB_ARTICLE_INFO">
+		<id name="articleId" type="java.lang.Long">
+			<column name="ARTICLE_ID" precision="10" scale="0" />
+			<generator class="native" />
+		</id>
+		<many-to-one name="category"
+			class="com.eh.shop.entity.TbArticleCategory">
+			<column name="CATEGORY_ID" precision="10" scale="0" />
+		</many-to-one>
+		<property name="articleUrl" type="java.lang.String">
+			<column name="article_url" length="100" />
+		</property>
+		<property name="title" type="java.lang.String">
+			<column name="TITLE" length="300" />
+		</property>
+		<property name="content" type="java.lang.String">
+			<column name="CONTENT" length="65535" />
+		</property>
+		<property name="isPublic" type="java.lang.Long">
+			<column name="IS_PUBLIC" precision="10" scale="0" />
+		</property>
+		<property name="isTop" type="java.lang.Long">
+			<column name="IS_TOP" precision="10" scale="0" />
+		</property>
+		<property name="isRecommend" type="java.lang.Long">
+			<column name="IS_RECOMMEND" precision="10" scale="0" />
+		</property>
+		<property name="orderNum" type="java.lang.Long">
+			<column name="ORDER_NUM" precision="10" scale="0" />
+		</property>
+		<property name="metaKeyWord" type="java.lang.String">
+			<column name="META_KEY_WORD" length="200" />
+		</property>
+		<property name="metaDesc" type="java.lang.String">
+			<column name="META_DESC" length="500" />
+		</property>
+		<property name="createTime" type="java.util.Date">
+			<column name="CREATE_TIME" length="7" />
+		</property>
+		<property name="createUser" type="java.lang.Long">
+			<column name="CREATE_USER" precision="10" scale="0" />
+		</property>
+		<property name="modifyTime" type="java.util.Date">
+			<column name="MODIFY_TIME" length="7" />
+		</property>
+		<property name="modifyUser" type="java.lang.Long">
+			<column name="MODIFY_USER" precision="10" scale="0" />
+		</property>
+	</class>
+</hibernate-mapping>

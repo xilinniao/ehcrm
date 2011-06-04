@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.eh.shop.entity.TbCustScoreFlow" table="TB_CUST_SCORE_FLOW">    
+		 <id name="flowId" type="java.lang.Long">
+            <column name="FLOW_ID" precision="10" scale="0"/>
+            <generator class="native" />
+      	 </id>
+        <many-to-one name="custInfo"
+			class="com.eh.shop.entity.TbCustInfo">
+			 <column name="CUST_ID" precision="10" scale="0"/>
+		</many-to-one>
+		 <property name="scoreNum" type="java.lang.Long">
+            <column name="SCORE_NUM" precision="10" scale="0"/>
+        </property>
+		 <property name="scoreType" type="java.lang.Long">
+            <column name="SCORE_TYPE" precision="10" scale="0"/>
+        </property>
+		 <property name="objId" type="java.lang.Long">
+            <column name="OBJ_ID" precision="10" scale="0"/>
+        </property>
+		 <property name="flowRemark" type="java.lang.String">
+            <column name="FLOW_REMARK" length="200"/>
+        </property>
+		 <property name="createTime" type="java.util.Date">
+		 	<column name="CREATE_TIME" length="10"/>
+        </property>
+    </class>
+</hibernate-mapping>

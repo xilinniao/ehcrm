@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="frontHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/index.xhtml=indexCtrl
+				/front/ajax.xhtml=frontAjaxCtrl
+				/front/order.xhtml=orderCtrl
+				/front/login.xhtml=frontLoginCtrl
+				/front/user.xhtml=frontUserCtrl
+				/front/product.xhtml=productCtrl
+				/front/category.xhtml=categoryCtrl
+				/front/help.xhtml=frontHelpCtrl
+			</value>
+		</property>
+	</bean>
+    
+	
+	<bean name="indexCtrl" class="com.eh.shop.front.web.IndexCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
+        <property name="siteCategoryLogic" ref="siteCategoryLogic"/>
+        <property name="frontCacheLogic" ref="frontCacheLogic"/>
+   	</bean>
+   	
+   	<bean name="categoryCtrl" class="com.eh.shop.front.web.CategoryCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
+        <property name="siteCategoryLogic" ref="siteCategoryLogic"/>
+        <property name="frontCacheLogic" ref="frontCacheLogic"/>
+   	</bean>
+   	
+   	<bean name="productCtrl" class="com.eh.shop.front.web.ProductCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="frontCacheLogic" ref="frontCacheLogic"/>
+   	</bean>
+   	
+   	<bean name="frontAjaxCtrl" class="com.eh.shop.front.web.FrontAjaxCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="goodsLogic" ref="goodsLogic"/>
+        <property name="custAddrLogic" ref="custAddrLogic"/>
+        <property name="frontCacheLogic" ref="frontCacheLogic"/>
+   	</bean>
+   	
+   	<bean name="orderCtrl" class="com.eh.shop.front.web.OrderCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="goodsLogic" ref="goodsLogic"/>
+        <property name="custAddrLogic" ref="custAddrLogic"/>
+        <property name="orderLogic" ref="orderLogic"/>
+        <property name="frontCacheLogic" ref="frontCacheLogic"/>
+   	</bean>
+   	
+   	<bean name="frontLoginCtrl" class="com.eh.shop.front.web.LoginCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="custInfoLogic" ref="custInfoLogic"/>
+   	</bean>
+   	
+   	<bean name="frontUserCtrl" class="com.eh.shop.front.web.UserCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="orderLogic" ref="orderLogic"/>
+   	</bean>
+   	
+   	<bean name="frontHelpCtrl" class="com.eh.shop.front.web.HelpCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="frontCacheLogic" ref="frontCacheLogic"/>
+   	</bean>
+</beans>

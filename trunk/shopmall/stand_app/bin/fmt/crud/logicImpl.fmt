@@ -1,0 +1,50 @@
+package ${package}.logic.impl;
+
+import org.hibernate.Criteria;
+
+import com.eh.base.dao.hibernate.Page;
+import com.eh.base.logic.BaseLogic;
+import com.eh.base.util.Constants;
+import com.eh.base.util.CriteriaUtil;
+import com.eh.shop.admin.logic.${moduleName?cap_first}InfoLogic;
+import com.eh.shop.admin.web.qry.${moduleName?cap_first}InfoQry;
+import com.eh.shop.entity.${entityName};
+
+public class ${moduleName?cap_first}InfoLogicImpl extends BaseLogic implements ${moduleName?cap_first}InfoLogic {
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.${moduleName?cap_first}InfoLogic#save${moduleName?cap_first}Info(com.eh.shop.entity.${entityName})
+	 */
+	public String save${moduleName?cap_first}Info(${entityName} entity) {
+		if(entity.get${moduleName?cap_first}Id().longValue()==Constants.ADD_PK_ID.longValue()){
+			//新增操作
+			entity.set${moduleName?cap_first}Id(null);
+		}
+		super.save(entity);
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.${moduleName?cap_first}InfoLogic#delete${moduleName?cap_first}Info(com.eh.shop.entity.${entityName})
+	 */
+	public String delete${moduleName?cap_first}Info(${entityName} entity) {
+		int cnt = super.baseDao.count("select count(*) from TbGoodsInfo t where t.${moduleName?cap_first}Info = ? ", entity);
+		if(cnt>0){
+			return "发现该品牌下有"+cnt+"个商品，不能删除该品牌"; 
+		}else{
+			super.remove(entity);
+			return null;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.eh.shop.admin.logic.${moduleName?cap_first}InfoLogic#find${moduleName?cap_first}List(com.eh.shop.admin.web.qry.${moduleName?cap_first}InfoQry)
+	 */
+	public Page find${moduleName?cap_first}List(${moduleName?cap_first}InfoQry qry) {
+		Criteria criteria = baseDao.createCriteria(${entityName}.class);
+		CriteriaUtil.addFullLike(criteria, "name", qry.getName());
+		return baseDao.pagedQuery(criteria, qry.getDataTablesPageNo(), qry.getPageSize());
+	}
+	
+	
+}

@@ -1,0 +1,27 @@
+package ${package}.logic;
+
+import java.util.List;
+
+import com.eh.base.entity.${entityName};
+import com.eh.base.logic.IBaseLogic;
+
+public interface ${moduleName?cap_first}Logic extends IBaseLogic {
+	/**
+	 * 查找${moduleNameChn}数据
+	 * @param treeNo
+	 * @return
+	 */
+	public List find${moduleName?cap_first}Tree(String treeNo);
+	/**
+	 * 保存${moduleNameChn}数据
+	 * @param ${moduleName}
+	 * @return
+	 */
+	public Long save${moduleName?cap_first}Info(${entityName} ${moduleName});
+	/**
+	 * 删除${moduleNameChn}资源
+	 * @param ${moduleName}Id
+	 * @return
+	 */
+	public String delete${moduleName?cap_first}Info(Long ${moduleName}Id);
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="${package}.entity.${entityName}" table="${tableName}">
+    
+    <#list  attr as x>		
+		<#if x.pk>
+		 <id name="${x.columnName}" type="${x.columnType2}">
+			<#if x.columnType=='Long'>
+            <column name="${x.columnNameOrg}" precision="${x.datasize}" scale="0"/>
+            </#if>
+            <#if x.columnType=='String'>
+            <column name="${x.columnNameOrg}" length="${x.datasize}"/>
+            </#if>
+            <generator class="native" />
+      	 </id>
+		<#else>
+		 <property name="${x.columnName}" type="${x.columnType2}">
+            <#if x.columnType=='Long'>
+            <column name="${x.columnNameOrg}" precision="${x.datasize}" scale="0"/>
+            </#if>
+            <#if x.columnType=='String'>
+            <column name="${x.columnNameOrg}" length="${x.datasize}"/>
+            </#if>
+            <#if x.columnType=='Date'>
+            <column name="${x.columnNameOrg}" length="7"/>
+            </#if>
+            <#if x.columnType=='Double'>
+            <column name="${x.columnNameOrg}" precision="12" />
+            </#if>
+        </property>
+		</#if>
+		</#list>
+    </class>
+</hibernate-mapping>
