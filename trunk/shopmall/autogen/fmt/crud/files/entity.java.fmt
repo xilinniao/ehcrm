@@ -1,0 +1,40 @@
+package ${gobalVo.entityPackage};
+
+public class ${gobalVo.entityName} implements java.io.Serializable {
+	<#list colList as x>		
+		<#if x.pk>
+		/**
+		 * pk
+		 * <#if x.remark??>${x.remark}</#if>
+		 **/
+		${x.javaType} ${x.javaName};
+		<#else>
+		/**
+		 * <#if x.remark??>${x.remark}</#if>
+		 **/
+		${x.javaType} ${x.javaName};
+		</#if>
+	</#list>
+	
+	<#list colList as x>
+		public ${x.javaType} get${x.javaNameFU}(){
+			return this.${x.javaName};
+		}		
+		public void set${x.javaNameFU}(${x.javaType} ${x.javaName}){
+			this.${x.javaName} = ${x.javaName};
+		}
+	</#list>
+	
+	<#list colList as x>
+		<#if x.javaType=='Double'>
+		public String get${x.javaNameFU}Str(){
+			return FormateUtil.getInstance().formateDouble(this.${x.javaName});
+		}
+		</#if>
+		<#if x.javaType=='Date'>
+		public String get${x.javaNameFU}Str(){
+			return DateUtil.getInstance().formateDate(this.${x.javaName});
+		}
+		</#if>
+	</#list>
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="${gobalVo.entityPackage}.${gobalVo.entityName}" table="${gobalVo.tableName}">
+    
+    <#list colList as x>		
+		<#if x.pk>
+			<#if x.javaType=='Long'>
+        <id name="${x.javaName}" type="java.lang.Long">
+            <column name="${x.columnName}" precision="${x.datasize}" scale="0"/>
+            <generator class="native" />
+            </#if>
+            <#if x.javaType=='String'>
+        <id name="${x.javaName}" type="java.lang.String">
+            <column name="${x.columnName}" length="${x.datasize}"/>
+            </#if>             
+      	 </id>
+		<#else>
+				 
+            <#if x.javaType=='Long'>
+       <property name="${x.javaName}" type="java.lang.Long">
+            <column name="${x.columnName}" precision="${x.datasize}" scale="0"/>
+            </#if>
+            <#if x.javaType=='String'>
+		<property name="${x.javaName}" type="java.lang.String">
+            <column name="${x.columnName}" length="${x.datasize}" />
+            </#if>
+            <#if x.javaType=='Date'>
+		<property name="${x.javaName}" type="java.util.Date">            
+            <column name="${x.columnName}" length="7"/>
+            </#if>
+            <#if x.javaType=='Double'>
+        <property name="${x.javaName}" type="java.lang.Double">
+            <column name="${x.columnName}" precision="${x.datasize}" />
+            </#if>
+        </property>
+		</#if>
+		</#list>
+    </class>
+</hibernate-mapping>

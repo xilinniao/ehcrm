@@ -1,0 +1,131 @@
+/**
+ * 
+ */
+package com.eh.shop.admin.web;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.eh.base.dao.hibernate.Page;
+import com.eh.base.util.Constants;
+
+
+
+public class ${gobalVo.moduleNameEnJava}Ctrl extends BaseShopAdminCtrl {
+	${gobalVo.moduleNameEnJava}Logic ${gobalVo.moduleNameEn}Logic = null;
+
+
+	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		ModelAndView mav = new ModelAndView("${gobalVo.jspFilePath}index");
+		
+		${gobalVo.moduleNameEnJava}Qry qry = new ${gobalVo.moduleNameEnJava}Qry();
+		bindObject(request, qry);
+		qry.setUserInfo(userInfo);
+		Page page = ${gobalVo.moduleNameEn}Logic.findPage(qry);
+		mav.addObject("page", page);
+		return mav;
+	}
+	
+	/**
+	 * 新增
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView add(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		ModelAndView mav = new ModelAndView("${gobalVo.jspFilePath}edit");
+		${gobalVo.entityName} entity = new ${gobalVo.entityName}();
+		entity.set${gobalVo.pk.javaName?cap_first}(Constants.ADD_PK_ID);
+		mav.addObject("entity", entity);
+		return mav;
+	}
+	
+	/**
+	 * 修改
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView edit(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		ModelAndView mav = new ModelAndView("${gobalVo.jspFilePath}edit");
+		Long ${gobalVo.pk.javaName} = super.getLong(request, "${gobalVo.pk.javaName}", false);
+		// 修改操作
+		${gobalVo.entityName} entity = this.${gobalVo.moduleNameEn}Logic.get(${gobalVo.entityName}.class, ${gobalVo.pk.javaName});
+		mav.addObject("entity", entity);
+		return mav;
+	}
+	
+	public  ModelAndView onEdit(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);		
+		Long ${gobalVo.pk.javaName} = super.getLong(request, "${gobalVo.pk.javaName}", false);
+		
+		if(${gobalVo.pk.javaName}.longValue() == Constants.ADD_PK_ID.longValue()) {
+			//新增操作
+			${gobalVo.entityName} entity = new ${gobalVo.entityName}();
+			super.bindObject(request,entity);
+			this.${gobalVo.moduleNameEn}Logic.save${gobalVo.moduleNameEnJava}(entity);
+		}else{
+			//修改操作
+			${gobalVo.entityName} entity = this.${gobalVo.moduleNameEn}Logic.get(${gobalVo.entityName}.class, ${gobalVo.pk.javaName});
+			if(entity!=null){
+				super.bindObject(request, entity);
+				${gobalVo.moduleNameEn}Logic.save${gobalVo.moduleNameEnJava}(entity);
+			}else{
+				super.addErrors(request, "非法操作");
+			}
+		}		
+		ModelAndView mav = new ModelAndView(SUCCESS_URL);
+		mav.addObject("redirectUrl", " ${gobalVo.url}?method=index");
+		return mav;
+	}
+	
+	/**
+	 * 删除操作
+	 * @param request 
+	 * @param response  
+	 * @return 
+	 * @throws Exception
+	 */
+	public ModelAndView onDelete(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		Long ${gobalVo.pk.javaName} = super.getLong(request, "${gobalVo.pk.javaName}", false);
+		${gobalVo.entityName} entity = ${gobalVo.moduleNameEn}Logic.get(${gobalVo.entityName}.class, ${gobalVo.pk.javaName});
+		if(entity!=null){
+			String result = ${gobalVo.moduleNameEn}Logic.delete${gobalVo.pk.javaName?cap_first}(entity);
+			//返回错误信息
+			if(StringUtils.isNotBlank(result)){
+				super.addErrors(request, result);
+			}
+		}else{
+			super.addErrors(request, "非法操作");
+		}		
+		ModelAndView mav = new ModelAndView(SUCCESS_URL);
+		mav.addObject("redirectUrl", " ${gobalVo.url}?method=index");
+		return mav;
+	}
+
+	/**
+	 * @return the ${gobalVo.moduleNameEn}Logic
+	 */
+	public ${gobalVo.moduleNameEnJava}Logic get${gobalVo.moduleNameEnJava}Logic() {
+		return ${gobalVo.moduleNameEn}Logic;
+	}
+
+	/**
+	 * @param ${gobalVo.moduleNameEn}Logic the ${gobalVo.moduleNameEn}Logic to set
+	 */
+	public void set${gobalVo.moduleNameEnJava}Logic(${gobalVo.moduleNameEnJava}Logic ${gobalVo.moduleNameEn}Logic) {
+		this.${gobalVo.moduleNameEn}Logic = ${gobalVo.moduleNameEn}Logic;
+	}
+}
