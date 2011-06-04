@@ -451,7 +451,7 @@ input.validateError {
 label.validateError {
 	line-height: 12px;
 	padding: 4px;
-	padding: 6px\9;
+	padding: 6px 9px;
 	padding: 7px;
 	margin-left: 5px;
 	zoom: 1;
@@ -467,7 +467,6 @@ input.formText {
 	border-bottom: 1px solid #e1e1e1;
 	border-left: 1px solid #999999;
 }
-
 
 input.ro {background-color:#cccccc;}
 
@@ -515,9 +514,6 @@ input.formTextS:hover {
 input.formTextS:focus {
 	background-color: #fff8ef;
 }
-
-
-
 
 input.formTextSS {
 	width: 70px;
@@ -926,8 +922,24 @@ clear: both;
 	line-height: 30px;
 	padding: 5px 5px 5px 20px;
 	border: 1px solid #ffca80;
-	background: url(../images/base_icon.gif) no-repeat 0px -420px #fffee2;
+	background: url(../images/base_icon.gif) no-repeat 0px -422px #fffee2;
 }
 
-@import url("list.css");
+div.userTip {
+	line-height: 12px;
+	padding: 6px 20px;
+	margin-top: 3px;
+	color:green;
+	background: url(../images/base_icon.gif) no-repeat 0px -422px;
+}
 
+div.userTipTitle {
+	line-height: 25px;
+	padding: 2px 20px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	color:green;
+	background: url(../images/base_icon.gif) no-repeat 0px -420px;
+	border: 1px solid #ffca88;
+	background-color: #fffeee;
+}
