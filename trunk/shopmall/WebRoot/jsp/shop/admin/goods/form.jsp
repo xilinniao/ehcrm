@@ -108,6 +108,7 @@
 								<td>
 								<input type="file" id="upload" name="upload" />
 								<input type="button" id="uploadButton" class="formButtonSubmit" value="上传"/>
+								<span id="id_upload_ajax_tip" class="ajaxtip">图片正在上传,请稍候...</span>
 								<ul id="goods_images">
 									<c:forEach items="${imageList }" var="b">
 										<li>
