@@ -12,13 +12,16 @@
 	<!--
 	var saveform_validator;
 	$(document).ready(function(){
-		
+		$('#id_upload_ajax_tip').hide();
+		if($('#id_face_image').attr("src")==''){
+			$('#id_face_image').attr("src",'<%=path%>/resources/admin/images/noimage.jpg');
+		}
 		//加载验证框架
 		saveform_validator = $("form.validate").validate({
 			errorClass: "validateError",
 			ignore: ".ignoreValidate",
 			errorPlacement:defaultErrorPlacement,
-			submitHandler:defaultSubmitHandler			
+			submitHandler:defaultSubmitHandler
 		});
 		
 		$("#beginDate").date_input();
@@ -41,6 +44,35 @@
     			}
 			}
     	});
+    	
+    	$('#uploadButton').click(function(){
+			if ($("#upload").val() != "") {
+				$("#uploadButton").ajaxStart(function() {
+					$(this).attr("disabled", true);
+					$('#id_upload_ajax_tip').show();
+				}).ajaxComplete(function() {
+					$(this).attr("disabled", false);
+					$('#id_upload_ajax_tip').hide();
+				});
+				$.ajaxFileUpload({
+					url: "<%=path%>/upload.xhtml?method=image&zoom=true",
+					secureuri: false,
+					dataType: "json",
+					fileElementId: "upload",
+					success: function (data) {
+						if(data.status == "error") {
+							alert(data.message);
+							return false;
+						}
+						if (data.status == "success") {
+							$('#id_face_image').attr("src",data.urld);
+							$('#faceImageid').val(data.imgid);
+						}
+					}
+				})
+				return false;
+			}
+		});
 	});
 	
 	//-->
@@ -64,8 +96,17 @@
 								<td><input type="text" name="topicName" class="formTextLL {required: true}" id="topicName" value="${entity.topicName}"></td>
 							</tr>
 							<tr>
-								<th>团购图片</th>
-								<td><input type="text" name="faceImageId" class="formText {required: true}" id="faceImageId" value="${entity.faceImageId}">
+								<th>团购封面图片</th>
+								<td>
+								<div>
+								<img id="id_face_image" src="${entity.faceImage.filePathD}" width="160" height="160"/>
+								</div>
+								<input type="hidden" name="faceImageid" class="formText {required: true}" id="faceImageid" value="${entity.faceImage.recId}">								
+																
+								<input type="file" id="upload" name="upload" />
+								<input type="button" id="uploadButton" class="formButtonSubmit" value="上传"/>
+								<span id="id_upload_ajax_tip" class="ajaxtip">正在上传团购封面,请稍候...</span>
+								
 								<div class="userTip">团购页封面图片，只能上传一张</div>
 								</td>
 							</tr>							
@@ -106,7 +147,7 @@
 							<tr>
 								<th>团购内容</th>
 								<td>
-									<textarea name="topicContent" class="wysiwyg" id="topicContent" style="width: 500px; height: 200px;">${entity.ext.topicContent }</textarea>
+									<textarea name="topicContent" class="wysiwyg" id="topicContent" style="width: 100%; height: 400px;">${entity.ext.topicContent }</textarea>
 									<div class="userTip">团购内容尽量描述仔细</div>
 								</td>
 							</tr>						

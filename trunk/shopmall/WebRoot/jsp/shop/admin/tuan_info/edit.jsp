@@ -12,6 +12,7 @@
 	<!--
 	var saveform_validator;
 	$(document).ready(function(){
+		$('#id_upload_ajax_tip').hide();
 		
 		//加载验证框架
 		saveform_validator = $("form.validate").validate({
@@ -31,6 +32,36 @@
     			$('#saveform').submit();
 			}
     	});
+    	
+    	$('#uploadButton').click(function(){
+			if ($("#upload").val() != "") {
+				$("#uploadButton").ajaxStart(function() {
+					$(this).attr("disabled", true);
+					$('#id_upload_ajax_tip').show();
+				}).ajaxComplete(function() {
+					$(this).attr("disabled", false);
+					$('#id_upload_ajax_tip').hide();
+				});
+				$.ajaxFileUpload({
+					url: "<%=path%>/upload.xhtml?method=image&zoom=true",
+					secureuri: false,
+					dataType: "json",
+					fileElementId: "upload",
+					success: function (data) {
+						if(data.status == "error") {
+							alert(data.message);
+							return false;
+						}
+						if (data.status == "success") {
+							$('#id_face_image').attr("src",data.urld);
+							$('#faceImageid').val(data.imgid);
+						}
+					}
+				})
+				return false;
+			}
+		});
+		
 	});
 	
 	//-->
@@ -58,7 +89,17 @@
 							</tr>
 							<tr>
 								<th>团购图片</th>
-								<td><input type="text" name="faceImageId" class="formText {required: true}" id="faceImageId" value="${entity.faceImageId}">
+								<td>
+								
+								<div>
+								<img id="id_face_image" src="${entity.faceImage.filePathD}" width="160" height="160"/>
+								</div>
+								<input type="hidden" name="faceImageid" class="formText {required: true}" id="faceImageid" value="${entity.faceImage.recId}">								
+																
+								<input type="file" id="upload" name="upload" />
+								<input type="button" id="uploadButton" class="formButtonSubmit" value="上传"/>
+								<span id="id_upload_ajax_tip" class="ajaxtip">正在上传团购封面,请稍候...</span>
+								
 								</td>
 							</tr>							
 							<tr>
@@ -105,7 +146,7 @@
 							<tr>
 								<th>是否发布</th>
 								<td>
-								<select name="isPublish" id="isPublish">
+								<select name="isPublish" id="isPublish" class="formSelect">
 									<option value="1">发布</option>
 									<option value="0">暂不发布</option>
 								</select>
