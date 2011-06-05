@@ -27,6 +27,7 @@ import com.eh.base.controller.BaseCtrl;
 import com.eh.base.entity.TbAttachment;
 import com.eh.base.util.CommonUtil;
 import com.eh.base.util.Constants;
+import com.eh.base.util.DateUtil;
 import com.eh.base.util.ImageUtil;
 import com.eh.base.vo.UserInfo;
 
@@ -55,13 +56,9 @@ public class UploadCtrl extends BaseCtrl {
 	 * @param userInfo
 	 * @return
 	 */
-	private String getImagePath(UserInfo userInfo) {
-		if (userInfo.getShopInfo() != null) {
-			return Constants.UPLOAD_IMAGE_DIR
-					+ userInfo.getShopInfo().getShopId() + "/";
-		} else {
-			return Constants.UPLOAD_IMAGE_DIR + "public/";
-		}
+	private String getImagePath(UserInfo userInfo) {		
+		String today = DateUtil.getInstance().formateDate(new Date(),DateUtil.DF_YYYYMMDD);
+		return Constants.UPLOAD_IMAGE_DIR + today + "/";
 	}
 
 	/**
@@ -94,29 +91,43 @@ public class UploadCtrl extends BaseCtrl {
 				//是否需要生成缩略图
 				String zoom = multipartRequest.getParameter("zoom");
 				if("true".equals(zoom)){
-					this.zoom(saveDir, uuid, imageExtension, "ss", saveFile,50,50);
-					this.zoom(saveDir, uuid, imageExtension, "s", saveFile,150,150);					
+					this.zoom(saveDir, uuid, imageExtension, "a", saveFile,50,50);
+					this.zoom(saveDir, uuid, imageExtension, "b", saveFile,100,100);
+					this.zoom(saveDir, uuid, imageExtension, "e", saveFile,130,130);
+					this.zoom(saveDir, uuid, imageExtension, "c", saveFile,160,160);
+					this.zoom(saveDir, uuid, imageExtension, "d", saveFile,350,350);
 				}
 				
 				Map<String, String> jsonMap = new HashMap<String, String>();
 				jsonMap.put(STATUS, SUCCESS);
+				
+				String today = DateUtil.getInstance().formateDate(new Date(),DateUtil.DF_YYYYMMDD);
 				if("true".equals(zoom)){
 					TbAttachment attach = new TbAttachment();
 					attach.setAttactType(Constants.ATTACHMENT_GOODS);
 					attach.setCreateDate(new Date());
 					attach.setUserId(userInfo.getUser().getUserId());
 					attach.setFileExtension(imageExtension);
-					//attach.setFilePath("/uploads/images/"+userInfo.getShopInfo().getShopId() + "/" + uuid );
-					//attach.setFileName(fileName)
+					
+					attach.setFilePathA(super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_a."+ imageExtension);
+					attach.setFilePathB(super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_b."+ imageExtension);
+					attach.setFilePathC(super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_c."+ imageExtension);
+					attach.setFilePathD(super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_d."+ imageExtension);
+					attach.setFilePathE(super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_e."+ imageExtension);
+					attach.setFilePathF(super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"."+ imageExtension);
+					
 					this.commonLogic.save(attach);
 					
-					jsonMap.put("imagesId", attach.getRecId().toString());
-					jsonMap.put("url", super.getContextPath(request)+"/uploads/images/"+userInfo.getShopInfo().getShopId() + "/" + uuid +"_s."+ imageExtension);					
+					jsonMap.put("imgid", attach.getRecId().toString());
+					jsonMap.put("urla", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_a."+ imageExtension);
+					jsonMap.put("urlb", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_b."+ imageExtension);
+					jsonMap.put("urlc", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_c."+ imageExtension);
+					jsonMap.put("urld", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_d."+ imageExtension);
+					jsonMap.put("urle", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_e."+ imageExtension);
+					jsonMap.put("urlf", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_f."+ imageExtension);
 				}else{
-					jsonMap.put("url", super.getContextPath(request)+"/uploads/images/"+userInfo.getShopInfo().getShopId() + "/" + uuid +"."+ imageExtension);
+					jsonMap.put("url", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"."+ imageExtension);
 				}
-				
-				
 				
 				super.renderJson(response, JSONObject.fromObject(jsonMap).toString());
 			}
