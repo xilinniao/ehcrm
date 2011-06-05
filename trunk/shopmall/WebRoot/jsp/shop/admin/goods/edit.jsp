@@ -17,6 +17,7 @@
 		$('#brandId').val('${info.brandInfo.brandId}');
 		$('#id_shop_category').val('${info.category.categoryId}');
 		$('#isRecommend').val('${info.isRecommend}');
+		$('#id_upload_ajax_tip').hide();
 		
 		
 		//加载验证框架
@@ -50,12 +51,12 @@
     	
     	$('#uploadButton').click(function(){
 			if ($("#upload").val() != "") {
-				$("#uploadButton")
-				.ajaxStart(function() {
+				$("#uploadButton").ajaxStart(function() {
 					$(this).attr("disabled", true);
-				})
-				.ajaxComplete(function() {
+					$('#id_upload_ajax_tip').show();
+				}).ajaxComplete(function() {
 					$(this).attr("disabled", false);
+					$('#id_upload_ajax_tip').hide();
 				});
 				$.ajaxFileUpload({
 					url: "<%=path%>/upload.xhtml?method=image&zoom=true",
@@ -68,8 +69,7 @@
 							return false;
 						}
 						if (data.status == "success") {
-							//$("#src").val(data.url);
-							$('#goods_images').append('<li><input type="hidden" name="good_attach_id"><input type="hidden" name="imagesId" value="'+data.imagesId+'"/><img src="'+data.url+'"></li>');
+							$('#goods_images').prepend('<li><input type="hidden" name="good_attach_id"><input type="hidden" name="imagesId" value="'+data.imagesId+'"/><img src="'+data.url+'"></li>');
 						}
 					}
 				})
