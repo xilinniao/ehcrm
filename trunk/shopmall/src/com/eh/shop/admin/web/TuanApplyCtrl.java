@@ -12,6 +12,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.dao.hibernate.Page;
+import com.eh.base.entity.TbAttachment;
 import com.eh.base.util.Constants;
 import com.eh.base.vo.UserInfo;
 import com.eh.shop.admin.logic.TuanApplyLogic;
@@ -105,7 +106,8 @@ public class TuanApplyCtrl extends BaseShopAdminCtrl {
 		UserInfo userInfo = super.getUserInfo(request);		
 		Long applyId = super.getLong(request, "applyId", false);
 		Long applySt = super.getLong(request, "applySt", false);
-		
+		Long faceImageId = super.getLong(request, "faceImageid", false);
+		TbAttachment face = this.tuanApplyLogic.get(TbAttachment.class, faceImageId);
 		if(applyId.longValue() == Constants.ADD_PK_ID.longValue()) {
 			//新增操作
 			TbTuanApply entity = new TbTuanApply();	
@@ -113,7 +115,8 @@ public class TuanApplyCtrl extends BaseShopAdminCtrl {
 			entity.setShopInfo(userInfo.getShopInfo());
 			entity.setApplyStatus(applySt);
 			entity.setCreateTime(new Date());
-			entity.setCreateUser(userInfo.getUser().getUserId());
+			entity.setCreateUser(userInfo.getUser().getUserId());			
+			entity.setFaceImage(face);
 			TbTuanApplyExt ext = new TbTuanApplyExt();
 			super.bindObject(request, ext);
 			entity.setExt(ext);
@@ -135,6 +138,10 @@ public class TuanApplyCtrl extends BaseShopAdminCtrl {
 					}else{
 						super.bindObject(request, ext);
 						entity.setExt(ext);
+					}
+					if(entity.getFaceImage().getRecId().longValue()!=face.getRecId().longValue()){
+						this.tuanApplyLogic.remove(entity.getFaceImage());
+						entity.setFaceImage(face);
 					}
 					tuanApplyLogic.saveTuanApply(entity);
 				}else{

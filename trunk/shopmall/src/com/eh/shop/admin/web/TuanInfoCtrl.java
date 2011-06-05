@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.dao.hibernate.Page;
+import com.eh.base.entity.TbAttachment;
 import com.eh.base.util.Constants;
 import com.eh.base.vo.UserInfo;
 import com.eh.shop.admin.logic.TuanInfoLogic;
@@ -64,9 +65,8 @@ public class TuanInfoCtrl extends BaseShopAdminCtrl {
 			entity.setLinkQq(apply.getLinkQq());
 			entity.setLinkTel(apply.getLinkTel());
 			entity.setIsPublish(Constants.NO);
-			entity.setFaceImageId(apply.getFaceImageId());
-			entity.setShopInfo(apply.getShopInfo());
-			
+			entity.setFaceImage(apply.getFaceImage());
+			entity.setShopInfo(apply.getShopInfo());			
 			TbTuanInfoExt ext = new TbTuanInfoExt();
 			ext.setRules(applyExt.getRules());
 			ext.setTopicContent(applyExt.getTopicContent());
@@ -100,6 +100,8 @@ public class TuanInfoCtrl extends BaseShopAdminCtrl {
 		UserInfo userInfo = super.getUserInfo(request);		
 		Long tuanId = super.getLong(request, "tuanId", false);
 		Long applyId = super.getLong(request, "applyId", false);
+		Long faceImageId = super.getLong(request, "faceImageid", false);
+		TbAttachment face = this.tuanInfoLogic.get(TbAttachment.class, faceImageId);
 		
 		if(tuanId.longValue() == Constants.ADD_PK_ID.longValue()) {
 			//新增操作
@@ -110,7 +112,7 @@ public class TuanInfoCtrl extends BaseShopAdminCtrl {
 			entity.setApplyId(applyId);
 			entity.setCreateTime(new Date());
 			entity.setCreateUser(userInfo.getUser().getUserId());
-			
+			entity.setFaceImage(face);
 			TbTuanInfoExt ext = new TbTuanInfoExt();
 			super.bindObject(request, ext);
 			entity.setExt(ext);
@@ -131,6 +133,10 @@ public class TuanInfoCtrl extends BaseShopAdminCtrl {
 				}else{
 					super.bindObject(request, ext);
 					entity.setExt(ext);
+				}
+				if(entity.getFaceImage().getRecId().longValue()!=face.getRecId().longValue()){
+					this.tuanInfoLogic.remove(entity.getFaceImage());
+					entity.setFaceImage(face);
 				}
 				tuanInfoLogic.saveTuanInfo(entity);
 			}else{
