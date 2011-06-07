@@ -14,10 +14,10 @@
 			class="com.eh.shop.entity.TbShopInfo">
 			<column name="SHOP_ID" precision="10" scale="0" />
 		</many-to-one>
-
-		<property name="faceImageId" type="java.lang.Long">
-			<column name="face_image_id" precision="10" scale="0" />
-		</property>
+		
+		<many-to-one name="faceImage" class="com.eh.base.entity.TbAttachment">
+			<column name="FACE_IMAGE_ID" precision="12" scale="0" />
+		</many-to-one>
 
 		<property name="applyStatus" type="java.lang.Long">
 			<column name="apply_status" precision="2" scale="0" />
