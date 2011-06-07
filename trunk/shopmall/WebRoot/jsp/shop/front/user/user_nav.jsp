@@ -12,12 +12,10 @@
 	
 	<h3>个人信息管理</h3>
     <ul class="margin_b6">
-    	<li><div><a href="">个人资料</a></div></li>
-        <li><a href="">短&nbsp;消&nbsp;息</a></li>
-        <li><a href="">收&nbsp;藏&nbsp;夹</a></li>
-        <li><a href="user_changepwd.aspx">修改密码</a></li>
-        <li><a href="userclass.aspx">我的级别</a></li>
-        <li><a href="user_jifennew.aspx">我的积分</a></li>
+    	<li><div><a href="user.xhtml?method=profile">个人资料</a></div></li>
+        <li><a href="user.xhtml?method=addressList">常用地址</a></li>
+        <!--<li><a href="">短&nbsp;消&nbsp;息</a></li>-->
+        <li><a href="<%=path%>/front/login.xhtml?method=changePwd">修改密码</a></li>
     </ul>
     <h3>服务中心</h3>
     <ul class="margin_b6">
