@@ -2,10 +2,14 @@ package com.eh.shop.entity;
 
 import java.util.Date;
 
+import com.eh.base.entity.TbAttachment;
 import com.eh.base.util.DateUtil;
 import com.eh.base.util.FormateUtil;
 
 public class TbTuanApply implements java.io.Serializable {
+	/**
+	 * 序列化号
+	 */
 	private static final long serialVersionUID = -4407605296338278369L;
 	/**
 	 * pk 团购记录ID
@@ -18,7 +22,7 @@ public class TbTuanApply implements java.io.Serializable {
 	/**
 	 * 团购图片
 	 */
-	Long faceImageId;
+	TbAttachment faceImage;
 	/**
 	 * 申请状态 0暂存中 1提交申请 21申请通过 20申请不通过
 	 */
@@ -92,12 +96,12 @@ public class TbTuanApply implements java.io.Serializable {
 		this.shopInfo = shopInfo;
 	}
 
-	public Long getFaceImageId() {
-		return this.faceImageId;
+	public TbAttachment getFaceImage() {
+		return faceImage;
 	}
 
-	public void setFaceImageId(Long faceImageId) {
-		this.faceImageId = faceImageId;
+	public void setFaceImage(TbAttachment faceImage) {
+		this.faceImage = faceImage;
 	}
 
 	public Long getApplyStatus() {

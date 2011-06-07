@@ -2,6 +2,7 @@ package com.eh.shop.entity;
 
 import java.util.Date;
 
+import com.eh.base.entity.TbAttachment;
 import com.eh.base.util.DateUtil;
 import com.eh.base.util.FormateUtil;
 
@@ -21,7 +22,11 @@ public class TbTuanInfo  implements java.io.Serializable {
      private Long isPublish;
      private String linkTel;
      private String linkQq;
-     private Long faceImageId;
+     /**
+ 	 * 团购图片
+ 	 */
+ 	TbAttachment faceImage;
+ 	
      private String topicName;
      private Date beginDate;
      private Date endDate;
@@ -32,34 +37,6 @@ public class TbTuanInfo  implements java.io.Serializable {
      private Long createUser;
      private Date createTime;
      private TbTuanInfoExt ext;
-
-
-    // Constructors
-
-    /** default constructor */
-    public TbTuanInfo() {
-    }
-
-    
-    /** full constructor */
-    public TbTuanInfo(Long applyId, TbShopInfo shopInfo, Long isPublish, String linkTel, String linkQq, Long faceImageId, String topicName, Date beginDate, Date endDate, Double price, Double discountPrice, Long maxQty, Long currQty, Long createUser, Date createTime, TbTuanInfoExt ext) {
-        this.applyId = applyId;
-        this.shopInfo = shopInfo;
-        this.isPublish = isPublish;
-        this.linkTel = linkTel;
-        this.linkQq = linkQq;
-        this.faceImageId = faceImageId;
-        this.topicName = topicName;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
-        this.price = price;
-        this.discountPrice = discountPrice;
-        this.maxQty = maxQty;
-        this.currQty = currQty;
-        this.createUser = createUser;
-        this.createTime = createTime;
-        this.ext = ext;
-    }
 
    
     // Property accessors
@@ -111,16 +88,16 @@ public class TbTuanInfo  implements java.io.Serializable {
     public void setLinkQq(String linkQq) {
         this.linkQq = linkQq;
     }
+    public TbAttachment getFaceImage() {
+		return faceImage;
+	}
 
-    public Long getFaceImageId() {
-        return this.faceImageId;
-    }
-    
-    public void setFaceImageId(Long faceImageId) {
-        this.faceImageId = faceImageId;
-    }
+	public void setFaceImage(TbAttachment faceImage) {
+		this.faceImage = faceImage;
+	}
 
-    public String getTopicName() {
+
+	public String getTopicName() {
         return this.topicName;
     }
     
