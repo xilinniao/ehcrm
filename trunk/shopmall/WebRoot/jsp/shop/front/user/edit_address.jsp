@@ -53,7 +53,7 @@ $(document).ready(function() {
 	            	<div class="item">
 					    <span class="label">姓名：</span>
 					    <div class="fl">
-						    <input type="test" class="text {required: true} valid" id="revicedName" name="revicedName" tabindex="1" value="${addr.revicedName}" />
+						    <input type="text" class="text {required: true} valid" id="revicedName" name="revicedName" tabindex="1" value="${addr.revicedName}" />
 						    <span class="clr"></span>    						
 					    </div>
 				    </div>
@@ -61,7 +61,7 @@ $(document).ready(function() {
 				    <div class="item">
 					    <span class="label">客户地址：</span>
 					    <div class="fl">
-						    <input type="test" class="text {required: true} valid" id="revicedAddr" name="revicedAddr" tabindex="2" value="${addr.revicedAddr}" />
+						    <input type="text" class="text {required: true} valid" id="revicedAddr" name="revicedAddr" tabindex="2" value="${addr.revicedAddr}" />
 						    <span class="clr"></span>    						
 					    </div>
 				    </div>
@@ -69,7 +69,7 @@ $(document).ready(function() {
 				    <div class="item">
 					    <span class="label">联系电话：</span>
 					    <div class="fl">
-						    <input type="test" class="text {required: true} valid" id="revicedMobile" name="revicedMobile" tabindex="3" value="${addr.revicedMobile}" />
+						    <input type="text" class="text {required: true} valid" id="revicedMobile" name="revicedMobile" tabindex="3" value="${addr.revicedMobile}" />
 						    <span class="clr"></span>    						
 					    </div>
 				    </div>
@@ -77,7 +77,7 @@ $(document).ready(function() {
 				    <div class="item">
 					    <span class="label">电子邮件：</span>
 					    <div class="fl">
-						    <input type="test" class="text {email: true} valid" id="revicedEmail" name="revicedEmail" tabindex="4" value="${addr.revicedEmail}" />
+						    <input type="text" class="text {email: true} valid" id="revicedEmail" name="revicedEmail" tabindex="4" value="${addr.revicedEmail}" />
 						    <span class="clr"></span>    						
 					    </div>
 				    </div>

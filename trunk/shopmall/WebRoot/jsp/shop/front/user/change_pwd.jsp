@@ -46,51 +46,55 @@ $(document).ready(function() {
 	
 	<div id="uc_content">
           <div class="uc_list">
-			<h3>修改个人资料</h3>
-			<c:if test="${param.msg!=null}">
-			 	<div class="userTipSuccess">个人资料保存成功</div>
+			<h3>修改密码</h3>
+			<c:if test="${errors!=null}">
+			 	<div class="userTipError">
+			 		<c:forEach items="${errors}" var="b">
+						${b }<br>
+					</c:forEach>
+			 	</div>
 			 </c:if>
 			 
-            <form id="addrform" method="POST" action="<%=path %>/front/user.xhtml?method=onProfile">
+			 <c:if test="${message!=null}">
+			 	<div class="userTipSuccess">
+			 		<c:forEach items="${message}" var="b">
+						${b }<br>
+					</c:forEach>
+			 	</div>
+			 </c:if>
+			 
+            <form id="addrform" method="POST" action="<%=path%>/front/login.xhtml?method=onChangePwd">
 	            <div id="userform" class="form">
 	            	<div class="item">
 					    <span class="label">用户名：</span>
 					    <div>
-						    ${custInfo.custCode}
+						    ${frontcust.custCode}
 					    </div>
 				    </div>
 				    
 				    <div class="item">
-					    <span class="label">姓名：</span>
+					    <span class="label">原密码：</span>
 					    <div class="fl">
-						    <input type="text" class="text {required: true} valid" id="custName" name="custName" tabindex="2" value="${custInfo.custName}" />
+						    <input type="password" class="text {required: true} valid" id="oldpwd" name="oldpwd" tabindex="2" />
+						    <span class="clr"></span>    						
+					    </div>
+				    </div>	
+				    
+				    <div class="item">
+					    <span class="label">新密码：</span>
+					    <div class="fl">
+						    <input type="password" class="text {required: true} valid" id="newpwd" name="newpwd" tabindex="3" value="" />
 						    <span class="clr"></span>    						
 					    </div>
 				    </div>
 				    
 				    <div class="item">
-					    <span class="label">地址：</span>
+					    <span class="label">新密码：</span>
 					    <div class="fl">
-						    <input type="text" class="text {required: true} valid" id="custAddr" name="custAddr" tabindex="2" value="${custInfo.custAddr}" />
+						    <input type="password" class="text {required: true} valid" id="newpwdtw" name="newpwdtw" tabindex="4"/>
 						    <span class="clr"></span>    						
 					    </div>
-				    </div>
-				    
-				    <div class="item">
-					    <span class="label">联系电话：</span>
-					    <div class="fl">
-						    <input type="text" class="text {required: true} valid" id="custMobile" name="custMobile" tabindex="3" value="${custInfo.custMobile}" />
-						    <span class="clr"></span>    						
-					    </div>
-				    </div>
-				    
-				    <div class="item">
-					    <span class="label">电子邮件：</span>
-					    <div class="fl">
-						    <input type="text" class="text {email: true} valid" id="email" name="email" tabindex="4" value="${custInfo.email}" />
-						    <span class="clr"></span>    						
-					    </div>
-				    </div>
+				    </div>	    
 				    
 				    <div class="item">
 					    <span class="label"></span>

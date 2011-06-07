@@ -27,10 +27,10 @@ $(document).ready(function() {
 	<div id="uc_content">
           <div class="uc_list">
 			<h3>地址列表</h3>
-			
-			 <c:if test="${msg!=null}">
-			 	
+			 <c:if test="${param.msg!=null}">
+			 	<div class="userTipSuccess">保存成功</div>
 			 </c:if>
+			 
              <table class="Table" bordercolor="#AACCEE" border="1" width="100%">
                  <tbody>
                   <tr>
