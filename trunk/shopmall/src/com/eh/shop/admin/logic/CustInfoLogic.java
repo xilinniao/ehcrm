@@ -23,4 +23,10 @@ public interface CustInfoLogic extends IBaseLogic {
 	 * @return
 	 */
 	public TbCustInfo loginCheck(String custCode,String pwd);
+	/**
+	 * 改变客户密码
+	 * @param cust
+	 * @return
+	 */
+	public void saveChangePwd(TbCustInfo cust);
 }

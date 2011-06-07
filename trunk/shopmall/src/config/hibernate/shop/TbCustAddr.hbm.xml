@@ -25,8 +25,11 @@
 		 <property name="revicedEmail" type="java.lang.String">
             <column name="REVICED_EMAIL" length="100"/>
         </property>
-		 <property name="updateTime" type="java.util.Date">
-		 	<column name="UPDATE_TIME" length="10"/>
+        <property name="createTime" type="java.util.Date">
+		 	<column name="CREATE_TIME" length="7"/>
+        </property>
+        <property name="updateTime" type="java.util.Date">
+		 	<column name="UPDATE_TIME" length="7"/>
         </property>
     </class>
 </hibernate-mapping>

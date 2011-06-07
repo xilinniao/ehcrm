@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.Element;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.controller.BaseCtrl;
@@ -16,6 +17,20 @@ import com.eh.shop.front.vo.CustInfo;
  *
  */
 public class BaseFrontCtrl extends BaseCtrl {
+	/**
+	 * 前端错误URL
+	 */
+	public static final String FRONT_ERROR_URL = "/jsp/shop/front/common/error";
+	/**
+	 * 前端成功URL
+	 */
+	public static final String FRONT_SUCCESS_URL = "/jsp/shop/front/common/success";
+	
+	/**
+	 * 参考页面
+	 */
+	public String referer;
+	
 	protected HttpSession getSessionC(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		return session;
@@ -31,7 +46,10 @@ public class BaseFrontCtrl extends BaseCtrl {
 	}
 	
 	protected ModelAndView gotoLogin(HttpServletRequest request){
-		return new ModelAndView("redirect:/front/common/login.html");
+		if(StringUtils.isBlank(referer)){
+			referer = request.getHeader("Referer");
+		}
+		return new ModelAndView("redirect:/front/common/login.html?ref="+referer);
 	}
 	
 	/**

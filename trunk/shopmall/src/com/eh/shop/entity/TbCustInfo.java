@@ -24,6 +24,7 @@ public class TbCustInfo  implements java.io.Serializable {
      private Long custScore;
      private Date lastLoginTime;
      private Date createTime;
+     private Date updateTime;
 
 
     // Constructors
@@ -146,6 +147,16 @@ public class TbCustInfo  implements java.io.Serializable {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
    
 
 

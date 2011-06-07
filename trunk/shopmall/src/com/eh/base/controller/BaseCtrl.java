@@ -325,9 +325,23 @@ abstract public class BaseCtrl extends MultiActionController {
     protected DeptInfo getRootDept(UserInfo u)throws SessionLostException{
     	return u.getDept();
     }
-    
+
+    /**
+     * 添加message
+     * @param request
+     * @param message
+     */
     protected void addMessage(HttpServletRequest request,String message){
-    	request.setAttribute("message", message);
+    	if (StringUtils.isNotBlank(message)) {
+    		List errors = (List)request.getAttribute("message");
+    		if(errors==null){
+    			errors = new ArrayList();
+    			errors.add(message);
+    			request.setAttribute("message", errors);
+    		}else{
+    			errors.add(message);
+    		}
+    	}
     }
     
     public String getContextPath(HttpServletRequest request){	
