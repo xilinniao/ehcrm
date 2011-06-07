@@ -61,6 +61,7 @@
    	<bean name="frontUserCtrl" class="com.eh.shop.front.web.UserCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="orderLogic" ref="orderLogic"/>
+        <property name="custAddrLogic" ref="custAddrLogic"/>
    	</bean>
    	
    	<bean name="frontHelpCtrl" class="com.eh.shop.front.web.HelpCtrl">

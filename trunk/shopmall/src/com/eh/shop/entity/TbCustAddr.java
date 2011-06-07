@@ -20,6 +20,7 @@ public class TbCustAddr  implements java.io.Serializable {
      private String revicedTel;
      private String revicedEmail;
      private Date updateTime;
+     private Date createTime;
 
 
     // Constructors
@@ -106,13 +107,15 @@ public class TbCustAddr  implements java.io.Serializable {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-   
 
 
+	public Date getCreateTime() {
+		return createTime;
+	}
 
 
-
-
-
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
 
 }

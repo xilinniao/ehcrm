@@ -23,6 +23,15 @@ public class CustInfoLogicImpl extends BaseLogic implements CustInfoLogic {
 	}
 	
 	/**
+	 * 保存密码信息 
+	 */
+	public void saveChangePwd(TbCustInfo cust) {
+		cust.setCustPwd(cryptPwd(cust.getCustPwd()));
+	}
+
+
+
+	/**
 	 * 保存注册信息
 	 */
 	public String saveRegInfo(TbCustInfo custInfo) {

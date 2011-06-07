@@ -3,6 +3,7 @@
  */
 package com.eh.shop.front.web;
 
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -113,8 +114,7 @@ public class LoginCtrl extends BaseFrontCtrl {
 			HttpSession session = super.getSessionC(request);
 			session.setAttribute(Constants.SESSION_NAME_FRONT, cust);			
 			//写cookie资料
-			//CookieUtils.addCookie(response, 0, Constants.LOGIN_USERNAME_COOKIE_NAME_FRONT,cust.getCustCode());
-			Cookie loginMemberUsernameCookie = new Cookie(Constants.LOGIN_USERNAME_COOKIE_NAME_FRONT,cust.getCustCode());
+			Cookie loginMemberUsernameCookie = new Cookie(Constants.LOGIN_USERNAME_COOKIE_NAME_FRONT,URLEncoder.encode(cust.getCustCode(),"utf-8"));
 			loginMemberUsernameCookie.setPath("/");
 			response.addCookie(loginMemberUsernameCookie);
 			super.renderJsonSuccess(response, "登录成功");
@@ -139,6 +139,47 @@ public class LoginCtrl extends BaseFrontCtrl {
 		CookieUtils.addCookie(response, 0, Constants.AUTO_LOGIN_COOKIE_NAME_FRONT, null);
 		super.renderJsonSuccess(response, "退出成功");
 		return null;
+	}
+	
+	/**
+	 * 变更密码
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView changePwd(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/user/change_pwd");
+		return mav;
+	}
+	
+	/**
+	 * 变更密码
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView onChangePwd(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/user/change_pwd");
+		CustInfo custInfo = super.getCustInfo(request);
+		if(custInfo!=null){		
+			String oldpwd = super.getString(request, "oldpwd", false);		
+			TbCustInfo dbcust = this.custInfoLogic.loginCheck(custInfo.getCustCode(), oldpwd);
+			if(dbcust==null){
+				super.addErrors(request, "原密码不正确");
+			}else{
+				String newPwd = super.getString(request, "newpwd", false);
+				dbcust.setCustPwd(newPwd);
+				dbcust.setUpdateTime(new Date());
+				super.addMessage(request, "密码修改成功");
+				this.custInfoLogic.saveChangePwd(dbcust);
+			}
+			return mav;
+		}else{
+			super.referer = getContextPath(request)+"/front/login.xhtml?method=changePw";
+			return super.gotoLogin(request);
+		}
 	}
 
 	/**
