@@ -62,7 +62,9 @@
 							</tr>
 							<tr>
 								<th>团购图片</th>
-								<td>${entity.faceImageId}</td>
+								<td><div>
+								<img id="id_face_image" src="${entity.faceImage.filePathD}" width="160" height="160"/>
+								</div></td>
 							</tr>							
 							<tr>
 								<th>团购起止日期</th>
