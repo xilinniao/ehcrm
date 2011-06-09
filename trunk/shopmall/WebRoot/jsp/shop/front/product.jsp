@@ -101,14 +101,6 @@ $(document).ready(function() {
 </head>
 <body id="index">
 <%@include file="/jsp/shop/front/common/top.jsp"%>
-
-<!-- 
-<div class="w">
-	    <div class="crumb">
-         <a href="http://www.360buy.com">首页</a>&nbsp;&gt;&nbsp;<a href="http://www.360buy.com/electronic.html">家用电器、汽车用品</a>&nbsp;&gt;&nbsp;<a href="http://www.360buy.com/products/737-794-000.html">大 家 电</a>&nbsp;&gt;&nbsp;<a href="http://www.360buy.com/products/737-794-798.html">平板电视</a>&nbsp;&gt;&nbsp;<a href="http://www.360buy.com/brands/798-2182.html">LG</a>&nbsp;&gt;&nbsp;<a href="http://www.360buy.com/product/277669.html">LG32LD320-CA</a>
-        </div>
-</div>
- -->
 	
 <!-- 正文开始 -->
 <div class="w main">

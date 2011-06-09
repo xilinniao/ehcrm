@@ -3,6 +3,7 @@
 <%@include file="/common/headA.jsp"%>
 <title>抚州网上购物商城</title>
 <link href="<%=path %>/resources/front/css/index.css" rel="stylesheet" type="text/css" />
+<link href="<%=path %>/resources/front/css/cartitems.css" rel="stylesheet" type="text/css">
 <%@include file="/jsp/shop/front/common/head.jsp"%>
 <script src="<%=path %>/resources/front/js/dialog.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
