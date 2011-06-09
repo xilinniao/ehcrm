@@ -226,3 +226,91 @@ float: right;
 .uc_list a:link, .uc_list a:visited {
 color: #005AA0;
 }
+
+body .fl {
+float: left;
+}
+
+.form label, .form input, .form select, .form textarea, .form button, .form .label {
+float: left;
+font-size: 12px;
+}
+
+#userform .item {
+padding-top: 5px;
+height: 50px;
+line-height: 26px;
+}
+#userform .label {
+width: 100px;
+text-align: right;
+font-size: 14px;
+margin-top:5px;
+}
+#userform .text {
+width: 240px;
+height: 16px;
+padding: 4px 3px;
+border: 1px solid #BBB;
+font-size: 14px;
+font-family: arial,"ËÎÌו";
+}
+#userform .blank {
+width: 16px;
+height: 16px;
+margin: 2px 5px 0;
+}
+#userform .null, #userform .error {
+color: red;
+line-height: 22px;
+}
+#userform .pwdbg {
+background: #FFF8EB;
+}
+#userform .text {
+width: 240px;
+height: 16px;
+padding: 4px 3px;
+border: 1px solid #BBB;
+font-size: 14px;
+font-family: arial,"ËÎÌו";
+}
+#userform .text-1 {
+width: 100px;
+}
+#userform input.text{
+width: 280px;
+line-height: 16px;
+border: 1px solid #DEDEDE;
+border-color: #707070 #CECECE #CECECE #707070;
+text-align: left;
+color: #333;
+margin: 4px 5px 0 0;
+padding: 5px;
+}
+
+#userform input.text-l{
+	width: 100px;
+}
+#userform .img img {
+height: 26px;
+margin: 0 5px;
+}
+
+.btn-img {
+cursor: pointer;
+overflow: hidden;
+margin: 0;
+padding: 0;
+border: 0;
+text-align: center;
+}
+
+#userform .btn-submit {
+width: 86px;
+height: 32px;
+background: url(../images/bg_regist.jpg) no-repeat -155px -151px;
+font-size: 14px;
+font-weight: bold;
+color: white;
+}

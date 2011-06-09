@@ -64,7 +64,7 @@ ul.n_h_t{display:block;position:absolute;font-size:14px;width:111px;top:34px;rig
 .n_content_form{float:left; overflow:hidden; width:916px;}
 .n_content_line{ border-top:1px solid #E6E6E6; border-bottom:5px solid #FFF; float:left; width:916px; overflow:hidden; height:1px;}
 .n_pro_box{ width:916px; margin-bottom:20px; float:left; overflow:hidden; padding-top:25px; padding-bottom:25px;background:#f7f7f7;}
-.n_pro_box li{ width:252px; padding:0px 25px 0px 27px; display:inline; border-right:1px dashed #e5e5e5; float:left; }
+.n_pro_box li{ width:252px; padding:10px 25px 0px 27px; display:inline; border-right:1px dashed #e5e5e5; border-bottom:1px dashed #e5e5e5;float:left;height:385px;margin-bottom:15px; }
 .n_pro_box li a{text-decoration:none;}
 .n_pic{ float:left; position:relative; z-index:1}
 .n_pic img{ padding:0px; margin:0px; border:1px solid #b0b0b0;}
@@ -201,3 +201,75 @@ d.g_footer { background: url(../images/tuan/footer_n1.jpg) repeat-x; height:245p
 .dingtd_bg {background:#f6f6f6;font-size: 12px; text-align:center;}
 .ding_miay{background:url(../img_buy/dingd_button.gif) no-repeat;cursor: pointer; width:92px; height:27px; border:none;}
 .ding_pad{ padding-left:10px;}
+
+#pager ul.pages {
+	display: block;
+	float: right;
+	margin: 3px;
+	text-transform: uppercase;
+	font-size: 12px;
+	border: none;
+}
+
+#pager ul.pages li {
+	list-style: none;
+	float: left;	
+	margin: 0px 5px 0px 0px;
+	cursor: pointer;
+	text-decoration: none;
+	padding:0px 8px;
+	border: 1px solid #cccccc;
+	
+}
+
+#pager ul.pages li:hover {
+	background-color:#FFEEE5;border:1px solid #F50;color:#F50;font-weight:700;
+}
+
+#pager ul.pages li.pgEmpty {
+	color: #cfcfcf;
+	cursor: default;
+	border: 1px solid #cfcfcf;
+	padding:0px 8px;
+}
+
+#pager ul.pages li.pgCurrent {
+	background-color:#FFEEE5;border:1px solid #F50;color:#F50;font-weight:700;display:inline-block;
+}
+
+
+
+#pagerb ul.pages {
+	display: block;
+	float: right;
+	margin: 3px;
+	text-transform: uppercase;
+	font-size: 12px;
+	border: none;
+}
+
+#pagerb ul.pages li {
+	list-style: none;
+	float: left;	
+	margin: 0px 5px 0px 0px;
+	cursor: pointer;
+	text-decoration: none;
+	padding:0px 8px;
+	border: 1px solid #cccccc;
+	
+}
+
+#pagerb ul.pages li:hover {
+	background-color:#FFEEE5;border:1px solid #F50;color:#F50;font-weight:700;
+}
+
+#pagerb ul.pages li.pgEmpty {
+	color: #cfcfcf;
+	cursor: default;
+	border: 1px solid #cfcfcf;
+	padding:0px 8px;
+}
+
+#pagerb ul.pages li.pgCurrent {
+	background-color:#FFEEE5;border:1px solid #F50;color:#F50;font-weight:700;display:inline-block;
+}
