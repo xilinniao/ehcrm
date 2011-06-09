@@ -3,10 +3,8 @@
 <%@include file="/common/headA.jsp"%>
 <title>抚州网上购物商城</title>
 <link href="<%=path %>/resources/front/css/index.css" rel="stylesheet" type="text/css" />
-<link href="<%=path %>/resources/common/css/base.css" rel="stylesheet" type="text/css" />
-<link href="<%=path %>/resources/admin/css/input.css" rel="stylesheet" type="text/css">
+<link href="<%=path %>/resources/front/css/cartitems.css" rel="stylesheet" type="text/css">
 <%@include file="/jsp/shop/front/common/head.jsp"%>
-<script src="<%=path %>/resources/front/js/jquery.tools.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
 <script type="text/javascript" src="<%=path %>/resources/front/js/jquery.metadata.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/front/js/jquery.validate.js"></script>
@@ -21,31 +19,30 @@
 				$('#revicedName').val(item.revicedName);
 				$('#revicedAddr').val(item.revicedAddr);
 				$('#revicedMobile').val(item.revicedMobile);
-				$('#revicedTel').val(item.revicedTel);
 				$('#revicedEmail').val(item.revicedEmail);
 			}
 		});
 	}
 	jQuery(document).ready(function() {
 		//第一个li设置成check状态
-		var fisrt_li_id = $("ul#addr_list li:first").attr("id");		
+		var fisrt_li_id = $("ul#addr_list li:first").attr("id");
 		selectAddr(fisrt_li_id);
 		
 		//初始化
-		var  saveform_validator = $("#checkoutform").validate({
-			 errorClass: "validateError",
+		var saveform_validator = $("#checkoutform").validate({
+			errorClass: "validateError",
             ignore: ".ignoreValidate",
             errorPlacement: function(error, element) {
                 var messagePosition = element.metadata().messagePosition;
                 if("undefined" != typeof messagePosition && messagePosition != "") {
                     var $messagePosition = $(messagePosition);
                     if ($messagePosition.size() > 0) {
-                        error.insertAfter($messagePosition).fadeOut(300).fadeIn(300);
+                        error.insertAfter($messagePosition).hide().show();
                     } else {
-                        error.insertAfter(element).fadeOut(300).fadeIn(300);
+                        error.insertAfter(element).hide().show();
                     }
                 } else {
-                    error.insertAfter(element).fadeOut(300).fadeIn(300);
+                    error.insertAfter(element).hide().show();
                 }
             },
             submitHandler: function(form) {
@@ -142,23 +139,19 @@
 						<table>
 						<tbody><tr>
 							<td style="width:80px;" align="right">收货人姓名：</td>
-							<td><input type="text" name="revicedName" id="revicedName" class="text {required: true}" size="40"/></td>
+							<td><input type="text" name="revicedName" id="revicedName" class="text-n {required: true}" size="40"/></td>
 						</tr>						
 						<tr>
 							<td align="right">送货地址：</td>
-							<td><input type="text" name="revicedAddr" id="revicedAddr" class="text {required: true}" size="40"/></td>
+							<td><input type="text" name="revicedAddr" id="revicedAddr" class="text-n {required: true}" size="40"/></td>
 						</tr>						
 						<tr>
-							<td align="right">手机号码：</td>
-							<td><input type="text" name="revicedMobile" id="revicedMobile" class="text {required: true}" size="40"/></td>
-						</tr>						
-						<tr>
-							<td align="right">固定电话：</td>
-							<td><input type="text" name="revicedTel" id="revicedTel" class="text {required: true}" size="40"/></td>
+							<td align="right">联系电话：</td>
+							<td><input type="text" name="revicedMobile" id="revicedMobile" class="text-n {required: true}" size="40"/></td>
 						</tr>						
 						<tr>
 							<td align="right">电子邮件：</td>
-							<td><input type="text" name="revicedEmail" id="revicedEmail" class="text {required: true}" size="40"/></td>
+							<td><input type="text" name="revicedEmail" id="revicedEmail" class="text-n {email: true}" size="40"/></td>
 						</tr>				
 						</tbody></table>
 					</div><!-- end of middle-->

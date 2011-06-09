@@ -6,11 +6,7 @@
 <link href="<%=path %>/resources/front/css/slide.css" rel="stylesheet" type="text/css" />
 <link href="<%=path %>/resources/front/css/products.css" rel="stylesheet" type="text/css" />
 
-<style type="text/css">
-
-</style> 
 <%@include file="/jsp/shop/front/common/head.jsp"%>
-<script src="<%=path %>/resources/front/js/jquery.cookie.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/jquery.pager.js" type="text/javascript"></script>
 <script src="<%=path %>/resources/front/js/base.js" type="text/javascript"></script>
 
@@ -20,8 +16,9 @@
 
 <!-- 正文开始 -->
 <div class="w main">
-
+	<!--
 <div class="m" id="i-right">
+
 	<div id="hotsale">
 		<div class="mt"><h2>热卖推荐</h2></div>
 		<div class="mc list-h">
@@ -51,8 +48,8 @@
 			</dl>
 		</div>		
 	</div>
-	<div id="market" clstag="thirdtype|keycount|thirdtype|market"></div>
-</div>
+	<div id="market" ></div>
+</div>-->
 
 		<span class="clr10"></span>
 		
@@ -64,6 +61,7 @@
                 	<li><a href="737-738-751-0-0-0-0-0-0-0-1-4-1.html">好评度</a><span></span></li>
                 	<li><a href="737-738-751-0-0-0-0-0-0-0-1-5-1.html">上架时间</a><span></span></li>
                 </ul>
+                
                 <div class="pagin pagin-m fr"><span class="text">${page.pageNo }/${page.totalPageCount }</span>
                 <c:choose>
                 	<c:when test="${page.hasPreviousPage}"><a class="prev" href="#none">上一页<b></b></a></c:when>
