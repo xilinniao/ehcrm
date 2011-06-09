@@ -95,7 +95,7 @@ public class Page implements Serializable {
 	 * 该页是否有下一页.
 	 */
 	public boolean hasNextPage() {
-		return this.getCurrentPageNo() < this.getTotalPageCount() - 1;
+		return this.getCurrentPageNo() <= this.getTotalPageCount() - 1;
 	}
 
 	public boolean isHasNextPage() {

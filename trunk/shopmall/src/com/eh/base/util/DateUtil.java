@@ -16,6 +16,8 @@ public class DateUtil {
 			"yyyy-MM-dd");
 	public static final SimpleDateFormat DF_YYYYMMDD = new SimpleDateFormat(
 			"yyyyMMdd");
+	public static final SimpleDateFormat DF_YYMMDD = new SimpleDateFormat(
+	"yyMMdd");
 	public static final SimpleDateFormat DF_YYYY_MM_DD_CHN = new SimpleDateFormat(
 			"yyyy年MM月dd日");
 	public static final SimpleDateFormat DF_YYYY_MM_DD_HH_MM_SS = new SimpleDateFormat(

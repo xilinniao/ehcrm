@@ -1,5 +1,6 @@
 package com.eh.shop.admin.logic.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -7,12 +8,14 @@ import org.hibernate.Criteria;
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.BaseLogic;
 import com.eh.base.util.CriteriaUtil;
+import com.eh.base.util.DateUtil;
 import com.eh.shop.admin.logic.OrderLogic;
 import com.eh.shop.admin.web.qry.OrderQry;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbOrderDetail;
 import com.eh.shop.entity.TbOrderFlow;
 import com.eh.shop.entity.TbOrderMain;
+import com.eh.shop.entity.TbReceiptsSeq;
 
 public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 
@@ -20,6 +23,29 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 	 * @see com.eh.shop.admin.logic.OrderLogic#addOrder(com.eh.shop.entity.TbOrderMain, java.lang.Long[], java.lang.Long[])
 	 */
 	public String addOrder(TbOrderMain main, Long[] productIds, Long[] cnt) {
+		//生成订单编号
+		String today = DateUtil.getInstance().formateDate(new Date(), DateUtil.DF_YYMMDD);
+		//String orderNo = 
+		TbReceiptsSeq seq = super.baseDao.get(TbReceiptsSeq.class,Long.valueOf(1));
+		
+		if(today.equals(seq.getTodayNum())){
+			seq.setCurrentSeq(seq.getCurrentSeq()+1);
+		}else{
+			//清零
+			seq.setTodayNum(today);
+			seq.setCurrentSeq(Long.valueOf(1));
+		}
+		super.baseDao.save(seq);
+		
+		//补零操作
+		String seqCode = seq.getCurrentSeq().toString();
+		
+		StringBuffer orderNo = new StringBuffer(today) ;
+		for(int i = seqCode.length();i<6;i++ ){
+			orderNo.append("0");
+		}
+		orderNo.append(seqCode);
+		main.setOrderNo(orderNo.toString());
 		super.save(main);
 		if(productIds!=null){
 			for(int i = 0 , len = productIds.length;i < len; i++){				
@@ -53,7 +79,6 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 	 * @see com.eh.shop.admin.logic.OrderLogic#saveOrderAndFlow(com.eh.shop.entity.TbOrderMain, com.eh.shop.entity.TbOrderFlow)
 	 */
 	public String saveOrderAndFlow(TbOrderMain main, TbOrderFlow flow) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -64,6 +89,7 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 		Criteria criteria = baseDao.createCriteria(TbOrderMain.class);
 		criteria.createAlias("custInfo","c");
 		CriteriaUtil.addEq(criteria, "c.custId", qry.getCustId());
+		CriteriaUtil.addOrder(criteria, "orderTime", CriteriaUtil.DESC);
 		return super.baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 
@@ -80,7 +106,5 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 	public List findOrderFlowList(TbOrderMain orderMain) {
 		return super.baseDao.find("from TbOrderFlow t where t.order = ? ", orderMain);
 	}
-	
-	
 	
 }
