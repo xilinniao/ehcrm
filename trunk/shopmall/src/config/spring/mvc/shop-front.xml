@@ -78,6 +78,6 @@
    	<bean name="frontTuanCtrl" class="com.eh.shop.front.web.TuanCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="frontCacheLogic" ref="frontCacheLogic"/>
-        <property name="goodsLogic" ref="goodsLogic"/>
+        <property name="tuanInfoLogic" ref="tuanInfoLogic"/>
    	</bean>
 </beans>

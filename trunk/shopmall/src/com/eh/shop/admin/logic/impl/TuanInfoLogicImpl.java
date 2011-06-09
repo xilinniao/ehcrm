@@ -34,4 +34,11 @@ public class TuanInfoLogicImpl extends BaseLogic implements TuanInfoLogic {
 		Criteria criteria = baseDao.createCriteria(TbTuanInfo.class);
 		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
+
+	public Page findFrontTuanList(TuanInfoQry qry) {
+		StringBuffer hql = new StringBuffer("select t.tuanId from TbTuanInfo t order by t.createTime asc");
+		return super.baseDao.pagedQuery(hql.toString(), qry.getPageNo(), qry.getPageSize(), null);
+	}
+	
+	
 }

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.eh.base.dao.hibernate.Page;
 import com.eh.shop.admin.logic.GoodsLogic;
 import com.eh.shop.admin.web.qry.GoodsInfoQry;
+import com.eh.shop.entity.TbShopInfo;
 import com.eh.shop.front.cache.GoodsShort;
 import com.eh.shop.front.cache.ShopInfo;
 import com.eh.shop.front.logic.FrontCacheLogic;
@@ -68,6 +69,10 @@ public class ShopCtrl extends BaseFrontCtrl {
 	public ModelAndView introduce(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView("/jsp/shop/front/shop/introduce");
 		
+		Long shopId = super.getLong(request, "shopId", false);
+		TbShopInfo shop = goodsLogic.get(TbShopInfo.class, shopId);
+		//ShopInfo shop = frontCacheLogic.findShopInfo(shopId, false);
+		mav.addObject("shop", shop);		
 		return mav;
 	}
 	

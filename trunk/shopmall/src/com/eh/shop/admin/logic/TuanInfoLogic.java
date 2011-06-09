@@ -22,4 +22,11 @@ public interface TuanInfoLogic extends IBaseLogic {
 	 * @return
 	 */
 	public Page findPage(TuanInfoQry qry);
+	
+	/**
+	 * 前台查找团购信息
+	 * @param qry
+	 * @return
+	 */
+	public Page findFrontTuanList(TuanInfoQry qry);
 }

@@ -19,12 +19,12 @@ public class ProductCtrl extends BaseFrontCtrl {
 	
 	@Override
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView("/jsp/shop/front/product");
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/shop/product");
 		Long productId = super.getLong(request, "productId", true);
 		GoodsDetail product =frontCacheLogic.findGoodsDetail(productId,false);
 		ShopInfo shopInfo = frontCacheLogic.findShopInfo(product.getShopId(),false);
 		mav.addObject("product", product);
-		mav.addObject("shopInfo", shopInfo);
+		mav.addObject("shop", shopInfo);
 		return mav;
 	}
 

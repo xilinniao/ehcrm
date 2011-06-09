@@ -5,7 +5,7 @@ package com.eh.base.util;
 
 import java.lang.reflect.Field;
 
-import com.eh.shop.entity.*;
+import com.eh.shop.front.cache.TuanShort;
 
 /**
  * 
@@ -18,7 +18,7 @@ public class GetterSetterUtils {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//Class c = com.routdata.dm.equipment.queryFilter.ChangeQueryFilter.class;
-		Class c = TbGoodsInfoSub.class;
+		Class c = TuanShort.class;
 		Field[] fields = c.getDeclaredFields();
 		for(int i=0,len=fields.length-1;i<=len;i++){
 			if("java.lang.Double".equals(fields[i].getType().getName())){				

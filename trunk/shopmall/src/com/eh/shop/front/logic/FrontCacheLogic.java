@@ -10,6 +10,7 @@ import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.front.cache.GoodsDetail;
 import com.eh.shop.front.cache.GoodsShort;
 import com.eh.shop.front.cache.ShopInfo;
+import com.eh.shop.front.cache.TuanShort;
 import com.eh.shop.front.vo.GoodsCategoryVo;
 
 /**
@@ -49,4 +50,10 @@ public interface FrontCacheLogic extends IBaseLogic {
 	 * @return
 	 */
 	public Map<String,String> findHelpContent(String url);
+	/**
+	 * 查找团购信息
+	 * @param tuanId
+	 * @return
+	 */
+	public TuanShort findTuanShort(Long tuanId);
 }

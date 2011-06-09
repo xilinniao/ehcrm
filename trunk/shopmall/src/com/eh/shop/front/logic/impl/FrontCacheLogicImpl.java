@@ -17,11 +17,13 @@ import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsInfoSub;
 import com.eh.shop.entity.TbPageCategory;
 import com.eh.shop.entity.TbShopInfo;
+import com.eh.shop.entity.TbTuanInfo;
 import com.eh.shop.front.cache.GoodsCategory;
 import com.eh.shop.front.cache.GoodsDetail;
 import com.eh.shop.front.cache.GoodsShort;
 import com.eh.shop.front.cache.ImageUrl;
 import com.eh.shop.front.cache.ShopInfo;
+import com.eh.shop.front.cache.TuanShort;
 import com.eh.shop.front.logic.FrontCacheLogic;
 import com.eh.shop.front.vo.GoodsCategoryVo;
 
@@ -214,12 +216,31 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 				TbArticleInfo article = articleList.get(0);
 				data.put("title", article.getTitle());
 				data.put("content", article.getContent());
+				this.frontCache.put(new Element(key, data));
 				return data;
 			}else{
 				return null;
 			}
 		} else {
 			return (Map<String,String>) elm.getValue();
+		}
+	}	
+	
+	public TuanShort findTuanShort(Long tuanId) {
+		String key = "tuan_short" + tuanId;// 团购
+		Element elm = frontCache.get(key);
+		if (elm == null) {
+			TbTuanInfo tuan = super.baseDao.get(TbTuanInfo.class,tuanId);
+			TuanShort data = new TuanShort();
+			data.setTopicName(tuan.getTopicName());
+			data.setImageUrl(tuan.getFaceImage().getFilePathE());
+			data.setPrice(tuan.getPrice());
+			data.setDiscountPrice(tuan.getDiscountPrice());
+			data.setTuanId(tuanId);
+			this.frontCache.put(new Element(key, data));
+			return data;
+		} else {
+			return (TuanShort)elm.getValue();
 		}
 	}
 

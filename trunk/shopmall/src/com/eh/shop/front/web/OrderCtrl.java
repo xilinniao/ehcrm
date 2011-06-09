@@ -148,8 +148,9 @@ public class OrderCtrl extends BaseFrontCtrl {
 			main.setOrderStatus(Constants.ORDER_STATUS_CUST_INPUT);
 			main.setOrderTime(new Date());
 			this.orderLogic.addOrder(main, productIds, cnt);
+			
 			//移除COOKIE
-			CookieUtils.removeCookie(response,"cartitems");			
+			CookieUtils.removeCookie(response,"cartitems");
 			return new ModelAndView("/jsp/shop/front/checkout_success");
 		}else{
 			return super.gotoLogin(request);//按道理不会到这部，前台有判断是否登录操作
