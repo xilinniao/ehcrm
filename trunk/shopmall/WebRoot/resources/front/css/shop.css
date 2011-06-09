@@ -559,3 +559,202 @@ background: url(../images/icon/price_icon.png) no-repeat;
 .page_bottom .page_skip{color:#999;width:auto}
 .page_bottom .page_skip input{border:1px solid #999;font-family:Arial,SimSun;height:18px;margin:0 5px;text-align:center;vertical-align:top;width:30px}
 .page_bottom .page_skip button{background-position:-134px -112px;border:0 none;cursor:pointer;height:19px;margin:0 0 0 5px;overflow:hidden;text-indent:-999px;width:37px}
+
+
+.shop_pord_catalog ul
+li
+{
+	display: block;
+	height: 24px;
+	line-height: 24px;
+	overflow: hidden;
+	padding-left: 15px;
+	width: 130px;
+}
+.shop_pord_catalog ul
+li.c_1
+{
+	background-position: 0px -295px;
+}
+.shop_pord_catalog ul
+li.c_2
+{
+	background-position: 0px -324px;
+}
+.shop_pord_catalog ul
+li.c_n
+{
+	background-position: -10000px -10000px;
+	color: #333;
+}
+.shop_pord_catalog ul li.c_n
+a
+{
+	color: #666;
+	text-decoration: none;
+}
+.shop_pord_catalog ul li.c_n a:hover
+{
+	color: #666;
+	text-decoration: underline;
+}
+
+.shop_i_l_tit .p_x_nav {
+float: left;
+width: 600px;
+height: 28px;
+color: #333;
+overflow: hidden;
+}
+.shop_i_l_tit .p_x_nav ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+.shop_i_l_tit .p_x_nav ul li.t {
+margin-right: 5px;
+background: none;
+}
+
+div.tel{
+	color:green;
+	font-weight:bold;
+	font-size:18px;
+	padding:5px 0px;
+	overflow: hidden;
+	width:110px;
+}
+
+.shop_introduce_i {
+margin-bottom: 10px;
+padding: 0 0 20px;
+width: 980px;
+text-align: center;
+border: 1px solid #DDD;
+overflow: hidden;
+}
+
+.shop_introduce_i .shop_t_name {
+padding-top: 5px;
+height: 55px;
+text-align: center;
+border-bottom: 1px solid #DDD;
+}
+.shop_introduce_i .shop_t_name h1 {
+margin: 0;
+padding: 0;
+height: 30px;
+line-height: 30px;
+color: #F60;
+font-size: 24px;
+font-weight: normal;
+text-align: center;
+display: block;
+overflow: hidden;
+}
+
+.shop_introduce_i .shop_b_infos {
+margin: 0 auto;
+padding: 10px 0 10px;
+width: 920px;
+border-bottom: 1px solid #DDD;
+overflow: hidden;
+clear: both;
+}
+.shop_introduce_i .shop_b_infos .info_nav {
+float: left;
+padding-left: 60px;
+width: 400px;
+color: #333;
+text-align: left;
+overflow: hidden;
+}
+.shop_introduce_i .shop_b_infos .info_nav .t_tit {
+height: 30px;
+line-height: 30px;
+color: #333;
+font-weight: bold;
+display: block;
+}
+.shop_introduce_i .shop_b_infos .info_nav .l_i_i {
+height: 30px;
+line-height: 30px;
+color: #333;
+display: block;
+overflow: hidden;
+}
+.shop_introduce_i .shop_b_infos .info_nav {
+float: left;
+padding-left: 60px;
+width: 400px;
+color: #333;
+text-align: left;
+overflow: hidden;
+}
+.shop_introduce_i .shop_b_infos .info_nav .t_tit {
+height: 30px;
+line-height: 30px;
+color: #333;
+font-weight: bold;
+display: block;
+}
+.shop_introduce_i .shop_b_infos .info_nav .l_i_i {
+height: 30px;
+line-height: 30px;
+color: #333;
+display: block;
+overflow: hidden;
+}
+.shop_introduce_i .des_words_con {
+padding: 15px 30px 0;
+width: 898px;
+color: #333;
+font-size: 12px;
+line-height: 24px;
+text-align: left;
+overflow: hidden;
+}
+.shop_introduce_i .des_words_con p {
+margin: 0;
+padding: 0;
+font-size: 12px;
+line-height: 24px;
+text-indent: 2em;
+}
+
+#pager ul.pages {
+	display: block;
+	float: right;
+	margin: 3px;
+	text-transform: uppercase;
+	font-size: 12px;
+	border: none;
+}
+
+#pager ul.pages li {
+	list-style: none;
+	float: left;	
+	margin: 0px 5px 0px 0px;
+	font-weight:700;
+	color:#005BAC;
+	cursor: pointer;
+	text-decoration: none;
+	padding:4px 8px;
+	border: 1px solid #cccccc;
+	
+}
+
+#pager ul.pages li:hover {
+	background-color:#FFEEE5;border:1px solid #F50;color:#F50;font-weight:800;
+}
+
+#pager ul.pages li.pgEmpty {
+	color: #cfcfcf;
+	cursor: default;
+	border: 1px solid #cfcfcf;
+	padding:4px 8px;
+}
+
+#pager ul.pages li.pgCurrent {
+	background-color:#FFEEE5;border:1px solid #F50;color:#F50;font-weight:700;display:inline-block;
+}
