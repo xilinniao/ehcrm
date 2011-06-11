@@ -7,7 +7,6 @@ import com.eh.shop.entity.TbShopInfo;
 public class BaseShopAdminCtrl extends BaseCtrl {
 	/**
 	 * 判断是否是你所拥有的店铺
-	 * 
 	 * @param info
 	 * @param userInfo
 	 * @return
