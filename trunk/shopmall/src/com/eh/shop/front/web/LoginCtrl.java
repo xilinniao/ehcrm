@@ -5,17 +5,13 @@ package com.eh.shop.front.web;
 
 import java.net.URLEncoder;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import net.sf.json.JSONObject;
 import nl.captcha.Captcha;
-
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,7 +58,13 @@ public class LoginCtrl extends BaseFrontCtrl {
 			mav.addObject("custInfo", custInfo);
 			return mav;
 		}else{
-			//模拟一次登陆
+			//模拟一次登陆			
+			session.setAttribute(Constants.SESSION_NAME_FRONT, custInfo);		
+			//写cookie资料
+			Cookie loginMemberUsernameCookie = new Cookie(Constants.LOGIN_USERNAME_COOKIE_NAME_FRONT,URLEncoder.encode(custInfo.getCustCode(),"utf-8"));
+			loginMemberUsernameCookie.setPath("/");
+			response.addCookie(loginMemberUsernameCookie);
+			
 			return new ModelAndView("/jsp/shop/front/cust_reg_success");//返回成功页面
 		}
 	}
@@ -120,8 +122,6 @@ public class LoginCtrl extends BaseFrontCtrl {
 			super.renderJsonSuccess(response, "登录成功");
 		}else{
 			super.renderJsonError(response, "用户名或密码错误");
-			/*super.addErrors(request, "用户名或密码错误");
-			return new ModelAndView("/jsp/shop/front/login");*/
 		}
 		return null;
 	}
@@ -181,6 +181,10 @@ public class LoginCtrl extends BaseFrontCtrl {
 			return super.gotoLogin(request);
 		}
 	}
+	
+	
+	
+	
 
 	/**
 	 * @return the custInfoLogic

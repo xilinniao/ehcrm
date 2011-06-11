@@ -95,7 +95,7 @@ public class UserCtrl extends BaseCtrl {
 		if(userId.longValue()==Long.valueOf(-99)){
 			entity = new TbUserInfo();
 			super.bindObject(request, entity);
-			entity.setStatus(Long.valueOf(0));
+			entity.setStatus(Constants.YES);
 			Long deptId = super.getLong(request, "deptId", false);
 			DeptInfo dept = this.userLogic.get(DeptInfo.class, deptId);
 			entity.setDept(dept);

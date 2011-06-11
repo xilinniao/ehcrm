@@ -38,7 +38,9 @@ public class ShopLoginCtrl extends BaseFrontCtrl {
 	    String authcode = super.getString(request, "authcode", false);
 	    ShopRegVo reg = new ShopRegVo();
 		super.bindObject(request, reg);
-	    if(!captcha.isCorrect(StringUtils.trim(authcode))){
+		if(captcha==null){
+			super.addErrors(request, "验证码不正确，请重新输入验证码");
+		}else if(!captcha.isCorrect(StringUtils.trim(authcode))){
 	    	super.addErrors(request, "验证码不正确，请重新输入验证码");
 	    }else{			
 			String result = this.shopLogic.saveCreateShopInfo(reg);
@@ -50,7 +52,7 @@ public class ShopLoginCtrl extends BaseFrontCtrl {
 		//是否存在ERROR
 		if(super.hasErrors(request)){
 			ModelAndView mav = new ModelAndView("/jsp/shop/front/shop_reg");//返回注册页面
-			mav.addObject("custInfo", reg);
+			mav.addObject("reg", reg);
 			return mav;
 		}else{			
 			return new ModelAndView("/jsp/shop/front/shop_reg_success");//返回成功页面

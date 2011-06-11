@@ -12,6 +12,7 @@ public class TbRoleInfo  implements java.io.Serializable {
 
      private Long roleId;
      private TbRoleInfo parent;
+     private String roleCode;
      private String roleName;
      private String roleDesc;
      private Long status;
@@ -94,6 +95,16 @@ public class TbRoleInfo  implements java.io.Serializable {
     public void setTreeNo(String treeNo) {
         this.treeNo = treeNo;
     }
+
+
+	public String getRoleCode() {
+		return roleCode;
+	}
+
+
+	public void setRoleCode(String roleCode) {
+		this.roleCode = roleCode;
+	}
    
 
 
