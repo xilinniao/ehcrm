@@ -32,7 +32,7 @@ $(document).ready(function() {
 		imageBtnClose: '<%=path %>/resources/front/images/lightbox-btn-close.gif',
 		imageBtnPrev: '<%=path %>/resources/front/images/lightbox-btn-prev.gif',
 		imageBtnNext: '<%=path %>/resources/front/images/lightbox-btn-next.gif'
-	});	
+	});
 	
 	$.addGoodsHistory = function(goodsid){
 		var historyproduct = $.cookie('goodsHistoryList');

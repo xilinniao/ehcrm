@@ -100,7 +100,7 @@
 			<h5>还不是抚州购物商城用户？</h5>
 			<div class="content">现在免费注册成为抚州购物商城用户，注册还有积分赠送哦，现在注册就送500积分(100积分=1元)。</div>
 			<a href="<%=path%>/front/login.xhtml?method=custreg" class="btn-link btn-personal">注册新用户</a>
-			<div class="btns"><a href="registcompany.aspx">商铺加盟</a></div>
+			<div class="btns"><a href="<%=path%>/help/topic-joinus.html">商铺加盟</a></div>
 		</div>
 		<!--[if !ie]>guide end<![endif]-->
 			

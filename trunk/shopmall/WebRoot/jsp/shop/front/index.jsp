@@ -26,7 +26,7 @@
 			<div class="mc">
 				<div id="shopapply">				
 		        	<a id="shopreg" href="/">商铺注册</a>
-		        	<a id="shopenter" href="#none">店铺管理</a>
+		        	<a id="shopenter" href="<%=path%>/index.jsp">店铺管理</a>
 				</div>
                    <ul>
 	                   <li class="fore">
