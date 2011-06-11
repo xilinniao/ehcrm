@@ -18,7 +18,7 @@
 			<column name="SHOP_NAME" length="300" not-null="true" />
 		</property>
 		<property name="shopDesc" type="java.lang.String">
-			<column name="SHOP_DESC" length="300" not-null="true" />
+			<column name="SHOP_DESC" length="65535"/>
 		</property>
 		<property name="keyword" type="java.lang.String">
 			<column name="SHOP_KEYWORD" length="300" />

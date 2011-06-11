@@ -11,6 +11,7 @@ import com.eh.base.dao.jdbc.BaseJdbcDao;
 import com.eh.base.entity.TbMenuInfo;
 import com.eh.base.entity.TbUserInfo;
 import com.eh.base.logic.BaseLogic;
+import com.eh.base.util.Constants;
 import com.eh.base.vo.UserInfo;
 /**
  * 登录验证类
@@ -37,7 +38,7 @@ public class LoginLogicImpl extends BaseLogic implements LoginLogic{
 			return sessionInfo;
 		}else{
 			TbUserInfo user = userList.get(0);
-			if(user.getStatus().longValue()==Long.valueOf(1)){
+			if(user.getStatus().longValue()==Constants.NO.longValue()){
 				sessionInfo.setCheckResult("用户已被禁用，请联系管理员");
 				return sessionInfo;
 			}else{
