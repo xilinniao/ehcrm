@@ -1,9 +1,14 @@
 package com.eh.shop.admin.logic.impl;
 
+import java.util.Date;
+
 import com.eh.base.logic.BaseLogic;
 import com.eh.base.util.Constants;
 import com.eh.shop.admin.logic.GoodsQaLogic;
+import com.eh.shop.entity.TbCustInfo;
+import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsQa;
+import com.eh.shop.front.vo.CustInfo;
 
 public class GoodsQaLogicImpl extends BaseLogic implements GoodsQaLogic {
 	/**
@@ -17,4 +22,23 @@ public class GoodsQaLogicImpl extends BaseLogic implements GoodsQaLogic {
 		super.save(entity);
 		return null;
 	}
+	
+	/**
+	 * 增加咨询内容
+	 */
+	public String addGoodsQa(CustInfo cust, String question, Long goodsId) {
+		TbCustInfo custInfo = super.baseDao.get(TbCustInfo.class, cust.getCustId());
+		TbGoodsInfo goods = super.baseDao.get(TbGoodsInfo.class, goodsId);
+		TbGoodsQa qa = new TbGoodsQa();
+		qa.setQuestion(question);
+		qa.setCreateTime(new Date());
+		qa.setIsPublish(Constants.NO);
+		qa.setCustInfo(custInfo);
+		qa.setGoods(goods);
+		qa.setShopInfo(goods.getShopInfo());
+		super.save(qa);
+		return null;
+	}
+	
+	
 }

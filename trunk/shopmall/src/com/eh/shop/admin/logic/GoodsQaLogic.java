@@ -2,6 +2,7 @@ package com.eh.shop.admin.logic;
 
 import com.eh.base.logic.IBaseLogic;
 import com.eh.shop.entity.TbGoodsQa;
+import com.eh.shop.front.vo.CustInfo;
 
 /**
  *
@@ -13,4 +14,12 @@ public interface GoodsQaLogic extends IBaseLogic {
 	 * @return
 	 */
 	public String saveGoodsQa(TbGoodsQa entity);
+	/**
+	 * 
+	 * @param cust
+	 * @param question
+	 * @param goodsId
+	 * @return
+	 */
+	public String addGoodsQa(CustInfo cust,String question,Long goodsId);
 }
