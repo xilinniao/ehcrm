@@ -22,8 +22,13 @@ $(document).ready(function() {
 	$("ul.tab li").click(function() {
 		$("ul.tab li").removeClass("curr"); //Remove any "active" class
 		$(this).addClass("curr"); //Add "active" class to selected tab
-		$(".tab_content").hide(); //Hide all tab content
-		$('#detail'+'_'+$("ul.tab li").index($(this))).fadeIn();
+		var idx = $("ul.tab li").index($(this));
+		if(idx == 0){
+			$(".tab_content").show();
+		}else{
+			$(".tab_content").hide(); //Hide all tab content
+			$('#detail'+'_'+idx).fadeIn();
+		}
 		return false;
 	});
 	
@@ -200,19 +205,19 @@ $(document).ready(function() {
 			</li>
 		</ul>
 		
-		<span class="clr"></span>
+		<span class="clr10"></span>
 		
 		<div class="m" id="detail">
 				<ul class="tab">
 					<li class="curr">商品介绍<span></span></li>
 					<li>商品评论<span></span></li>
-					<li>商家问答<span></span></li>
+					<li>商家咨询<span></span></li>
 				</ul>
 				<div class="tab_content" id="detail_0" style="display: none;">
 						${product.goodsDesc }
 				</div><!--tabcon end-->
-				<div class="tab_content" id="detail_1" style="display: block; ">
-                   <div id="i-comment">
+				<div class="tab_content" id="detail_1">
+                   <!--<div id="i-comment">
                    		<div class="rate">
 							<strong>94%</strong> <br> 好评度 
                    		</div>
@@ -246,46 +251,38 @@ $(document).ready(function() {
 								<a href="http://club.360buy.com/review/346474-1-1.html" target="_blank">查看全部评价</a>
 							</div>
 						</div>
-					</div><!-- end of i-comment -->
+					</div>--><!-- end of i-comment -->
 					
 					<div id="comment">
+						<div class="prod_ot_item_tit spzx">商品评论</div>
 						<c:forEach var="x" begin="1" end="9" step="1">
 						<div class="i-item">
 							<div class="o-topic">
-								<strong class="topic">
-									这个确实不错
-								</strong>
+								
 								<span class="star sa5"></span>
 								<span class="date-comment">2011-03-23 23:43</span>
 							</div>
 							<div class="comment-content">
-								<dl> 
-									<dt>优点：</dt> 
-									<dd> 看着很不错。</dd> 
-								</dl> 
-								<dl> 
-									<dt>不足：</dt> 
-									<dd> 底座不能升降 这点不够</dd> 
-								</dl>  
-								<dl> 
-									<dt>使用心得：</dt> 
-									<dd> 海信还是值得信赖的，呵呵&nbsp;够清晰&nbsp;够轻巧&nbsp;够犀利&nbsp;薄啊.....</dd> 
-								</dl> 
+								海信还是值得信赖的，呵呵&nbsp;够清晰&nbsp;够轻巧&nbsp;够犀利&nbsp;薄啊.....
 							</div>
-						</div><!-- end of i-item -->						
+						</div><!-- end of i-item -->			
 						<div class="corner tl"> </div>
 						<div class="corner tr"> </div>
 						<div class="corner b"> </div>
 						<div class="corner bl"> </div>
 						<div class="corner br"> </div>
 						<div class="clr5"></div>
-						</c:forEach>
-						
+						</c:forEach>						
 					</div>
 				</div><!--tabcon end-->
-				<div class="tab_content" id="detail_2" style="display: none; ">
-                  	商品咨询
-				</div><!--tabcon end-->
+				<div class="tab_content" id="detail_2">
+					<div class="prod_ot_item_tit spzx">商品咨询</div>
+					<div id="consult">
+                  	<div class="item">        <div class="user">            <span class="u-name">网友：yyfa2055</span>             <!--<span class="u-level" name="yyfa2055"></span>-->             <span class="u-level"><font style="color:#999999"> 注册会员 </font></span>             <span class="date-ask">2011-06-01 12:34</span>        </div>        <dl class="ask">            <dt><b></b>咨询内容：</dt>            <dd>                这个床可以拆卸吗，装在汽车后备箱内</dd>        </dl>        <dl class="answer">            <dt><b></b>京东回复：</dt>            <dd>                <div class="content">                    您好！可以的，感谢您对京东的支持！祝您购物愉快！</div>                <div class="date-answer">                    2011-06-01 13:22</div>            </dd>        </dl>        <div id="7481813" class="useful">            您对我们的回复： <a name="2" href="javascript:void(0)" class="btn-pleased">满意</a> (<span>0</span>)&nbsp;&nbsp;            <a name="4" href="javascript:void(0)" class="btn-unpleased">不满意</a> (<span>0</span>)        </div>    </div>
+                  	<div class="item odd">        <div class="user">            <span class="u-name">网友：堂宝宝</span>             <!--<span class="u-level" name="ypwanyy"></span>-->             <span class="u-level"><font style="color:#088000"> 金牌会员 </font></span>             <span class="date-ask">2011-04-19 11:29</span>        </div>        <dl class="ask">            <dt><b></b>咨询内容：</dt>            <dd>                我想问问这款婴儿床里配有床垫吗？没有床垫的话没法睡啊。另外所包含的配件都有哪些啊？</dd>        </dl>        <dl class="answer">            <dt><b></b>京东回复：</dt>            <dd>                <div class="content">                    您好！可以买同品牌的床垫，床垫暂时没有货，床的配件有一对床头，一对护栏一个床板，四个轱辘,感谢您对京东的支持！祝您购物愉快！</div>                <div class="date-answer">                    2011-04-19 17:11</div>            </dd>        </dl>        <div id="6997266" class="useful">            您对我们的回复： <a name="2" href="javascript:void(0)" class="btn-pleased">满意</a> (<span>0</span>)&nbsp;&nbsp;            <a name="4" href="javascript:void(0)" class="btn-unpleased">不满意</a> (<span>0</span>)        </div>    </div>
+					</div>
+				</div><!--tabcon end-->				
+				
 			</div><!-- end of detail -->
 	
 	</div>
