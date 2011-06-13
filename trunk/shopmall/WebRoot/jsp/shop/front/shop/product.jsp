@@ -101,6 +101,50 @@ $(document).ready(function() {
 	$("#goodsButton").click(function(){
 		$.addCartItem('${product.goodsId}',$quantity.val());
 	});
+	
+	$('#product_login').click(function() {
+		$.showLoginWindow();
+		return false;
+	})
+	
+	$('#id_l_message_submit').click(function() {
+		if($.trim($('#question').val())==''){
+			$.dialog({type: "warn", content: "请输入咨询内容", width: 360, modal: true, autoCloseTime: 3000});
+			return false;
+		}		
+		if(!$.memberVerify()){
+			$.showLoginWindow();
+			return false;
+		}else{
+			$l_message_form = $('#l_message')
+			$.ajax({
+				type: "POST",
+				url: shop_constant.base+"/front/product.xhtml?method=onAddqa",
+				dataType: "json",
+				data: $l_message_form.serialize(),
+				beforeSend: function() {
+					$l_message_form.find("button").attr("disabled", true);
+				},
+				success: function(data) {
+					if (data.status == "success") {
+						$.dialog({type: "success", content: data.message, width: 360, modal: true, autoCloseTime: 3000});
+						$('#question').val('');
+					}
+				},
+				complete: function() {
+					$l_message_form.find("button").attr("disabled", false);
+				}
+			});
+		}
+	});
+	
+	$('#id_l_message_clear').click(function() {
+		$('#question').val('');
+	});
+	
+	if($.memberVerify()){
+		$('#show_login_area').hide();
+	}
 });
 //-->
 </script>
@@ -278,10 +322,72 @@ $(document).ready(function() {
 				<div class="tab_content" id="detail_2">
 					<div class="prod_ot_item_tit spzx">商品咨询</div>
 					<div id="consult">
-                  	<div class="item">        <div class="user">            <span class="u-name">网友：yyfa2055</span>             <!--<span class="u-level" name="yyfa2055"></span>-->             <span class="u-level"><font style="color:#999999"> 注册会员 </font></span>             <span class="date-ask">2011-06-01 12:34</span>        </div>        <dl class="ask">            <dt><b></b>咨询内容：</dt>            <dd>                这个床可以拆卸吗，装在汽车后备箱内</dd>        </dl>        <dl class="answer">            <dt><b></b>京东回复：</dt>            <dd>                <div class="content">                    您好！可以的，感谢您对京东的支持！祝您购物愉快！</div>                <div class="date-answer">                    2011-06-01 13:22</div>            </dd>        </dl>        <div id="7481813" class="useful">            您对我们的回复： <a name="2" href="javascript:void(0)" class="btn-pleased">满意</a> (<span>0</span>)&nbsp;&nbsp;            <a name="4" href="javascript:void(0)" class="btn-unpleased">不满意</a> (<span>0</span>)        </div>    </div>
-                  	<div class="item odd">        <div class="user">            <span class="u-name">网友：堂宝宝</span>             <!--<span class="u-level" name="ypwanyy"></span>-->             <span class="u-level"><font style="color:#088000"> 金牌会员 </font></span>             <span class="date-ask">2011-04-19 11:29</span>        </div>        <dl class="ask">            <dt><b></b>咨询内容：</dt>            <dd>                我想问问这款婴儿床里配有床垫吗？没有床垫的话没法睡啊。另外所包含的配件都有哪些啊？</dd>        </dl>        <dl class="answer">            <dt><b></b>京东回复：</dt>            <dd>                <div class="content">                    您好！可以买同品牌的床垫，床垫暂时没有货，床的配件有一对床头，一对护栏一个床板，四个轱辘,感谢您对京东的支持！祝您购物愉快！</div>                <div class="date-answer">                    2011-04-19 17:11</div>            </dd>        </dl>        <div id="6997266" class="useful">            您对我们的回复： <a name="2" href="javascript:void(0)" class="btn-pleased">满意</a> (<span>0</span>)&nbsp;&nbsp;            <a name="4" href="javascript:void(0)" class="btn-unpleased">不满意</a> (<span>0</span>)        </div>    </div>
+	                  	<div class="item">
+							<div class="user">
+								<span class="u-name">网友：yyfa2055</span>
+								<span class="date-ask">2011-06-01 12:34</span>
+							</div>
+							<dl class="ask">
+								<dt><b></b>咨询内容：</dt>
+								<dd>这个床可以拆卸吗，装在汽车后备箱内</dd>
+							</dl>
+							<dl class="answer">
+								<dt><b></b>京东回复：</dt>
+								<dd>
+								<div class="content">您好！可以的，感谢您对京东的支持！祝您购物愉快！</div>
+								<div class="date-answer">2011-06-01 13:22</div>
+								</dd>
+							</dl>
+							<div id="7481813" class="useful">您对我们的回复： 
+								<a name="2" href="javascript:void(0)" class="btn-pleased">满意</a> (<span>0</span>)&nbsp;&nbsp;
+								<a name="4" href="javascript:void(0)" class="btn-unpleased">不满意</a> (<span>0</span>)
+							</div>
+						</div>
+						
+						<div class="item odd">
+							<div class="user">
+								<span class="u-name">网友：yyfa2055</span>
+								<span class="date-ask">2011-06-01 12:34</span>
+							</div>
+							<dl class="ask">
+								<dt><b></b>咨询内容：</dt>
+								<dd>这个床可以拆卸吗，装在汽车后备箱内</dd>
+							</dl>
+							<dl class="answer">
+								<dt><b></b>京东回复：</dt>
+								<dd>
+								<div class="content">您好！可以的，感谢您对京东的支持！祝您购物愉快！</div>
+								<div class="date-answer">2011-06-01 13:22</div>
+								</dd>
+							</dl>
+							<div id="7481813" class="useful">您对我们的回复： 
+								<a name="2" href="javascript:void(0)" class="btn-pleased">满意</a> (<span>0</span>)&nbsp;&nbsp;
+								<a name="4" href="javascript:void(0)" class="btn-unpleased">不满意</a> (<span>0</span>)
+							</div>
+						</div><!--end of item-->
 					</div>
-				</div><!--tabcon end-->				
+					
+					<div class="clr10"></div>
+					
+					<div class="prod_d_l_reply spzx">
+						<div class="e_info" id="show_login_area">您需要先<a href="javascript:;" title="会员登录" id="product_login">登录</a>,才能向商家提问！<a href="<%=path%>/front/common/custreg.html">免费注册</a></div>
+						<div class="r_form_bar">
+								<form action="<%=path %>/front/product.xhtml?method=onAddqa" id="l_message" name="l_message" method="post">
+								<input type="hidden" name="goodsId" value="${product.goodsId}"/>
+								<table cellpadding="0" cellspacing="0">
+								<tbody>
+								<tr><th>向商家提问：</th>
+										<td>
+												<textarea id="question" name="question"></textarea><br>
+				 								<input id="id_l_message_submit" class="o_btn" type="button" value="提交">
+				 								<input class="o_btn" id="id_l_message_clear" type="reset" value="清空">
+										</td>
+								</tr>
+								</tbody></table>
+								</form>
+						</div>
+					</div>
+				</div><!--tabcon end-->
 				
 			</div><!-- end of detail -->
 	
