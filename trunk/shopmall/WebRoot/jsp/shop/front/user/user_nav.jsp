@@ -19,7 +19,7 @@
     </ul>
     <h3>服务中心</h3>
     <ul class="margin_b6">
-        <li><a href="user_spzx.aspx">购买咨询</a></li>
+        <li><a href="user.xhtml?method=qaList">购买咨询</a></li>
         <li><a href="complaint.aspx">我的投诉</a></li>
         <li><a href="Repairs.aspx">售后服务</a></li>
         <li><a href="user_jubao.aspx">我的举报</a></li>
