@@ -41,9 +41,10 @@
 		<div id="search" class="form">
 			<div id="i-search">
 				<input type="text" id="goodsKeyword" name="goodsKeyword" value="" autocomplete="off" onkeydown="javascript:if(event.keyCode==13) search('key');">
-				<ul id="tie" class="hide"></ul>
 			</div>
+			
 			<input type="submit" value="搜&nbsp;索" id="btn-search" onclick="search('key');return false;">
+			
 		</div>
 		<!-- 
 		<div id="hotwords">
@@ -57,11 +58,6 @@
 				<a href="<%=path %>/front/order.xhtml?method=shoppingcart">购物车<b id="mycart-amount">0</b>件</a>
 				<div id="o-mycart-list" class="hide" style="display: none; ">
 					<div id="mycart-list">
-<!-- 
-						<div class="item"><dl><dt class="p-img"><a href="http://www.360buy.com/product/334965.html" target="_blank"><img src="http://img10.360buyimg.com/n5/1127/0c8148e5-dfb1-4dae-9b4c-408ebce2b2ce.jpg" alt="和瓷富贵满堂盘HCQ7031青花" onerror="this.src='http://www.360buy.com/images/none/none_50.gif'"></a></dt><dd class="p-name"><a href="http://www.360buy.com/product/334965.html">和瓷富贵满堂盘HCQ7031青花</a></dd><dd class="extra"><strong>￥199.00×1</strong><br><a id="334965" name="RemoveProduct" href="#none">删除</a></dd></dl></div>
-						<div class="item"><dl><dt class="p-img"><a href="http://www.360buy.com/product/334965.html" target="_blank"><img src="http://img10.360buyimg.com/n5/1127/0c8148e5-dfb1-4dae-9b4c-408ebce2b2ce.jpg" alt="和瓷富贵满堂盘HCQ7031青花" onerror="this.src='http://www.360buy.com/images/none/none_50.gif'"></a></dt><dd class="p-name"><a href="http://www.360buy.com/product/334965.html">和瓷富贵满堂盘HCQ7031青花</a></dd><dd class="extra"><strong>￥199.00×1</strong><br><a id="334965" name="RemoveProduct" href="#none">删除</a></dd></dl></div>
-						<div class="norecode ac">您的购物车中暂无商品，赶快选择心爱的商品吧！</div>
--->
 					</div>
 				</div>
 			</li>
