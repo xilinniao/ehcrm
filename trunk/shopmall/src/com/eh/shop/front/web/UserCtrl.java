@@ -11,10 +11,13 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.eh.base.dao.hibernate.Page;
 import com.eh.shop.admin.logic.CustAddrLogic;
+import com.eh.shop.admin.logic.GoodsQaLogic;
 import com.eh.shop.admin.logic.OrderLogic;
+import com.eh.shop.admin.web.qry.GoodsQaQry;
 import com.eh.shop.admin.web.qry.OrderQry;
 import com.eh.shop.entity.TbCustAddr;
 import com.eh.shop.entity.TbCustInfo;
+import com.eh.shop.entity.TbGoodsQa;
 import com.eh.shop.front.vo.CustInfo;
 
 /**
@@ -31,6 +34,10 @@ public class UserCtrl extends BaseFrontCtrl {
 	 * 客户地址
 	 */
 	CustAddrLogic custAddrLogic;
+	/**
+	 * 商品咨询
+	 */
+	GoodsQaLogic goodsQaLogic;
 	/**
 	 * 用户中心
 	 * @param request
@@ -161,6 +168,62 @@ public class UserCtrl extends BaseFrontCtrl {
 	}
 	
 	/**
+	 * 咨询列表
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView qaList(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/front/user/qa_list");
+		CustInfo custInfo = super.getCustInfo(request);
+		GoodsQaQry qry = new GoodsQaQry();
+		qry.setCustId(custInfo.getCustId());
+		Page qaList = this.goodsQaLogic.findPage(qry);
+		mav.addObject("qaList", qaList);
+		return mav;
+	}
+	
+	/**
+	 * 编辑咨询
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView editQa(HttpServletRequest request,HttpServletResponse response) throws Exception {		
+		Long qaId = super.getLong(request, "qaId", false);
+		CustInfo custInfo = super.getCustInfo(request);
+		TbGoodsQa qa = this.custAddrLogic.get(TbGoodsQa.class, qaId);
+		if(qa!=null&&qa.getCustInfo().getCustId().longValue()==custInfo.getCustId().longValue()){
+			ModelAndView mav =  new ModelAndView("/jsp/shop/front/user/edit_qa");
+			mav.addObject("qa", qa);
+			return mav;
+		}else{
+			super.addErrors(request, "非法操作");
+			ModelAndView mav = new ModelAndView(FRONT_ERROR_URL);
+			return mav;
+		}
+	}
+	
+	public ModelAndView onEditQa(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		Long qaId = super.getLong(request, "qaId", false);
+		CustInfo custInfo = super.getCustInfo(request);
+		TbGoodsQa qa = this.custAddrLogic.get(TbGoodsQa.class, qaId);
+		if(qa!=null&&qa.getCustInfo().getCustId().longValue()==custInfo.getCustId().longValue()){
+			super.bindObject(request, qa);
+			this.custAddrLogic.save(qa);
+			ModelAndView mav = new ModelAndView(new RedirectView("user.xhtml?method=qaList&msg=ok"));
+			return mav;
+		}else{
+			ModelAndView mav = new ModelAndView(FRONT_ERROR_URL);
+			super.addErrors(request, "非法操作");
+			return mav;
+		}
+	}
+	
+	
+	/**
 	 * @return the orderLogic
 	 */
 	public OrderLogic getOrderLogic() {
@@ -181,5 +244,14 @@ public class UserCtrl extends BaseFrontCtrl {
 	public void setCustAddrLogic(CustAddrLogic custAddrLogic) {
 		this.custAddrLogic = custAddrLogic;
 	}
+
+	public GoodsQaLogic getGoodsQaLogic() {
+		return goodsQaLogic;
+	}
+
+	public void setGoodsQaLogic(GoodsQaLogic goodsQaLogic) {
+		this.goodsQaLogic = goodsQaLogic;
+	}
+	
 	
 }

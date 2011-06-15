@@ -48,7 +48,8 @@ public class ProductCtrl extends BaseFrontCtrl {
 		CustInfo cust = super.getCustInfo(request);
 		Long goodsId = super.getLong(request, "goodsId", false);
 		String question = super.getString(request, "question", false);
-		String result = this.goodsQaLogic.addGoodsQa(cust, question, goodsId);		
+		String result = this.goodsQaLogic.addGoodsQa(cust, question, goodsId);
+		super.renderJsonSuccess(response, "商品咨询信息保存成功！");
 		return null;
 	}
 	
