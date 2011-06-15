@@ -2,9 +2,14 @@ package com.eh.shop.admin.logic.impl;
 
 import java.util.Date;
 
+import org.hibernate.Criteria;
+
+import com.eh.base.dao.hibernate.Page;
 import com.eh.base.logic.BaseLogic;
 import com.eh.base.util.Constants;
+import com.eh.base.util.CriteriaUtil;
 import com.eh.shop.admin.logic.GoodsQaLogic;
+import com.eh.shop.admin.web.qry.GoodsQaQry;
 import com.eh.shop.entity.TbCustInfo;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbGoodsQa;
@@ -38,6 +43,13 @@ public class GoodsQaLogicImpl extends BaseLogic implements GoodsQaLogic {
 		qa.setShopInfo(goods.getShopInfo());
 		super.save(qa);
 		return null;
+	}
+	
+	public Page findPage(GoodsQaQry qry) {
+		Criteria criteria = super.baseDao.createCriteria(TbGoodsQa.class);
+		criteria.createAlias("custInfo", "c");
+		CriteriaUtil.addEq(criteria, "c.custId", qry.getCustId());		
+		return super.baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 	
 	

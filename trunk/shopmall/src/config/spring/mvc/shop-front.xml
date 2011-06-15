@@ -37,6 +37,7 @@
    	<bean name="productCtrl" class="com.eh.shop.front.web.ProductCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="frontCacheLogic" ref="frontCacheLogic"/>
+        <property name="goodsQaLogic" ref="goodsQaLogic"/>
    	</bean>
    	
    	<bean name="frontAjaxCtrl" class="com.eh.shop.front.web.FrontAjaxCtrl">
@@ -68,6 +69,7 @@
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="orderLogic" ref="orderLogic"/>
         <property name="custAddrLogic" ref="custAddrLogic"/>
+        <property name="goodsQaLogic" ref="goodsQaLogic"/>
    	</bean>
    	
    	<bean name="frontHelpCtrl" class="com.eh.shop.front.web.HelpCtrl">
