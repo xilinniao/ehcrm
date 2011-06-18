@@ -145,7 +145,59 @@ $(document).ready(function() {
 	if($.memberVerify()){
 		$('#show_login_area').hide();
 	}
+	
 });
+
+var setAmount={
+    min:1,
+    max:999,
+    reg:function(x){
+        return new RegExp("^[1-9]\\d*$").test(x);
+    },
+    amount:function(obj,mode){
+        var x=$(obj).val();
+        if (this.reg(x)){
+            if (mode){
+                x++;
+            }else{
+                x--;
+            }
+        }else{
+            alert("请输入正确的数量！");
+            $(obj).val(1);
+            $(obj).focus();
+        }
+        return x;                       
+    },
+    reduce:function(obj){
+        var x=this.amount(obj,false);
+        if (x>=this.min){
+            $(obj).val(x);
+        }else{
+            alert("商品数量最少为"+this.min);
+            $(obj).val(1);
+            $(obj).focus();
+        }
+    },
+    add:function(obj){
+        var x=this.amount(obj,true);
+        if (x<=this.max){
+            $(obj).val(x);
+        }else{
+            alert("商品数量最多为"+this.max);
+            $(obj).val(999);
+            $(obj).focus();
+        }
+    },
+    modify:function(obj){
+        var x=$(obj).val();
+        if (x<this.min||x>this.max||!this.reg(x)){
+            alert("请输入正确的数量！");
+            $(obj).val(1);
+            $(obj).focus();
+        }
+    }
+}
 //-->
 </script>
 </head>
@@ -238,7 +290,14 @@ $(document).ready(function() {
 										</dl>
 							</div>-->
 						<div class="buyCount">
-							购买数量：<input type="text" id="quantity" value="1">
+							购买数量：
+							<a class="reduce" title="减一" onclick="setAmount.reduce('#quantity')" href="javascript:void(0)">
+								<img style="display:inline" src="<%=path %>/resources/front/images/bag_close.gif" border="none"/>
+							</a>
+							<input type="text" id="quantity" onkeyup="setAmount.modify('#quantity')" value="1">
+							<a class="add" title="加一" onclick="setAmount.add('#quantity')" href="javascript:void(0)">
+								<img style="display:inline" src="<%=path %>/resources/front/images/bag_open.gif" border="none"/>
+							</a>
 						</div>
 						<div class="buttonArea">
 							<input type="button" id="goodsButton" class="addCartItemButton" value="" hidefocus="true">
@@ -261,63 +320,36 @@ $(document).ready(function() {
 						${product.goodsDesc }
 				</div><!--tabcon end-->
 				<div class="tab_content" id="detail_1">
-                   <!--<div id="i-comment">
-                   		<div class="rate">
-							<strong>94%</strong> <br> 好评度 
-                   		</div>
-						<div class="percent">
-							<dl>
-								<dt>好评</dt>
-								<dd class="d1">
-									<div style="width: 141px;"></div>
+					<div class="prod_ot_item_tit spzx">商品评论</div>
+                   <div id="comment">
+	                  	<div class="item">
+							<div class="user">
+								<span class="u-name">网友：yyfa2055</span>
+								<span class="date-ask">2011-06-01 12:34</span>
+							</div>
+							<dl class="answer">
+								<dd>
+								<div class="content">您好！可以的，感谢您对京东的支持！祝您购物愉快！</div>
+								<div class="date-answer">2011-06-01 13:22</div>
 								</dd>
-								<dd class="d2">94%</dd>
 							</dl>
-							<dl>
-								<dt>中评</dt>
-								<dd class="d1">
-									<div style="width: 9px;"></div>
-								</dd>
-								<dd class="d2"> 6%</dd> 
-							</dl>
-							<dl>
-								<dt>差评</dt>
-								<dd class="d1">
-									<div style="width: 15px;"></div>
-								</dd>
-								<dd class="d2"> 6%</dd> 
-							</dl>
+							
 						</div>
-						<div class="btns"> 
-							<div> 我购买过此商品</div> 
-								<a href="http://club.360buy.com/Simplereview/346474.html" class="btn-comment">我要评价</a>
-							<div>
-								<a href="http://club.360buy.com/review/346474-1-1.html" target="_blank">查看全部评价</a>
+						
+						<div class="item odd">
+							<div class="user">
+								<span class="u-name">网友：yyfa2055</span>
+								<span class="date-ask">2011-06-01 12:34</span>
 							</div>
-						</div>
-					</div>--><!-- end of i-comment -->
-					
-					<div id="comment">
-						<div class="prod_ot_item_tit spzx">商品评论</div>
-						<c:forEach var="x" begin="1" end="9" step="1">
-						<div class="i-item">
-							<div class="o-topic">
-								
-								<span class="star sa5"></span>
-								<span class="date-comment">2011-03-23 23:43</span>
-							</div>
-							<div class="comment-content">
-								海信还是值得信赖的，呵呵&nbsp;够清晰&nbsp;够轻巧&nbsp;够犀利&nbsp;薄啊.....
-							</div>
-						</div><!-- end of i-item -->			
-						<div class="corner tl"> </div>
-						<div class="corner tr"> </div>
-						<div class="corner b"> </div>
-						<div class="corner bl"> </div>
-						<div class="corner br"> </div>
-						<div class="clr5"></div>
-						</c:forEach>						
+							<dl class="answer">
+								<dd>
+								<div class="content">您好！可以的，感谢您对京东的支持！祝您购物愉快！</div>
+								</dd>
+							</dl>
+						</div><!--end of item-->
 					</div>
+					
+					<div class="clr10"></div>
 				</div><!--tabcon end-->
 				<div class="tab_content" id="detail_2">
 					<div class="prod_ot_item_tit spzx">商品咨询</div>

@@ -65,6 +65,7 @@
 				<a href="<%=path %>/front/order.xhtml?method=shoppingcart">去结算</a>
 			</li>
 		</ul>
+		
 	</div>
 	<!-- 搜索结束 -->
 </div>

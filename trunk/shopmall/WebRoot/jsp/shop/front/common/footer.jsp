@@ -2,6 +2,7 @@
 <!-- footer -->
 
 <div class="w">
+<!--
 	<div id="service">
 		<dl class="fore1">
 			<dt><b></b><strong>购物指南</strong></dt>
@@ -47,6 +48,7 @@
 		
 	</div>
 </div>
+-->
 
 <!-- end of foot -->
 
