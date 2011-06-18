@@ -314,3 +314,22 @@ font-size: 14px;
 font-weight: bold;
 color: white;
 }
+
+#userform textarea.formTextarea {
+	width: 500px;
+	height: 120px;
+	padding: 5px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+#userform textarea.formTextarea:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+#userform textarea.formTextarea:focus {
+	background-color: #fff8ef;
+}
