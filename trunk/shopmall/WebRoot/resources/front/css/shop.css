@@ -758,3 +758,17 @@ text-indent: 2em;
 #pager ul.pages li.pgCurrent {
 	background-color:#FFEEE5;border:1px solid #F50;color:#F50;font-weight:700;display:inline-block;
 }
+
+.prod_ot_item_tit {
+margin-bottom: 10px;
+padding: 0 0 0 10px;
+width: 730px;
+height: 31px;
+line-height: 31px;
+color: #F60;
+font-size: 12px;
+font-weight: bold;
+display: block;
+overflow: hidden;
+background: url(../images/item_norm.png) 0px -657px no-repeat;
+}

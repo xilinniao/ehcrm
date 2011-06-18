@@ -3,7 +3,7 @@ margin: 0;
 padding: 0;
 }
 body {
-font-family: Arial,"宋体",tahoma,serif;
+font-family:"宋体",tahoma,serif;
 font-size: 12px;
 color: #333;
 background: white;
@@ -63,6 +63,10 @@ width: 10px;
 height: 10px;
 overflow: hidden;
 background: url(../images/bg_tit_home.gif) -130px -274px;
+}
+.form label, .form input, .form select, .form textarea, .form button, .form .label {
+float: left;
+font-size: 12px;
 }
 ol, ul {
 list-style: none;
@@ -193,16 +197,13 @@ z-index: 11;
 
 #search {
 float: left;
-width: 257px;
+width: 332px;
 height: 29px;
-padding: 1px 0 1px 1px;
-margin: 11px 10px 0 0;
+padding: 1px 0 0px 1px;
+margin: 11px 1px 0 0;
 background: url(../images/bg_nav_0816.jpg) no-repeat 0 0;
 }
-#search {
-width: 332px;
-padding: 1px;
-}
+
 
 #i-search {
 float: left;
@@ -350,7 +351,7 @@ text-align: center;
 }
 #mycart .fore2 {
 width: 54px;
-padding-right: 14px;
+padding-right: 12px;
 }
 #mycart .fore2 a {
 color: white;
@@ -725,7 +726,7 @@ ul#topnav a.home {
 	text-align: center;
 	font-size: 14px;
 	font-weight: bold;
-	line-height: 29px;
+	line-height: 27px;
 }
 ul#topnav a.products {
 	background-repeat: no-repeat;
@@ -736,7 +737,7 @@ ul#topnav a.products {
 	text-align: center;
 	font-size: 14px;
 	font-weight: bold;
-	line-height: 29px;
+	line-height: 27px;
 }
 ul#topnav a.curr{
 	background-position: -216px -233px;
@@ -793,7 +794,7 @@ height: auto!important;
 height: 22px;
 min-height: 30px;
 margin-top: -30px;
-padding: 0 0 0 70px;
+padding: 5px 0 5px 70px;
 }
 
 ul#topnav li .sub dd a {
@@ -1151,4 +1152,16 @@ input.text-l{
 input.validateError{
 	color: #ff6600;
 	background-color: #EFC2C2;
+}
+
+div.ajaxTip {
+	float:left;
+	line-height: 20px;
+	padding:0px 20px;
+	margin-top: 1px;
+	margin-bottom: 0px;
+	color:green;
+	background: url(../images/ajaxloading.gif) no-repeat 2px 2px;
+	border: 1px solid #ffca88;
+	background-color: #fffeee;
 }

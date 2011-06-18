@@ -157,6 +157,11 @@ padding-top: 5px;
 height: 50px;
 line-height: 26px;
 }
+
+#regist .itemA {
+margin-left:300px;
+}
+
 #regist .label {
 width: 300px;
 text-align: right;
@@ -170,6 +175,7 @@ border: 1px solid #BBB;
 font-size: 14px;
 font-family: arial,"ËÎÌו";
 }
+
 #regist .blank {
 width: 16px;
 height: 16px;
@@ -204,9 +210,17 @@ margin: 4px 5px 0 0;
 padding: 5px;
 }
 
-#regist input.text-l{
-	width: 100px;
+#regist input.text-s{
+	width: 120px;
+	line-height: 16px;
+	border: 1px solid #DEDEDE;
+	border-color: #707070 #CECECE #CECECE #707070;
+	text-align: left;
+	color: #333;
+	margin: 4px 5px 0 0;
+	padding: 5px;
 }
+
 #regist .img img {
 height: 26px;
 margin: 0 5px;
@@ -220,13 +234,13 @@ font-weight: bold;
 color: white;
 }
 #protocol-con {
-width: 800px;
-height: 200px;
+width: 920px;
 margin: 0 auto;
 border: 1px solid #CCC;
 padding: 8px;
-overflow-y: scroll;
 color: #666;
+line-height:23px;
+
 }
 .margin_b6 {
 margin-bottom: 6px;
@@ -250,4 +264,22 @@ padding: 4px 3px;
 border: 1px solid #BBB;
 font-size: 14px;
 font-family: arial,"ËÎÌו";
+}
+
+label.validateErrorreg {
+	line-height: 12px;
+	padding: 6px 22px;
+	margin-left: 2px;
+	margin-top: 5px;
+	zoom: 1;
+	color:red;
+	width:280px;
+	line-height:20px;
+	overflow: hidden;
+	background: url(../images/base_icon.gif) no-repeat 0px -356px ;
+}
+
+input.validateErrorreg{
+	color: #ff6600;
+	background-color: #EFC2C2;
 }
