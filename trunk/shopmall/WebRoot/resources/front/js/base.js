@@ -288,16 +288,16 @@ jQuery(document).ready(function() {
 						if (data.status == "success") {
 							$.flushHeaderInfo();
 							$.closeDialog("loginWindow");
+							if(redirectUrl != null) {
+								location.href = redirectUrl;
+							}
+						}else{
+								$.message({type: data.status, content: data.message});
 						}
 						//$.message({type: data.status, content: data.message});
-						if(redirectUrl != null) {
-							location.href = redirectUrl;
-						}
 					},
 					complete: function() {
 						$loginWindowForm.find("button").attr("disabled", false);
-						$loginWindowCaptcha.val("");
-						loginWindowCaptchaImageRefresh();
 					}
 				});
 				return false;
