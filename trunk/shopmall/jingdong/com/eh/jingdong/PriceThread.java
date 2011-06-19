@@ -67,7 +67,7 @@ public class PriceThread extends Thread {
 								new Object[] { drmb, drmb * 1.05, goodsInfo });
 				
 				goodsInfo.setCreateTime(new Date());
-				siteCategoryLogic.save(goodsInfo);				
+				siteCategoryLogic.save(goodsInfo);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
