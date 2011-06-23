@@ -63,6 +63,7 @@
    	<bean name="frontShopLoginCtrl" class="com.eh.shop.front.web.ShopLoginCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="shopLogic" ref="shopLogic"/>
+        <property name="loginLogic" ref="loginLogic"/>
    	</bean>
    	
    	<bean name="frontUserCtrl" class="com.eh.shop.front.web.UserCtrl">

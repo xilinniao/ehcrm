@@ -176,13 +176,4 @@ public class TbOrderMain  implements java.io.Serializable {
     public void setOrderTime(Date orderTime) {
         this.orderTime = orderTime;
     }
-   
-
-
-
-
-
-
-
-
 }
