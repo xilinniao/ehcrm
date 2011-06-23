@@ -12,7 +12,12 @@ import nl.captcha.Captcha;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.eh.base.common.logic.LoginLogic;
+import com.eh.base.util.Constants;
+import com.eh.base.vo.UserInfo;
 import com.eh.shop.admin.logic.ShopLogic;
+import com.eh.shop.entity.TbShopInfo;
+import com.eh.shop.front.vo.CustInfo;
 import com.eh.shop.front.vo.ShopRegVo;
 
 /**
@@ -20,6 +25,7 @@ import com.eh.shop.front.vo.ShopRegVo;
  */
 public class ShopLoginCtrl extends BaseFrontCtrl {
 	ShopLogic shopLogic;
+	LoginLogic loginLogic;	
 	/**
 	 * 客户注册
 	 * @param request
@@ -55,7 +61,9 @@ public class ShopLoginCtrl extends BaseFrontCtrl {
 			mav.addObject("reg", reg);
 			return mav;
 		}else{			
-			return new ModelAndView("/jsp/shop/front/shop_reg_success");//返回成功页面
+			ModelAndView mav = new ModelAndView("/jsp/shop/front/shop_reg_success");//返回成功页面
+			mav.addObject("reg", reg);
+			return mav;
 		}
 	}
 	
@@ -73,11 +81,112 @@ public class ShopLoginCtrl extends BaseFrontCtrl {
 		return null;
 	}
 	
+	
+	/**
+	 * 客户登录
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView login(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		CustInfo custInfo = this.getCustInfo(request);
+		if(custInfo!=null){
+			//返回用户中心
+			return new ModelAndView("redirect:/front/user.xhtml");
+		}else{
+			//
+		}
+		return new ModelAndView("/jsp/shop/admin/login");
+	}
+	
+	/**
+	 * 登录
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView onLogin(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String userCode = getString(request, "loginname", false);
+		String password = getString(request, "loginpwd", false);
+		
+		UserInfo userInfo = loginLogic.checkUser(userCode.toUpperCase(), password);
+		if("OK".equals(userInfo.getCheckResult())){
+			mav.setViewName("/jsp/shop/admin/index");
+			//获取店铺对象
+			TbShopInfo shopInfo = this.shopLogic.getUserShop(userInfo.getUser().getUserId());
+			userInfo.setShopInfo(shopInfo);
+			getSession(request).setAttribute(Constants.SESSION_NAME,userInfo);
+			
+		}else{
+			mav.setViewName("/jsp/shop/admin/login");
+			mav.addObject("error", userInfo.getCheckResult());
+		}
+		return mav;
+	}
+	/**
+	 * 顶部
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView top(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/top");
+		return mav;
+	}
+	
+	/**
+	 * 菜单
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView menu(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/menu");
+		return mav;
+	}
+	
+	/**
+	 * 主界面
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView main(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/main");
+		return mav;
+	}
+	/**
+	 * 退出登录界面
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView onLogout(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		request.getSession().invalidate();
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/login");
+		return mav;
+	}	
+	
 	public ShopLogic getShopLogic() {
 		return shopLogic;
 	}
 	public void setShopLogic(ShopLogic shopLogic) {
 		this.shopLogic = shopLogic;
+	}
+
+	public LoginLogic getLoginLogic() {
+		return loginLogic;
+	}
+
+	public void setLoginLogic(LoginLogic loginLogic) {
+		this.loginLogic = loginLogic;
 	}
 	
 	

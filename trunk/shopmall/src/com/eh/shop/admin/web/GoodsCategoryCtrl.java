@@ -43,6 +43,7 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 		//查找顶层节点
 		List categoryList = this.goodsCategoryLogic.findFirstLevelCategory(userInfo.getShopInfo().getShopId());
 		mav.addObject("categoryList", categoryList);
+		mav.addObject("root", rootCategory);
 		return mav;
 	}
 	
@@ -82,8 +83,12 @@ public class GoodsCategoryCtrl extends BaseTreeCtrl{
 		TbGoodsCategory parentGoodscat = goodsCategoryLogic.load(TbGoodsCategory.class, parentGoodscatId);
 		entity.setParent(parentGoodscat);
 		entity.setShopInfo(shop);
-		goodsCategoryLogic.saveGoodscatInfo(entity);
-		super.renderText(response, "OK");
+		if(goodscatId.longValue()!=parentGoodscatId.longValue()){
+			goodsCategoryLogic.saveGoodscatInfo(entity);
+			super.renderText(response, "OK");
+		}else{
+			super.renderText(response, "上级分类选择不正确");
+		}
 		return null;
 	}
 	

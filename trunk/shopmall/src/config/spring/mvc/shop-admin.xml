@@ -84,4 +84,14 @@
         <property name="methodNameResolver" ref="methodNameResolver"/>
         <property name="tuanInfoLogic" ref="tuanInfoLogic"/>
    </bean>
+   
+   <bean name="goodsQaCtrl" class="com.eh.shop.admin.web.GoodsQaCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="goodsRemarkLogic" ref="goodsRemarkLogic"/>
+   </bean>
+   
+   <bean name="tuanInfoCtrl" class="com.eh.shop.admin.web.TuanInfoCtrl">
+        <property name="methodNameResolver" ref="methodNameResolver"/>
+        <property name="tuanInfoLogic" ref="tuanInfoLogic"/>
+   </bean>
 </beans>

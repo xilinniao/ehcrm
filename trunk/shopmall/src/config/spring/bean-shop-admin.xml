@@ -11,7 +11,7 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="siteCategoryLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.SiteCategoryLogicImpl">
@@ -21,7 +21,7 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="goodsCategoryLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.GoodsCategoryLogicImpl">
@@ -31,7 +31,7 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="goodsLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.GoodsLogicImpl">
@@ -41,7 +41,7 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="brandInfoLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.BrandInfoLogicImpl">
@@ -51,7 +51,7 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="articleCategoryLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.ArticleCategoryLogicImpl">
@@ -61,7 +61,7 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="articleLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.ArticleLogicImpl">
@@ -71,71 +71,71 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="pageCategoryLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.PageCategoryLogicImpl">
 				<property name="baseDao">
-					<ref bean="baseDao"/>
+					<ref bean="baseDao" />
 				</property>
 			</bean>
 		</property>
 	</bean>
-	
+
 	<!-- 首页分类设置 -->
 	<bean id="indexCategoryLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.IndexCategoryLogicImpl">
 				<property name="baseDao">
-					<ref bean="baseDao"/>
+					<ref bean="baseDao" />
 				</property>
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="custInfoLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.CustInfoLogicImpl">
 				<property name="baseDao">
-					<ref bean="baseDao"/>
+					<ref bean="baseDao" />
 				</property>
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="custAddrLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.CustAddrLogicImpl">
 				<property name="baseDao">
-					<ref bean="baseDao"/>
+					<ref bean="baseDao" />
 				</property>
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="orderLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.OrderLogicImpl">
 				<property name="baseDao">
-					<ref bean="baseDao"/>
+					<ref bean="baseDao" />
 				</property>
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="frontCacheLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.front.logic.impl.FrontCacheLogicImpl">
 				<property name="baseDao">
-					<ref bean="baseDao"/>
+					<ref bean="baseDao" />
 				</property>
 				<property name="frontCache">
-					<ref bean="frontCache"/>
-				</property>				
+					<ref bean="frontCache" />
+				</property>
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="tuanApplyLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.TuanApplyLogicImpl">
@@ -145,7 +145,7 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="tuanInfoLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.TuanInfoLogicImpl">
@@ -155,7 +155,7 @@
 			</bean>
 		</property>
 	</bean>
-	
+
 	<bean id="goodsQaLogic" parent="txProxyTemplate">
 		<property name="target">
 			<bean class="com.eh.shop.admin.logic.impl.GoodsQaLogicImpl">
@@ -165,5 +165,15 @@
 			</bean>
 		</property>
 	</bean>
-	
+
+	<bean id="goodsRemarkLogic" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.eh.shop.admin.goodsRemark.logic.GoodsRemarkLogic">
+				<property name="baseDao">
+					<ref bean="baseDao" />
+				</property>
+			</bean>
+		</property>
+	</bean>
+
 </beans>

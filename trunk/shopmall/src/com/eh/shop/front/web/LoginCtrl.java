@@ -59,7 +59,7 @@ public class LoginCtrl extends BaseFrontCtrl {
 			return mav;
 		}else{
 			//模拟一次登陆			
-			session.setAttribute(Constants.SESSION_NAME_FRONT, custInfo);		
+			session.setAttribute(Constants.SESSION_NAME_FRONT, custInfo);
 			//写cookie资料
 			Cookie loginMemberUsernameCookie = new Cookie(Constants.LOGIN_USERNAME_COOKIE_NAME_FRONT,URLEncoder.encode(custInfo.getCustCode(),"utf-8"));
 			loginMemberUsernameCookie.setPath("/");
