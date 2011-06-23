@@ -7,7 +7,7 @@ import java.io.IOException;
 import com.caucho.hessian.io.Hessian2Input;
 import com.caucho.hessian.io.Hessian2Output;
 
-public class XMLObjectUtil {
+public class ObjectUtil {
 	/**
 	 * 将对象序列化成BYTE字节
 	 * 

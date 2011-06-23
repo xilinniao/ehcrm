@@ -79,7 +79,7 @@ public class BaseQuery {
 		try {
 			this.setUserInfo(null);
 			// 只序列化String long Date 类型
-			byte b[] = XMLObjectUtil.saveToXML(this);
+			byte b[] = ObjectUtil.saveToXML(this);
 			StringBuffer sb = new StringBuffer();
 			sb = new StringBuffer();
 			for (int i = 0; i < b.length; i++) {
@@ -109,7 +109,7 @@ public class BaseQuery {
 	public <T> T getQryFromHex(Class<T> qryClass,String qryHex) throws IOException{
 		int pageNoSwap = this.pageNo;
 		int pageSizeSwap = this.pageSize;
-		BaseQuery qry = (BaseQuery)XMLObjectUtil.getObjectFromPara(qryHex);
+		BaseQuery qry = (BaseQuery)ObjectUtil.getObjectFromPara(qryHex);
 		qry.setPageNo(pageNoSwap);
 		qry.setPageSize(pageSizeSwap);
 		return (T)qry;
