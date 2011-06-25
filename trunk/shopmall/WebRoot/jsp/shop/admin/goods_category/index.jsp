@@ -5,7 +5,6 @@
 
 	<link href="<%=path %>/resources/common/css/base.css" rel="stylesheet" type="text/css" />
 	<link href="<%=path %>/resources/admin/css/input.css" rel="stylesheet" type="text/css">
-	<link href="<%=path %>/resources/admin/css/datatables.css" rel="stylesheet" type="text/css">
 	<%@include file="/jsp/shop/common/head.jsp"%>
 	<link type="text/css" rel="stylesheet" href="<%=path %>/resources/js/plugin/jstree/themes/default/style.css">
 	<script type="text/javascript" src="<%=path %>/resources/js/plugin/jstree/jquery.hotkeys.js"></script>
@@ -14,6 +13,7 @@
     <script type="text/javascript">
 	<!--
 	var saveform_validator;
+	
 	$(document).ready(function(){
 		$("#goodscat_tree").jstree({
 			"ui" : {
@@ -29,12 +29,10 @@
 			"plugins" : [ "themes","ui","html_data","cookies"]
 		}).bind("select_node.jstree", function(e, data) {
 			var data_id = data.rslt.obj.attr("id");
-			if(data_id=='id_${rootId}'){
-				$('#parent_goodscat_select').hide();
+			if(data_id=='id_${root.categoryId}'){
 				$('#btnSave').hide();
 				$('#btnDelete').hide();
 			}else{
-				$('#parent_goodscat_select').show();
 				$('#btnSave').show();
 				$('#btnDelete').show();
 			}
@@ -74,7 +72,7 @@
 							$.dialog({type: "success", content: "保存成功！", width: 360, modal: true, ok:'确定'});//$.message({type: "warn", content: "保存成功！"});
 							$("#goodscat_tree").jstree("refresh");
 						}else{
-							alert('操作失败');
+							$.dialog({type: "error", content: '操作失败:'+respText, width: 360, modal: true,ok:'确定'});
 						}
 					},
 					error:defaultErrorHandler
@@ -94,9 +92,9 @@
 								$.dialog({type: "success", content: "商品分类删除成功！！", width: 360, modal: true, ok:'确定'});
 								$("#goodscat_tree").jstree("refresh");
 							}else if(respText=='EER01'){
-								$.dialog({type: "success", content: "操作失败：请先删除该商品分类下子商品分类！", width: 360, modal: true,ok:'确定'});
+								$.dialog({type: "error", content: "操作失败：请先删除该商品分类下子商品分类！", width: 360, modal: true,ok:'确定'});
 							}else{
-								$.dialog({type: "success", content: "操作失败", width: 360, modal: true,ok:'确定'});
+								$.dialog({type: "error", content: "操作失败", width: 360, modal: true,ok:'确定'});
 							}
 					  },
 					  error:defaultErrorHandler
@@ -104,14 +102,6 @@
 			}
     	});
     	
-    	$('#parent_category_select').click(function(){
-			$.colorbox({
-				href:'<%=path%>/shop/admin/goodsCategory.xhtml?method=selectGoodscat',
-				iframe:true,
-				width:"500",
-				height:"90%"
-			});
-    	});
 	});
 	
 	//-->
@@ -122,8 +112,8 @@
   	<div class="inputBar">
 		<h1><span class="icon">&nbsp;</span>系统管理->商品分类管理</h1>
 	</div>
-	<div class="operateBar">
-		<input type="button" class="addButton" onclick="location.href='goodsCategory.xhtml?method=addGoodscat'" value="新增分类">
+	<div class="operateBar" style="margin:2px 13px;text-align:right;">
+		<input type="button" class="formButton" onclick="location.href='goodsCategory.xhtml?method=addGoodscat'" value="新增分类">
 	</div>
 	
 	<div class="box column-left">

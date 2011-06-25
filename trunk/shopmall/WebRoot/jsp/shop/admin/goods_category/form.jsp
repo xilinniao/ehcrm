@@ -6,7 +6,7 @@
 							  <tr>
 							    <th>上级分类</th>
 								<td>
-								<select name="parentGoodscatId" id="id_category_id" style="width:212px;">
+								<select name="parentGoodscatId" id="id_category_id" class="formSelect">
 									<c:forEach items="${categoryList }" var="b">
 									<option value="${b.categoryId }">${b.categoryName }</option>
 									</c:forEach>
