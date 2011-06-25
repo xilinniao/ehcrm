@@ -42,33 +42,6 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 	BrandInfoLogic brandInfoLogic = null;
 
 	/**
-	 * 商品管理首页
-	 */
-	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goods/index");
-		return mav;
-	}
-	
-	/**
-	 * 商品类别
-	 */
-	public ModelAndView category(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goods/category");
-		return mav;
-	}
-	
-	/**
-	 * 商品类别
-	 */
-	public ModelAndView middle(HttpServletRequest request,HttpServletResponse response) throws Exception {
-		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/common/middle");
-		return mav;
-	}
-
-	/**
 	 * 商品列表
 	 * @param request
 	 * @param response
@@ -85,9 +58,12 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			TbGoodsCategory category = this.goodsLogic.load(TbGoodsCategory.class, qry.getCategoryId());
 			qry.setTreeNo(category.getTreeNo());
 		}
+		List goodsCategoryList = this.goodsCategoryLogic.findAllCategoryByShop(userInfo.getShopInfo().getShopId());
 		Page page = goodsLogic.findGoodsList(qry);
 		mav.addObject("page",page);
 		mav.addObject("qry", qry);
+		mav.addObject("goodsCategoryList", goodsCategoryList);
+		
 		return mav;
 	}
 	

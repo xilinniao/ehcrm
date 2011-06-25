@@ -46,8 +46,8 @@
 		<property name="usesScore" type="java.lang.Long">
 			<column name="USES_SCORE" precision="10" scale="0" />
 		</property>
-		<property name="orderStatus" type="java.lang.Long">
-			<column name="ORDER_STATUS" precision="10" scale="0" />
+		<property name="orderStatus" type="java.lang.String">
+			<column name="ORDER_STATUS" length="1" />
 		</property>
 		<property name="orderTime" type="java.util.Date">
 			<column name="ORDER_TIME" length="7" />

@@ -6,10 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.dao.hibernate.Page;
 import com.eh.base.util.Constants;
+import com.eh.base.util.ObjectUtil;
 import com.eh.base.vo.UserInfo;
 import com.eh.shop.admin.logic.OrderLogic;
 import com.eh.shop.admin.web.qry.OrderQry;
@@ -18,6 +20,86 @@ import com.eh.shop.entity.TbOrderMain;
 
 public class OrderCtrl extends BaseShopAdminCtrl {
 	OrderLogic orderLogic = null;
+	
+	/**
+	 * 订单分四种状态
+	 * 0 已下订单
+	 * 3系统自动接收的订单
+	 */
+	public ModelAndView unCheckList(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/order/unCheckList");
+		
+		OrderQry qry = null;
+		String qryHex = super.getQryHex(request);
+		
+		if(StringUtils.isNotBlank(qryHex)){
+			qry = (OrderQry)ObjectUtil.getObjectFromPara(qryHex);
+		}else{
+			qry = new OrderQry();
+			super.bindObject(request, qry);			
+			if(StringUtils.isBlank(qry.getOrderStatus())){
+				qry.setOrderStatus("0,3");//正常或系统代为接收的订单
+			}
+		}
+		
+		Page page = this.orderLogic.findOrderList(qry);
+		mav.addObject("qry", qry);
+		mav.addObject("page", page);
+		return mav;
+	}
+	
+	/**
+	 * 确认订单
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView check(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/order/check");
+		Long orderId = super.getLong(request, "orderId", false);
+		TbOrderMain main = this.orderLogic.get(TbOrderMain.class, orderId);
+		List goodsList = this.orderLogic.findOrderGoodsList(main);
+		List flowList = this.orderLogic.findOrderFlowList(main);
+		mav.addObject("goodsList", goodsList);
+		mav.addObject("flowList", flowList);
+		mav.addObject("order", main);
+		return mav;
+	}
+	
+	/**
+	 * 确认订单
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	public ModelAndView onCheck(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		UserInfo userInfo = super.getUserInfo(request);
+		Long orderId = super.getLong(request, "orderId", false);
+		TbOrderMain main = this.orderLogic.get(TbOrderMain.class, orderId);
+		if(super.isYourShop(main.getShopInfo(), userInfo)){	
+			if(main.isCanCheck()){
+				main.setOrderStatus(Constants.ORDER_STATUS_SHOP_CHECK);
+				TbOrderFlow flow = new TbOrderFlow();
+				flow.setFlowTime(new Date());
+				flow.setUserId(userInfo.getUser().getUserId());			
+				this.orderLogic.saveOrderAndFlow(main, flow);
+			}else{
+				super.addErrors(request, "该订单已经被确认，请勿重复确认！");
+			}
+		}else{
+			super.addErrors(request, "该订单不是您的订单！");
+			
+		}
+		
+		ModelAndView mav = new ModelAndView(hasErrors(request)?ERROR_URL:SUCCESS_URL);
+		super.addParam(request, "qryHex", super.getQryHex(request));
+		mav.addObject("redirectUrl", " orders.xhtml?method=unCheckList");
+		return mav;
+	}
 	
 	/**
 	 * 订单分四种状态

@@ -3,6 +3,7 @@ package com.eh.shop.entity;
 import java.util.Date;
 
 import com.eh.base.util.DateUtil;
+import com.eh.base.util.FormateUtil;
 
 public class TbGoodsQa implements java.io.Serializable {
 	/**
@@ -25,7 +26,7 @@ public class TbGoodsQa implements java.io.Serializable {
 	/**
 	 * 是否发布
 	 **/
-	Long isPublish;
+	String isPublish;
 	/**
 	 * 咨询内容
 	 **/
@@ -75,11 +76,11 @@ public class TbGoodsQa implements java.io.Serializable {
 		this.goods = goods;
 	}
 
-	public Long getIsPublish() {
-		return this.isPublish;
+	public String getIsPublish() {
+		return isPublish;
 	}
 
-	public void setIsPublish(Long isPublish) {
+	public void setIsPublish(String isPublish) {
 		this.isPublish = isPublish;
 	}
 
@@ -121,5 +122,9 @@ public class TbGoodsQa implements java.io.Serializable {
 
 	public String getAnswerTimeStr() {
 		return DateUtil.getInstance().formateDate(this.answerTime);
+	}
+	
+	public String getIsPublishStr(){
+		return FormateUtil.getInstance().getNameByCode("g_yes_no", this.isPublish.toString());
 	}
 }

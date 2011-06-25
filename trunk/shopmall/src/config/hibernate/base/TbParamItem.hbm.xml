@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.eh.base.entity.TbParamItem" table="TB_PARAM_ITEM">
+
+		<id name="itemId" type="java.lang.Long">
+			<column name="item_id" precision="10" scale="0" />
+			<generator class="native" />
+		</id>
+
+		<property name="kindCode" type="java.lang.String">
+			<column name="kind_code" length="30" />
+		</property>
+
+		<property name="itemCode" type="java.lang.String">
+			<column name="item_code" length="10" />
+		</property>
+
+		<property name="itemName" type="java.lang.String">
+			<column name="item_name" length="500" />
+		</property>
+
+		<property name="orderNum" type="java.lang.Long">
+			<column name="order_num" precision="10" scale="0" />
+		</property>
+
+		<property name="dataStatus" type="java.lang.Long">
+			<column name="data_status" precision="10" scale="0" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

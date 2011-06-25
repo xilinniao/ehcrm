@@ -145,7 +145,7 @@ public class OrderCtrl extends BaseFrontCtrl {
 			main.setShopInfo(shop);
 			main.setCustInfo(custInfo);
 			main.setUsesScore(usesScore);
-			main.setOrderStatus(Constants.ORDER_STATUS_CUST_INPUT);
+			main.setOrderStatus(Constants.ORDER_STATUS_NORMAL);//设置成下单状态
 			main.setOrderTime(new Date());
 			this.orderLogic.addOrder(main, productIds, cnt);
 			

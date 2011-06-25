@@ -41,6 +41,23 @@ public class CriteriaUtil {
 	}
 	
 	/**
+	 * 设置IN,字符串用逗号进行分割
+	 * @param criteria
+	 * @param propertyName
+	 * @param values
+	 */
+	public static void addInStr(Criteria criteria,String propertyName,String value){
+		if(StringUtils.isNotBlank(value)){
+			String[] values = value.split(",");
+			if(values.length==1){
+				criteria.add(Restrictions.eq(propertyName, value));
+			}else{
+				criteria.add(Restrictions.in(propertyName, values));
+			}
+		}
+	}
+	
+	/**
 	 * 设置相等
 	 * @param criteria
 	 * @param propertyName

@@ -182,6 +182,15 @@ abstract public class BaseCtrl extends MultiActionController {
     }
     
     /**
+     * 添加错误信息
+     * @param request
+     * @param error
+     */
+    protected void addParam(HttpServletRequest request,String name,String value){
+    	request.setAttribute("param_"+name, value);
+	}
+    
+    /**
      * true 存在错误  false 不存在错误
      * @param request
      * @return
@@ -471,5 +480,9 @@ abstract public class BaseCtrl extends MultiActionController {
             System.out.println(name+":"+request.getParameter(name));
         }
         return m;
+    }
+    
+    protected String getQryHex(HttpServletRequest request) throws ParameterException{
+    	return getString(request, "qryHex", true);
     }
 }

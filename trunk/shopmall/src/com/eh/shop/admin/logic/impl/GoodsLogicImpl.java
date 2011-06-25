@@ -35,12 +35,8 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 	public Page findGoodsList(GoodsInfoQry qry) {
 		Criteria criteria = baseDao.createCriteria(TbGoodsInfo.class);
 		criteria.createAlias("category","c");
-		criteria.createAlias("shopInfo", "s");
-		
-		
-		
 		//加上商店的判断
-		CriteriaUtil.addEq(criteria, "s.shopId", qry.getUserInfo().getShopInfo().getShopId());
+		CriteriaUtil.addEq(criteria, "shopInfo.shopId", qry.getUserInfo().getShopInfo().getShopId());
 		CriteriaUtil.addRightLike(criteria, "c.treeNo", qry.getTreeNo());
 		CriteriaUtil.addOrder(criteria, "createTime", CriteriaUtil.DESC);
 		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());

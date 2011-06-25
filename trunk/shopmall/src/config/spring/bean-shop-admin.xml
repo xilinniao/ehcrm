@@ -168,7 +168,7 @@
 
 	<bean id="goodsRemarkLogic" parent="txProxyTemplate">
 		<property name="target">
-			<bean class="com.eh.shop.admin.goodsRemark.logic.GoodsRemarkLogic">
+			<bean class="com.eh.shop.admin.logic.impl.GoodsRemarkLogicImpl">
 				<property name="baseDao">
 					<ref bean="baseDao" />
 				</property>

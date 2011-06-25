@@ -133,8 +133,17 @@ public class GoodsCategoryLogicImpl extends BaseLogic implements GoodsCategoryLo
 	public List findCategoryListByTreeNo(String treeNo, Long shopId) {
 		return super.baseDao
 				.find(
-						"from TbGoodsCategory t where t.treeNo like ? and t.shopInfo.shopId = ? ",
+						"from TbGoodsCategory t where t.treeNo like ? and t.shopInfo.shopId = ? order by t.treeNo asc",
 						new Object[] { treeNo+"%", Constants.SYSTEM_SHOP });
+	}
+	
+	/**
+	 * 根据店铺ID查找所有分类
+	 * @param shopId
+	 * @return
+	 */
+	public List findAllCategoryByShop(Long shopId){
+		return super.baseDao.find("from TbGoodsCategory t where t.shopInfo.shopId = ? order by t.treeNo asc",shopId);
 	}
 	
 	/**
