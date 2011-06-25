@@ -17,6 +17,8 @@
 				/shop/admin/orders.xhtml=adminOrderCtrl
 				/shop/admin/tuanApply.xhtml=tuanApplyCtrl
 				/shop/admin/tuanInfo.xhtml=tuanInfoCtrl
+				/shop/admin/goodsQa.xhtml=goodsQaCtrl
+				/shop/admin/goodsRemark.xhtml=goodsRemarkCtrl
 			</value>
 		</property>
 	</bean>
@@ -87,11 +89,11 @@
    
    <bean name="goodsQaCtrl" class="com.eh.shop.admin.web.GoodsQaCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
-        <property name="goodsRemarkLogic" ref="goodsRemarkLogic"/>
+        <property name="goodsQaLogic" ref="goodsQaLogic"/>
    </bean>
    
-   <bean name="tuanInfoCtrl" class="com.eh.shop.admin.web.TuanInfoCtrl">
+   <bean name="goodsRemarkCtrl" class="com.eh.shop.admin.web.GoodsRemarkCtrl">
         <property name="methodNameResolver" ref="methodNameResolver"/>
-        <property name="tuanInfoLogic" ref="tuanInfoLogic"/>
+        <property name="goodsRemarkLogic" ref="goodsRemarkLogic"/>
    </bean>
 </beans>

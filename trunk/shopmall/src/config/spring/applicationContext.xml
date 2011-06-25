@@ -116,4 +116,12 @@
 	  </property>
 	</bean>
 	
+	<bean id="sysLoading" init-method="loadData"
+		class="com.eh.base.common.logic.impl.SysLoadingImpl" lazy-init="false"
+		scope="singleton">
+		<property name="baseDao">
+			<ref bean="baseDao" />
+		</property>
+	</bean>
+	
 </beans>

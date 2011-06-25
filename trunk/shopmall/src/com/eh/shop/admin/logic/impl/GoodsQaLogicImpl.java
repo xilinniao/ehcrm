@@ -37,7 +37,7 @@ public class GoodsQaLogicImpl extends BaseLogic implements GoodsQaLogic {
 		TbGoodsQa qa = new TbGoodsQa();
 		qa.setQuestion(question);
 		qa.setCreateTime(new Date());
-		qa.setIsPublish(Constants.NO);
+		qa.setIsPublish(Constants.NO_STR);
 		qa.setCustInfo(custInfo);
 		qa.setGoods(goods);
 		qa.setShopInfo(goods.getShopInfo());
@@ -49,6 +49,7 @@ public class GoodsQaLogicImpl extends BaseLogic implements GoodsQaLogic {
 		Criteria criteria = super.baseDao.createCriteria(TbGoodsQa.class);
 		criteria.createAlias("custInfo", "c");
 		CriteriaUtil.addEq(criteria, "c.custId", qry.getCustId());		
+		CriteriaUtil.addOrder(criteria, "createTime", CriteriaUtil.DESC);
 		return super.baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
 	

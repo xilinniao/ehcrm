@@ -69,8 +69,9 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 	public Page findOrderList(OrderQry qry) {
 		Criteria criteria = baseDao.createCriteria(TbOrderMain.class);
 		criteria.createAlias("custInfo","c");
-		criteria.createAlias("shopInfo", "s");
-		CriteriaUtil.addEq(criteria, "s.shopId", qry.getShopId());
+		CriteriaUtil.addEq(criteria, "shopInfo.shopId", qry.getShopId());
+		CriteriaUtil.addFullLike(criteria, "orderNo", qry.getOrderNo());
+		CriteriaUtil.addInStr(criteria, "orderStatus", qry.getOrderStatus());
 		CriteriaUtil.addOrder(criteria, "orderTime", CriteriaUtil.DESC);//按时间先后顺序进行排序
 		return super.baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
@@ -79,6 +80,9 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 	 * @see com.eh.shop.admin.logic.OrderLogic#saveOrderAndFlow(com.eh.shop.entity.TbOrderMain, com.eh.shop.entity.TbOrderFlow)
 	 */
 	public String saveOrderAndFlow(TbOrderMain main, TbOrderFlow flow) {
+		flow.setOrder(main);
+		super.save(main);
+		super.save(flow);
 		return null;
 	}
 

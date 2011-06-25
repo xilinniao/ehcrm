@@ -1,9 +1,20 @@
 package com.eh.base.util;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.eh.base.entity.CodeName;
+
 public class Constants {
 	public final static String DATE_FORMAT = "yyyy-MM-dd";
 	public static final String SPLIT_CHARS = "\\$\\$\\$";
-	public static final String SESSION_NAME = "userinfo";	
+	public static final String SESSION_NAME = "userinfo";
+	/**
+	 * 导入参数列表
+	 */
+	public static final Map<String,List<CodeName>> params = new HashMap<String,List<CodeName>>();
+	public static final String pageSizeHtml = "<label>每页显示</label><select name=\"pageSize\" id=\"pageSize\" class=\"formSelectPageSize\"><option value=\"2\">2</option><option value=\"10\">10</option><option value=\"20\">20</option><option value=\"50\">50</option><option value=\"100\">100</option></select>";
 	
 	public static final String SESSION_NAME_FRONT = "frontcust";//前台用户登录名
 	public static final String LOGIN_USERNAME_COOKIE_NAME_FRONT = "memberUsername";//前台登录用户cookie名称
@@ -19,6 +30,9 @@ public class Constants {
 	
 	public static Long YES = Long.valueOf(1);
 	public static Long NO = Long.valueOf(0);
+	
+	public static String YES_STR = "1";
+	public static String NO_STR = "0";
 	
 	public static final String SHOP_ROLE = "SHOP_ROLE";
 	public static final String SHOP_DEPT = "SHOP_DEPT";
@@ -57,12 +71,16 @@ public class Constants {
 	 */
 	public final static Long SYSTEM_SHOP = Long.valueOf(1);
 	
-	public final static Long ORDER_STATUS_CANCEL_CUST = Long.valueOf(0);//客户主动取消订单
-	public final static Long ORDER_STATUS_CANCEL_SHOP = Long.valueOf(1);//店铺取消订单
-	public final static Long ORDER_STATUS_CUST_INPUT = Long.valueOf(2);//已下单
-	public final static Long ORDER_STATUS_SHOP_CHECK = Long.valueOf(3);//店铺已确认订单
-	public final static Long ORDER_STATUS_SHOP_SEND = Long.valueOf(4);//店铺已送货
-	public final static Long ORDER_STATUS_SHOP_FINISH = Long.valueOf(9);//订单已完成
+	/**
+	 * 订单状态 0、正常订单   1、客户主动取消  2、店铺取消订单 3、系统自动接收订单  4、店铺已接收  5、订单送货中  9、订单已完成
+	 */
+	public final static String ORDER_STATUS_NORMAL = "0";
+	public final static String ORDER_STATUS_CANCEL_CUST = "1";
+	public final static String ORDER_STATUS_CANCEL_SHOP = "2";
+	public final static String ORDER_STATUS_SYS_AUTO = "3";
+	public final static String ORDER_STATUS_SHOP_CHECK = "4";
+	public final static String ORDER_STATUS_SHOP_SEND = "5";
+	public final static String ORDER_STATUS_SHOP_FINISH = "9";
 	
 	public final static String ATTACHMENT_GOODS = "goods";//附件类型：商品附件
 	

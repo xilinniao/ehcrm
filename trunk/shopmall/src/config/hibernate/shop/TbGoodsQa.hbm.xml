@@ -19,8 +19,8 @@
 			<column name="GOODS_ID" precision="10" scale="0" />
 		</many-to-one>
 
-		<property name="isPublish" type="java.lang.Long">
-			<column name="is_publish" precision="1" scale="0" />
+		<property name="isPublish" type="java.lang.String">
+			<column name="is_publish" length="1" />
 		</property>
 
 		<property name="question" type="java.lang.String">

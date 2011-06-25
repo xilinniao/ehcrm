@@ -68,4 +68,10 @@ public interface GoodsCategoryLogic extends IBaseLogic {
 	 * @return
 	 */
 	public List findShopCategory(Long shopId);	
+	/**
+	 * 根据店铺ID查找所有分类
+	 * @param shopId
+	 * @return
+	 */
+	public List findAllCategoryByShop(Long shopId);
 }

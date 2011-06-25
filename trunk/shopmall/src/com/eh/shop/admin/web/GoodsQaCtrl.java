@@ -3,6 +3,8 @@
  */
 package com.eh.shop.admin.web;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,8 +17,10 @@ import com.eh.shop.admin.logic.GoodsQaLogic;
 import com.eh.shop.admin.web.qry.GoodsQaQry;
 import com.eh.shop.entity.TbGoodsQa;
 
-
-
+/**
+ * 商品咨询
+ *
+ */
 public class GoodsQaCtrl extends BaseShopAdminCtrl {
 	GoodsQaLogic goodsQaLogic = null;
 
@@ -80,13 +84,14 @@ public class GoodsQaCtrl extends BaseShopAdminCtrl {
 			TbGoodsQa entity = this.goodsQaLogic.get(TbGoodsQa.class, recId);
 			if(entity!=null){
 				super.bindObject(request, entity);
+				entity.setAnswerTime(new Date());
 				goodsQaLogic.saveGoodsQa(entity);
 			}else{
 				super.addErrors(request, "非法操作");
 			}
 		}		
 		ModelAndView mav = new ModelAndView(SUCCESS_URL);
-		mav.addObject("redirectUrl", " tuanInfo.xhtml?method=index");
+		mav.addObject("redirectUrl", "goodsQa.xhtml?method=index");
 		return mav;
 	}
 	
