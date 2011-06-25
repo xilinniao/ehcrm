@@ -43,27 +43,18 @@
 						<table border="0" cellspacing="0" cellpadding="0" class="inputTable tabContent" style="display: table;">
 						  <tbody>	
 						  <tr>
-						    <th>品牌名称</th>
+						    <th nowrap>品牌名称</th>
 							<td><input type="text" name="name" class="formText {required: true}" id="name" size="40" value="${entity.name }"></td>
 						  </tr>		  
-						  <!-- 					  
+						  
 						  <tr>
-						    <th>品牌图标</th>
-							<td><input type="text" name="logo" class="formText {required: true}" id="logo" size="40" value="${entity.logo }"></td>
-						  </tr>	
-						  <tr>
-						    <th>网站地址</th>
-							<td><input type="text" name="url" class="formText {required: true}" id="url" size="40" value="${entity.url }"></td>
-						  </tr>
-						   -->
-						  <tr>
-						    <th>排序号</th>
+						    <th nowrap>排序号</th>
 							<td><input type="text" name="orderNum" class="formTextSS {required: true,positiveInteger:true}" id="orderNum" size="40" value="${entity.orderNum }"></td>
 						  </tr>
 						  <tr>
-						    <th>品牌描述</th>
+						    <th nowrap>品牌描述</th>
 							<td>
-							<textarea name="introduction" class="wysiwyg"  style="width: 80%; height: 200px;">${entity.introduction }</textarea>
+							<textarea name="introduction" class="wysiwyg"  style="width: 70%; height: 200px;">${entity.introduction }</textarea>
 							</td>
 						  </tr>
 						  </tbody>
