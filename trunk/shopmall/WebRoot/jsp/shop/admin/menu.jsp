@@ -15,9 +15,7 @@
 <div class="w main">
 <!-- 帮助导航开始 -->
 <div class="helpMainLeft">
-	<div class="helpLeftTitle">
-		退出
-	</div>
+	
 	<div class="helpLeftMenu">
 		<div class="helpLeftBar">
 			<span>店铺信息设置</span>
@@ -35,19 +33,17 @@
 			<li id="id_90"><a href="/shop/admin/goodsCategory.xhtml?method=index" target="mainFrame">商品分类</a></li>			
 			<li id="id_91"><a href="/shop/admin/goodsInfo.xhtml?method=goodsList" target="mainFrame">商品管理</a></li>			
 			<li id="id_94"><a href="/shop/admin/goodsRemark.xhtml" target="mainFrame">商品评论</a></li>			
-			<li id="id_95"><a href="/shop/admin/goodsQa.xhtml" target="mainFrame">商品咨询</a></li>
+			<li id="id_95"><a href="/shop/admin/goodsQa.xhtml" target="mainFrame">客户咨询</a></li>
 		</ul>
 		<div class="helpLeftBar">
 			<span>订单管理</span>
 		</div>
 		<ul class="helpLeftGroup">
-			<li id="id_99"><a href="0" target="mainFrame">订单列表</a></li>
-			<li id="id_100"><a href="0" target="mainFrame">发货单</a></li>
-			<li id="id_101"><a href="0" target="mainFrame">退货单</a></li>
-			<li id="id_102"><a href="/shop/admin/orders.xhtml?method=list&orderstatus=0,1" target="mainFrame">订单查询</a></li>
-			<li id="id_113"><a href="0" target="mainFrame">代送货申请</a></li>
+			<li id="id_99"><a href="/shop/admin/orders.xhtml?method=checkList" target="mainFrame">待接收订单</a></li>
+			<li id="id_100"><a href="/shop/admin/orders.xhtml?method=sendList" target="mainFrame">待发货订单</a></li>
+			<li id="id_100"><a href="/shop/admin/orders.xhtml?method=finishList" target="mainFrame">待完成订单</a></li>
+			<li id="id_102"><a href="/shop/admin/orders.xhtml?method=list" target="mainFrame">订单综合查询</a></li>
 		</ul>
-		
 		
 		<div class="helpLeftBar">
 			<span>系统操作</span>
