@@ -11,7 +11,7 @@ import com.eh.base.util.CriteriaUtil;
 import com.eh.base.util.DateUtil;
 import com.eh.shop.admin.logic.OrderLogic;
 import com.eh.shop.admin.web.qry.OrderQry;
-import com.eh.shop.entity.TbGoodsInfo;
+import com.eh.shop.entity.TbGoodsInfoSub;
 import com.eh.shop.entity.TbOrderDetail;
 import com.eh.shop.entity.TbOrderFlow;
 import com.eh.shop.entity.TbOrderMain;
@@ -52,7 +52,8 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 				TbOrderDetail detail = new TbOrderDetail();
 				detail.setOrder(main);
 				detail.setGoodsCount(cnt[i]);
-				TbGoodsInfo goods = this.load(TbGoodsInfo.class, productIds[i]);
+				TbGoodsInfoSub goods = this.load(TbGoodsInfoSub.class, productIds[i]);
+				detail.setGoodsName(goods.getGoods().getGoodsName()+"("+goods.getGoodsSubName()+")");
 				detail.setGoodsPrice(goods.getDiscountPrice());
 				detail.setGoods(goods);
 				//detail.setGoodsScore(goods.get)
@@ -101,7 +102,7 @@ public class OrderLogicImpl extends BaseLogic implements OrderLogic {
 	 * @see com.eh.shop.admin.logic.OrderLogic#findGoodsList(com.eh.shop.entity.TbOrderMain)
 	 */
 	public List findOrderGoodsList(TbOrderMain orderMain) {
-		return super.baseDao.find("from TbOrderDetail t where t.order = ? ", orderMain);
+		return super.baseDao.find("from TbOrderDetail t where t.order = ?", orderMain);
 	}
 
 	/* (non-Javadoc)

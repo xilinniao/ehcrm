@@ -29,7 +29,7 @@
 			<column name="page_category_id" precision="10" scale="0" />
 		</many-to-one>
 		<property name="goodsName" type="java.lang.String">
-			<column name="GOODS_NAME" length="500" />
+			<column name="GOODS_NAME" length="200" />
 		</property>
 		<property name="keyWord" type="java.lang.String">
 			<column name="KEY_WORD" length="500" />

@@ -1,97 +1,92 @@
 package com.eh.shop.entity;
 
-
+import com.eh.base.util.FormateUtil;
 
 /**
  * TbOrderDetail entity. @author MyEclipse Persistence Tools
  */
 
-public class TbOrderDetail  implements java.io.Serializable {
+public class TbOrderDetail implements java.io.Serializable {
 
+	// Fields
 
-    // Fields    
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2294405714296040162L;
+	private Long detailId;
+	private TbOrderMain order;
+	private TbGoodsInfoSub goods;
+	private String goodsName;
+	private Double goodsPrice;
+	private Long goodsCount;
+	private Long goodsScore;
 
-     private Long detailId;
-     private TbOrderMain order;
-     private TbGoodsInfo goods;
-     private Double goodsPrice;
-     private Long goodsCount;
-     private Long goodsScore;
+	// Constructors
 
+	/** default constructor */
+	public TbOrderDetail() {
+	}
 
-    // Constructors
+	// Property accessors
 
-    /** default constructor */
-    public TbOrderDetail() {
-    }
+	public Long getDetailId() {
+		return this.detailId;
+	}
 
-    
-    /** full constructor */
-    public TbOrderDetail(TbOrderMain order, TbGoodsInfo goods, Double goodsPrice, Long goodsCount, Long goodsScore) {
-        this.order = order;
-        this.goods = goods;
-        this.goodsPrice = goodsPrice;
-        this.goodsCount = goodsCount;
-        this.goodsScore = goodsScore;
-    }
+	public void setDetailId(Long detailId) {
+		this.detailId = detailId;
+	}
 
-   
-    // Property accessors
+	public TbOrderMain getOrder() {
+		return this.order;
+	}
 
-    public Long getDetailId() {
-        return this.detailId;
-    }
-    
-    public void setDetailId(Long detailId) {
-        this.detailId = detailId;
-    }
+	public void setOrder(TbOrderMain order) {
+		this.order = order;
+	}
 
-    public TbOrderMain getOrder() {
-        return this.order;
-    }
-    
-    public void setOrder(TbOrderMain order) {
-        this.order = order;
-    }
+	public TbGoodsInfoSub getGoods() {
+		return goods;
+	}
 
-    public TbGoodsInfo getGoods() {
-        return this.goods;
-    }
-    
-    public void setGoods(TbGoodsInfo goods) {
-        this.goods = goods;
-    }
+	public void setGoods(TbGoodsInfoSub goods) {
+		this.goods = goods;
+	}
 
-    public Double getGoodsPrice() {
-        return this.goodsPrice;
-    }
-    
-    public void setGoodsPrice(Double goodsPrice) {
-        this.goodsPrice = goodsPrice;
-    }
+	public Double getGoodsPrice() {
+		return this.goodsPrice;
+	}
 
-    public Long getGoodsCount() {
-        return this.goodsCount;
-    }
-    
-    public void setGoodsCount(Long goodsCount) {
-        this.goodsCount = goodsCount;
-    }
+	public void setGoodsPrice(Double goodsPrice) {
+		this.goodsPrice = goodsPrice;
+	}
 
-    public Long getGoodsScore() {
-        return this.goodsScore;
-    }
-    
-    public void setGoodsScore(Long goodsScore) {
-        this.goodsScore = goodsScore;
-    }
-   
+	public Long getGoodsCount() {
+		return this.goodsCount;
+	}
 
+	public void setGoodsCount(Long goodsCount) {
+		this.goodsCount = goodsCount;
+	}
 
+	public Long getGoodsScore() {
+		return this.goodsScore;
+	}
 
+	public void setGoodsScore(Long goodsScore) {
+		this.goodsScore = goodsScore;
+	}
 
+	public String getGoodsName() {
+		return goodsName;
+	}
 
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
 
-
-
+	public String getGoodsPriceStr() {
+		return FormateUtil.getInstance().formateDouble(this.goodsPrice);
+	}
 }

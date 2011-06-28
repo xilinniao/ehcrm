@@ -193,4 +193,20 @@ public class TbOrderMain implements java.io.Serializable {
 	public boolean isCanCheck(){
 		return "0".equals(this.orderStatus)||"3".equals(this.orderStatus);
 	}
+	
+	/**
+	 * 订单是否能被确认
+	 * @return
+	 */
+	public boolean isCanSend(){
+		return "4".equals(this.orderStatus);
+	}
+	
+	/**
+	 * 订单是否能被确认
+	 * @return
+	 */
+	public boolean isCanFinish(){
+		return "5".equals(this.orderStatus);
+	}
 }
