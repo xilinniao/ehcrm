@@ -23,5 +23,5 @@
 <script type="text/javascript" src="<%=path %>/resources/common/js/jquery.zoomimage.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/common/tiny_mce/jquery.tinymce.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/js/plugin/jquery.loadmask.js"></script>
-<script type="text/javascript" src="<%=path %>/resources/common/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="<%=path %>/resources/js/plugin/jquery.colorbox.js"></script>
+<script type="text/javascript" src="<%=path %>/resources/common/js/jquery.pager.js"></script>
