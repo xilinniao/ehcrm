@@ -30,11 +30,12 @@
 		
 		<div id="succeed" class="flk13">
                 <h3>
-                    恭喜，注册成功。</h3>
-                您登录的用户名为<b>kkmall001</b>，您随时可使用此用户名享受便宜又放心的购物乐趣。<br>
-                您现在可以去：
-                <a href="<%=path %>/index.html">商城首页</a>&nbsp;&nbsp;&nbsp;
-                <a href="<%=path %>/front/user.xhtml">我的帐户中心</a>
+                恭喜，店铺注册成功。</h3>
+                您注册的店铺名为<b>${reg.shopName}</b>.<br>  
+                您登录的用户名为<b>${reg.userCode}</b>.<br>
+                您现在可以：
+                <a href="<%=path %>/index.html">去商城首页</a>&nbsp;
+                <a href="<%=path %>/front/shoplogin.xhtml?method=login">管理我的店铺</a>
                 <s></s>
             </div>	
 			
