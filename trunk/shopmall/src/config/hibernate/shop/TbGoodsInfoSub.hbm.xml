@@ -11,10 +11,10 @@
 			<column name="GOODS_ID" precision="10" scale="0"/>
 		</many-to-one>
 		 <property name="goodsSubName" type="java.lang.String">
-            <column name="GOODS_SUB_NAME" length="200"/>
+            <column name="GOODS_SUB_NAME" length="50"/>
         </property>
 		 <property name="goodsSubNo" type="java.lang.String">
-            <column name="GOODS_SUB_NO" length="50"/>
+            <column name="GOODS_SUB_NO" length="30"/>
         </property>
 		 <property name="marketPrice" type="java.lang.Double">
             <column name="MARKET_PRICE" precision="12" scale="2"/>

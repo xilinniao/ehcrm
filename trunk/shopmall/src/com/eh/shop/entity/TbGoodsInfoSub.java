@@ -9,9 +9,11 @@ import com.eh.base.util.FormateUtil;
  */
 
 public class TbGoodsInfoSub implements java.io.Serializable {
-
-	// Fields
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -764519604775283188L;
+	
 	private Long goodsSubId;
 	private TbGoodsInfo goods;
 	private String goodsSubName;
