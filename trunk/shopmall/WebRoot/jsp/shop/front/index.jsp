@@ -26,7 +26,7 @@
 			<div class="mc">
 				<div id="shopapply">				
 		        	<a id="shopreg" href="<%=path%>/front/shoplogin.xhtml?method=shopreg">商铺注册</a>
-		        	<a id="shopenter" href="<%=path%>/index.jsp">店铺管理</a>
+		        	<a id="shopenter" href="<%=path%>/front/shoplogin.xhtml?method=login">店铺管理</a>
 				</div>
                    <ul>
 	                   <li class="fore">
