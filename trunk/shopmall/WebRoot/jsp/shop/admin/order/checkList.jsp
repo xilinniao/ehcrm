@@ -5,7 +5,6 @@
 <title><%=projName %></title>
 	<link href="<%=path %>/resources/common/css/base.css" rel="stylesheet" type="text/css" />
 	<link href="<%=path %>/resources/admin/css/list.css" rel="stylesheet" type="text/css">
-	<link href="<%=path %>/resources/admin/css/datatables.css" rel="stylesheet" type="text/css">
 	<%@include file="/jsp/shop/common/head.jsp"%>
 	<script src="<%=path %>/resources/common/js/base.js" type="text/javascript"></script>
 	<script src="<%=path %>/resources/common/js/jquery.pager.js" type="text/javascript"></script>
@@ -16,7 +15,7 @@
 	}
 	
 	$().ready( function() {
-		
+		$('#orderStatus').val('${qry.orderStatus}');
 	});
 </script>
 
@@ -33,7 +32,7 @@
 	</div>
 	
 	<div class="body">
-		<form id="listForm" action="<%=path %>/shop/admin/orders.xhtml?method=unCheckList" method="post">
+		<form id="listForm" action="<%=path %>/shop/admin/orders.xhtml?method=checkList" method="post">
 		<div class="operateBar">
 			<table border="0" cellspacing="0" cellpadding="0" class="qryTable">
 			<tr>
@@ -81,7 +80,7 @@
 					<td>${b.revicedAddr }</td>
 					<td>${b.orderMoney }</td>
 					<td>${b.orderStatusStr }</td>
-					<td><a href='none' onclick="gotoEdit('${b.orderId }')" title='接收订单'>[接收订单]</a></td>
+					<td><a href='#none' onclick="gotoEdit('${b.orderId }')" title='接收订单'>[接收订单]</a></td>
 				</tr>
 				</c:forEach>				
 		</table>
