@@ -53,6 +53,7 @@
 }
 
 .input .inputBar .icon {
+	float:left;
 	width: 29px;
 	height: 29px;
 	line-height: 29px;
@@ -61,6 +62,16 @@
 	zoom: 1;
 	*display: inline;
 	background: url(../images/input_bg.gif) 0px -30px no-repeat;
+}
+
+.input .inputBar .right {
+	float:right;
+	width: 200px;
+	height: 29px;
+	line-height: 29px;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
 }
 
 .input table.inputTable {
@@ -72,8 +83,10 @@
 	line-height: 25px;
 	padding: 5px 10px 5px 0px;
 	text-align: right;
-	color: #333333;
-	border-bottom: 1px solid #e1e1e1;
+	color: #000;
+	font-weight:700;
+	border-bottom: 1px dashed #e1e1e1;
+	border-right: 1px dashed #e1e1e1;
 	background-color: #f8f8f8;
 }
 
@@ -90,11 +103,12 @@
 	line-height: 25px;
 	padding: 5px 0px 5px 10px;
 	color: #666666;
-	border-bottom: 1px solid #e1e1e1;
+	border-bottom: 1px dashed #ccc;
+	border-right: 1px dashed #ccc;
 }
 
 .input .buttonArea {
-	padding: 10px 0px 10px 170px;
+	padding: 3px 0px 3px 170px;
 	line-height: 25px;
 }
 
