@@ -22,10 +22,10 @@
 	<div class="body">
 		<form id="listForm" action="goodsRemark.xhtml?method=index" method="post">
 		<div class="operateBar">
-							<label>客户名称</label><input type="text" name="custName" class="formText" value="${qry.custName}"}">
-							<label>所属商品</label><input type="text" name="goodsId" class="formText" value="${qry.goodsId}"}">
+							<label>客户名称</label><input type="text" name="custName" class="formTextS" value="${qry.custName}"}">
+							<label>所属商品</label><input type="text" name="goodsId" class="formTextS" value="${qry.goodsId}"}">
 						
-			<label>每页显示:</label>
+			<label>每页显示</label>
 			<select name="pageSize" id="pageSize">
 				<option value="20">
 					20
@@ -37,35 +37,32 @@
 					100
 				</option>
 			</select>
-			<input type="button" id="searchButton" class="searchButton" value="">&nbsp;
-			<input type="button" class="addButton" onclick="location.href='goodsRemark.xhtml?method=add'" value="新增客户评论">
+			<input type="button" id="searchButton" class="formButton" value="查询">&nbsp;
 		</div>
 		
 	
 		<table class="listTable" id="listTable">
 				<tr>
-							<th nowrap></th>
-							<th nowrap>客户编号</th>
-							<th nowrap>客户名称</th>
-							<th nowrap>所属商品</th>
-							<th nowrap>客户评价</th>
-							<th nowrap>描述相符得分</th>
-							<th nowrap>服务相符得分</th>
-							<th nowrap>发货速度得分</th>
-							<th nowrap>评论时间</th>
-						<th nowrap>操作</th>
+					<th nowrap>客户编号</th>
+					<th nowrap>客户名称</th>
+					<th nowrap>所属商品</th>
+					<th nowrap>客户评价</th>
+					<th nowrap>描述相符得分</th>
+					<th nowrap>服务相符得分</th>
+					<th nowrap>发货速度得分</th>
+					<th nowrap>评论时间</th>
+					<th nowrap>操作</th>
 				</tr>
 				<c:forEach items="${page.result}" var="b">
 				<tr>
-						<td>${b.recId}</td>
-						<td>${b.custId}</td>
-						<td>${b.custName}</td>
-						<td>${b.goodsId}</td>
-						<td>${b.content}</td>
-						<td>${b.descSocre}</td>
-						<td>${b.serviceScore}</td>
-						<td>${b.speedScore}</td>
-						<td>${b.createTime}</td>
+					<td>${b.custId}</td>
+					<td>${b.custName}</td>
+					<td>${b.goodsId}</td>
+					<td>${b.content}</td>
+					<td>${b.descSocre}</td>
+					<td>${b.serviceScore}</td>
+					<td>${b.speedScore}</td>
+					<td>${b.createTime}</td>
 					<td><a href='goodsRemark.xhtml?method=edit&recId=${b.recId}' title='编辑'>[编辑]</a>&nbsp;</td>
 				</tr>
 				</c:forEach>				
