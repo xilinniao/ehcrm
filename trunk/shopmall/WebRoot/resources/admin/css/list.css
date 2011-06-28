@@ -9,23 +9,9 @@
  **/
 
 @import url("pager.css");
-
-.list .formButton {
-	width: 75px;
-	height: 29px;
-	line-height: 29px;
-	margin-left: 6px;
-	text-align: center;
-	font-size: 12px;
-	cursor: pointer;
-	border: none;
-	background: url(../images/list_bg.gif) 0px -30px repeat-x;
+.list{
+	margin:0 2px;
 }
-
-.list .formButton:hover {
-	background: url(../images/list_bg.gif) 0px -60px repeat-x;
-}
-
 .list .listBar {
 	height: 29px;
 	line-height: 29px;
@@ -62,22 +48,7 @@
 
 .list .operateBar label {
 	padding-left: 30px;
-}
-
-.list .operateBar .addButton {
-	width: 75px;
-	height: 29px;
-	line-height: 29px;
-	margin-left: 6px;
-	text-align: center;
-	font-size: 12px;
-	cursor: pointer;
-	border: none;
-	background: url(../images/list_bg.gif) 0px -30px repeat-x;
-}
-
-.list .operateBar .addButton:hover {
-	background: url(../images/list_bg.gif) 0px -60px repeat-x;
+	padding-right: 5px;
 }
 
 .list .operateBar .searchText {
@@ -107,41 +78,36 @@
 	}
 }
 
-.list .operateBar .searchButton {
-	width: 44px;
-	height: 26px;
-	line-height: 26px;
-	cursor: pointer;
-	border: none;
-	background: url(../images/list_bg.gif) -336px -30px no-repeat;
-}
 
-.list table.listTable {
+table.listTable {
 	width: 100%;
+	border: 1px solid #99bbe8;
 }
 
-.list table.listTable tr:hover {
-	background-color: #ffffd4
+table.listTable tr:hover {
+	background-color: #ffffd4	
 }
 
-.list table.listTable th {
+table.listTable th {
 	height: 29px;
 	line-height: 29px;
 	padding-left: 5px;
 	font-family: "宋体", Arial;
-	text-align: left;
-	background: url(../images/list_x_bg.gif) 0px -30px repeat-x;
+	text-align: center;
+	font-weight: 700;
+	background: url(../../common/images/base_x_bg.gif) 0px 0px repeat-x;
+	border-right: 1px dashed #99bbe8;
 }
 
-.list table.listTable th.check {
+table.listTable th.check {
 	width: 30px;
 }
 
-.list table.listTable th .sort {
+table.listTable th .sort {
 	cursor: pointer;
 }
 
-.list table.listTable th .descSort {
+table.listTable th .descSort {
 	width: 29px;
 	height: 29px;
 	line-height: 29px;
@@ -152,7 +118,7 @@
 	background: url(../images/list_bg.gif) -60px 0px no-repeat;
 }
 
-.list table.listTable th .ascSort {
+table.listTable th .ascSort {
 	width: 29px;
 	height: 29px;
 	line-height: 29px;
@@ -163,20 +129,22 @@
 	background: url(../images/list_bg.gif) -90px 0px no-repeat;
 }
 
-.list table.listTable td {
+table.listTable td {
 	height: 29px;
 	line-height: 29px;
 	padding-left: 5px;
-	color: #666666;
+	color: #000;
+	text-align:center;
 	word-break: break-all;
-	border-bottom: 1px solid #f0f0f0;
+	border-bottom: 1px dashed #ccc;
+	border-right: 1px dashed #ccc;
 }
 
-.list table.listTable td a {
+table.listTable td a {
 	color: #336699;
 }
 
-.list table.listTable td a:hover {
+table.listTable td a:hover {
 	color: #ff6600;
 }
 
@@ -234,4 +202,112 @@
 	zoom: 1;
 	*display: inline;
 	background: url(../images/list_bg.gif) no-repeat -150px 0px;
+}
+
+.list input.formText {
+	width: 200px;
+	padding: 3px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+.list input.formText:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+.list input.formText:focus {
+	background-color: #fff8ef;
+}
+
+.list input.formTextS {
+	width: 115px;
+	padding: 3px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+.list input.formTextS:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+.list input.formTextS:focus {
+	background-color: #fff8ef;
+}
+
+.list input.formTextS {
+	width: 115px;
+	padding: 3px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+.list input.formTextS:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+.list input.formTextS:focus {
+	background-color: #fff8ef;
+}
+
+.list input.formTextSS {
+	width: 70px;
+	padding: 3px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+.list input.formTextSS:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+.list input.formTextSS:focus {
+	background-color: #fff8ef;
+}
+
+.list input.formTextL {
+	width: 260px;
+	padding: 3px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+.list input.formTextL:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+.list input.formTextL:focus {
+	background-color: #fff8ef;
+}
+
+.list input.formTextLL {
+	width: 350px;
+	padding: 3px;
+	border-top: 1px solid #999999;
+	border-right: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	border-left: 1px solid #999999;
+}
+
+.list input.formTexLL:hover {
+	border: 1px solid #ff9b1f;
+	background-color: #fefbf7;
+}
+
+.list input.formTextLL:focus {
+	background-color: #fff8ef;
 }
