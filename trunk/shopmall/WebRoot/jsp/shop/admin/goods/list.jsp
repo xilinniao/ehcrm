@@ -21,10 +21,17 @@
 		<form id="listForm" action="<%=path %>/shop/admin/goodsInfo.xhtml?method=goodsList" method="post">
 		<input type="hidden" name="treeNo" value="${qry.treeNo }">
 		<div class="operateBar">
+			<label>商品分类</label>
+			<c:forEach item="${goodsCategoryList}" var="b">
+			<select name="treeNo" id="treeNo" class="formSelect">
+				<option value="${b.treeNo}">${b.categoryName}</option>
+			</select>
+			</c:forEach>
+			
 			<label>商品名称:</label>
 			<input type="text" name="goodsName" id="goodsName" class="formText" value="${qry.goodsName }">
 			<label>显示:</label>
-			<select name="pageSize" id="pageSize">
+			<select name="pageSize" id="pageSize" class="formSelectPageSize">
 				<option value="20">
 					20
 				</option>
