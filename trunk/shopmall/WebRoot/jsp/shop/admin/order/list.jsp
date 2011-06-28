@@ -33,27 +33,12 @@
 				<option value="9">订单已完成</option>
 			</select>
 			
-			<label>每页显示:</label>
-			<select name="pageSize" id="pageSize">
-				<option value="10">
-					10
-				</option>
-				<option value="20">
-					20
-				</option>
-				<option value="50">
-					50
-				</option>
-				<option value="100">
-					100
-				</option>
-			</select>
-			<input type="button" id="searchButton" class="searchButton" value="">				
+			<%=Constants.pageSizeHtml%>
+			<input type="button" id="searchButton" class="formButton" value="查询">				
 		</div>
-			
-		<table class="listTable" id="listTable">
+		
+		<table class="listTable" id="listTable" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<th class="check"><input type="checkbox" class="allCheck" /></th>
 					<th nowrap>订单号</th>
 					<th nowrap>下单时间</th>
 					<th nowrap>客户名</th>
@@ -65,14 +50,13 @@
 				</tr>
 				<c:forEach items="${page.result}" var="b">
 				<tr>
-					<td><input type="checkbox" name="ids" value="2fe680f62eec0481012f15a0272f0114" /></td>
 					<td>${b.orderNo }</td>
 					<td>${b.orderTime }</td>
 					<td>${b.custInfo.custCode }</td>
 					<td>${b.revicedName }</td>
 					<td>${b.revicedMobile }</td>
 					<td>${b.orderMoney }</td>
-					<td>${b.orderStatus }</td>
+					<td>${b.orderStatusStr }</td>
 					<td><a href='<%=path %>/shop/admin/orders.xhtml?method=edit&orderId=${b.orderId }' title='编辑'>[编辑]</a>&nbsp;<a href='goodsInfo.xhtml?method=editGoods&goodsId=${b.orderId }' title='订单处理'>[订单处理]</a></td>
 				</tr>
 				</c:forEach>				
