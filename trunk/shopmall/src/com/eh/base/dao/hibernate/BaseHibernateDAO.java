@@ -212,7 +212,7 @@ public class BaseHibernateDAO extends HibernateDaoSupport {
 		return new Page(startIndex, totalCount, pageNo,pageSize, list);
 	}
 	
-	public List findTopList(String hql, int top, Object[] values) {
+	public List findTopList(String hql, int top, Object... values) {
 		Query query = createQuery(hql, values);
 		return query.setFirstResult(0).setMaxResults(top).list();
 	}

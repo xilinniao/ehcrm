@@ -93,9 +93,9 @@ public class UploadCtrl extends BaseCtrl {
 				if("true".equals(zoom)){
 					this.zoom(saveDir, uuid, imageExtension, "a", saveFile,50,50);
 					this.zoom(saveDir, uuid, imageExtension, "b", saveFile,100,100);
-					this.zoom(saveDir, uuid, imageExtension, "e", saveFile,130,130);
-					this.zoom(saveDir, uuid, imageExtension, "c", saveFile,160,160);
-					this.zoom(saveDir, uuid, imageExtension, "d", saveFile,350,350);
+					this.zoom(saveDir, uuid, imageExtension, "c", saveFile,130,130);
+					this.zoom(saveDir, uuid, imageExtension, "d", saveFile,160,160);
+					this.zoom(saveDir, uuid, imageExtension, "e", saveFile,350,350);
 				}
 				
 				Map<String, String> jsonMap = new HashMap<String, String>();
@@ -124,10 +124,11 @@ public class UploadCtrl extends BaseCtrl {
 					jsonMap.put("urlc", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_c."+ imageExtension);
 					jsonMap.put("urld", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_d."+ imageExtension);
 					jsonMap.put("urle", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_e."+ imageExtension);
-					jsonMap.put("urlf", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"_f."+ imageExtension);
+					jsonMap.put("imagesId", attach.getRecId().toString());
 				}else{
 					jsonMap.put("url", super.getContextPath(request)+"/uploads/images/"+today + "/" + uuid +"."+ imageExtension);
 				}
+				
 				
 				super.renderJson(response, JSONObject.fromObject(jsonMap).toString());
 			}

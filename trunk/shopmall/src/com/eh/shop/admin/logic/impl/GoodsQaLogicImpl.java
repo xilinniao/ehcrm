@@ -48,7 +48,9 @@ public class GoodsQaLogicImpl extends BaseLogic implements GoodsQaLogic {
 	public Page findPage(GoodsQaQry qry) {
 		Criteria criteria = super.baseDao.createCriteria(TbGoodsQa.class);
 		criteria.createAlias("custInfo", "c");
-		CriteriaUtil.addEq(criteria, "c.custId", qry.getCustId());		
+		CriteriaUtil.addEq(criteria, "c.custId", qry.getCustId());
+		CriteriaUtil.addEq(criteria, "shopInfo.shopId", qry.getShopId());
+		
 		CriteriaUtil.addOrder(criteria, "createTime", CriteriaUtil.DESC);
 		return super.baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}

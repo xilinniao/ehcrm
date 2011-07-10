@@ -26,6 +26,7 @@ public class TbShopInfo implements java.io.Serializable {
 	private String linkerMan;
 	private String linkerMobile;
 	private String linkTel;
+	private String linkqq;
 	private String email;
 	private TbUserInfo admin;
 	private Long imgLogo;
@@ -205,6 +206,14 @@ public class TbShopInfo implements java.io.Serializable {
 
 	public void setModiDate(Date modiDate) {
 		this.modiDate = modiDate;
+	}
+
+	public String getLinkqq() {
+		return linkqq;
+	}
+
+	public void setLinkqq(String linkqq) {
+		this.linkqq = linkqq;
 	}
 
 	public String getFoundDateStr() {

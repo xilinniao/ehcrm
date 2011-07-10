@@ -73,7 +73,7 @@ public class CustInfoLogicImpl extends BaseLogic implements CustInfoLogic {
 	 * @see com.eh.shop.admin.logic.CustInfoLogic#loginCheck(java.lang.String, java.lang.String)
 	 */
 	public TbCustInfo loginCheck(String custCode, String pwd) {
-		List custList = super.baseDao.find("from TbCustInfo c where c.custCode = ? and c.custPwd = ? ", new Object[]{custCode,this.cryptPwd(pwd)});
+		List custList = super.baseDao.find("from TbCustInfo c where c.custCode = ? and c.custPwd = ? ", new Object[]{custCode.toUpperCase(),this.cryptPwd(pwd)});
 		if(custList.size()==1){
 			return (TbCustInfo)custList.get(0);
 		}else{

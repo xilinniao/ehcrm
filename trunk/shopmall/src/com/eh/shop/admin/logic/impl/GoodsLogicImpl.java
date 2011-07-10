@@ -6,6 +6,7 @@ package com.eh.shop.admin.logic.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -38,6 +39,7 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 		//加上商店的判断
 		CriteriaUtil.addEq(criteria, "shopInfo.shopId", qry.getUserInfo().getShopInfo().getShopId());
 		CriteriaUtil.addRightLike(criteria, "c.treeNo", qry.getTreeNo());
+		CriteriaUtil.addFullLike(criteria, "goodsName", qry.getGoodsName());
 		CriteriaUtil.addOrder(criteria, "createTime", CriteriaUtil.DESC);
 		return baseDao.pagedQuery(criteria, qry.getPageNo(), qry.getPageSize());
 	}
@@ -82,22 +84,26 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 				info.setSiteCategory(siteCategory);
 			}
 			info.setMarketPrice(subs[0].getMarketPrice());
-			info.setDiscountPrice(subs[0].getDiscountPrice());			
+			info.setDiscountPrice(subs[0].getDiscountPrice());
 			super.save(info);
 			for(TbGoodsInfoSub next:subs){
 				next.setGoods(info);
 				super.save(next);
 			}
 			
-			//
 			if(imageIds!=null){
-				long i = 0;
-				for(Long imageId:imageIds){
+				for(int i = 0,len = imageIds.length;i<len;i++){
 					TbGoodsImages ga = new TbGoodsImages();
-					ga.setAttachment(super.get(TbAttachment.class, imageId));
+					TbAttachment attach = super.get(TbAttachment.class, imageIds[i]);
+					ga.setAttachment(attach);
 					ga.setGoodsInfo(info);
-					ga.setOrderNum(i++);
+					ga.setOrderNum(i);
 					ga.setRelType(Constants.GOODS_ATTACHMENT_TYPE);
+					if(i==0){
+						//设置成封面
+						info.setFaceImage(attach);
+						super.save(info);
+					}
 					super.save(ga);
 				}
 			}
@@ -119,21 +125,75 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 				super.save(next);
 			}
 			
-			//图片
+			//查找原有的图片信息
+			List<TbGoodsImages> imagesList = super.baseDao.find("from TbGoodsImages r where r.goodsInfo.goodsId = ? order by r.orderNum asc",info.getGoodsId());
+			if(imagesList.size()>0){
+				for(TbGoodsImages next:imagesList){
+					if(!this.isInImages(next.getAttachment().getRecId(), imageIds)){
+						super.remove(next);
+					}
+				}
+			}
+			
+			//添加新的图片信息
 			if(imageIds!=null){
-				long i = 0;
-				for(Long imageId:imageIds){
-					TbGoodsImages ga = new TbGoodsImages();
-					ga.setAttachment(super.get(TbAttachment.class, imageId));
-					ga.setGoodsInfo(info);
-					ga.setOrderNum(i++);
-					ga.setRelType(Constants.GOODS_ATTACHMENT_TYPE);
-					super.save(ga);
+				for(int i = 0,len = imageIds.length;i<len;i++){
+					TbAttachment attach = null;
+					if(i==0){
+						attach= super.get(TbAttachment.class, imageIds[i]);
+						//设置成封面
+						info.setFaceImage(attach);
+						super.save(info);
+					}
+					if(this.isNewImage(imageIds[i], imagesList)){				
+						TbGoodsImages ga = new TbGoodsImages();
+						attach = super.get(TbAttachment.class, imageIds[i]);
+						ga.setAttachment(attach);
+						ga.setGoodsInfo(info);
+						ga.setOrderNum(i);
+						ga.setRelType(Constants.GOODS_ATTACHMENT_TYPE);						
+						super.save(ga);
+					}
+					if(i==0){
+						info.setFaceImage(super.get(TbAttachment.class, imageIds[i]));
+					}
 				}
 			}
 			super.save(info);
 		}
 		return null;
+	}
+	
+	/**
+	 * 是否老图片是否在新图片列表中
+	 * @param imageId
+	 * @param imageIds
+	 * @return
+	 */
+	private boolean isInImages(Long imageId,Long[] imageIds){
+		if(imageIds!=null){
+			for(Long next:imageIds){
+				if(imageId.longValue()==next.longValue()){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 判断是否是新图片
+	 * @param imageId
+	 * @param imagesList
+	 * @return
+	 */
+	private boolean isNewImage(Long imageId,List<TbGoodsImages> imagesList){
+		for(TbGoodsImages next:imagesList){
+			if(next.getAttachment().getRecId().longValue()==imageId.longValue()){
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	
@@ -203,8 +263,16 @@ public class GoodsLogicImpl extends BaseLogic implements GoodsLogic {
 	}
 
 	public Page findFrontGoodsList(GoodsInfoQry qry) {
-		StringBuffer hql = new StringBuffer("select t.goodsSubId from TbGoodsInfoSub t join t.goods as g where g.shopInfo.shopId = ? order by g.createTime desc");
-		return super.baseDao.pagedQuery(hql.toString(), qry.getPageNo(), qry.getPageSize(), qry.getShopId());
+		StringBuffer hql = new StringBuffer("select t.goodsSubId from TbGoodsInfoSub t join t.goods as g where g.shopInfo.shopId = ? ");
+		List params = new ArrayList();
+		params.add(qry.getShopId());
+		if(StringUtils.isNotBlank(qry.getTreeNo())){
+			hql.append(" and g.category.treeNo like ? ");
+			params.add(qry.getTreeNo()+"%");
+		}
+		
+		hql.append(" order by g.createTime desc");
+		return super.baseDao.pagedQuery(hql.toString(), qry.getPageNo(), qry.getPageSize(), params.toArray());
 	}
 	
 	/**

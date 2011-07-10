@@ -49,7 +49,10 @@ public class ShopCtrl extends BaseFrontCtrl {
 		if(recommendList!=null){
 			List<GoodsShort> recommendGoodsList = new ArrayList();
 			for (int i = 0, size = recommendList.size(); i < size; i++) {
-				recommendGoodsList.add(this.frontCacheLogic.findGoodsShort((Long)recommendList.get(i),false));
+				Long productId = (Long)recommendList.get(i);
+				if(productId!=null){
+					recommendGoodsList.add(this.frontCacheLogic.findGoodsShort(productId,false));
+				}
 			}
 			mav.addObject("recommendList", recommendGoodsList);
 		}

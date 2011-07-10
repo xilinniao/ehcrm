@@ -21,6 +21,7 @@ public class ShopInfo implements Serializable{
     private String linkerMan;
     private String linkerMobile;
     private String linkTel;
+    private String linkqq;//联系QQ
     private String email;    
     private Long imgLogo;
     private Long imgoAd;
@@ -123,4 +124,11 @@ public class ShopInfo implements Serializable{
 	public void setPubNote(String pubNote) {
 		this.pubNote = pubNote;
 	}
+	public String getLinkqq() {
+		return linkqq;
+	}
+	public void setLinkqq(String linkqq) {
+		this.linkqq = linkqq;
+	}
+	
 }

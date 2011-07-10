@@ -27,11 +27,11 @@ public class GoodsQaCtrl extends BaseShopAdminCtrl {
 
 	public ModelAndView index(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		UserInfo userInfo = super.getUserInfo(request);
-		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goods_qa/index");
-		
+		ModelAndView mav = new ModelAndView("/jsp/shop/admin/goods_qa/index");		
 		GoodsQaQry qry = new GoodsQaQry();
 		bindObject(request, qry);
 		qry.setUserInfo(userInfo);
+		qry.setShopId(userInfo.getShopInfo().getShopId());
 		Page page = goodsQaLogic.findPage(qry);
 		mav.addObject("page", page);
 		return mav;

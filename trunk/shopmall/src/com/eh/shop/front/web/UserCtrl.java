@@ -61,7 +61,7 @@ public class UserCtrl extends BaseFrontCtrl {
 		CustInfo custInfo = super.getCustInfo(request);
 		OrderQry qry = new OrderQry();
 		super.bindObject(request, qry);
-		//qry.setPageSize(20);
+		qry.setPageSize(10);
 		qry.setCustId(custInfo.getCustId());
 		Page page = this.orderLogic.findUserOrderList(qry);
 		mav.addObject("page", page);

@@ -16,7 +16,7 @@ public class TbGoodsImages  implements java.io.Serializable {
      private TbGoodsInfo goodsInfo;
      private TbAttachment attachment;
      private Long relType;
-     private Long orderNum;
+     private int orderNum;
 
 
     // Constructors
@@ -27,7 +27,7 @@ public class TbGoodsImages  implements java.io.Serializable {
 
     
     /** full constructor */
-    public TbGoodsImages(TbGoodsInfo goodsInfo, TbAttachment attachment, Long relType, Long orderNum) {
+    public TbGoodsImages(TbGoodsInfo goodsInfo, TbAttachment attachment, Long relType, int orderNum) {
         this.goodsInfo = goodsInfo;
         this.attachment = attachment;
         this.relType = relType;
@@ -69,14 +69,17 @@ public class TbGoodsImages  implements java.io.Serializable {
         this.relType = relType;
     }
 
-    public Long getOrderNum() {
-        return this.orderNum;
-    }
-    
-    public void setOrderNum(Long orderNum) {
-        this.orderNum = orderNum;
-    }
-   
+
+	public int getOrderNum() {
+		return orderNum;
+	}
+
+
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
+	}
+
+
 
 
 

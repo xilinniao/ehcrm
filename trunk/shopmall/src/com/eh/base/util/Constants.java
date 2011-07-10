@@ -82,6 +82,11 @@ public class Constants {
 	public final static String ORDER_STATUS_SHOP_SEND = "5";
 	public final static String ORDER_STATUS_SHOP_FINISH = "9";
 	
+	/**
+	 * cookie保存天数
+	 */
+	public final static int COOKIE_DAYS = 60;
+	
 	public final static String ATTACHMENT_GOODS = "goods";//附件类型：商品附件
 	
 	public final static Long GOODS_ATTACHMENT_TYPE = Long.valueOf(1);// 商品附件类型（图片）

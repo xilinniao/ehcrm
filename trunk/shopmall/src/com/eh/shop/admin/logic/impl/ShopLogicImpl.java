@@ -15,6 +15,7 @@ import com.eh.base.entity.TbUdrRel;
 import com.eh.base.entity.TbUserInfo;
 import com.eh.base.logic.BaseLogic;
 import com.eh.base.util.Constants;
+import com.eh.base.util.CryptUtil;
 import com.eh.shop.admin.logic.ShopLogic;
 import com.eh.shop.entity.TbShopInfo;
 import com.eh.shop.front.vo.ShopRegVo;
@@ -61,9 +62,10 @@ public class ShopLogicImpl extends BaseLogic implements ShopLogic {
 		
 		//创建一条用户记录
 		TbUserInfo user = new TbUserInfo();
-		user.setUserCode(reg.getUserCode());
-		user.setLoginPwd(reg.getLoginPwd());
+		user.setUserCode(StringUtils.trim(reg.getUserCode()).toUpperCase());
+		user.setLoginPwd(CryptUtil.md5(Constants.CRYPT_MD_PREFIX+reg.getLoginPwd()));
 		user.setMobile(reg.getLinkTel());
+		user.setUserName(reg.getLinkName());
 		user.setStatus(Constants.YES);
 		user.setDept(super.baseDao.get(DeptInfo.class, dept.getDeptId()));
 		super.save(user);
@@ -83,12 +85,17 @@ public class ShopLogicImpl extends BaseLogic implements ShopLogic {
 		shop.setFoundDate(new Date());
 		shop.setModiDate(new Date());
 		shop.setShopAddr(reg.getAddress());
+		shop.setLinkerMan(reg.getLinkName());
 		shop.setLinkerMobile(reg.getLinkTel());
 		super.save(shop);
 		
 		return null;
 	}
 	
-	
-
+	/**
+	 * 查找最新注册的店铺信息
+	 */
+	public List findLeastRegShop() {
+		return super.baseDao.findTopList("select t.shopId from TbShopInfo t order by t.foundDate desc", 10, null);
+	}
 }
