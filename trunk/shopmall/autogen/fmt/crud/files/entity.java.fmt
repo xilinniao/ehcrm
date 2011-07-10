@@ -37,4 +37,12 @@ public class ${gobalVo.entityName} implements java.io.Serializable {
 		}
 		</#if>
 	</#list>
+	
+	<#list colList as x>
+		<#if x.isParamKey>
+		public String get${x.javaNameFU}Str(){
+			return FormateUtil.getInstance().getNameByCode("${x.paramKey}", ${x.javaName});
+		}
+		</#if>
+	</#list>
 }

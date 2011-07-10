@@ -40,12 +40,12 @@
 					100
 				</option>
 			</select>
-			<input type="button" id="searchButton" class="searchButton" value="">&nbsp;
-			<input type="button" class="addButton" onclick="location.href='${gobalVo.url}?method=add'" value="新增${gobalVo.moduleNameChn}">
+			<input type="button" id="searchButton" class="formButton" value="">&nbsp;
+			<input type="button" class="formButton" onclick="location.href='${gobalVo.url}?method=add'" value="新增${gobalVo.moduleNameChn}">
 		</div>
 		
 	
-		<table class="listTable" id="listTable">
+		<table class="listTable" id="listTable" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 						<#list colList as x>
 							<#if x.isList>

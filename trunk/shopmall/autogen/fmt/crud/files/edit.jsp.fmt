@@ -34,7 +34,7 @@
   </head>
   <body class="input">
   	<div class="inputBar">
-		<h1><span class="icon">&nbsp;</span>系统管理-></h1>
+		<h1><span class="icon">&nbsp;</span>系统管理-&gt;</h1>
 	</div>
 	 <div class="box column-center">
 		<div class="box-content form-table" style="display: block; ">				

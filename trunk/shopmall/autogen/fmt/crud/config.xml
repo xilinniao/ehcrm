@@ -1,34 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<gobal>
-		<table_name>TB_TUAN_INFO</table_name>
+		<table_name>TB_PARAM_ITEM</table_name>
 		<default_package>com.eh.shop.admin</default_package><!-- 默认包路径 -->
 		<entity_package>com.eh.shop.entity</entity_package><!-- entity存放路径 -->
 		<hbm_file_path>config.hibernate.shop</hbm_file_path><!-- hbm存放路径 -->
-		<module_name_en>tuanInfo</module_name_en><!-- 模块名称，全部都要英文,首字母小写 -->
-		<module_name_chn>团购申请</module_name_chn><!-- 模块名称 -->
-		<jsp_file_path>/jsp/shop/admin/tuan_info/</jsp_file_path>
-		<url>tuanInfo.xhtml</url>
+		<module_name_en>goodsRemark</module_name_en><!-- 模块名称，全部都要英文,首字母小写 -->
+		<module_name_chn>客户评论</module_name_chn><!-- 模块名称 -->
+		<jsp_file_path>/jsp/shop/admin/goods_remark/</jsp_file_path>
+		<url>goodsRemark.xhtml</url>
 	</gobal>
-	
+
 	<columns>
-    <column pk="true" columnName="tuan_id" javaType="Long" typeName="INT" isNullAble="false" columnSize="10" remark="团购记录ID" datasize="10" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="apply_id" javaType="Long" typeName="INT" isNullAble="false" columnSize="10" remark="团购申请ID" datasize="10" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="shop_id" javaType="Long" typeName="INT" isNullAble="false" columnSize="10" remark="店铺名称" datasize="10" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="is_publish" javaType="Long" typeName="INT" isNullAble="false" columnSize="10" remark="0不正确   1正确" datasize="10" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="link_tel" javaType="String" typeName="VARCHAR" isNullAble="false" columnSize="50" remark="联系电话" datasize="50" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="link_qq" javaType="String" typeName="VARCHAR" isNullAble="false" columnSize="100" remark="咨询QQ" datasize="100" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="face_image_id" javaType="Long" typeName="INT" isNullAble="false" columnSize="10" remark="团购图片" datasize="10" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="topic_name" javaType="String" typeName="VARCHAR" isNullAble="false" columnSize="200" remark="团购名称" datasize="200" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="begin_date" javaType="Date" typeName="DATETIME" isNullAble="false" columnSize="19" remark="团购开始日期" datasize="19" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="end_date" javaType="Date" typeName="DATETIME" isNullAble="false" columnSize="19" remark="团购结束日期" datasize="19" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="price" javaType="Double" typeName="DOUBLE" isNullAble="false" columnSize="12" remark="价格" datasize="12" digits="2" isList="YES" isQry="NO" />
-    <column pk="false" columnName="discount_price" javaType="Double" typeName="DOUBLE" isNullAble="false" columnSize="12" remark="折扣价格" datasize="12" digits="2" isList="YES" isQry="NO" />
-    <column pk="false" columnName="max_qty" javaType="Long" typeName="INT" isNullAble="false" columnSize="10" remark="最大团购数量" datasize="10" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="curr_qty" javaType="Long" typeName="INT" isNullAble="false" columnSize="10" remark="当前数量" datasize="10" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="create_user" javaType="Long" typeName="INT" isNullAble="false" columnSize="10" remark="创建人" datasize="10" digits="0" isList="YES" isQry="NO" />
-    <column pk="false" columnName="create_time" javaType="Date" typeName="DATETIME" isNullAble="false" columnSize="19" remark="创建时间" datasize="19" digits="0" isList="YES" isQry="NO" />
+    <column pk="true" columnName="item_id" javaType="Long" typeName="INT" isNullAble="false" columnSize="10" remark="序列号" datasize="10" digits="0" isList="YES" isQry="NO" paramKey="" />
+    <column pk="false" columnName="kind_code" javaType="String" typeName="VARCHAR" isNullAble="true" columnSize="30" remark="类别编码" datasize="30" digits="0" isList="YES" isQry="NO" paramKey="" />
+    <column pk="false" columnName="item_code" javaType="String" typeName="VARCHAR" isNullAble="true" columnSize="10" remark="指标编码" datasize="10" digits="0" isList="YES" isQry="NO" paramKey="" />
+    <column pk="false" columnName="item_name" javaType="String" typeName="VARCHAR" isNullAble="true" columnSize="500" remark="指标名称" datasize="500" digits="0" isList="YES" isQry="NO" paramKey="" />
+    <column pk="false" columnName="order_num" javaType="Long" typeName="INT" isNullAble="true" columnSize="10" remark="排序号" datasize="10" digits="0" isList="YES" isQry="NO" paramKey="" />
+    <column pk="false" columnName="data_status" javaType="Long" typeName="INT" isNullAble="true" columnSize="10" remark="数据状态 0不可以用  1可用" datasize="10" digits="0" isList="YES" isQry="NO" paramKey="" />
   </columns>
-   
-   
 </root>

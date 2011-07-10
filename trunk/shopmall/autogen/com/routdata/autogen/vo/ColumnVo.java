@@ -39,6 +39,7 @@ public class ColumnVo {
 	int digits;
 	String isList;//是否在列表中出现
 	String isQry;//是否在查询中出现
+	String paramKey;
 	
 	public String getColumnName() {
 		return columnName;
@@ -84,7 +85,7 @@ public class ColumnVo {
 		}
 	}
 	public boolean getIsNullAble() {
-		return "true".equalsIgnoreCase(isNullAble);
+		return "true".equalsIgnoreCase(isNullAble)||"yes".equalsIgnoreCase(isNullAble);
 	}
 	public void setIsNullAble(String isNullAble) {
 		this.isNullAble = isNullAble;
@@ -143,4 +144,11 @@ public class ColumnVo {
 	public void setIsQry(String isQry) {
 		this.isQry = isQry;
 	}
+	public String getParamKey() {
+		return paramKey;
+	}
+	public void setParamKey(String paramKey) {
+		this.paramKey = paramKey;
+	}
+	
 }

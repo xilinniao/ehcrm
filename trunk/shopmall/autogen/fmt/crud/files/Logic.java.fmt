@@ -1,4 +1,4 @@
-package ${gobalVo.defaultPackage}..logic;
+package ${gobalVo.defaultPackage}.logic;
 
 import java.util.List;
 
