@@ -28,7 +28,7 @@
         <td width="1" bgcolor="#4489E4"></td>
         <td bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr class="title_blue_bg">
-              <td height="22" style="background-position:right;background-repeat:no-repeat;">&nbsp;<img src="<%=path%>/resources/images/icon-.jpg" width="11" height="11" hspace="10" />首页 -&gt;提示信息<span class="blue-9pt"><strong></strong></span></td>
+              <td height="22" style="background-position:right;background-repeat:no-repeat;">&nbsp;<img src="<%=path%>/resources/images/icon-.jpg" width="11" height="11" hspace="10" />提示信息<span class="blue-9pt"><strong></strong></span></td>
               <td width="1"></td>
             </tr>
             <tr>
