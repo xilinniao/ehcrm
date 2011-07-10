@@ -289,6 +289,17 @@ margin: 4px 5px 0 0;
 padding: 5px;
 }
 
+#userform input.textS{
+width: 180px;
+line-height: 16px;
+border: 1px solid #DEDEDE;
+border-color: #707070 #CECECE #CECECE #707070;
+text-align: left;
+color: #333;
+margin: 4px 5px 0 0;
+padding: 5px;
+}
+
 #userform input.text-l{
 	width: 100px;
 }
@@ -332,4 +343,49 @@ color: white;
 
 #userform textarea.formTextarea:focus {
 	background-color: #fff8ef;
+}
+
+
+table.userTable {
+border-collapse: collapse;
+border: solid #E6E6E6;
+border-width: 0 1px 1px 1px;
+}
+
+table.userTable th,table.userTable td{
+	padding:0px;
+}
+
+table.userTable th {
+background: #F7F7F7 url(../images/tb-th.gif) repeat-x;
+height: 31px;
+color: #666;
+font-weight: normal;
+}
+table.userTable td {
+border: solid #E6E6E6;
+padding: 6px 4px;
+text-align: center;
+border-width: 1px 0 0 1px;
+}
+
+.uc_right {
+width: 800px;
+float: left;
+}
+.uc_right .o-mt {
+border: 1px solid #E6E6E6;
+border-bottom: 2px solid #C30000;
+height: 33px;
+line-height: 33px;
+margin-bottom: 10px;
+}
+.uc_right .o-mt h2 {
+color: #C00;
+padding-left: 16px;
+float: left;
+}
+
+.uc_right a:link, .uc_right a:visited {
+color: #005AA0;
 }

@@ -72,6 +72,13 @@ color: red;
 font-family: verdana;
 font-weight: bold;
 }
+
+.cart_table .Table .pricesum {
+color: red;
+font-family: verdana;
+font-weight: bold;
+}
+
 .cart_op {
 padding: 25px 10px;
 height: 38px;
@@ -104,11 +111,11 @@ background: url(../images/btn0603.gif);
 overflow: hidden;
 float: left;
 }
-.cart_op .li3 #continueBuyBtn {
+.cart_op .li3 .continueBuyBtn {
 width: 109px;
 margin-right: 5px;
 }
-.cart_op .li3 #gotoOrderInfo {
+.cart_op .li3 .gotoOrderInfo {
 background-position: -110px 0;
 width: 99px;
 }
