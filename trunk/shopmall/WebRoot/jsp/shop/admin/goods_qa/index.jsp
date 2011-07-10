@@ -22,7 +22,9 @@
 	<div class="body">
 		<form id="listForm" action="goodsQa.xhtml?method=index" method="post">
 		<div class="operateBar">
-						
+			<label>评论标题:</label>
+			<input type="text" name="question" id="question" class="formTextS" value="${qry.question }">
+			
 			<label>每页显示</label>
 			<select name="pageSize" id="pageSize">
 				<option value="20">

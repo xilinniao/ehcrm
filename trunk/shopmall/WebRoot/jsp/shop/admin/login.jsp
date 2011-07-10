@@ -75,18 +75,7 @@
 	     	</c:forEach>
 	     	</div>
 	     	</c:if>
-		     	
-			<div class="item" id="autoentry">
-				<span class="label">&nbsp;</span>
-				<div class="fl">
-					<label class="mar"><input type="checkbox" class="checkbox" checked="checked" id="chkRememberUsername" name="chkRememberUsername">
-					记住用户名</label>
-					<label><input type="checkbox" class="checkbox" id="chkRememberMe" name="chkRememberMe">
-					自动登录</label>
-					
-					<label>&nbsp;&nbsp;<a href="" class="flk13">忘记密码?</a></label>
-				</div>
-			</div>
+
 			<div class="item">
 				<span class="label">&nbsp;</span>				
 				<input type="submit" class="btn-img btn-entry" id="loginsubmit" value="登录" tabindex="8">

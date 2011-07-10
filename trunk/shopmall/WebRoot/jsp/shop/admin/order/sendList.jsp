@@ -56,7 +56,6 @@
 			</table>			
 		</div>
 		
-		<div class="userTipTitle">提示：本模块用于订单接收，订单接收后该订单将自动转移至发货订单列表中</div>
 			
 		<table class="listTable" id="listTable">
 				<tr>

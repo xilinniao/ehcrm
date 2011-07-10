@@ -29,36 +29,16 @@
 		        	<a id="shopenter" href="<%=path%>/front/shoplogin.xhtml?method=login">店铺管理</a>
 				</div>
                    <ul>
+						<c:forEach items="${shopList}" var="b" varStatus="idx">
 	                   <li class="fore">
-							<span class="seq">1</span>							
-							<a href="/product/141195.html">店铺1232132132132</a>
+							<span class="seq">${idx.index+1}</span>	
+							<a href="<%=path%>/shopinfo/index-${b.shopId}.html" target="_blank">${b.shopName}</a>
 						</li>
-						
-						<li class="fore">
-							<span class="seq">2</span>							
-							<a href="/product/141195.html">店铺1232132132132</a>
-						</li>
-						<li class="fore">
-							<span class="seq">1</span>							
-							<a href="/product/141195.html">店铺1232132132132</a>
-						</li>
-						
-						<li class="fore">
-							<span class="seq">3</span>							
-							<a href="/product/141195.html">店铺1232132132132</a>
-						</li>
-						<li class="fore">
-							<span class="seq">4</span>							
-							<a href="/product/141195.html">店铺1232132132132</a>
-						</li>
-						
-						<li class="fore">
-							<span class="seq">5</span>							
-							<a href="/product/141195.html">店铺1232132132132</a>
-						</li>
+						</c:forEach>						
                    </ul>
-
-                   <div class="extra"><a href="http://www.360buy.com/brand.aspx">更多&gt;&gt;</a></div>
+				   <!--
+                   <div class="extra"><a href="#">更多&gt;&gt;</a></div>
+                   -->
 			</div>
 		</div><!-- 品牌结束 -->
 		

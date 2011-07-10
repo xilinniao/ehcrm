@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@page import="java.util.List"%>
+<%@page import="com.eh.shop.front.cache.ShopInfo"%>
+<%@page import="java.util.Map"%>
 <%@include file="/common/head.jsp"%>
 <%@include file="/common/headA.jsp"%>
 <title>抚州网上购物商城</title>
@@ -50,6 +53,7 @@ $.addCartItem = function(goodsid, quantity) {
 	
 	//$.message({type: "warn", content: data.message});	
 	goods_obj.val(newCnt);
+	calculateMoney();
 	$.flushcartitems(true);
 }
 function changeCnt(goodsId,add_cnt){
@@ -70,18 +74,47 @@ function removeProductOnShoppingCart(goodsid){
 				$.cookie('cartitems',null,{path:shop_constant.cookie_path});
 			}else{
 				$.cookie('cartitems',new_cartitems,{expires:shop_constant.cookie_days,path:shop_constant.cookie_path});	
-			}			
+			}
+			//移除该行商品
+			$('#goods_tr_'+goodsid).remove();
 		}
+		calculateMoney();
 	}
 }
 
-function gotoCheckOut(){
-	if(!$.memberVerify()){
-		$.showLoginWindow('<%=path %>/front/order.xhtml?method=checkout');
-	}else{
-		document.location.href = '<%=path %>/front/order.xhtml?method=checkout';
+function clearCart(){
+	
+}
+//计算金额
+function calculateMoney(){
+	var productLists = $('.productList');
+	if(productLists.size()>0){
+		$.each(productLists,function(idx, item){
+			var gqtys = $(this).find('input[name="g_qty"]');
+			var gprice = $(this).find('input[name="g_price"]');
+			var g_amount_price = 0;
+			if (gqtys.size() > 0) {
+				$.each(gqtys,function(i, item){
+					g_amount_price += $(gprice[i]).val()*$(this).val();
+				});
+			}
+			$(this).find('.pricesum').text(setScale(g_amount_price,2,''));
+		});
 	}
 }
+
+function gotoCheckOut(shopId){
+	var gotourl = '<%=path %>/front/order.xhtml?method=checkout&shopId='+shopId;
+	if(!$.memberVerify()){
+		$.showLoginWindow(gotourl);
+	}else{
+		document.location.href = gotourl;
+	}
+}
+
+$(document).ready( function() {
+	calculateMoney();
+});
 
 //-->
 </script>
@@ -108,7 +141,14 @@ function gotoCheckOut(){
 	<div class="List_cart">
 		<h2><strong>我挑选的商品</strong></h2>
 		<div class="cart_table">
-			<div id="productList">					    
+			
+			<%
+				List<ShopInfo> shopList = (List<ShopInfo>)request.getAttribute("shopList");
+				List<Map> productList = (List<Map>)request.getAttribute("productList");
+				if(shopList!=null){
+				for(ShopInfo shop : shopList){	
+			%>
+			<div id="productList_<%=shop.getShopId()%>" class="productList">
 					<table class="Table" cellpadding="0" cellspacing="0" width="100%" id="CartTb">
 					 <tbody>
 					 <tr class="align_Center Thead">
@@ -120,56 +160,103 @@ function gotoCheckOut(){
 					    <td width="7%">删除商品</td>
 					 </tr>
 					
-					<c:forEach items="${productList}" var="b">
-					<tr class="align_Center">
-					   <td style="padding:5px 0 5px 0;">${b.goodsId }</td>
+					<%
+					for(Map product:productList){
+						Long shopId= (Long)product.get("shopId");
+						if(shop.getShopId().longValue()==shopId.longValue()){
+					%>
+					<tr class="align_Center" id="goods_tr_<%=product.get("goodsId")%>">
+					   <td style="padding:5px 0 5px 0;"><%=product.get("goodsId")%></td>
 					   <td class="align_Left">
 					   		<div class="p-img">
-					   			<a target="_blank" href="<%=path %>/product/${b.goodsId }.html" >
-					   				<img src="${b.imagea }">
+					   			<a target="_blank" href="<%=path %>/product/<%=product.get("goodsId")%>.html" >
+					   				<img src="<%=product.get("imagea")%>">					   				
 					   			</a>
 					   		</div>
 					   		<span>
-					   			<a target="_blank" href="<%=path %>/product/${b.goodsId }.html">
-					   				${b.goodsName }
+					   			<a target="_blank" href="<%=path %>/product/<%=product.get("goodsId")%>.html">
+					   				<%=product.get("goodsName")%>
 					   			</a>
 					   		</span>
 					   	</td>
-					   <td><span class="price">￥${b.discountPrice }</span></td>
+					   <td><span class="price">￥<%=product.get("discountPrice")%></span>
+					   <input type="hidden" id="price_<%=product.get("goodsId")%>" name="g_price" value="<%=product.get("discountPrice")%>"/>
+					   </td>
 					   <td>0</td>
 					   <td>					   
-					   	<a href="#none" title="减一" onclick="changeCnt('${b.goodsId }',-1)" style="margin-right:2px;">
+					   	<a href="#none" title="减一" onclick="changeCnt('<%=product.get("goodsId")%>',-1)" style="margin-right:2px;">
 					   		<img style="display:inline" src="<%=path %>/resources/front/images/bag_close.gif" border="none"/>
 					   	</a>
-					   	<input type="text" id="goods_id_${b.goodsId }" name="txtChange334965" maxlength="4" style="width:30px" onkeydown="if(event.keyCode == 13) event.returnValue = false" value="${b.cnt }" onfocus="changeTxtOnFocus(this);" onblur="changeProductCount('${b.goodsId }',this);">
-					   	<a href="#none" title="加一" onclick="changeCnt('${b.goodsId }',1)" style="margin-left:2px;">
+					   	<input type="text" id="goods_id_<%=product.get("goodsId")%>" name="g_qty" maxlength="4" style="width:30px" onkeydown="if(event.keyCode == 13) event.returnValue = false" value="<%=product.get("cnt")%>" onfocus="changeTxtOnFocus(this);" onblur="changeProductCount('<%=product.get("goodsId")%>',this);">
+					   	<a href="#none" title="加一" onclick="changeCnt('<%=product.get("goodsId")%>',1)" style="margin-left:2px;">
 					   		<img style="display:inline" src="<%=path %>/resources/front/images/bag_open.gif" border="none"/>
 					   	</a>
 					   </td>
-					   <td><a href="#none" id="btn_del_${b.goodsId }" onclick="removeProductOnShoppingCart('${b.goodsId }')">删除</a></td>
+					   <td><a href="#none" id="btn_del_<%=product.get("goodsId")%>" onclick="removeProductOnShoppingCart('<%=product.get("goodsId")%>')">删除</a></td>
 					</tr>
-					</c:forEach>									
+					<%}}%>
+													
 					<tr>
-					    <td class="align_Right Tfoot" colspan="7" style="height:30px">重量总计：kg&nbsp;&nbsp;&nbsp;原始金额：￥元 - 可使用积分：<br>
-					    <span style="font-size:14px"><b>商品总金额(不含运费)：<span class="price" id="cartBottom_price">￥</span>元</b></span></td>
+					    <td class="align_Right Tfoot" colspan="7" style="height:30px">
+				    	<!--
+				    	重量总计：kg&nbsp;&nbsp;&nbsp;原始金额：￥元 - 可使用积分：<br>
+				    	-->
+					    <span style="font-size:14px"><b>商品总金额(不含运费)：<span class="pricesum">￥</span>元</b></span></td>
 					 </tr>
 					</tbody></table>
-    		</div><!-- end of productList -->
+    		</div><!-- end of productList -->    		
     		
     		<ul class="cart_op" style="margin-bottom:0px;">
     					    
-				<li class="li2"><a href="#none" onclick="this.blur();clearCart()">清空购物车</a></li>
+				<!--<li class="li2"><a href="#none" onclick="clearCart()">清空购物车</a></li>-->
 								 
 				<li class="li3">
 					<div id="submit_info">
 					</div>
-					<div id="submit_btn" style="text-align:right">				
-			        	<a id="continueBuyBtn" href="<%=homeUrl %>">继续购物</a>
-			        	<a id="gotoOrderInfo" href="#none" onclick="gotoCheckOut()">去结算</a>
+					<div id="submit_btn" style="text-align:right">
+			        	<a class="continueBuyBtn" href="<%=homeUrl %>">继续购物</a>
+			        	<a class="gotoOrderInfo" href="#none" onclick="gotoCheckOut('<%=shop.getShopId()%>')">去结算</a>
 					</div>
 			
 				</li>
-			</ul><!-- end of cart_op -->			
+			</ul><!-- end of cart_op -->
+						
+			<%
+					}
+    			}else{
+    		%>
+    		
+    		<div>
+					<table class="Table" cellpadding="0" cellspacing="0" width="100%" id="CartTb">
+					 <tbody>
+					 <tr class="align_Center Thead">
+					    <td width="7%" style="height:30px">商品编号</td>
+					    <td>商品名称</td>
+					    <td width="14%">商城价</td>
+					    <td width="8%">赠送积分</td>
+					    <td width="9%">商品数量</td>
+					    <td width="7%">删除商品</td>
+					 </tr>
+													
+					<tr>
+					    <td colspan="7" style="height:30px;padding-left:30px;"><span style="color:red;">购物车中没有选中的商品,赶快挑选你要的商品吧！</span></td>
+					 </tr>
+					</tbody></table>
+    		</div><!-- end of productList -->    		
+    		
+    		<ul class="cart_op" style="margin-bottom:0px;">								 
+				<li class="li3">
+					<div id="submit_info">
+					</div>
+					<div id="submit_btn" style="text-align:right">
+			        	<a class="continueBuyBtn" href="<%=homeUrl %>">继续购物</a>
+					</div>
+			
+				</li>
+			</ul><!-- end of cart_op -->    		
+    		
+    		<%}%>
+    		
 		</div><!-- end of cart_table -->
 		<div class="round"><div class="lround"></div><div class="rround"></div></div>
 	</div><!-- end of list_cart-->

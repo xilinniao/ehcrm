@@ -3,20 +3,21 @@
 <%@include file="/common/headA.jsp"%>
 <title><%=projName%>-店铺管理</title>
 </head>
-<frameset id="fset" name="fsetname" rows="57,*" cols="*" frameborder="NO" border="0" framespacing="0">
-  <frame name="topFrame" scrolling="NO" noresize src="<%=path%>/front/shoplogin.xhtml?method=top" frameborder="no">
-  <frameset cols="190,*" id="mainFrameset" frameborder="no" rows="*">
-    <frame src="<%=path%>/front/shoplogin.xhtml?method=menu" name="leftFrame" scrolling="no" marginwidth="0" marginheight="0">
-    <frame src="<%=path%>front/shoplogin.xhtml?method=main" frameborder="no" scrolling="auto" noresize="noresize" name="mainFrame">
-  </frameset>
-  
+
+
+<frameset id="parentFrameset" rows="57,*" cols="*" frameborder="no" border="0" framespacing="0">
+	<frame id="headerFrame" name="headerFrame" src="<%=path%>/front/shoplogin.xhtml?method=top" frameborder="no" scrolling="no" noresize="noresize" />
+	<frameset id="mainFrameset" name="mainFrameset" cols="170,6,*" frameborder="no" border="0" framespacing="0">
+		<frame id="menuFrame" name="menuFrame" src="<%=path%>/front/shoplogin.xhtml?method=menu" frameborder="no" scrolling="no" noresize="noresize" />
+		<frame id="middleFrame" name="middleFrame" src="<%=path%>/front/shoplogin.xhtml?method=middle" frameborder="no" scrolling="no" noresize="noresize" />
+		<frame id="mainFrame" name="mainFrame" src="<%=path%>/front/shoplogin.xhtml?method=main" frameborder="no" noresize="noresize" />
+	</frameset>
 </frameset>
 
 <noframes>
-
-<BODY>
-<P>You Browse doesn't support frame!</P>
-</BODY>
+	<body>
+		noframes
+	</body>
 </noframes>
 
 </html>

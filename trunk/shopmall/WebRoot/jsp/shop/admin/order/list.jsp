@@ -12,7 +12,7 @@
   </head>
   <body class="list">
   	<div class="listBar">
-		<h1><span class="icon">&nbsp;</span>订单列表&nbsp;<span class="pageInfo">总记录数: 11(共1页)</span></h1>
+		<h1><span class="icon">&nbsp;</span>订单综合查询&nbsp;<span class="pageInfo">总记录数: 11(共1页)</span></h1>
 	</div>
 	
 	<div class="body">
@@ -62,7 +62,6 @@
 				</c:forEach>				
 		</table>
 		<div class="pagerBar">
-			<input type="button" class="deleteButton" url="order!delete.action" value="删 除" disabled hidefocus="true" />
 			
 			<script type="text/javascript">
 			$().ready( function() {			

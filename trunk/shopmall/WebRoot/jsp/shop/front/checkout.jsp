@@ -23,6 +23,9 @@
 			}
 		});
 	}
+	
+	var saveform_validator;
+	
 	jQuery(document).ready(function() {
 		//第一个li设置成check状态
 		var fisrt_li_id = $("ul#addr_list li:first").attr("id");
@@ -50,7 +53,22 @@
                 form.submit();
             }
 		});
-	});	
+		
+		calculateMoney();
+	});
+	
+	//计算金额
+function calculateMoney(){
+	var gqtys = $('input[name="cnt"]');
+	var gprice = $('input[name="price"]');
+	var g_amount_price = 0;
+	if (gqtys.size() > 0) {
+		$.each(gqtys,function(i, item){
+			g_amount_price += $(gprice[i]).val()*$(this).val();
+		});
+	}
+	$('#pricesum').text(setScale(g_amount_price,2,''));
+}
 </script>
 </head>
 <body id="index">
@@ -76,7 +94,7 @@
 		<h2><strong>填写核对订单信息</strong></h2>
 		<div class="cart_table">
 			<form id="checkoutform" method="POST" action="<%=path %>/front/order.xhtml?method=oncheckout">
-			<input type="hidden" name="shopId" value="1" >
+			<input type="hidden" name="shopId" value="${param.shopId}" >
 			<input type="hidden" name="uses_score" value="1000" >
 			
 			<div id="part_cart">
@@ -89,7 +107,6 @@
 				            <td>商品名称</td>
 				            <td width="10%">商城价</td>
 				            <td width="8%">赠送积分</td>
-				            <td width="9%">库存状态</td>
 				            <td width="9%">购买数量</td>
 				         </tr>
 				        		        
@@ -99,12 +116,12 @@
 						   ${b.goodsId }
 						   <input type="hidden" name="productId" value="${b.goodsId }"/>
 						   <input type="hidden" name="cnt" value="${b.cnt }"/>
+						   <input type="hidden" name="price" value="${b.discountPrice }"/>
 						   </td>
 						   <td class="align_Left">
 						   <a target="_blank" href="<%=path %>/product/${b.goodsId }.html">${b.goodsName }</a></td>
 						   <td><span class="price">￥${b.discountPrice }</span></td>
 						   <td>0</td>
-						   <td>现货</td>
 						   <td>${b.cnt }</td>
 						</tr>
 						</c:forEach>
@@ -139,19 +156,19 @@
 						<table>
 						<tbody><tr>
 							<td style="width:80px;" align="right">收货人姓名：</td>
-							<td><input type="text" name="revicedName" id="revicedName" class="text-n {required: true}" size="40"/></td>
+							<td><input type="text" name="revicedName" id="revicedName" class="text-n {required: true,messages: {required:'请输入收货人姓名'}}" size="40"/></td>
 						</tr>						
 						<tr>
 							<td align="right">送货地址：</td>
-							<td><input type="text" name="revicedAddr" id="revicedAddr" class="text-n {required: true}" size="40"/></td>
+							<td><input type="text" name="revicedAddr" id="revicedAddr" class="text-n {required: true,messages: {required:'请输入送货地址'}}" size="40"/></td>
 						</tr>						
 						<tr>
 							<td align="right">联系电话：</td>
-							<td><input type="text" name="revicedMobile" id="revicedMobile" class="text-n {required: true}" size="40"/></td>
+							<td><input type="text" name="revicedMobile" id="revicedMobile" class="text-n {required: true,messages: {required:'请输入联系电话'}}" size="40"/></td>
 						</tr>						
 						<tr>
 							<td align="right">电子邮件：</td>
-							<td><input type="text" name="revicedEmail" id="revicedEmail" class="text-n {email: true}" size="40"/></td>
+							<td><input type="text" name="revicedEmail" id="revicedEmail" class="text-n {email: true,messages: {email:'请输入正确的电子邮件'}}" size="40"/></td>
 						</tr>				
 						</tbody></table>
 					</div><!-- end of middle-->
@@ -169,16 +186,17 @@
                   <div class="middle">
                     <!--订单信息-->
                     <ul id="part_info">
+                    	<!--
 						<li class="info1" style="padding-bottom:5px">
 						    商品金额：3585.00元 + 运费：0.00元 - 优惠券：<span id="price_coupon">0.00</span>元 - 礼品卡：<span id="price_coupon">0.00</span>元 - 返现：0.00元
 						<br>
 						</li>
+						-->
 
 						<li class="info2" style="width:100%;overflow:hidden;">
 						     <table style="width:100%" cellpadding="0" cellspacing="0">
 						        <tbody><tr>
-						           
-						          <td style="text-align:right;font-size:15px;"><b>应付总额：<font color="red">￥3,585.00</font> 元</b>
+						          <td style="text-align:right;font-size:15px;"><b>应付总额：<font color="red">￥<span id="pricesum"></span></font> 元</b>
 						          </td>
 						       </tr>
 						     </tbody></table>

@@ -69,11 +69,13 @@
 							return false;
 						}
 						if (data.status == "success") {
-							$('#goods_images').prepend('<li><input type="hidden" name="good_attach_id"><input type="hidden" name="imagesId" value="'+data.imagesId+'"/><img src="'+data.url+'"></li>');
+							$('#goods_images').prepend('<li><input type="hidden" name="imagesId" value="'+data.imagesId+'"/><img src="'+data.urld+'"></li>');
 						}
 					}
 				})
 				return false;
+			}else{
+				alert('请选择上传图片');
 			}
 		});
 	});
