@@ -6,10 +6,13 @@
 <title><%=projName %></title>
 
 	<link href="<%=path %>/resources/common/css/base.css" rel="stylesheet" type="text/css" />
-	<link href="<%=path %>/resources/admin/css/input.css" rel="stylesheet" type="text/css">
-	<link href="<%=path %>/resources/admin/css/datatables.css" rel="stylesheet" type="text/css">
+	<link href="${base}/template/admin/css/message.css" rel="stylesheet" type="text/css" />
 	<%@include file="/jsp/shop/common/head.jsp"%>
-<link href="${base}/template/admin/css/message.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript">
+	function gotoLogin(){
+		top.window.location.href = "<%=path%>/front/shoplogin.xhtml?method=login";
+	}
+</script>
 </head>
 <body class="message">
 <%
@@ -35,15 +38,10 @@
 				<div class="messageContent">
 					<span class="icon success">&nbsp;</span>
 					<span class="messageText">
-						<c:choose>
-							<c:when test="${errorMessages!=null}">
-								${msgStr}
-							</c:when>
-							<c:otherwise>您的操作已成功!</c:otherwise>
-						</c:choose>	
+						登录超时,请重新登录!
 					</span>
 				</div>
-				<input type="submit" class="formButton" value="确  定" hidefocus="true" />
+				<input type="button" class="formButton" value="重新登录" onclick="gotoLogin()" hidefocus="true" />
 			</div>
 			<div class="boxBottom"></div>
 		</div>
