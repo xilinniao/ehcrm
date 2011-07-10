@@ -81,6 +81,13 @@ ul {
 	overflow: hidden;
 }
 
+.clr5 {
+	width: 100%;
+	height: 5px;
+	clear: both;
+	overflow: hidden;
+}
+
 input, select, label {
 	vertical-align: middle
 }
@@ -336,13 +343,16 @@ html[xmlns] .clearfix {
 .messageBox {
 	width: 400px;
 	margin: 100px auto;
+	border: 1px solid #779CB0;
 }
 
 .messageBox .boxTop {
 	width: 400px;
 	height: 29px;
 	clear: both;
-	background: url(../images/message_bg.gif) no-repeat 0px -60px;
+	color: #666666;
+	font-weight: bold;
+	background: url(../images/base_x_bg.gif) 0px 0px repeat-x;
 }
 
 .messageBox .boxMiddle {
@@ -350,7 +360,6 @@ html[xmlns] .clearfix {
 	clear: both;
 	padding: 30px 0px;
 	text-align: center;
-	background: url(../images/message_y_bg.gif) repeat-y -400px 0px;
 }
 
 .messageBox .boxBottom {
@@ -358,7 +367,6 @@ html[xmlns] .clearfix {
 	height: 5px;
 	clear: both;
 	overflow: hidden;
-	background: url(../images/message_bg.gif) no-repeat 0px -90px;
 }
 
 .messageBox .boxTitle {
@@ -387,15 +395,15 @@ html[xmlns] .clearfix {
 }
 
 .messageBox .messageContent .warn {
-	background: url(../images/message_bg.gif) no-repeat -60px -120px;
+	background: url(../images/base_icon.gif) 0px -540px no-repeat;
 }
 
 .messageBox .messageContent .success {
-	background: url(../images/message_bg.gif) no-repeat -90px -120px;
+	background: url(../images/base_icon.gif) 0px -740px no-repeat;
 }
 
 .messageBox .messageContent .error {
-	background: url(../images/message_bg.gif) no-repeat -120px -120px;
+	background: url(../images/base_icon.gif) 0px -940px no-repeat;
 }
 
 .messageBox .messageContent .messageText {
@@ -441,6 +449,7 @@ html[xmlns] .clearfix {
 	line-height: 12px;
 	padding: 5px;
 	zoom: 1;
+	color: red;
 }
 
 input.validateError {
@@ -459,6 +468,8 @@ label.validateError {
 	background-color: #fffeee;
 }
 
+input.ro {background-color:#cccccc;}
+
 input.formText {
 	width: 200px;
 	padding: 5px;
@@ -467,8 +478,6 @@ input.formText {
 	border-bottom: 1px solid #e1e1e1;
 	border-left: 1px solid #999999;
 }
-
-input.ro {background-color:#cccccc;}
 
 input.formText:hover {
 	border: 1px solid #ff9b1f;
@@ -533,9 +542,6 @@ input.formTextSS:focus {
 	background-color: #fff8ef;
 }
 
-
-
-
 input.formTextL {
 	width: 260px;
 	padding: 5px;
@@ -571,6 +577,37 @@ input.formTexLL:hover {
 input.formTextLL:focus {
 	background-color: #fff8ef;
 }
+.list select {
+	height: 23px; 
+	padding: 2px;
+}
+
+.input select {
+	height: 28px; 
+	padding: 5px;
+}
+
+.formSelect {
+	width: 180px;
+}
+.formSelectL {
+	width: 250px;
+}
+.formSelectS {
+	width: 130px;
+}
+.formSelectSS {
+	width: 70px;
+}
+.formSelectPageSize {
+	width: 60px;
+}
+.formSelectL {
+	width: 260px;
+}
+.formSelectLL {
+	width: 360px;
+}
 
 textarea.formTextarea {
 	width: 350px;
@@ -594,7 +631,7 @@ textarea.formTextarea:focus {
 textarea.wysiwyg {
 	width: 100%;
 }
-
+/**
 input.formButton {
 	width: 70px;
 	height: 28px;
@@ -643,6 +680,25 @@ input.formButtonL {
 input.formButtonL:hover {
 	color: #ff6600;
 	background: url(../images/form_bg.gif) -90px -30px no-repeat;
+}
+*/
+
+/** http://papermashup.com/demos/css-buttons/*/
+input.formButton ,input.formButtonSubmit,input.formButtonL{
+	background: #222 url(../images/overlay.png) repeat-x;
+	display: inline-block;
+  padding: 2px 3px 2px;
+  color: #fff;    
+  position: relative;
+  font-weight:700;
+  cursor: pointer;
+  background-color: #FF5C00;
+  margin-left:2px;
+}
+
+input.formButton:hover ,input.formButtonSubmit:hover,input.formButtonL:hover {
+	color: #fff;
+	background-color: #D45500;
 }
 
 span.warnInfo {
@@ -942,4 +998,35 @@ div.userTipTitle {
 	background: url(../images/base_icon.gif) no-repeat 0px -420px;
 	border: 1px solid #ffca88;
 	background-color: #fffeee;
+}
+
+span.ajaxtip {
+	line-height: 25px;
+	padding: 5px 20px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	color:green;
+	background: url(../images/ajaxloading.gif) no-repeat 0px 2px;
+	border: 1px solid #ffca88;
+	background-color: #fffeee;
+}
+input[type="file"]{
+	border: 1px solid #DBDBDB;
+	border-top: 1px solid #B0B0B0;
+	width:350px;
+	height:25px;
+	padding: 3px;
+}
+#goods_images{
+	overflow: hidden;
+	zoom: 1;
+	width: 570px;
+}
+#goods_images li {
+float: left;
+width: 190px;
+height:190px;
+text-align: center;
+overflow: hidden;
+display: inline;
 }
