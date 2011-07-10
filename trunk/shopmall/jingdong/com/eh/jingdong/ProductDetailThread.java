@@ -68,7 +68,7 @@ public class ProductDetailThread extends Thread {
 					TbGoodsImages ga = new TbGoodsImages();
 					ga.setAttachment(attach);
 					ga.setGoodsInfo(goods);
-					ga.setOrderNum(Long.valueOf(j));
+					//ga.setOrderNum(Long.valueOf(j));
 					ga.setRelType(Constants.GOODS_ATTACHMENT_TYPE);
 					siteCategoryLogic.save(ga);
 				}
