@@ -44,9 +44,8 @@ $(document).ready(function() {
 <div class="w main">
 	<%@include file="/jsp/shop/front/user/user_nav.jsp"%><!-- 左边导航条 -->
 	
-	<div id="uc_content">
-          <div class="uc_list">
-			<h3>修改个人资料</h3>
+	<div class="uc_right">
+          	<div class="o-mt"><h2>个人资料</h2></div>
 			<c:if test="${param.msg!=null}">
 			 	<div class="userTipSuccess">个人资料保存成功</div>
 			 </c:if>
@@ -55,7 +54,7 @@ $(document).ready(function() {
 	            <div id="userform" class="form">
 	            	<div class="item">
 					    <span class="label">用户名：</span>
-					    <div>
+					    <div style="margin-top:5px;">
 						    ${custInfo.custCode}
 					    </div>
 				    </div>
@@ -101,7 +100,6 @@ $(document).ready(function() {
 	            </div>
            	</form>
             
-         </div>
         
 	</div><!-- end of uc_middle -->
 	

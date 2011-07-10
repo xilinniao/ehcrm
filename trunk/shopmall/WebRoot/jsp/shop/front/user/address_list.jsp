@@ -31,7 +31,7 @@ $(document).ready(function() {
 			 	<div class="userTipSuccess">保存成功</div>
 			 </c:if>
 			 
-             <table class="Table" bordercolor="#AACCEE" border="1" width="100%">
+             <table class="userTable" bordercolor="#AACCEE" border="1" width="100%">
                  <tbody>
                   <tr>
                       <th>姓名</th>

@@ -24,10 +24,9 @@ $(document).ready(function() {
 <div class="w main">
 	<%@include file="/jsp/shop/front/user/user_nav.jsp"%><!-- 左边导航条 -->
 	
-	<div id="uc_content">
-          <div class="uc_list">
-			<h3>订单列表</h3>
-             <table class="Table" bordercolor="#AACCEE" border="1" width="100%">
+	<div class="uc_right">
+          	<div class="o-mt"><h2>订单列表</h2></div>
+             <table class="userTable" bordercolor="#AACCEE" border="1" width="100%">
                  <tbody>
                   <tr>
                       <th>订单编号</th>
@@ -51,7 +50,7 @@ $(document).ready(function() {
                   
              	</tbody>
              </table>
-         </div>
+  		<div class="clr5"></div>
          <div class="pagerBar">			
 			<script type="text/javascript">
 			$().ready( function() {

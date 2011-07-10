@@ -39,6 +39,7 @@ $(document).ready(function() {
 	<%@include file="/jsp/shop/front/user/user_nav.jsp"%><!-- 左边导航条 -->
 	
 	<div id="uc_middle">
+		<!--
 		<div id="uc_info" class="clearfix">
 			<div class="myhead">
 				<div class="pic">
@@ -62,7 +63,7 @@ $(document).ready(function() {
 	         	</ul>	         
 
 			</div>
-		</div><!-- end of uc_info -->
+		</div>--><!-- end of uc_info -->
 		
 		
 		<div id="order_info" class="Tip_Buy">
