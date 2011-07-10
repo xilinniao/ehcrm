@@ -207,6 +207,7 @@ public class BaseAuto extends TestCase {
 			column.setAttribute(new Attribute("digits",String.valueOf(next.getDigits())));
 			column.setAttribute(new Attribute("isList","YES"));
 			column.setAttribute(new Attribute("isQry","NO"));
+			column.setAttribute(new Attribute("paramKey",""));
 			columns.addContent(column);
 		}
 		root.addContent(columns);
@@ -234,6 +235,7 @@ public class BaseAuto extends TestCase {
 				columnVo.setRemark(next.getAttributeValue("remark"));
 				columnVo.setIsList(next.getAttributeValue("isList"));
 				columnVo.setIsQry(next.getAttributeValue("isQry"));
+				columnVo.setParamKey(next.getAttributeValue("paramKey"));
 				colList2.add(columnVo);
 			}
 		}
