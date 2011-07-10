@@ -1391,6 +1391,16 @@ jQuery.validator.addMethod("phoneUS", function(phone_number, element) {
 		phone_number.match(/^(1-?)?(\([2-9]\d{2}\)|[2-9]\d{2})-?[2-9]\d{2}-?\d{4}$/);
 }, "Please specify a valid phone number");
 
+jQuery.validator.addMethod("byteRangeLength", function(value, element, param) {   
+  var length = value.length;   
+  for(var i = 0; i < value.length; i++){   
+   if(value.charCodeAt(i) > 127){   
+    length++;   
+   }
+  }  
+  return this.optional(element) || ( length >= param[0] && length <= param[1] );   
+}, "请确保输入的值在3-15个字节之间(一个中文字算2个字节)");
+
 jQuery.validator.addMethod('phoneUK', function(phone_number, element) {
 return this.optional(element) || phone_number.length > 9 &&
 phone_number.match(/^(\(?(0|\+44)[1-9]{1}\d{1,4}?\)?\s?\d{3,4}\s?\d{3,4})$/);
