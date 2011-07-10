@@ -12,6 +12,7 @@ import com.eh.base.entity.TbMenuInfo;
 import com.eh.base.entity.TbUserInfo;
 import com.eh.base.logic.BaseLogic;
 import com.eh.base.util.Constants;
+import com.eh.base.util.CryptUtil;
 import com.eh.base.vo.UserInfo;
 /**
  * 登录验证类
@@ -20,6 +21,16 @@ import com.eh.base.vo.UserInfo;
  */
 public class LoginLogicImpl extends BaseLogic implements LoginLogic{
 	private BaseJdbcDao baseJdbc;
+	
+	/**
+	 * 加密密码串
+	 * @param pwd
+	 * @return
+	 */
+	private String cryptPwd(String pwd){
+		return CryptUtil.md5(Constants.CRYPT_MD_PREFIX+pwd);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * @see com.jcrm.common.logic.LoginLogic#checkUser(java.lang.String, java.lang.String)
@@ -30,7 +41,7 @@ public class LoginLogicImpl extends BaseLogic implements LoginLogic{
 		List<TbUserInfo> userList = baseDao
 				.find(
 						"select u from TbUserInfo u join fetch u.dept where upper(u.userCode) = ? and u.loginPwd = ?",
-						new Object[] { userCode, password });
+						new Object[] { userCode, cryptPwd(password) });
 		
 		//找不到用户
 		if (userList.size() == 0) {

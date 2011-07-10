@@ -18,10 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.eh.base.controller.BaseCtrl;
 import com.eh.shop.admin.logic.PageCategoryLogic;
+import com.eh.shop.admin.logic.ShopLogic;
 import com.eh.shop.admin.logic.SiteCategoryLogic;
 import com.eh.shop.entity.TbGoodsInfo;
 import com.eh.shop.entity.TbPageCategory;
 import com.eh.shop.entity.TbSiteCategory;
+import com.eh.shop.front.cache.ShopInfo;
 import com.eh.shop.front.logic.FrontCacheLogic;
 import com.eh.shop.front.vo.GoodsCategoryVo;
 
@@ -39,6 +41,11 @@ public class IndexCtrl extends BaseCtrl {
 	PageCategoryLogic pageCategoryLogic = null;
 	
 	SiteCategoryLogic siteCategoryLogic;
+	
+	/**
+	 * 商店LOGIC
+	 */
+	ShopLogic shopLogic;
 	
 	/**
 	 * 查找商品列表
@@ -128,6 +135,15 @@ public class IndexCtrl extends BaseCtrl {
 		ModelAndView mav = new ModelAndView("/jsp/shop/front/index");
 		List<GoodsCategoryVo> categoryGoods = this.frontCacheLogic.findCategoryGoods(Long.valueOf(1));
 		mav.addObject("categoryGoods", categoryGoods);
+		
+		//查找店铺信息
+		List<Long> leastShops =  this.shopLogic.findLeastRegShop();
+		List<ShopInfo> shopList = new ArrayList<ShopInfo>();
+		for(Long shopId:leastShops){
+			shopList.add(this.frontCacheLogic.findShopInfo(shopId, false));
+		}
+		mav.addObject("shopList", shopList);
+		
 		return mav;
 	}
 	
@@ -292,5 +308,13 @@ public class IndexCtrl extends BaseCtrl {
 
 	public void setFrontCacheLogic(FrontCacheLogic frontCacheLogic) {
 		this.frontCacheLogic = frontCacheLogic;
+	}
+
+	public ShopLogic getShopLogic() {
+		return shopLogic;
+	}
+
+	public void setShopLogic(ShopLogic shopLogic) {
+		this.shopLogic = shopLogic;
 	}
 }

@@ -101,7 +101,7 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 	 */
 	public GoodsShort findGoodsShort(Long subGoodsId, boolean reRead) {
 		String key = "gss_" + subGoodsId;// good sub short
-		// frontCache.remove(key);
+		frontCache.remove(key);
 		Element elm = frontCache.get(key);
 		if (elm == null) {
 			TbGoodsInfoSub goodInfo = this.baseDao.get(TbGoodsInfoSub.class,
@@ -112,17 +112,23 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 			GoodsShort vo = new GoodsShort();
 			vo.setGoodsId(subGoodsId);
 			vo.setGoodsId(goodInfo.getGoods().getGoodsId());
+			vo.setShopId(goodInfo.getGoods().getShopInfo().getShopId());
 			vo.setName(goodInfo.getGoods().getGoodsName()
 					+ (goodInfo.getGoodsSubName() == null ? "" : goodInfo
 							.getGoodsSubName()));
 			vo.setPrice(goodInfo.getMarketPrice());
 			vo.setDiscountPrice(goodInfo.getDiscountPrice());
-			vo.setImageA(goodInfo.getGoods().getFaceImage().getFilePathA());
-			vo.setImageB(goodInfo.getGoods().getFaceImage().getFilePathB());
-			vo.setImageC(goodInfo.getGoods().getFaceImage().getFilePathC());
-			vo.setImageD(goodInfo.getGoods().getFaceImage().getFilePathD());
-			vo.setImageE(goodInfo.getGoods().getFaceImage().getFilePathE());
-			vo.setImageF(goodInfo.getGoods().getFaceImage().getFilePathF());
+			TbAttachment face = goodInfo.getGoods().getFaceImage();
+			if(face==null){
+				face = super.baseDao.get(TbAttachment.class, Long.valueOf(0));
+			}
+			vo.setImageA(face.getFilePathA());
+			vo.setImageB(face.getFilePathB());
+			vo.setImageC(face.getFilePathC());
+			vo.setImageD(face.getFilePathD());
+			vo.setImageE(face.getFilePathE());
+			vo.setImageF(face.getFilePathF());
+			
 			this.frontCache.put(new Element(key, vo));
 			return vo;
 		} else {
@@ -147,12 +153,14 @@ public class FrontCacheLogicImpl extends BaseLogic implements FrontCacheLogic {
 			vo.setShopAddr(shopInfo.getShopAddr());
 			vo.setFoundDate(shopInfo.getFoundDateStr());
 			vo.setPubNote(shopInfo.getPubNote());
+			vo.setLinkqq(shopInfo.getLinkqq());
 			
 			List<GoodsCategory> goodsCategoryList = new ArrayList<GoodsCategory>();
-			List<TbGoodsCategory> categoryList = super.baseDao.find("from TbGoodsCategory t where t.shopInfo = ? order by treeNo asc ", shopInfo);
+			List<TbGoodsCategory> categoryList = super.baseDao.find("from TbGoodsCategory t where t.shopInfo = ? and t.parent is not null order by treeNo asc ", shopInfo);
 			for(TbGoodsCategory next:categoryList){
 				GoodsCategory cat = new GoodsCategory();
 				cat.setCategoryId(next.getCategoryId());
+				cat.setLeaf(next.getTreeNo().length()==9);
 				cat.setCategoryName(next.getCategoryName());
 				cat.setTreeNo(next.getTreeNo());
 				goodsCategoryList.add(cat);

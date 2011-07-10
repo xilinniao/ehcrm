@@ -72,6 +72,10 @@ public class GoodsShort implements Serializable{
 	 * 公告
 	 */
 	String pubNote;
+	/**
+	 * 店铺ID
+	 */
+	Long shopId;
 	
 	public String getName() {
 		return name;
@@ -184,6 +188,15 @@ public class GoodsShort implements Serializable{
 
 	public void setPubNote(String pubNote) {
 		this.pubNote = pubNote;
+	}
+	
+
+	public Long getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
 	}
 
 	/**

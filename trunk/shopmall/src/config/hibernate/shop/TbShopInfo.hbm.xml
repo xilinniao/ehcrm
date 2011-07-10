@@ -41,6 +41,10 @@
 			<column name="LINKER_MOBILE" length="100">
 			</column>
 		</property>
+		<property name="linkqq" type="java.lang.String">
+			<column name="LINK_QQ" length="150">
+			</column>
+		</property>
 		<property name="linkTel" type="java.lang.String">
 			<column name="LINK_TEL" length="100">
 			</column>

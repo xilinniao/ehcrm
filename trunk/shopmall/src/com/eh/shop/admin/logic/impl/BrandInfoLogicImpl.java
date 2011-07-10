@@ -16,7 +16,8 @@ public class BrandInfoLogicImpl extends BaseLogic implements BrandInfoLogic {
 	
 
 	public Long findMaxSortNum(Long shopId) {
-		return super.baseDao.findLong("select max(t.orderNum) from TbBrandInfo t where t.shopInfo.shopId=?", shopId);
+		Long max = super.baseDao.findLong("select max(t.orderNum) from TbBrandInfo t where t.shopInfo.shopId=?", shopId);
+		return max==null?Long.valueOf(0):max;
 	}
 
 	/* (non-Javadoc)

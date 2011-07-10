@@ -165,7 +165,6 @@ public class TbGoodsCategory  implements java.io.Serializable {
     public void setJdUrl(String jdUrl) {
         this.jdUrl = jdUrl;
     }
-   
 
     public String getCategoryNameFormate() {
     	String blank="";

@@ -11,6 +11,7 @@ public class GoodsCategory implements Serializable{
 	
 	private Long categoryId;
 	private String categoryName;
+	private boolean isLeaf;
 	private String treeNo;
 	public Long getCategoryId() {
 		return categoryId;
@@ -30,7 +31,15 @@ public class GoodsCategory implements Serializable{
 	public void setTreeNo(String treeNo) {
 		this.treeNo = treeNo;
 	}
-	
+	public boolean isLeaf() {
+		return isLeaf;
+	}
+	public void setLeaf(boolean isLeaf) {
+		this.isLeaf = isLeaf;
+	}
+	public String getCategoryClass(){
+		return this.isLeaf ? "c_n":"c_2";
+	}
 	public boolean isFirstLevel(){
 		if(this.treeNo.length()==6){
 			return true;

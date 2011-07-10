@@ -193,13 +193,12 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 		
 		String[] subId = super.getStrings(request, "sub_id", true);
 		String[] subName = super.getStrings(request, "goodsSubName", true);//货号名称
-		//String[] subNo = super.getStrings(request, "subNo", true);//货号
 		String[] marketPrice = super.getStrings(request, "marketPrice", true);//市场价
 		String[] discountPrice = super.getStrings(request, "discountPrice", true);//折扣价
 		String[] leavesCount = super.getStrings(request, "leavesCount", true);//数量
 		
 		//图片信息
-		Long[] imageIds = super.getLongs(request, "imagesId", true);		
+		Long[] imageIds = super.getLongs(request, "imagesId", true);
 		
 		TbGoodsInfoSub[] subs = new TbGoodsInfoSub[subName.length];
 		for(int i = 0, len = subName.length ; i < len ; i++){
@@ -225,6 +224,7 @@ public class GoodsInfoCtrl extends BaseShopAdminCtrl {
 			info.setCreateTime(new Date());
 			TbGoodsExtend ext = new TbGoodsExtend();
 			ext.setGoodsDesc(goodsDesc);
+			ext.setGoods(info);
 			info.setExt(ext);
 			this.goodsLogic.saveGoodsInfo(info,siteCategory,subs,imageIds);
 		}else{

@@ -25,6 +25,7 @@
         <property name="pageCategoryLogic" ref="pageCategoryLogic"/>
         <property name="siteCategoryLogic" ref="siteCategoryLogic"/>
         <property name="frontCacheLogic" ref="frontCacheLogic"/>
+        <property name="shopLogic" ref="shopLogic"/>
    	</bean>
    	
    	<bean name="categoryCtrl" class="com.eh.shop.front.web.CategoryCtrl">
