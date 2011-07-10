@@ -77,6 +77,15 @@
 				</tr>
 				<tr>
 					<th>
+						 客户QQ
+					</th>
+					<td>
+						<input type="text" name="linkqq" id="linkqq" class="formText" value="${shop.linkqq}">
+						<div class="userTip">多个QQ用空格进行分隔，最多输入5个QQ</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
 						 电子邮件
 					</th>
 					<td>

@@ -22,7 +22,7 @@
   </head>
   <body class="list">
   
-  	<form id="editForm" name="editForm" method="post" action="<%=path %>/shop/admin/orders.xhtml?method=send">
+  	<form id="editForm" name="editForm" method="post" action="<%=path %>/shop/admin/orders.xhtml?method=finish">
 	<input type="hidden" name="orderId" id="edit_orderId" value=""/>
 	<input type="hidden" name="qryHex" value="${qry.qryHex}"/>
 	</form>
@@ -51,8 +51,6 @@
 			</table>			
 		</div>
 		
-		<div class="userTipTitle">提示：本模块用于订单接收，订单接收后该订单将自动转移至发货订单列表中</div>
-			
 		<table class="listTable" id="listTable">
 				<tr>
 					<th nowrap>订单号</th>
@@ -75,7 +73,7 @@
 					<td>${b.revicedAddr }</td>
 					<td>${b.orderMoney }</td>
 					<td>${b.orderStatusStr }</td>
-					<td><a href='#none' onclick="gotoEdit('${b.orderId }')" title='发货'>[发货]</a></td>
+					<td><a href='#none' onclick="gotoEdit('${b.orderId }')" title='结束订单'>[结束订单]</a></td>
 				</tr>
 				</c:forEach>				
 		</table>

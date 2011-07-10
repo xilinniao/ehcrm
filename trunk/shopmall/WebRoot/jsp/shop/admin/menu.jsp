@@ -44,18 +44,6 @@
 			<li id="id_100"><a href="/shop/admin/orders.xhtml?method=finishList" target="mainFrame">待完成订单</a></li>
 			<li id="id_102"><a href="/shop/admin/orders.xhtml?method=list" target="mainFrame">订单综合查询</a></li>
 		</ul>
-		
-		<div class="helpLeftBar">
-			<span>系统操作</span>
-		</div>
-		<ul class="helpLeftGroup">
-			<li>
-				<a href="<%=path%>/help/topic-linkus.html">修改密码</a>
-			</li>
-			<li>
-				<a href="<%=path%>/help/topic-linkus.html">退出</a>
-			</li>
-		</ul>
 	</div>
 </div>
 <!-- 帮助导航结束 -->

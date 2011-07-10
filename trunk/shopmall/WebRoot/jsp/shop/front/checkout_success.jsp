@@ -23,18 +23,15 @@
 	
 <div class="w" id="entry">
 	<div class="mt">
-		<h2>用户登录</h2>
+		<h2>订单结果</h2>
 		<b></b>
 	</div>
 	<div class="mc" style="padding-top:20px;">		
 		
 		<div id="succeed" class="flk13">
-                <h3>
-                    恭喜，下单成功。</h3>
-                <s></s>
-            </div>	
-			
-		
+                <h3>恭喜，下单成功。</h3>
+        </div>
+        
 		<span class="clr"></span>
 			
 	</div>

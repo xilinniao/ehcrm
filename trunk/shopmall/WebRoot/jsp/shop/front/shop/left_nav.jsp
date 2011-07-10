@@ -50,8 +50,9 @@
 						<tr>
 							<th>在线客服：</th>
 							<td>
-								<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=294144892&amp;site=qq&amp;menu=yes">
-									<img border="0" src="http://wpa.qq.com/pa?p=2:294144892:47" alt="给我发消息" title="给我发消息"></a>
+								<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=${shop.linkqq }&amp;site=qq&amp;menu=yes">
+									<img border="0" src="http://wpa.qq.com/pa?p=2:${shop.linkqq }:47" alt="给我发消息" title="给我发消息">
+								</a>
 								</td>
 						</tr>
 						</tbody>
@@ -68,10 +69,11 @@
 				
 			</div>
 			<!-- 搜索店内商品 -->
+			<!--
 			<div class="l_gray_tit">搜索店内商品</div>
 			<div class="shop_in_sch">
 				<div class="f_s">
-					<form name="shopSearchForm" action="http://shop.360hqb.com/21743/search.html" method="get">
+					<form name="shopSearchForm" action="" method="get">
 					<div class="l_nav">关键字：<input class="gray_c" type="text" name="searchkey" maxlength="30" id="searchkey" value="" style="width:112px;"></div>
 					<div class="l_nav">价　格：<input onblur="checkNum(price1);" class="gray_c" type="text" name="price1" id="price1" value="" style="width:44px;"> 到 <input onblur="checkNum(price2);" class="gray_c" type="text" name="price2" id="price2" value="" style="width:44px;"></div>
 					<div class="b_nav">
@@ -79,46 +81,27 @@
 					</form>
 				</div>
 			</div>
+			-->
+			
 			<!-- 店铺商品分类 -->
 			<div class="l_gray_tit">店铺商品分类</div>
 			<div class="shop_pord_catalog">
+				<!--
 				<div class="all_c">
-				<a href="http://shop.360hqb.com/21743/categories.html" target="_self" title="全部商品分类">全部商品分类</a> &gt;&gt;</div>
+				<a href="#" target="_self" title="全部商品分类">全部商品分类</a> &gt;&gt;
+				</div>
+				-->
 				<ul>
-					<li class="c_2">
-						<a href="http://shop.360hqb.com/21743/categories.html?cat_id=5688" target="_self" title="松下数码摄像机">松下数码摄像机</a>
+					<c:forEach items="${shop.categoryList}" var="b">
+					<li class="${b.categoryClass}">
+						<a href="<%=path%>/front/shop.xhtml?method=index&shopId=${shop.shopId}&treeNo=${b.treeNo}" target="_self" title="${b.categoryName}">${b.categoryName}</a>
 					</li>
-					<li class="c_n">
-						<a href="http://shop.360hqb.com/21331/categories.html?cat_id=3779" target="_self" title="华硕">华硕</a>
-					</li>
-					<li class="c_n">
-						<a href="http://shop.360hqb.com/21331/categories.html?cat_id=3779" target="_self" title="华硕">华硕</a>
-					</li>
-					<li class="c_n">
-						<a href="http://shop.360hqb.com/21331/categories.html?cat_id=3779" target="_self" title="华硕">华硕</a>
-					</li>
-					<li class="c_n">
-						<a href="http://shop.360hqb.com/21331/categories.html?cat_id=3779" target="_self" title="华硕">华硕</a>
-					</li>
-					<li class="c_2">
-						<a href="http://shop.360hqb.com/21743/categories.html?cat_id=5688" target="_self" title="松下数码摄像机">松下数码摄像机</a>
-					</li>
-					<li class="c_n">
-						<a href="http://shop.360hqb.com/21331/categories.html?cat_id=3779" target="_self" title="华硕">华硕</a>
-					</li>
-					<li class="c_n">
-						<a href="http://shop.360hqb.com/21331/categories.html?cat_id=3779" target="_self" title="华硕">华硕</a>
-					</li>
-					<li class="c_n">
-						<a href="http://shop.360hqb.com/21331/categories.html?cat_id=3779" target="_self" title="华硕">华硕</a>
-					</li>
-					<li class="c_n">
-						<a href="http://shop.360hqb.com/21331/categories.html?cat_id=3779" target="_self" title="华硕">华硕</a>
-					</li>
+					</c:forEach>
 				</ul>
 			</div>
 			
 			<!-- 店铺热销商品 -->
+			<!--
 			<div class="l_gray_tit">店铺热销商品</div>
 			<div class="shop_hot_sell">
 				<div class="i_nav ">
@@ -148,4 +131,5 @@
 				</div>
 				
 			</div>
+			-->
 	</div><!-- end of left -->

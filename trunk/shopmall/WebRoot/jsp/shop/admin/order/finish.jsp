@@ -56,11 +56,11 @@
 								<td>
 								<select name="isComplete" class="formText {required: true,messages: {required:'请选择是否成交'}}" id="isComplete">
 									<option value=""></option>
-									<option value="1"></option>
+									<option value="1">已成交</option>
 									<option value="0">未成交</option>
-								</select> 
+								</select>
 								</td>
-							  </tr>		  
+							  </tr>
 							  <tr>
 							    <th>成交备注</th>
 								<td>

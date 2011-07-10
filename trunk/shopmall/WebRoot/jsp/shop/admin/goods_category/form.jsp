@@ -21,14 +21,13 @@
 							  </tr>
 							  <tr>
 							    <th>分类关键字</th>
-								<td><input type="text" name="keyWords" class="formTextL {required: true}" id="keyWords" >
-								<label class="requireField">*</label>
+								<td><input type="text" name="keyWords" class="formTextL" id="keyWords" >
 								<div class="userTip">分类关键字能更好的推广您的商品，请认真填写该项内容,多个关键字用空格分开</div></td>
 							  </tr>
 							  <tr>
 							    <th>分类描述</th>
-								<td><input type="text" name="categoryDesc" class="formTextL {required: true}" id="categoryDesc" >
-								<label class="requireField">*</label>
+								<td>
+								<textarea name="categoryDesc" class="formTextarea" id="categoryDesc" style="width:280px; height: 50px;">${shop.shopDesc }</textarea>
 								<div class="userTip">描述能更好的推广您的商品，请认真填写该项内容</div></td>
 							  </tr>
 							  <tr>
