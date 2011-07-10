@@ -75,7 +75,7 @@ $(document).ready(function() {
 				    <div class="item">
 					    <span class="label">原密码：</span>
 					    <div class="fl">
-						    <input type="password" class="text {required: true} valid" id="oldpwd" name="oldpwd" tabindex="2" />
+						    <input type="password" class="textS {required: true,messages: {required:'请输入原密码'}} valid" id="oldpwd" name="oldpwd" tabindex="2" />
 						    <span class="clr"></span>    						
 					    </div>
 				    </div>	
@@ -83,7 +83,7 @@ $(document).ready(function() {
 				    <div class="item">
 					    <span class="label">新密码：</span>
 					    <div class="fl">
-						    <input type="password" class="text {required: true} valid" id="newpwd" name="newpwd" tabindex="3" value="" />
+						    <input type="password" class="textS {required: true,messages: {required:'请输入新密码'}} valid" id="newpwd" name="newpwd" tabindex="3" value="" />
 						    <span class="clr"></span>    						
 					    </div>
 				    </div>
@@ -91,7 +91,7 @@ $(document).ready(function() {
 				    <div class="item">
 					    <span class="label">新密码：</span>
 					    <div class="fl">
-						    <input type="password" class="text {required: true} valid" id="newpwdtw" name="newpwdtw" tabindex="4"/>
+						    <input type="password" class="textS {required: true,messages: {required:'请输入确认新密码'}} valid" id="newpwdtw" name="newpwdtw" tabindex="4"/>
 						    <span class="clr"></span>    						
 					    </div>
 				    </div>	    

@@ -24,14 +24,13 @@ $(document).ready(function() {
 <div class="w main">
 	<%@include file="/jsp/shop/front/user/user_nav.jsp"%><!-- 左边导航条 -->
 	
-	<div id="uc_content">
-          <div class="uc_list">
-			<h3>地址列表</h3>
+	<div class="uc_right">
+          	<div class="o-mt"><h2>购买咨询</h2></div>
 			 <c:if test="${param.msg!=null}">
 			 	<div class="userTipSuccess">保存成功</div>
 			 </c:if>
 			 
-             <table class="Table" bordercolor="#AACCEE" border="1" width="100%">
+             <table class="userTable" bordercolor="#AACCEE" border="1" width="100%">
                  <tbody>
                   <tr>
                       <th>商品名称</th>
@@ -55,7 +54,6 @@ $(document).ready(function() {
                   
              	</tbody>
              </table>
-         </div>
         
 	</div><!-- end of uc_middle -->
 	
